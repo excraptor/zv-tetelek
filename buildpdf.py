@@ -1,0 +1,26 @@
+import os
+import markdown 
+import pdfkit
+from pathlib import Path
+
+text = '<meta charset="utf-8">\n'
+
+with os.scandir('TORZSTARGYAK-I/') as targyak:
+    for targy in targyak:
+        with os.scandir(targy) as tetelek:
+            for tetel in tetelek:
+                with open(tetel, 'r', encoding="utf-8") as f:
+                    content = f.read()
+                    text += content
+
+with os.scandir('TORZSTARGYAK-II/') as targyak:
+    for targy in targyak:
+        with os.scandir(targy) as tetelek:
+            for tetel in tetelek:
+                with open(tetel, 'r', encoding="utf-8") as f:
+                    content = f.read()
+                    text += content
+
+html = markdown.markdown(text)
+pdfkit.from_string(html, 'kidolgozas.pdf')
+
