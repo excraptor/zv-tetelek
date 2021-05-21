@@ -24,9 +24,11 @@ Az *NP* osztályban azok a problémák vannak, amelyek nemdeterminisztikusan pol
 ## NP teljes problémák
 
 Egy probléma akkor *NP*-teljes, ha *NP*-beli és *NP*-nehéz.
+
 - *NP*-beli, ha nemdeterminisztikusan tudunk tanúkat generálni hozzá, amik igen példányai a
 problémának
 - *NP*-nehéz, ha minden más *NP*-beli problémát hatékonyan vissza tudunk vezetni rá.
 
 ### Példák
+
 SAT, Hátizsák, Hamilton-út, Hamilton-kör, Euler-kör, ILP, Részletösszeg, Partíció
