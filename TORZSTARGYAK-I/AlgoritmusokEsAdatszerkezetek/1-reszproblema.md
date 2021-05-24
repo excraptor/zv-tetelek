@@ -47,3 +47,40 @@ Iteratív megoldás: bottom-up építkezünk, és minden lehetséges értéket m
 Rekurzív megoldás memorizálással: top-down építkezünk, és kulcs-érték párokat nézünk (csak akkor, ha nem kell minden részmegoldás)
 
 ### Mohó algoritmusok
+
+Részfeladatra bontás
+Optimalizálás
+
+A mohó algoritmus minden lépésben az aktuálisan optimálisnak tűnő megoldást választja.
+Nem minden problémára adható mohó algoritmus!
+    De ha igen, akkor az nagyon hatékony
+
+Részproblémára bontáskor a cél: 
+    a mohó választás egyetlen részproblémát eredményezzen, aminek az optimális
+    megoldása a probléma optimális megoldása is egyben
+
+Mohó algoritmusok helyessége:
+- fogalmazzuk meg a feladatot úgy, hogy minden döntés hatására egy kisebb részprobléma keletkezzen
+- bizonyítsuk be, hogy mindig van mohó választási lehetőség, tehát biztonságos
+- mohó választással olyan részprobléma keletkezik, amihez hozzávéve a mohó választást, az eredeti probléma optimális megoldását kapjuk (optimális részstruktúrák)
+
+Egy feladat optimális részstruktúrájú, ha a probléma egy opt. megoldása tartalmazza a részfeladatok optimális megoldásait is.
+
+#### Példák
+
+Hátizsák probléma
+
+- adott egy hátizsák kapacitása, és n tárgy, mindegyik értékkel és súllyal megadva
+- mekkora a legnagyobb összérték, amit a hátizsákba tehetünk?
+
+Töredékes hátizsák probléma
+
+- a tárgyak feldarabolhatók
+- de minden tárgyból egy darab van
+
+Mohó algoritmus a töredékes hátizsákra:
+
+- számoljuk ki minden tárgyra az érték/súly arányt
+- tegyük a hátizsákba a legnagyobb ilyen arányú tárgyat, az egészet ha belefér, vagy törjük, ha nem
+
+
