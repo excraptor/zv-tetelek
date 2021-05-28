@@ -114,6 +114,57 @@ Bizonyítás
 2 -> 3
 
 Minden automatával felismert nyelv reprezentálható reguláris kifejezéssel. (Kleene tétele)
-wtf bro
 
+Bizonyítás: legyen L=(M), ahol M egy determinisztikus automata. Megadunk egy olyan reguláris kifejezést, ami L-et reprezentálja.
+
+Tételezzük fel, hogy Q={1,2,3,...,n}, és q0=1.
+Minden 0 kisebbegyenlő k, azaz k darab állapot, és 0 kisebbegyenlő i, j kisebbegyenlő n esetén definiáljuk az L^(k)_i,j nyelvet a következőképpen:
+
+Nézzük úgy az automatát, mintha az i. állapotból indulnánk, és a j.-be akarnánk eljutni, de csak az {1,...,k} állapotokat érinthetjük. Az L^(k)_i,j nyelv azokat a szavakat tartalmazza, amelyeket ez a "kisebb" automata felismer.
+
+Ezután vegyük észre azt, hogy az L nyelv tulajdonképpen úgy áll elő, hogy venni kell az összes olyan L^(n)_1,j nyelvet, ahol j egy végállapot!
+Tehát vegyük az összes olyan nyelvet, ahol az első állapotból akarunk elindulni, és az utolsóba eljutni, és használhatjuk az összes állapotát M-nek (mind az n darabot). Tehát ezen L^(n)_1,j nyelvek uniója lesz L.
+
+Ezért elég az L^(n)_1,j-ket reprezentáló reguláris kifejezéseket megadnunk (R^(n)_1,j).
+
+Ehhez meg kell adnunk az R^(k)_i,j reguláris kifejezéseket k szerinti indukcióval.
+
+k=0 azt jelenti, hogy 0 közbülső állapotból kell eljutnunk az i állapotból a j állapotba. Ez lehet úgy, hogy valamilyen szimbólum hatására átmegyünk, vagy ha i=j, akkor hurokéllel helyben maradunk, vagy epszilonnal nem csinálunk semmit.
+
+Az indukciós feltevésünk az, hogy minden i,j-re megadtuk az R^(k)_i,j-t
+
+k+1-hez ÉSZREVESSZÜK (ja ugye tök triviális lmao)
+
+L^(k+1)_i,j egyenlő azzal, hogy 
+
+- vagy amúgyis eljutunk k köztes állapottal is i-ből j-be
+- vagy belevesszük a k+1. állapotot is a levesbe, elmegyünk az 1-estől a k+1. állapotba, ott körözünk akármeddig, és utána k+1-ből pedig eljutunk j-be
+
+Ekkor, mivel az L^(k)_i,j nyelvekhez az indukciós feltevés miatt tudtunk megfelelő regexet adni, ezekre elvégezve az előző azonosságot, megkapjuk az R^(k+1)_i,j-t is, ezzel pedig meg tudjuk kapni az összes regexet, ami a kezdőállapotból a végállapotokba visz, ezeket uniózva pedig az egész nyelvhez tartozó regexet.
+
+## Reguláris nyelvekre vonatkozó pumpáló lemma, alkalmazása és következményei
+
+### Pumpáló lemma
+
+Minden L reguláris nyelv esetén megadható egy L-től függő k>0 szám, melyre minden w eleme L esetén, ha |w| nagyobbegyenlő k, akkor van olyan w = w1w2w3 felbontás, hogy
+
+- 0 < |w2| és |w1w2| kisebbegyenlő k
+- minden n nagyobbegyenlő 0-ra w1w2^nw3 eleme L
+
+Fordítva, ha egy nyelvhez nem adható meg ilyen k szám, akkor a nyelv nem reguláris.
+
+Kb a lényeg, hogy ha egy nyelv reguláris, akkor a k-nál hosszabb szavak felbonthatók három részre, és a középső rész ismétlődhet akármeddig
+
+### Alkalmazása
+
+Pl bebizonyíthatjuk vele egy nyelvről, hogy nem reguláris.
+a^nb^n n >= 0 nyelv nem reguláris
+
+tegyük fel, hogy van ilyen k, amivel felbontható
+a feltételek miatt w2-ben csak a betűk vannak
+ha ezt pumpáljuk, több a betű lesz benne, mint b - rossz
+
+### Következményei
+
+Vannak olyan nyelvek, amelyek nem környezetfüggetlenek, de nem regulárisak, pl a^nb^n n >= 0.
 
