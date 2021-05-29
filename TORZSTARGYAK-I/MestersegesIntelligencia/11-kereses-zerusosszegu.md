@@ -173,4 +173,4 @@ A feladat az állapottérrel adott keresési problémák és az optimalizálási
 Lehetséges állapotok halmaza: a feladat állapotai az n db változó lehetséges kombinációi
 Célállapotok: a megengedett állapotok, adottak különböző korlátozások, és azok az állapotok a célállapotok, amik minden korlátozást kielégítenek.
 
-Az út a megoldásig lényegtelen, és gyakran célfüggvény is értelmezve van az állapotok felett, ilyenkor egy optimális célállapot megtalálása a cél. 
+Az út a megoldásig lényegtelen, és gyakran célfüggvény is értelmezve van az állapotok felett, ilyenkor egy optimális célállapot megtalálása a cél.

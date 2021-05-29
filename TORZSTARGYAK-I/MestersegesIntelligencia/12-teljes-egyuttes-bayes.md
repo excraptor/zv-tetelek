@@ -29,3 +29,7 @@ P(B1, . . . , Bn|A) = Produktum^n_i=1 P(Bi|A)
 ### Bayes hálók
 
 A feltételes függetlenség hasznos, mert tömöríthetjük a teljes együttes eloszlást.
+
+
+## Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
+
