@@ -33,3 +33,51 @@ A feltételes függetlenség hasznos, mert tömöríthetjük a teljes együttes 
 
 ## Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
 
+### Felügyelt tanulás problémája
+
+Tapasztalati tények felhasználása arra, hogy egy racionális ágens teljesítményét növeljük.
+
+Felügyelt tanulás: 
+
+- van az adatok mögött valami f: X -> Y függvény, ezt nem ismerjük
+- adottak tanulópéldák, amik rendezett párok (x, f(x))
+- egy h: X -> Y, függvényt keresünk, ami illeszkedik a példákra, és közelíti f-et
+- egy példában az első elem pl egy email, a második pedig egy valamilyen címke, pl spam
+- h konzisztens az adatokra, ha h(x)==f(x) minden x tanulópéldára
+- a h függvényt mindig valami H hipotézistérben keressük, vagyis valamilyen "alakban"
+- a tanulás realizálható, ha van olyan h eleme H, amire h konzisztens
+- a gyakorlatban elég, ha h közel van a példákhoz, mert a példák zajt is tartalmazhatnak, amit kifejezetten káros lenne, ha megtanulna az ágens (túltanulás)
+- egy olyan h-t keresünk, ami a tanulópéldákon kívül is jól általánosít
+- nem szabad a tanulópéldákat bemagolni
+- occam borotvája: mindig a legtömörebb leírást kell venni
+- a priori ismeretek fontosak, a nulláról való tanulás kb lehetetlen
+- számítási szempontból egyszerű reprezentáció is fontos
+
+### Döntési fák
+
+Induktív (felügyelt) tanulás konkrét példája.
+
+Feltesszük, hogy X-ben diszkrét változók egy vektora van, Y-ban pedig szintén valami diszkrét változó egy értéke, pl igen-nem
+
+Tulajdonképpen osztályozás, X elemeit kell Y valamelyik osztályába sorolni.
+
+Előnye, hogy döntései megmagyarázhatók, mert emberileg értelmezhető lépésekben jutottunk el odáig.
+
+Kifejezőereje megegyezik az ítéletkalkuluséval.
+
+Döntési fa építése
+
+- adottak pozitív és negatív példák felcímkézve, tipikusan több száz
+- vegyük a gyökérbe azt a változót, ami a legjobban szeparálja a pozitív és negatív példákat
+- ezt folytassuk rekurzív módon
+- ha csak pozitív vagy negatív példa van, akkor levélhez értünk, felcímkézzük ezzel a levelet
+- ha üreshalmaz, akkor a szülő szerint többségi szavazattal címkézünk
+- ha nincs több változó, de vannak negatív és pozitív példák is, akkor szintén többségi szavazattal címkézhetjük a levelet
+
+A legjobban szeparáló attribútumot az információtartalma, azaz entrópiája segítségével választhatjuk ki. 
+
+### Naiv Bayes módszer
+
+Statisztikai következtetési módszer, amely adatbázisban található példák alapján ismeretlen példákat osztályoz. 
+
+
