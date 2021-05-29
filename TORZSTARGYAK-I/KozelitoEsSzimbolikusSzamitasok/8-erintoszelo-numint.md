@@ -69,4 +69,29 @@ A megállási feltételünk lehet az, hogy az utolsó néhány iterált közelí
 Függvényközelítéses módszer. Van pár alappontunk, és ezekre szeretnénk egy polinomot illeszteni. Ezek az alappontok legyenek páronként különbözőek.
 
 
-Minden pontra felírunk egy egyenletet. Ahány alappontunk van, max annyiad fokú lesz a kapott polinomunk. Az egyenlet úgy fog kinézni, hogy ismerjük az x_i értéket
+Minden pontra felírunk egy egyenletet. Ahány alappontunk van, max annyiad fokú lesz a kapott polinomunk. Az egyenlet úgy fog kinézni, hogy ismerjük az x_i értéket, és mindenhova behelyettesítjük őket, és ezeknek az x_i^1, x_i^2, stb változóknak keressük az együtthatóját. Az egyenlet jobb oldalán pedig az f(x_i) értékek vannak.
+
+Ebből kapunk egy lineáris egyenletrendszert, ahol az együtthatókat keressük. Ennek az egyenletrendszernek a mátrixa egy Vandermonde-mátrix lesz. Ebből következik, hogy pontosan egy polinom létezik, ami az adott pontokon áthalad.
+
+A Lagrange-interpoláció az interpoláló polinomot a Szumma f(x_i)L_i(x) alakban adja meg.
+L_i(x)-et úgy kapjuk, hogy egy nagy törtet veszünk - a számlálóban összeszorozzuk az összes x-x_j-t, ahol *j nem egyenlő i-vel*, tehát x-x_i szorzó kimarad belőle
+A nevezőben pedig x_i-x_j-ket szorzunk össze, mindenhol, ahol j nem egyenlő i-vel szintén (különben nullával osztanánk).
+
+## Numerikus integrálás
+
+Határozott integrálokat akarunk közelíteni, úgynevezett kvadratúra formulákkal.
+
+Q_n(f)-fel jelöljük, Q_n(f)=Szumma i=1-től n-ig w_i * f(x_i)
+
+Általában feltesszük, hogy az összes x_i az \[a,b\] intervallumban van, ugye ebben az intervallumban keressük a határozott integrálját f-nek.
+A w_i számokat pedig súlyoknak hívjuk.
+Homogén és additív leképezés, azaz két függvény összegének a határozott integrálja a két függvény határozott integráljának az összege,
+és egy függvény számszorosának határozott integrálja a függvény határozott integráljának számszorosa.
+
+A határok szerinti additivitás fontos tulajdonság, tehát pl integrál a-tól b-ig az ugyanaz mint integrál a-tól c-ig plusz integrál c-től b-ig, ahol a < c < b
+
+A kvadratúra-formula hibája a határozott integrál mínusz a kvadratúra formula kifejezéssel definiáljuk. Ha ez nulla, akkor pontos a kvadratúra formula.
+
+Kvadratúra formula pontossági rendje az *r* természetes szám, ha az pontos az 1, x, x^2, x^3, ..., x^r hatványfüggvényekre, de nem pontos x^{r+1}-re. A rend meghatározása ekvivalens egy egyenletrendszer megoldásával. Ha az alappontokat (tehát x1, x2, stb) ismeretlennek tekintjük, akkor ez egy r+1 egyenletből álló egyenletrendszer (mert elmegyünk x^r-ig, plusz az x^0, azaz 1), amiben 2n változó van (n súly és n darab x).
+
+Az n alappontos kvadratúra formula rendje legfeljebb 2n-1 lehet.
