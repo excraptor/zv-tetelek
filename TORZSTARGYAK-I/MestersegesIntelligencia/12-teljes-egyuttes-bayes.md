@@ -80,4 +80,32 @@ A legjobban szeparáló attribútumot az információtartalma, azaz entrópiája
 
 Statisztikai következtetési módszer, amely adatbázisban található példák alapján ismeretlen példákat osztályoz. 
 
+Például emaileket akarunk spam vagy nem spamként osztályozni. Az emailben lévő szavakra meghatározzuk, hogy milyen valószínűséggel fordul elő egy normális üzenetben, vagy egy spam-ban. Ezután meg kell határozni, hogy milyen valószínűséggel kapunk normális üzenetet, és milyennel spam-et.
+
+Ezután, ha pl kíváncsiak vagyunk, hogy egy szókombinációt tartalmazó email spam vagy nem spam, a szókombinációban előforduló szavak valószínűségét össze kell szorozni, majd megszorozni azzal, hogy milyen valószínűséggel kaptunk normális emailt, és milyennel spam-et. Amelyik valószínűségre nagyobb értéket kapunk, abba az osztályba soroljuk a szókombinációt tartalmazó üzenetet.
+
+### Modellillesztés
+
+Lineáris regresszió?
+
+### Mesterséges neuronhálók
+
+A mesterséges neuron a következőképpen épül fel
+
+- bemeneti értékek, valamilyen súlyokkal megszorozva
+- w0 bias weight, eltolássúly
+- először minden bemeneti értéket megszorozza a hozzá tartozó súllyal, ezeket összeadja, majd kivonja belőle az eltolássúlyt
+- majd a kapott értéken alkalmazzuk az aktivációs függvényt
+
+Az aktivációs függvény célja, hogy 1-hez közeli értéket adjon, ha jó input érkezik, és 0-hoz közelit, ha rossz.
+
+Példa aktivációs függvények:
+
+- küszöbfüggvény: 0, ha az input <= mint 0, 1, ha nagyobb (perceptron)
+- szigmoid függvény: g(x) = 1/(1 +e^−x)
+- Rectifier aktiváció: g(x) = max(0, x) (ReLU)
+
+Neuronokból hálózatokat szokás építeni. Egy hálózatnak lehet több rétege is. Van egy input, egy output és lehet több rejtett rétege is. Egy rétegen belül a neuronok között nincs kapcsolat, csak a rétegek között (előrecsatolt hálózatok). 
+
+### k-legközelebbi szomszéd módszere
 
