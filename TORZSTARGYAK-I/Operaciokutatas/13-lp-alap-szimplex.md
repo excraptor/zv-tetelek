@@ -100,3 +100,40 @@ Vegyünk egy segédfeladatot
 - térjünk át szótár alakra
 - vegyük a legnegatívabb jobboldalú egyenletet, és ebből fejezzük ki x0-t
 - a többiből a mesterséges változókat
+- ezután már egy lehetséges indulószótárat kapunk
+
+A standard feladatnak csak akkor létezik lehetséges megoldása, ha w=0 a hozzá felírt segédfeladat optimuma.
+
+Ha a segédfeladatot megoldjuk a szimplexszel, és annak optimuma 0, akkor a megoldás utolsó szótárából könynen felírhatunk egy olyan szótárat, amely az eredeti feladat szótára, és bázismegoldása lehetséges megoldás is egyben.
+
+A szótár felírásának lépései:
+
+- az x0 = 0 feltételt elhagyjuk
+- ha x0 bázisváltozó, akkor az egyenletének jobb oldalán lévő nem 0 együtthatójú változók egyikével végrehajtunk egy pivot lépést
+- elhagyjuk x0 megmaradt erőforrásait
+- a célfüggvény egyenletét lecseréljük az eredeti célfüggvényre, amit átírunk az aktuális bázisváltozóknak megfelelően
+
+A következő fázisban pedig az átírt szótáron futtatjuk a szimplex algoritmust
+
+## Speciális esetek
+
+### Ciklizáció
+
+Degenerált iterációs lépés: olyan szimplex iteráció, amelyben nem változik a bázismegoldás
+Degenerált bázismegoldás: olyan bázismegoldás, amelyben egy vagy több bázisváltozó értéke is 0
+
+Ciklizáció: ha a szimplex algoritmus valamely iterációja után egy korábbi szótárat visszakapunk, akkor az a ciklizáció
+
+Ha a szimplex algoritmus nem áll meg, akkor ciklizál!
+A ciklizáció elkerülhető megfelelő pivot szabály alkalmazásával (lexikografikus, Bland szabály)
+A ciklizáció oka a degeneráció, azaz a bázisváltozók 0-vá válása a bázismegoldásban
+
+### Nem korlátos 
+
+Ha az LP feladat maximalizálandó/minimalizálandó, és a célfüggvénye tetszőlegesen nagy/kicsi értéket felvehet, akkor nem korlátos a feladat.
+
+### Nincs lehetséges megoldás
+
+Ha a standard alakú LP feladatot kétfázisú szimplex módszerrel oldjuk meg, az első fázis eldönti, hogy van-e lehetséges megoldás.
+
+Ha a felírt segédfeladatban az optimum értéke kisebb, mint nulla, akkor nincs lehetséges megoldás, ha 0, akkor van.
