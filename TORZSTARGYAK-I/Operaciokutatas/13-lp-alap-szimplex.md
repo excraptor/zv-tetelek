@@ -61,3 +61,42 @@ Klasszikus szimplex pivot szabály:
 
 - a lehetséges belépőváltozók közül válasszuk a legnagyobb c_k értékűt, több ilyen esetén a legkisebb indexűt
 - a lehetséges kilépőváltozók közül válasszuk a legkisebb l indexű egyenlet változóját
+
+Bland szabály
+
+- a lehetséges belépőváltozók közül válasszuk a legkisebb indexűt
+- a lehetséges változók közül válasszuk a legkisebb indexűt
+
+Legnagyobb növekmény
+
+
+Lexikografikus szabály
+
+- kiegészítjük epszilonokkal mesterségesen a szótárat
+- a lehetséges belépőváltozók közül a legnagyobb c_k értékűt válasszuk, több ilyennél a legkisebb indexűt
+- a lehetséges kilépőváltozók közül azt, amelynek l indexű egyenletére az együtthatókból álló vektor lexikografikusan a legkisebb
+
+Véletlen pivot
+
+- 1 valószínűséggel terminál
+
+## Az lp geometriája
+
+Ábrázolhatjuk pl a lehetséges megoldások halmazát koordináta rendszerben, két változó esetén.
+
+Minden feltétel egy egyenest határoz meg, ezeket berajzoljuk.
+Ezzel valamilyen sokszöget kapunk meg, ennek a sokszögnek a csúcsainak a koordinátái lesznek a lehetséges megoldások.
+
+## Kétfázisú szimplex módszer
+
+Ha minden konstans nemnegatív az LP feladatban, akkor mehet a szimplex
+
+De mi van, ha vannak negatív konstansok is?
+
+Vegyünk egy segédfeladatot
+
+- bevezetünk egy új, x0 segédváltozót
+- legyen w az új célfüggvény, w=-x0
+- térjünk át szótár alakra
+- vegyük a legnegatívabb jobboldalú egyenletet, és ebből fejezzük ki x0-t
+- a többiből a mesterséges változókat
