@@ -1,1 +1,132 @@
 # 2. Az SQL adatbázisnyelv: Az adatdefiníciós nyelv (DDL) és az adatmanipulációs nyelv (DML). Relációsémák definiálása, megszorítások típusai és létrehozásuk. Adatmanipulációs lehetőségek és lekérdezések
+
+## SQL
+
+Structured Query Language
+
+Arra szolgál, hogy adatokat kezeljünk vele
+
+- beszúrás
+- törlés
+- módosítás
+- lekérdezés
+
+A nyelv elemeit két fő részre oszthatjuk.
+
+## Az adatdefiníciós nyelv
+
+Ide tartoznak az adatbázisok, sémák, típusok definíciós utasításai, pl:
+
+- CREATE DATABASE
+- CREATE TABLE
+- ALTER TABLE
+- DROP TABLE
+- CREATE TRIGGER
+
+## Az adat manipulációs nyelv
+
+Ide tartoznak a beszúró, módosító, törlő, lekérdező utasítások.
+
+- INSERT INTO
+- UPDATE 
+- DELETE FROM 
+- SELECT
+
+Egyes irodalmak különválasztják a lekérdező utasításokat a manipulációs utasításoktól.
+
+## Relációsémák definiálása, megszorítások típusai és létrehozásuk
+
+Relációsémákat a CREATE TABLE utasítással hozhatunk lére. A sémák különböznek a tábláktól, és nevével ellentétben a CREATE TABLE utasítás csak a relációsémát hozza létre. A tábla már az adatrekordok halmazát jelenti.
+
+### Megszorítások
+
+Oszlopfeltételek:
+
+Csak az adott mezőre vonatkoznak
+
+- PRIMARY KEY, az elsődleges kulcs
+- UNIQUE, kulcs, minden érték egyszer fordulhat elő az oszlopban
+- NOT NULL, az oszlop értéke nem lehet NULL, azaz kötelező kitölteni
+- REFERENCES T(oszlop), a T tábla oszlop oszlopára vonatkozó külső kulcs
+- DEFAULT tartalom, az oszlop alapértelmezett értéke tartalom lesz
+
+Táblafeltételek
+
+Ha több oszlopra is vonatkoznak feltételek, azt itt tudjuk megadni.
+
+- PRIMARY KEY(oszloplista), az elsődleges kulcs
+- UNIQUE (oszloplista), kulcs, minden érték egyszer fordulhat elő az oszlopban
+- FOREIGN KEY (oszloplista) REFERENCES T(oszloplista), a T tábla oszloplista oszloplistájára vonatkozó külső kulcs
+
+Külső kulcs feltételek és szabályok
+
+Az integritás megőrzése szempontjából a külső kulcsokhoz meghatározhatjuk azt is, hogy hogyan viselkedjenek a hivatkozott kulcs törlése vagy módosítása esetén.
+
+ON DELETE
+
+- RESTRICT, ha van a törlendő rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a törlést
+- SET NULL, a törlendő rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
+- NO ACTION, a törlendő rekord kulcsára vonatkozó külső kulcs értéke nem változik
+- CASCADE, a törlendő rekord kulcsára hivatkozó külső kulcsú rekordok is törlődnek
+
+ON UPDATE
+
+- RESTRICT, ha van a módosítandó rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a módosítást
+- SET NULL, a módosítandó rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
+- NO ACTION, a módosítandó rekord kulcsára vonatkozó külső kulcs értéke nem változik
+- CASCADE, a módosítandó rekord kulcsára hivatkozó külső kulcsú rekordok is az új értékre változnak
+
+
+Táblákra és attribútumokra vonatkozó megszorítások
+
+Elsődleges feladata, hogy megelőzzük az adatbeviteli hibákat, és elkerüljük a hiányzó adatokat a kötelező mezőkből.
+
+NOT NULL: a cella értékét kötelező kitölteni, nem lehet NULL
+
+CHECK (feltétel): ellenőrző feltétel arra, hogy milyen értékeket vehet fel az adott oszlop
+
+DOMAIN: értéktartomány egy oszlop értékeire vonatkozóan
+
+
+## Adatmanipulációs lehetőségek és lekérdezések
+
+Adatok beszúrása:
+
+Ha csak adott oszlopoknak akarunk értéket adni (pl mert nem kötelező, vagy alapértelmezett érték):
+INSERT  INTO táblanév (oszloplista) VALUES (értéklista);
+
+Ha minden oszlop értékét ki akarjuk tölteni:
+INSERT  INTO táblanév VALUES (értéklista);
+
+Adatok módosítása:
+
+UPDATE táblanév SET oszlop=kifejezés \[oszlop2=kifejezés2\] \[WHERE feltétel\];
+
+Módosítjuk egy vagy több oszlop értékét az adott táblában, azokon a sorokon, amelyek eleget tesznek a WHERE záradékban tett feltételnek.
+
+Adatok törlése:
+
+DELETE FROM táblanév \[WHERE feltétel\];
+
+Töröljük az összes rekordot a táblából, amelyek megfelelnek a WHERE záradékban megadott feltételnek.
+
+Lekérdezések:
+
+SELECT oszloplista FROM tábla;
+
+A megadott oszlopokat kilistázza az adott táblából. oszloplista helyére megadható \*, ha az összes oszlopot listázni akarjuk.
+
+Teljes szintaxisa:
+
+SELECT\[DISTINCT\] oszloplista FROM táblalista 
+\[WHERE feltétel\]
+\[GROUP  BY oszloplista\] 
+\[HAVING csoportfeltétel\]
+\[ORDER  BY oszloplista \[DESC\]\];
+
+DISTINCT: csak a különböző sorokat írja ki
+FROM táblalista: a táblalistában megadott táblákbó képez Descartes szorzatot
+WHERE: kiválasztás a feltétel szerint
+GROUP BY: csoportosítás az oszloplistában szereplő oszlopok szerint
+HAVING: a csoportosítás után a csoportokra vonatkozó feltétel
+ORDER BY: az oszloplistában szereplő adatok rendezése abc szerint növekvő vagy csökkenő sorrendben
