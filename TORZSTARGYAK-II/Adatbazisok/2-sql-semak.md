@@ -130,3 +130,36 @@ WHERE: kiválasztás a feltétel szerint
 GROUP BY: csoportosítás az oszloplistában szereplő oszlopok szerint
 HAVING: a csoportosítás után a csoportokra vonatkozó feltétel
 ORDER BY: az oszloplistában szereplő adatok rendezése abc szerint növekvő vagy csökkenő sorrendben
+
+összesítő függvények
+
+Leggyakrabban a GROUP BY-jal együtt szoktuk használni, de enélkül is lehet.
+Leginkább a SELECT utáni oszlolistában, de a where-ben és a having-ban is használható. Az eredményoszlopokat AS kulcsszóval el is nevezhetjük.
+
+MIN(oszlop): az oszlopban lévő minimumot adja vissza
+MAX(oszlop): maxot
+AVG(oszlop): az oszlop átlaga
+SUM(oszlop): az oszlop összege
+COUNT(\[DISTINCT\] oszlop): az eredményben szereplő (különböző) rekordok száma
+
+Természetes összekapcsolás
+
+SELECT * FROM T1, T2 WHERE T1.X = T2.X;
+
+X az most egy oszlop, egy kulcs-külső kulcs kapcsolat.
+
+Erre használható még SQL-ben az INNER JOIN kulcsszó is.
+
+SELECT * FROM T1, T2 INNER JOIN T2 ON T1.X = T2.X;
+
+Használható még a NATURAL JOIN kifejezés is, de ez egy picit máshogy működik. Ennek a használatához a két tábla közös attribútumhalmaza ugyanazokat az oszlopneveket tartalmazza mindkét táblában és a párosított oszlopok típusa is megegyezik. Ebből kifolyólag nem kell megadnunk a kapcsolódó, kulcs és külső kulcs oszlopokat. A közös oszlop csak egy példányban jelenik majd meg.
+
+SELECT * FROM T1 NATURAL JOIN T2;
+
+Jobboldali, baloldali és teljes külső összekapcsolás
+
+Valamelyik, vagy mindkét tábla összes rekordja szerepelni fog az eredményben.
+
+Baloldali összekapcsolásnál a baloldali tábla minden rekordja megmarad, és ezekhez a rekordokhoz párosítjuk a jobboldali tábla rekordjait. Jobboldalinál pont fordítva. Teljes összekapcsolásnál pedig mindkét tábla összes rekordja megmarad, és mindenhol a hiányzó helyeken NULL értékek lesznek.
+
+Lekérdezések eredményén, amikor ugyanannyi és ugyanolyan típusú oszlopot kérünk le, használhatunk halmazműveleteket is, pl UNION vagy INTERSECT.
