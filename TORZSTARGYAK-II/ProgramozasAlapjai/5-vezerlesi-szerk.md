@@ -75,9 +75,11 @@ Típusai:
 
 Egyszerű szelekciós utasítás megvalósítása C nyelven:
 
+```
 if(F) {
     A;
 }
+```
 
 #### Többszörös szelekciós vezérlés 
 
@@ -90,11 +92,13 @@ if(F) {
 
 Többszörös szelekciós utasítás megvalósítása C nyelven:
 
+```
 if(F1) {
     A1;
 } else if (F2) {
     A2;
 }...
+```
 
 - C nyelvben nincs külön utasítás a többszörös szelekció megvalósítására, ezért az egyszerű szelekció ismételt alkalmazásával kell azt megvalósítani. 
 - Ez azon az összefüggésen alapszik, hogy a többszörös szelekció levezethető egyszerű szelekciók megfelelő összetételével. 
@@ -116,6 +120,7 @@ Ha a többszörös szelekciós vezérlésben minden Fi feltételünk K �
 A switch utasítás: Ha egy kifejezés értéke alapján többféle utasítás közül kell választanunk, a switch utasítást használhatjuk. Megadhatjuk, hogy hol kezdődjön és meddig tartson az utasítás-sorozat végrehajtása. 
 A switch utasítás szintaxisa C-ben:
 
+```
 switch(kifejezés) {
     case konstans1:
         A;
@@ -126,7 +131,8 @@ switch(kifejezés) {
     default:
         D;
 }
- 
+```
+
 - A szelektor kifejezés és a konstansok típusának meg kell egyeznie. Egy konstans legfeljebb egy case mögött és a default kulcsszó is legfeljebb egyszer szerepelhet egy switch utasításban. 
 - A default cimke olyan, mintha a szelektor kifejezés lehetséges értékei közül minden olyat felsorolnánk, ami nem szerepel case mögött az adott switch-ben. 
 - A cimkék (beleértve a default-ot is) sorrendje tetszőleges lehet, az nem befolyásolja, hogy a szelektor kifejezés melyik cimkét választja. 
@@ -166,9 +172,11 @@ Kezdőfeltételes vezérlésről akkor beszélünk, ha a ciklusmag (isme�
 
 A while utasítás: Ha valamilyen műveletet mindaddig végre kell hajtani, amíg egy feltétel igaz, a while utasítás használható. 
    
+```
 while(F) {
     M;
 }
+```
 
 #### Végfeltételes ismétléses vezérlés
 
@@ -185,10 +193,11 @@ Végfeltételes vezérlésről akkor beszélünk, ha a ciklusmag elhagya�
 
 A do while: utasítás Ha valamilyen műveletet mindaddig végre kell hajtani, amíg egy feltétel igaz, a do while utasítás használható. A művelet végrehajtása szükséges a feltétel kiértékeléséhez. A feltétel ellenőrzése a művelet után történik, így ha a feltétel kezdetben hamis volt, a műveletet akkor is legalább egyszer végrehajtjuk. 
 
+```
 do {
     M;
 } while (!F);
-    
+``` 
 
 #### Számlálásos ismétléses vezérlések
 
@@ -218,12 +227,14 @@ Csökkenő számlálásos ismétléses vezérlések:
 
 A for utasítás: Ha valamilyen műveletet sorban több értékére is végre kell hajtani, akkor a for utasítás használható.
 
+```
 for (i = a; i <=b; i++) {
     M;
 }
 for (kif1; kif2; kif3) {
     M;
 }
+```
 
 C-ben a for utasítás általános alakja:
 - A kif1 és kif3 többnyire értékadás vagy függvényhívás, kif2 pedig relációs kifejezés. 
