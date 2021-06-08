@@ -21,8 +21,6 @@ több idővel a végéről vegyünk előre
 
 hiányzik:
 
-rf 
-oprendszerek
-szar
+alga, digikép, prognyelvek (Ricsi)
 prog1-2
-számháló második
+
