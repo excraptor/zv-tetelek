@@ -131,12 +131,177 @@ Konstansként is definiálhatjuk, pl
 
 ### Összetett adattípusok, típusképzések
 
+Az összetett adattípusok értékei tovább bonthatóak, további értelmezésük lehetséges.
+
+A C nyelv összetett adattípusai:
+
+- Pointer típus
+    - Függvény típus
+- Tömb típus
+    - Sztringek
+- Rekord típus
+    - Szorzat-rekord
+    - Egyesítési-rekord
+
 ### Pointer típus
+
+Az eddigi tárgyalásunkban szerepelt változók statikusak abban az értelemben, hogy létezésük annak a blokknak a végrehajtásához kötött, amelyben a változó deklarálva lett. A programozónak a deklaráció helyén túl nincs befolyása a változó létesítésére és megszüntetésére.
+
+Az olyan változókat, amelyek a blokkok aktivizálásától függetlenül létesíthetők és megszüntethetők, dinamikus változóknak nevezzük.
+
+Dinamikus változók megvalósításának általános eszköze a pointer típus.
+
+Egy pointer típusú változó értéke (első megközelítésben) egy meghatározott típusú dinamikus változó.
+
+Pointer típusú változót a * segítségével deklarálhatunk:
+
+```
+típus * változónév;
+```
+
+Az eddigiek során lényegében azonosítottuk a változóhivatkozást és a hivatkozott változót.
+
+A dinamikus változók megértéséhez viszont világosan különbséget kell tennünk az alábbi három fogalom között:
+
+- Változóhivatkozás
+- Hivatkozott változó
+- Változó értéke
+
+A változóhivatkozás szintaktikus egység, meghatározott formai szabályok szerint képzett jelsorozat egy adott programnyelven, tehát egy kódrészlet.
+
+A változó a program futása során a program által lefoglalt memóriaterület egy része, amelyen egy adott (elemi vagy összetett) típusú érték tárolódik.
+
+Különböző változóhivatkozások hivatkozhatnak ugyanarra a változóra, illetve ugyanaz a változóhivatkozás a végrehajtás különböző időpontjaiban különböző változókra hivatkozhat.
+
+Egy változóhivatkozáshoz nem biztos, hogy egy adott időben tartozik hivatkozott változó.
+
+Műveletek:
+
+- NULL
+    - NULL, nem tartozik hozzá dinamikus változó
+- Létesít
+    - `x = malloc(sizeof(E))`
+- Értékadás
+    - `x = y`
+- Törlés
+    - `free(x)`
+- Dereferencia: A pointer által mutatott dinamikus változó elérése, eredménye egy változóhivatkozás.
+    - `*x`
+- Egyenlő
+    - `p == q`
+- NemEgyenlő
+    - `p != q`
+
+
+A memóriaműveletekhez szükség van az stdlib.h vagy a memory.h használatára.
+
+malloc(S), lefoglal egy S méretű memóriaterületet
+sizeof(E), megmondja, hogy egy E típusú érték mekkora helyet igényel a memóriában
+malloc(sizeof(E)), létrehoz egy E típusú érték tárolására is alkalmas változó
+free(p), felszabadítja a p-hez tartozó memóriaterületet, ezután a p-hez nem lesz érvényes változóhivatkozás 
+
+Linux alatt logikailag minden programnak saját memória-tartománya van, amin belül az egyes memóriacímeket egy sorszám azonosítja.
+
+Pointer típusú változó 32 bites rendszereken 4 bájt, 64 bites rendszereken 8 bájt hosszban a hozzá tartozó dinamikus változóhoz foglalt memóriamező kezdőcímét (sorszámát) tartalmazza.
+
+A pointer értéke tehát (második megközelítésben) értelmezhető egy tetszőleges memóriacímként is, amely értelmezés egybeesik a pointer megvalósításával.
+
+Ilyen módon viszont értelmezhetjük a címképző műveletet, ami egy változó memóriabeli pozícióját, címét adja vissza.
+
+- Cím
+    - `p = &x`
+
+A void* egy speciális, úgynevezett típustalan pointer. Az ilyen típusú pointerek „csak” memóriacímek tárolására alkalmasak, a dereferencia művelet alkalmazása rájuk értelmetlen. Viszont minden típusú pointerrel kompatibilisek értékadás és összehasonlítás tekintetében.
 
 ### Tömb típus
 
+Algoritmusok tervezésekor gyakran előfordul, hogy adatok sorozatával kell dolgozni, vagy mert az input adatok sorozatot alkotnak, vagy mert a feladat megoldásához kell.
+
+Tegyük fel, hogy a sorozat rögzített elemszámú (n) és mindegyik komponensük egy megadott (elemi vagy összetett) típusból (E ) való érték.
+
+Ekkor tehát egy olyan összetett adathalmazzal van dolgunk, amelynek egy eleme A = (a 0 , . . . , a n−1 ), ahol a i ∈ E , ∀i ∈ (0, . . . , n − 1)-re.
+
+Ha az ilyen sorozatokon a következő műveleteket értelmezzük, akkor egy (absztrakt) adattípushoz jutunk, amit Tömb típusnak nevezünk.
+
+Jelöljük ezt a Tömb típust T -vel, a 0, . . . , n − 1 intervallumot pedig I-vel.
+
+Műveletek
+
+- Kiolvas
+    - a sorozat i. elemének kiolvasása egy változóba
+- Módosít
+    - a sorozat i. elemének módosítása egy E típusú értékre
+- Értékadás
+    - a változó felveszi a tömb értékét
+
+Tömb típusú változót az alábbi módon deklarálhatunk:
+
+```
+típus változónév[elemszám];
+```
+
+Tömbelem hivatkozásra a `[]` operátort használjuk.
+
+Ez egy olyan tömbökön értelmezett művelet C-ben, ami nagyon magas precedenciával rendelkezik és balasszociatív.
+
+Egy tömbre a tömbindexelés operátort (megfelelő index használatával) alkalmazva a tömb adott elemét változóként kapjuk vissza.
+
+
 ### Rekord típus
+
+A tömb típus nagyszámú, de ugyanazon típusú adat tárolására alkalmas.
+
+Problémák megoldása során viszont gyakran előfordul, hogy különböző típusú, de logikailag összetartozó adatelemek együttesével kell dolgozni.
+
+Az ilyen adatok tárolására szolgálnak a rekord típusok, ezek létrehozására pedig a rekord típusképzések.
+
+Ha az egyes típusú adatokat egyszerre kell tudnunk tárolni, szorzat-rekordról beszélünk.
+
+Az új adattípusra a T=Rekord(T 1 , . . . , T k ) jelölést használjuk és szorzat-rekordnak vagy struktúrának nevezzük.
+
+- kiolvas
+- módosít
+- értékadás
+
+```
+typedef struct T {
+    T1 M1;
+    ...
+    Tk Mk;
+} T;
+```
+
+A fenti típusképzésben az M1,. . . ,Mk azonosítókat mezőazonosítóknak (tagnak, member-nek) hívjuk és lokálisak a típusképzésre nézve.
+
+Az absztrakt típus műveletei mezőhivatkozások segítségével valósíthatóak meg.
+
+A mezőhivatkozásra a . operátort használjuk. Ez egy olyan rekordokon értelmezett művelet C-ben, ami nagyon magas precedenciával rendelkezik és balasszociatív.
+
+Egy rekordra a mezőkiválasztás operátort (megfelelő mezőnévvel) alkalmazva a rekord mezőjét változóként kapjuk vissza.
+
+
 
 ### Unió típus
 
+Ha az egyes típusú adatokat nem kell egyszerre tárolni, egyesített-rekordról beszélünk
 
+A T halmazon is a szorzat rekordhoz hasonló módon értelmezhetünk kiolvasó és módosító műveletet.
+
+Az új adattípust a T 0 változati típusból és T 1 , . . . , T k egyesítési-tag típusokból képzett egyesített-rekord típusnak nevezzük.
+
+```typedef union T {
+    T1 M1;
+    ...
+    Tk Mk;
+} T;
+```
+
+A union típusú változó számára foglalt memória mérete, amely a
+sizeof függvénnyel lekérdezhető:
+```
+sizeof(T) = max{sizeof(T1), ..., sizeof(Tk)}
+```
+
+Valamennyi változati mező ugyanazon a memóriacímen kezdődik, ami
+megegyezik a teljes union típusú érték címével (azaz minden mező
+eltolása, offset-je 0).

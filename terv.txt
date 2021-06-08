@@ -18,3 +18,11 @@ június 4 - prog1-2
 június 5 - szar, számháló
 
 több idővel a végéről vegyünk előre
+
+hiányzik:
+
+rf 
+oprendszerek
+szar
+prog1-2
+számháló második
