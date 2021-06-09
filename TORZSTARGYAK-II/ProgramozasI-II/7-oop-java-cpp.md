@@ -33,6 +33,7 @@ Objektum: Egy változó, melynek típusa valamely objektumosztály, vagyis az os
 - identitás: Minden objektum egyedi, még akkor is, ha éppen ugyanabban az állapotban vannak, és ugyanolyan viselkedést képesek megvalósítani.
 
 ### Információ elrejtése
+
 A láthatóságok segítségével tudjuk szabályozni adattagok, metódusok elérését, ugyanis ezeket az objektumorientált paradigma értelmében korlátozni kell, kívülről csak és kizárólag ellenőrzött módon lehessen ezeket elérni, használni.
 
 Az adattagok, és metódusok láthatóságának vezérléséhez vannak kulcsszavak, amelyekkel megfelelően el tudjuk rejteni őket.
@@ -55,7 +56,7 @@ A hasonlóság kifejezése az ős felé az általánosítás. A különbség a g
 
 Java: az extends kulcsszóval tudjuk jelezni, hogy az adott osztály egy másik osztálynak a leszármazottja. Java-ban egyszeres öröklődés van, vagyis egy osztály csak is egy ősosztályból származhat (viszont több interfészt implementálhat)
 
-- super: segítségével gyerekosztályból hivatkozhatunk szűlőosztály adattagjaira és megótudaira.
+- super: segítségével gyerekosztályból hivatkozhatunk szűlőosztály adattagjaira és metódusaira.
 
 C++: Az osztály neve után vesszővel elválasztva lehet megadni az ősosztályokat és velük együtt a láthatóságaikat. Lehetőség van többszörös öröklődésre is
  
