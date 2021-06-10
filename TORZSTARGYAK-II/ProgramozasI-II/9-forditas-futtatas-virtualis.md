@@ -50,6 +50,7 @@ Szintaxis: gcc [kapcsolók] forrásfájlok
 - -g: engedélyezi a hibakeresési információk elhelyezését a programban, ami emiatt sokkal nagyobb lesz, de nyomon lehet követni a futását például a gdb programmal.
 
 ### C++ parancssori paraméterek
+
 int main(int argc, char* argv[])
 
 A C++ programok kezdő eljárása minden esetben a main() eljárás. A main függvény első két paramétere az argc, ami egy int és az argv tömb:
@@ -61,6 +62,7 @@ A C++ programok kezdő eljárása minden esetben a main() eljárás. A main füg
 Ahhoz, hogy Java programokat tudjunk futtatni, illetve fejleszteni, szükségünk lesz egy fordító- és/vagy futtatókörnyezetre, valamint egy fordítóprogramra. A kész programunk futtatásához mindösszesen a JRE (Java Runtime Environment) szükséges, ami biztosítja a Java alkalmazások futtatásának minimális követelményeit, mint például a JVM (Java Virtual Machine)
 Azonban a fejlesztéshez szükségünk lesz a JDK-ra (Java Development Kit) is. Ez tartalmazza a Java alkalmazások futtatásához, valamint azok készítéséhez, fordításához szükséges programozói eszközöket is (tehát a JRE-t nem kell külön letölteni, a JDK tartalmazza).
 A fordítás folyamata az alábbiak alapján történik:
+
 - Először a .java kiterjesztésű fájlokat a Java-fordító (compiler) egy közbülső nyelvre fordítja
 - Java bájtkódot kapunk eredményül (ez a bájtkód hordozható). A java bájtkód a számítógép számára még nem értelmezhető. (kiterjesztése .class)
 - Ennek a kódnak az értelmezését és fordítását gépi kódra a JVM (Java Virtual Machine) végzi el futásidőben.
@@ -70,7 +72,7 @@ Futtatás: java filename
 Java fordítási opciók:
 - -g: debug információk generálása
 - -s <könyvtár>: a generált fájlok könyvtárának megadása
-- -sourcepath <path>: a forrásfájlok elérési utvonalát meg lehet adni
+- -sourcepath <path>: a forrásfájlok elérési útvonalát meg lehet adni
 - -Werror: figyelmeztetés esetén megáll a fordítás
 Java parancssori paraméterek
 public static void main(String[] args)
@@ -109,6 +111,7 @@ A törzs nélküli virtuális eljárásokat pure virtual eljárásoknak nevezzü
 
  
 ## Generikus osztályok
+
 Az generikus programozás módszere a kód hatékonyságának növelése érdekében valósul meg. Az általános programozás lehetővé teszi a programozó számára, hogy általános algoritmust írjon, amely minden adattípussal működik. Nincs szükség több, különféle algoritmusok létrehozására, ha az adattípus egész szám, karakterlánc vagy karakter.
 
 Java
