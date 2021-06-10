@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+
 # Részproblémára bontó algoritmusok (mohó, oszd-meg-és-uralkodj, dinamikus programozás), rendező algoritmusok, gráfalgoritmusok (szélességi- és mélységi keresés, minimális feszítőfák, legrövidebb utak)
 
 ## Részproblémára bontó algoritmusok
@@ -83,6 +84,7 @@ Mohó algoritmus a töredékes hátizsákra:
 
 - számoljuk ki minden tárgyra az érték/súly arányt
 - tegyük a hátizsákba a legnagyobb ilyen arányú tárgyat, az egészet ha belefér, vagy törjük, ha nem
+
 
 
 # 2. Elemi adatszerkezetek, bináris keresőfák, hasító táblázatok, gráfok és fák számítógépes reprezentációja
@@ -254,6 +256,7 @@ Binary Search Tree - tömbbel is meg lehet
 
 
 
+
 # 3. Hatékony visszavezetés. Nemdeterminizmus. A P és NP osztályok. NP-teljes problémák
 
 ## Hatékony visszavezetés
@@ -288,6 +291,7 @@ problémának
 ### Példák
 
 SAT, Hátizsák, Hamilton-út, Hamilton-kör, Euler-kör, ILP, Részletösszeg, Partíció
+
 # 4. A PSPACE osztály. PSPACE-teljes problémák. Logaritmikus tárigényű visszavezetés. NL-teljes problémák
 
 ## PSPACE osztály
@@ -353,6 +357,7 @@ f egy olyan függvény, hogy
 - és logaritmikus tárban kiszámítható
 
 akkor f egy logtáras visszavezetés A-ról B-re.
+
 # 5. Véges automata és változatai, a felismert nyelv definíciója. A reguláris nyelvtanok, a véges automaták és a reguláris kifejezések ekvivalenciája. Reguláris nyelvekre vonatkozó pumpáló lemma, alkalmazása és következményei
 
 ## Véges automata és változatai, a felismert nyelv definíciója
@@ -523,6 +528,7 @@ ha ezt pumpáljuk, több a betű lesz benne, mint b - rossz
 
 Vannak olyan nyelvek, amelyek nem környezetfüggetlenek, de nem regulárisak, pl a^nb^n n >= 0.
 
+
 # 6. A környezetfüggetlen nyelvtan és nyelv definíciója. Derivációk és derivációs fák kapcsolata. Veremautomaták és környezetfüggetlen nyelvtanok ekvivalenciája. A Bar-Hillel lemma és alkalmazása
 
 
@@ -607,6 +613,7 @@ Vegyük az a^kb^kc^k szót, aminek hossza 3k >= k, tehát jó lesz fixen.
 A lemma szerint ennek létezik w1w2w3w4w5 felbontása, melyre w2w4 nem epszilon, és minden n >= 0-ra w1w2^nw3w4^nw5 eleme a nyelvnek.
 
 Nézzük ekkor mi lehet w2-ben és w4-ben! Egyik sem tartalmazhat két betűt, mert ekkor pl ha kétszer vesszük w2-t és w4-et, akkor a betűk sorrendje nem abc lesz. Tehát biztosan csak egyféle betűt tartalmaznak. Ekkor a w1w2^2w3w4^2w5 szóbal legalább egy, és legfeljebb két betű száma több, mint a többi betűé, tehát biztos nem eleme ez a szó L-nek.
+
 # 7. Eliminációs módszerek, mátrixok trianguláris felbontásai. Lineáris egyenletrendszerek megoldása iterációs módszerekkel. Mátrixok sajátértékeinek és sajátvektorainak numerikus meghatározása
 
 
@@ -725,6 +732,7 @@ x^(k+1) = y/||y||
 Az inverz hatványmódszer azon a felismerésen alapul, hogy ha az A mátrix sajátértéke lambda, és a hozzá tartozó sajátvektor x, akkor A^-1 egy sajátértéke lambda^-1, és a hozzá tartozó sajátvektor x.
 
 
+
 # 8. Érintő, szelő, és húr módszer, a konjugált gradiens eljárás. Lagrange interpoláció. Numerikus integrálás
 
 ## Érintő, szelő, húrmódszer, konjugált gradiens eljárás
@@ -822,6 +830,7 @@ A kvadratúra-formula hibája a határozott integrál mínusz a kvadratúra form
 Kvadratúra formula pontossági rendje az *r* természetes szám, ha az pontos az 1, x, x^2, x^3, ..., x^r hatványfüggvényekre, de nem pontos x^{r+1}-re. A rend meghatározása ekvivalens egy egyenletrendszer megoldásával. Ha az alappontokat (tehát x1, x2, stb) ismeretlennek tekintjük, akkor ez egy r+1 egyenletből álló egyenletrendszer (mert elmegyünk x^r-ig, plusz az x^0, azaz 1), amiben 2n változó van (n súly és n darab x).
 
 Az n alappontos kvadratúra formula rendje legfeljebb 2n-1 lehet.
+
 # 10. Normálformák a predikátumkalkulusban. Egyesítési algoritmus. Következtető módszerek: Alap rezolúció, elsőrendű rezolúció
 
 ## Normálformák predikátumkalkulusban
@@ -901,6 +910,7 @@ Rezolvensképzés:
 - elmentjük s-t
 - vesszük C1-ből és C2-ből a maradék literálokat, és berakjuk egy halmazba
 - ezen a halmazon elvégezzük az s helyettesítést, ez lesz a rezolvens
+
 
 
 
@@ -1013,7 +1023,8 @@ Két formulának vehetjük a modus ponensét, ha az egyik formula F, a másik pe
 Ezekkel a szabályokkal ha a listára kerül a logikai következmény jobb oldalán szereplő formula,
 akkor igazoltuk a logikai következményt.
 
-Érdemes még az algoritmus előtt a dedukció művelettel kezdeni. Ha a jobb oldali formula F -> G alakú, akkor F-et átvehetjük a Szigmába, és ezt mindaddig ismételhetjük, amíg a jobb oldal ilyen alakú.# 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
+Érdemes még az algoritmus előtt a dedukció művelettel kezdeni. Ha a jobb oldali formula F -> G alakú, akkor F-et átvehetjük a Szigmába, és ezt mindaddig ismételhetjük, amíg a jobb oldal ilyen alakú.
+# 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
 
 ## Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák
 
@@ -1188,7 +1199,8 @@ A feladat az állapottérrel adott keresési problémák és az optimalizálási
 Lehetséges állapotok halmaza: a feladat állapotai az n db változó lehetséges kombinációi
 Célállapotok: a megengedett állapotok, adottak különböző korlátozások, és azok az állapotok a célállapotok, amik minden korlátozást kielégítenek.
 
-Az út a megoldásig lényegtelen, és gyakran célfüggvény is értelmezve van az állapotok felett, ilyenkor egy optimális célállapot megtalálása a cél.# 12. Teljes együttes eloszlás tömör reprezentációja, Bayes hálók. Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
+Az út a megoldásig lényegtelen, és gyakran célfüggvény is értelmezve van az állapotok felett, ilyenkor egy optimális célállapot megtalálása a cél.
+# 12. Teljes együttes eloszlás tömör reprezentációja, Bayes hálók. Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
 
 ## Teljes együttes eloszlás tömör reprezentációja, Bayes hálók
 
@@ -1298,6 +1310,7 @@ Példa aktivációs függvények:
 Neuronokból hálózatokat szokás építeni. Egy hálózatnak lehet több rétege is. Van egy input, egy output és lehet több rejtett rétege is. Egy rétegen belül a neuronok között nincs kapcsolat, csak a rétegek között (előrecsatolt hálózatok). 
 
 ### k-legközelebbi szomszéd módszere
+
 
 # 13. LP alapfeladat, példa, szimplex algoritmus, az LP geometriája, generálóelem választási szabályok, kétfázisú szimplex módszer, speciális esetek (ciklizáció-degeneráció, nem korlátos feladat, nincs lehetséges megoldás)
 
@@ -1437,7 +1450,8 @@ Ha az LP feladat maximalizálandó/minimalizálandó, és a célfüggvénye tets
 
 Ha a standard alakú LP feladatot kétfázisú szimplex módszerrel oldjuk meg, az első fázis eldönti, hogy van-e lehetséges megoldás.
 
-Ha a felírt segédfeladatban az optimum értéke kisebb, mint nulla, akkor nincs lehetséges megoldás, ha 0, akkor van.# 14. Primál-duál feladatpár, dualitási komplementaritási tételek, egész értékű feladatok és jellemzőik, a branch and bound módszer, a hátizsák feladat
+Ha a felírt segédfeladatban az optimum értéke kisebb, mint nulla, akkor nincs lehetséges megoldás, ha 0, akkor van.
+# 14. Primál-duál feladatpár, dualitási komplementaritási tételek, egész értékű feladatok és jellemzőik, a branch and bound módszer, a hátizsák feladat
 
 ## Primál-duál feladatpár
 
@@ -1550,6 +1564,7 @@ Branch and bound módszerrel ez is megoldható
 
 Legrosszabb esetben 2^n részfeladatot kell megoldani, NP nehéz a feladat.
 Egészértékűnél még rosszabb, 2^Mn, ahol M a lehetséges egészek száma egy változóra
+
 # 15. Processzusok, szálak/fonalak, processzus létrehozása/befejezése, processzusok állapotai, processzus leírása. Ütemezési stratégiák és algoritmusok kötegelt, interaktív és valós idejű rendszereknél, ütemezési algoritmusok céljai. Kontextus-csere
 
 ## Operációs rendszer
@@ -1828,6 +1843,7 @@ Párhuzamosság problémái:
 - versenyhelyzetek kialakulása: párhuzamos végrehajtás által okozott nemdeterminisztikus hibás eredmény
 Multiprogramozás: Ha az operációs rendszer egyidőben több programot futtat, multiprogramozásról beszélünk, melynek célja az erőforrások jobb kihasználása és a kényelem
 
+
 # 16. Processzusok kommunikációja, versenyhelyzetek, kölcsönös kizárás. Konkurens és kooperatív processzusok. Kritikus szekciók és megvalósítási módszereik: kölcsönös kizárás tevékeny várakozással (megszakítások tiltása, változók zárolása, szigorú váltogatás, Peterson megoldása, TSL utasítás). Altatás és ébresztés: termelő-fogyasztó probléma, szemaforok, mutex-ek, monitorok, Üzenet, adás, vétel. Írók és olvasók problémája. Sorompók
 
 
@@ -1960,6 +1976,7 @@ Sorompók:
     - Amikor egy processzus a sorompóhoz ér, akkor addig blokkolódik ameddig az összes processzus el nem éri a sorompót
 - A sorompó az utolsó processzus beérkezése után elengedi a azokat
 - Nagy mátrix-okon végzett párhuzamos műveletek
+
 # 1. Adatbázis-tervezés: A relációs adatmodell fogalma. Az egyed-kapcsolat diagram és leképezése relációs modellre, kulcsok fajtái. Funkcionális függőség, a normalizálás célja, normálformák
 
 
@@ -2138,6 +2155,7 @@ BCNF:
 
 - Egy relációséma Boyce-Codd normálformában van, ha bármely nemtriviális L -> B függés esetén L szuperkulcs.
 >>>>>>> 6ef0bd001a5ea93950836f58b711eb2c3bb3daee
+
 # 2. Az SQL adatbázisnyelv: Az adatdefiníciós nyelv (DDL) és az adatmanipulációs nyelv (DML). Relációsémák definiálása, megszorítások típusai és létrehozásuk. Adatmanipulációs lehetőségek és lekérdezések
 
 ## SQL
@@ -2302,7 +2320,8 @@ Valamelyik, vagy mindkét tábla összes rekordja szerepelni fog az eredményben
 
 Baloldali összekapcsolásnál a baloldali tábla minden rekordja megmarad, és ezekhez a rekordokhoz párosítjuk a jobboldali tábla rekordjait. Jobboldalinál pont fordítva. Teljes összekapcsolásnál pedig mindkét tábla összes rekordja megmarad, és mindenhol a hiányzó helyeken NULL értékek lesznek.
 
-Lekérdezések eredményén, amikor ugyanannyi és ugyanolyan típusú oszlopot kérünk le, használhatunk halmazműveleteket is, pl UNION vagy INTERSECT.# 3. Simítás/szűrés képtérben (átlagoló szűrők, Gauss simítás és mediánszűrés); élek detektálása (gradiens-operátorokkal és Marr-Hildreth módszerrel)
+Lekérdezések eredményén, amikor ugyanannyi és ugyanolyan típusú oszlopot kérünk le, használhatunk halmazműveleteket is, pl UNION vagy INTERSECT.
+# 3. Simítás/szűrés képtérben (átlagoló szűrők, Gauss simítás és mediánszűrés); élek detektálása (gradiens-operátorokkal és Marr-Hildreth módszerrel)
 
 ## Simítás/szűrés képtérben
 
@@ -2460,7 +2479,8 @@ konvolváljuk a képet egy vagy több alkalmas LoG függvénnyel
 LoG a frekvenciatérben
     konvolúciós tétel szerint f*LoG gyorsan számítható fourier-trafóval meg pontonkénti szorzással
     adott szigmára előre kiszámíthatjuk a sombrero fourier trafóját
-    ezt is eltárolhatjuk# 4. Alakreprezentáció, határ- és régió-alapú alakleíró jellemzők, Fourier leírás
+    ezt is eltárolhatjuk
+# 4. Alakreprezentáció, határ- és régió-alapú alakleíró jellemzők, Fourier leírás
 
 ## Alakreprezentáció
 
@@ -2628,7 +2648,8 @@ sok együttható megtartásával tudunk négyzetfélét rekonstruálni.
 A következő képen viszont tesztobjektum határa közel 3000 ponttal adott,
 és már 36 együttható is visszaadhat 3000 pontot úgy, hogy azok jól közelítik a
 kiindulási kontúrt.
-![alt text](asd4.png "Title")# 5. Algoritmusok vezérlési szerkezetei és megvalósításuk C programozási nyelven. A szekvenciális, iterációs, elágazásos, és az eljárás vezérlés
+![alt text](asd4.png "Title")
+# 5. Algoritmusok vezérlési szerkezetei és megvalósításuk C programozási nyelven. A szekvenciális, iterációs, elágazásos, és az eljárás vezérlés
 
 ## Algoritmusok vezérlési szerkezetei és megvalósításuk C nyelven
 
@@ -2898,6 +2919,7 @@ Diszkrét ismétléses vezérlésről akkor beszélünk, ha a ciklusmago
 
    
   
+
 
 # 6. Egyszerű adattípusok: egész, valós, logikai és karakter típusok és kifejezések. Az egyszerű típusok reprezentációja, számábrázolási tartományuk, pontosságuk, memória igényük és műveleteik. Az összetett adattípusok és a típusképzések, valamint megvalósításuk C nyelven. A pointer, a tömb, a rekord és az unió típus. Az egyes típusok szerepe, használata
 
@@ -3206,6 +3228,7 @@ sizeof(T) = max{sizeof(T1), ..., sizeof(Tk)}
 Valamennyi változati mező ugyanazon a memóriacímen kezdődik, ami
 megegyezik a teljes union típusú érték címével (azaz minden mező
 eltolása, offset-je 0).
+
 # 7. Objektum orientált paradigma és annak megvalósítása a JAVA és C++ nyelvekben. Az absztrakt adattípus, az osztály. Az egységbe zárás, az információ elrejtés, az öröklődés, az újrafelhasználás és a polimorfizmus. A polimorfizmus feloldásának módszere
 
 
@@ -3241,6 +3264,7 @@ Objektum: Egy változó, melynek típusa valamely objektumosztály, vagyis az os
 - identitás: Minden objektum egyedi, még akkor is, ha éppen ugyanabban az állapotban vannak, és ugyanolyan viselkedést képesek megvalósítani.
 
 ### Információ elrejtése
+
 A láthatóságok segítségével tudjuk szabályozni adattagok, metódusok elérését, ugyanis ezeket az objektumorientált paradigma értelmében korlátozni kell, kívülről csak és kizárólag ellenőrzött módon lehessen ezeket elérni, használni.
 
 Az adattagok, és metódusok láthatóságának vezérléséhez vannak kulcsszavak, amelyekkel megfelelően el tudjuk rejteni őket.
@@ -3263,7 +3287,7 @@ A hasonlóság kifejezése az ős felé az általánosítás. A különbség a g
 
 Java: az extends kulcsszóval tudjuk jelezni, hogy az adott osztály egy másik osztálynak a leszármazottja. Java-ban egyszeres öröklődés van, vagyis egy osztály csak is egy ősosztályból származhat (viszont több interfészt implementálhat)
 
-- super: segítségével gyerekosztályból hivatkozhatunk szűlőosztály adattagjaira és megótudaira.
+- super: segítségével gyerekosztályból hivatkozhatunk szűlőosztály adattagjaira és metódusaira.
 
 C++: Az osztály neve után vesszővel elválasztva lehet megadni az ősosztályokat és velük együtt a láthatóságaikat. Lehetőség van többszörös öröklődésre is
  
@@ -3324,6 +3348,7 @@ C++:
 Absztrakt osztályok:
 
 A törzs nélküli virtuális eljárásokat pure virtual eljárásoknak nevezzük (pl.: virtual int getArea() = 0;). A pure virtual eljárás egy üres (NULL) bejegyzést foglal el a VFT (Virtual Function Table) táblázatban. Ha egy osztály ilyen eljárást tartalmaz, akkor azt absztrakt osztálynak nevezzük amiatt, mert ebből az osztályból objektum példányokat létrehozni nem lehet. A gyermek osztályokban minden pure virtual eljárást megfelelő törzzsel kell ellátni, ezt a fordító ellenőrzi. Amíg egyetlen pure virtual eljárás is marad, az osztály absztrakt lesz.
+
 # 8. Objektumok életciklusa, létrehozás, inicializálás, másolás, megszüntetés. Dinamikus, lokális és statikus objektumok létrehozása. A statikus adattagok és metódusok, valamint szerepük a programozásban. Operáció és operátor overloading a JAVA és C++ nyelvekben. Kivételkezelés
 
 ## Objektumok létrehozása
@@ -3509,6 +3534,7 @@ Szintaxis: gcc [kapcsolók] forrásfájlok
 - -g: engedélyezi a hibakeresési információk elhelyezését a programban, ami emiatt sokkal nagyobb lesz, de nyomon lehet követni a futását például a gdb programmal.
 
 ### C++ parancssori paraméterek
+
 int main(int argc, char* argv[])
 
 A C++ programok kezdő eljárása minden esetben a main() eljárás. A main függvény első két paramétere az argc, ami egy int és az argv tömb:
@@ -3520,6 +3546,7 @@ A C++ programok kezdő eljárása minden esetben a main() eljárás. A main füg
 Ahhoz, hogy Java programokat tudjunk futtatni, illetve fejleszteni, szükségünk lesz egy fordító- és/vagy futtatókörnyezetre, valamint egy fordítóprogramra. A kész programunk futtatásához mindösszesen a JRE (Java Runtime Environment) szükséges, ami biztosítja a Java alkalmazások futtatásának minimális követelményeit, mint például a JVM (Java Virtual Machine)
 Azonban a fejlesztéshez szükségünk lesz a JDK-ra (Java Development Kit) is. Ez tartalmazza a Java alkalmazások futtatásához, valamint azok készítéséhez, fordításához szükséges programozói eszközöket is (tehát a JRE-t nem kell külön letölteni, a JDK tartalmazza).
 A fordítás folyamata az alábbiak alapján történik:
+
 - Először a .java kiterjesztésű fájlokat a Java-fordító (compiler) egy közbülső nyelvre fordítja
 - Java bájtkódot kapunk eredményül (ez a bájtkód hordozható). A java bájtkód a számítógép számára még nem értelmezhető. (kiterjesztése .class)
 - Ennek a kódnak az értelmezését és fordítását gépi kódra a JVM (Java Virtual Machine) végzi el futásidőben.
@@ -3529,7 +3556,7 @@ Futtatás: java filename
 Java fordítási opciók:
 - -g: debug információk generálása
 - -s <könyvtár>: a generált fájlok könyvtárának megadása
-- -sourcepath <path>: a forrásfájlok elérési utvonalát meg lehet adni
+- -sourcepath <path>: a forrásfájlok elérési útvonalát meg lehet adni
 - -Werror: figyelmeztetés esetén megáll a fordítás
 Java parancssori paraméterek
 public static void main(String[] args)
@@ -3568,6 +3595,7 @@ A törzs nélküli virtuális eljárásokat pure virtual eljárásoknak nevezzü
 
  
 ## Generikus osztályok
+
 Az generikus programozás módszere a kód hatékonyságának növelése érdekében valósul meg. Az általános programozás lehetővé teszi a programozó számára, hogy általános algoritmust írjon, amely minden adattípussal működik. Nincs szükség több, különféle algoritmusok létrehozására, ha az adattípus egész szám, karakterlánc vagy karakter.
 
 Java
@@ -3596,229 +3624,10 @@ C++
 C++-ban generikus osztályokat sablonok (template) segítségével tudunk létrehozni.
 A függvénysablonok speciális funkciók, amelyek genrikus típusokkal működhetnek. Ez lehetővé teszi számunkra, hogy létrehozzunk egy függvénysablont, amelynek funkcionalitása egynél több típushoz vagy osztályhoz igazítható anélkül, hogy megismételnénk az egyes típusok teljes kódját.
 
+
 # 10. A programozási nyelvek csoportosítása (paradigmák), az egyes csoportokba tartozó nyelvek legfontosabb tulajdonságai
 
-## Paradigmák
-
-A programozási paradigma egy osztályozási forma, amely a programozási nyelvek jellemzőin alapul.
-- Imperatív, amelyben a programozó utasítja a gépet az állapotának megváltoztatására
-    - Procedurális, amely az utasításokat eljárásokba csoportosítja
-    - Objektumorientált, amely az utasításokat csoportosítja az alap azon részével együtt, amelyen működnek
-        - Smalltalk
-    - Párhuzamos
-        - Occam
-- Dekleratív, amelyben a programozó deklarálja a kívánt eredmény tulajdonságait, de nem azt, hogy hogyan kell azt kiszámítani
-    - Funkcionális, amelynél a kívánt eredményt függvényalkalmazásként deklarálnak
-        - Haskell
-    - Logikai, amelyben a kívánt eredményt a tények és szabályok rendszerével kapcsolatos kérdésre adott válaszként deklarálnak
-        - Prolog
-    - Matematikai, amelyben a kívánt eredményt egy optimalizálási probléma megoldásaként deklarálnak
-
-## Objektumorientált paradigma
-
-Az objektum orientál paradigma az objektumok fogalmán alapuló programozási paradigma. Az objektumok egységbe foglalják az adatokat és a hozzájuk tartozó műveleteket. A program egymással kommunikáló objektumok összességéből áll melyek használják egymás műveleteit és adatait.
-
-### Smalltalk
-
-GNU Smalltalk interpreter
-Beolvas minden karaktert az első ! –ig. A „!” jellel jelezzük, hogy végre szeretnénk hajtani az addig beírt kifejezéseket. Több kifejezés futtatása esetén itt is – mint sok más nyelven – jeleznünk kell azt, hogy hol fejeződik be egy kifejezés erre való a „pont” (.)
- 
-#### Precedencia
-Ha nem zárójelezünk – mindig balról jobbra történik, így a 2+3\*10 értéke 50 lesz, használjunk zárójelet: 2+(3\*10).
-Objektumok, üzenetek
-A Smalltalk nyelv egy objektumorientált nyelv  MINDENT objektumnak tekintünk. 
-A programozás során üzeneteket küldünk az egyes objektumoknak. Egy objektumnak háromféle üzenetet küldhetünk:
-- Unáris: szintaxis: ’Hello’ printNl ! 
-- Bináris: szintaxis: 3+5 
-- Kulcsszavas: szintaxis: tomb at:1 put: 10
-Objektumok összehasonlítása: két objektum egyenlő, ha ugyanazt az objektumot reprezentálják és azonos, ha értékük megegyezik és egyazon objektumok.
- 
-#### Objektumok másolása
-
-- deepCopy (unáris üzenet): Teljes másolat készítése objektumról.
-- shallowCopy (unáris üzenet): Felszíni másolat
-- copy (unáris üzenet): Osztályonként változó lehet, az Object osztályban a shallowCopy-t jelenti.
-
-#### Metaosztály
-
-Mint korában említettük, a Smalltalkban mindent objektumnak tekintünk. Még az osztályok is objektumok. De ha az osztály objektum, akkor az is - mint minden más objektum - valamilyen osztályhoz kell tartozzon. Másképp fogalmazva minden osztály (pontosan) egy másik osztály példánya. Ezen "másik" osztályt metaosztálynak hívjuk
-
-#### Object osztály
-
-Az Object osztály minden osztály közös őse, tehát minden objektum az Object osztály egy példánya. Ezért minden, az Object osztálynak rendelkezésre álló művelettel minden más objektum is rendelkezik.
-- class – unáris: visszatérése az objektum osztálya
-- isMemberOf – kulcsszavas: visszatérése logikai érték. Ha a címzett objektum példánya ezen osztálynak, akkor "true" a visszatérési érték, egyébként "false"
-    - 'Hello' isMemberOf: String ! → true
-
-#### Változók
-
-- Lokális változók:
-    - |x y z| - deklarálása (2 pipeline között)
-    - x := 2. (egyszeres értékadás)
-    - x := y := z := 2. (többszörös értékadás)
-- Globális változók: Smalltalk at: #valtozonev put: érték !
-
-#### Blokkok
-
-Más programozási nyelveken megismert programblokkok szerepével egyezik meg. Vannak paraméteres és nem paraméteres blokkok. Paraméteres blokkok rendelkeznek lokális változókkal, melyeknek a blokk kiértékelésekor adunk értéket. A változók élettartama és láthatósága korlátozódik az adott blokkra.
-- [:i | i printNl ] value: 5
-- [’Hello’ print . ’world’ printNl] value.
-
-#### Vezérlési szerkezetek
-
-- Feltételes vezérlés:	valtozo > 10 ifTrue: [‘x erteke nagyobb 10-nel’ printNl]
-                   			        ifFalse: [‘x erteke nem nagyobb 10-nel’ printNl]
-- Ismétléses vezérlés:	[a<10] whileTrue: [a printNl . a:=a+1]
-- For ciklus:		1 to: 10 do: [:i | i printNl]
-Kollekciók
-- Set: ismétlés nélküli rendezetlen halmaz - new, add()
-    -  
-- Bag: olyan Set, amiben megengedjük az ismétlődést - new, add()
-    -  
-- Dictionary: egy asszociatív tömb (egy olyan tömb, amit nem csak számokkal, hanem (itt) tetszőleges objektummal is indexelhetünk)
-    -  
-Tömb
-- tömb := Array new: 10
-- tömb at: 1
-- tömb at: 1 put: obj
-A collect
-- kollekció elemein lépked végig, mely minden egyes elemére végrehajtja az üzenet argumentumblokkjában található utasításokat
-- |tomb| tomb := #(10 3 43 29) collect: [:tombelem | tombelem*2]
-Osztályok
-  
-- példányváltozók: minden objektum rendelkezik vele
-- osztályváltozó: kb. statikus globális változó
-
-#### Metódusok definiálása osztályokhoz
- 
-pl.:
- 
-
-Beolvasás	 x := stdin nextLine.S
-Integer üzenetek
- 
-
-
-## Funkcionális programozás
-
-- A funkcionális programnyelvek a programozási feladatot egy függvény kiértékelésének tekintik.
-- minden függvény
-- A két fő eleme az érték és a függvény, nevét is függvények kitüntetett szerepének köszönheti.
-- Egy más megfogalmazás szerint, a funkcionális programozás során a programozó inkább azt specifikálja programban, mit kell kiszámítani, nem azt, hogy hogyan, milyen lépésekben.
-- Függvények hívásából és kiértékelésből áll a program. Nincsenek állapotok, mellékhatások (nem számít, mikor, csak az melyik függvényt hívjuk).
-
-### Haskell
-
-Egy funkcionális programozási nyelven írt programban nem a kifejezések egymásutánján van a hangsúly. A program egy függvényhívással hajtódik végre. Egy funkcionális program típus- , osztály-, és függvénydeklarációk, illetve definíciók sorozatából és egy kezdeti kifejezés kiértékeléséből áll. A kiértékelést úgy képzeljük el, mint a kezdeti kifejezésben szereplő függvények behelyettesítését. Tehát egy program végrehajtása nem más, mint a kezdeti kifejezésből kiinduló redukciós lépések sorozata. Egy kifejezés normál formájú, ha már tovább nem redukálható (nem átírható) állapotban van. Egy redukálható kifejezést redexnek hívunk.
-Kiértékelési módok
- 
-A Haskell nyelv a lusta kiértékelési stratégiát használja.
-A lusta kiértékelés során mindig a legkülső redex kerül helyettesítésre, az argumentumokat csak szükség esetén értékeli ki. Ez a módszer mindig megtalálja a kezdeti kifejezés normál formáját. A mohó kiértékelés az argumentumok kiértékelésével kezdődik, csak ezután hajtja végre a függvény alkalmazásának megfelelő redukciós lépést. 
-Futtatás
-Elindítjuk a Haskell interpretert (hugs) és betöltjük az általunk megírt definíciós forrásállományt. Betöltés után rendelkezésre áll az összes általunk megírt függvény, melyek közül bármelyiket meghívhatjuk a függvény nevének beírásával (a megfelelő paraméterezéssel). Amennyiben módosítjuk a definíciós állományt, újra kell tölteni azt.
- 
-Atomi típusok: Int, Float, Bool
-Függvények definiálása
-   
-A visszatérési értéket a kiértékelése határozza meg, ami lehet egy konstans érték vagy akár egy rekurzív kifejezés is
-
-Esetvizsgálatok
- 
-Függvény paramétere függvény
- 
-Lokális definíciók függvénydefiníciókban
- 
-Típusok létrehozása
-
-Példák
- 
-## Logikai programozás
-
-A problémakörrel kapcsolatos tényeket logikai képletek formájában fejezik ki, és a programokat következtetési szabályok alkalmazásával hajtják végre, amíg nem találnak választ a problémára, vagy a képletek halmaza nem következetes.
-
-### Prolog
-
-A logikai programok egy modellre vonatkoztatott állítások halmaza, melyek a modell tulajdonságait és azok között fellépő kapcsolatokat (relációit) írják le. Egy adott relációt meghatározó állítások részhalmazát predikátumnak nevezzük. A predikátumokat alkotó állítások tények vagy szabályok lehetnek. A tényeket és szabályokat (és majd a Prolognak feltett kérdéseket is) ponttal zárjuk le. Tekintsük a következő példát, mely egy család tagjai között fellépő kapcsolatot írják le.
- 
-A szulo predikátum argumentumait szándékosan írtuk kis betűkkel. A kis betűkkel írtakat a Prolog konstansként kezeli. (ka, katalin, szilvia, stb…) Minden nyomtatott nagybetűt vagy nagy kezdőbetűvel kezdődőket változónak tekinti. (X, Y, Szilvia, Magdolna, stb…)
-
-#### Futtatás
-
-- kiterjesztés .pl
-- A Prolog egy terminálablakba beírt „sicstus” paranccsal indítható. Egy Prolog állományt a következőképpen „tölthetjük be”: (feltéve, hogy az aktuális könyvtárban létezik egy prolog.pl állomány)
-
-#### A Prolog program felépítése
- 
-Termek
-- Egyszerű termek
-    -  
-- Összetett termek
-    - Lista: nagyon hasonlít a Haskell-ben megismert listára. Itt sincsenek indexelve az elemek, rekurzióval fogjuk bejárni a listát. Példa listára: [1,2,3,4,5].
-Kiértékelés
-Kifejezések kiértékelésére a beépített, infix is operátort használhatjuk. Általános alakja:
- 
-Példák
- 
-   
-## Párhuzamos programozás
-
-### Occam
-
-Az Occam egy párhuzamos programozási nyelv. Ezen paradigma szerint az egyes folyamatok párhuzamosan futnak. Ez több processzoros gépek esetén valós párhuzamosságot jelent (egy processzor egy folyamatot dolgoz fel), de egy processzor esetén ez nyilván nem valósulhat meg, az egyes folyamatok „időszeleteket” kapnak, az Occam a párhuzamosságot időosztással szimulálja. Az egyes folyamatok közötti kommunikáció csatornákon keresztül valósul meg. A P1 és P2 folyamatok a C csatornán keresztül kommunikálnak:
- 
-A folyamatok közötti kommunikációt mindig csatornákkal valósítjuk meg. A fenti példában a P1 folyamat a C csatornán keresztül valamilyen adatot küld a P2 folyamatnak. Ez a következőképpen valósul meg: ha egy folyamat elérkezik arra a pontra, ahol értéket küld [fogad], várakozik a másik folyamatra, amíg az is el nem ér a fogad [küld] pontra. Amikor mindketten készen állnak az adatcserére (azaz mindkét folyamatban a küldés [fogadás] pontra került a vezérlés) létrejön az adatcsere, majd mindkettő folytatja a futását.
-
-#### Fordítás
-
-- KroC, csak Linux-hoz
-- kroc -d pelda.occ
-Fontos tudnivalók a nyelvről
-- Minden, a nyelvben lefoglalt kulcsszót nagy betűvel kell írni (SEQ, PAR, PROC, stb...) 
-- A blokkstruktúrát indentációval jelöljük (két szóközzel beljebb kezdjük) 
-- Minden egyes kifejezés új sorban kezdődik (esetlegesen két szóközzel beljebb) 
-- Egy Occam program a következőképpen épül fel: 
-<deklarációk>
-<folyamat> 
-- Például: 
- 
-#### Elemi folyamatok
- 
-A fenti példában, küldés esetében egy kifejezést (k + 5) küldünk a C csatornára, fogadás esetén pedig a C csatornáról várunk egy értéket, amely az x változóban kerül.
-A SKIP folyamat a legegyszerűbb elemi folyamat, „semmit nem csinál”. Haszontalannak tűnhet, de összetettebb programok esetében (például még nem kifejlesztett programrészek esetében) hasznos lehet. Párhuzamos folyamatok esetében fontos, hogy minden folyamat termináljon, ellenkező esetben az egész, folyamatokból álló „rendszer” leáll.
-A STOP szintén „nem csinál semmit”, de ez sosem terminál – ellentétben a SKIP-el. Egy folyamatban a STOP (feltéve hogy a vezérlés odakerül), annak holtpontba jutását eredményezi. Szintén haszontalannak tűnhet, de ezzel egy folyamatot leállíthatunk más folyamatok működésének befolyásolása nélkül, ami hibakeresésnél hasznos lehet.
-Azt mondjuk, hogy egy folyamat holtpont állapotba került, ha az már nem képes további működésre (vezérlése leáll), és ez a leállás nem a folyamat helyes lefutásának eredménye. Párhuzamos folyamatok közül akár egy folyamat holtpont állapotba kerülése az egész program holtpont állapotba kerülését eredményezi, hiszen az összes többi folyamat várja a holtpontban levő folyamat terminálását, ami sosem fog bekövetkezni.
-Blokk struktúra	2 szóközönként beljebb kell kezdeni
-#### Precedencia
-
-A kifejezésekben, operátorok között precedenciát nem határozunk meg, így MINDIG zárójelezést kell használni a precedencia meghatározásához
-
-#### Adattípusok
- 
- 
-Csatorna	 
-SEQ	  
-PAR
- 
-Az egész PAR blokk akkor terminál, ha a benne „elindított” folyamatok mindegyike terminál
-PROC
-A PROC egy előre definiált, névvel ellátott folyamat. Tekinthetünk úgy rá, mintha egy eljárást definiálnánk
-   
-ALT
- 
-Ha egy őr engedélyezetté válik, akkor a benne megadott változó felveszi a csatornáról érkező adat értékét és „elindítja” a hozzá tartozó folyamatot
-    Az x változó értéke attól függ, hogy c1-re vagy c2-re érkezik előbb adat.
-Mivel a program írásakor nem tudhatjuk, hogy melyik csatornáról fog adat érkezni, ezért az ALT-ot tartalmazó programok nemdeterminisztikusak
-Függvény
- 
-Vezérlési szerkezetek
-- Feltételes vezérlés
-   		Holtpont elkerülése  
-- Ismétléses vezérlés	
- 
-- For ciklus		
- 
-
-## PÉLDÁK HIÁNYOZNAK, KELL EGYÁLTALÁN?# 11. Szoftverfejlesztési folyamat és elemei; a folyamat különböző modelljei
+# 11. Szoftverfejlesztési folyamat és elemei; a folyamat különböző modelljei
 
 ## Alapvető elemek
 
@@ -3944,6 +3753,7 @@ nincs működő inkremens
     - Egyes (al)rendszerek kulcsszereplői, érdekeltek
     - Az érdekeltek nyerő feltételei
     - Tárgyalás, kompromisszumok
+
 # 12. Projektmenedzsment. Költségbecslés, szoftvermérés
 
 ## Projektmenedzsment
@@ -4146,6 +3956,7 @@ Két csoport:
     - Integritás = Σ [1-(fenyegetettség x (1-biztonság))] (Összegzés a különböző támadás típusokra történik)
     - DRE (defect removal efficiency)
         - DRE = E/(E+D), ahol E olyan hibák száma, amelyeket még az átadás előt felfedezünk, D pedig az átadás után a felhasználó által észlelt hiányosságok száma
+
 # 15. Neumann-elvű gép egységei. CPU, adatút, utasítás-végrehajtás, utasítás- és processzorszintű párhuzamosság. Korszerű számítógépek tervezési elvei. Példák RISC (UltraSPARC) és CISC (Pentium 4) architektúrákra, jellemzőik
 
 Számítógép architektúra: A hardver egy általános absztrakciója: a hardver struktúráját és viselkedését jelenti más rendszerek egyedi, sajátos tulajdonságaitól eltekintve
@@ -4278,7 +4089,8 @@ Példa: IBM 801, UltraSPARC, ARM
 Azok a processzorok tartoznak ide, amelyek utasításkészlete lehetőleg minden programozói igényt ki próbál elégíteni, vagyis komplex utasításkészletet alkot. Ezeket nevezzük CISC (Complex Instruction Set Computer = komplex utasításkészletű számítógép) processzoroknak. Markáns elemei az Intel processzorok. A CISC törekvésnek az egyik mozgatórugója, hogy megpróbálják a magasabb szintű nyelvek lehetőségeit közelíteni, vagyis, hogy a programozás "munkaigényes" alacsony szintjét, gépközeli voltát így is ellensúlyozzák.
 Interpretálást használ, ezért sokkal összetettebb utasításai vannak, mint egy RISC gépnek. Több száz ilyen utasítása lehet. Az interpretálás miatt lassabb a végrehajtás.
 
-Példa: x86 architektúrák pl. Intel 80x86 család.# 16. Számítógép perifériák: Mágneses és optikai adattárolás alapelvei, működésük (merevlemez, Audio CD, CD-ROM, CD-R, CD-RW, DVD, Bluray). SCSI, RAID. Nyomtatók, egér, billentyűzet. Telekommunikációs berendezések (modem, ADSL, KábelTV-s internet)
+Példa: x86 architektúrák pl. Intel 80x86 család.
+# 16. Számítógép perifériák: Mágneses és optikai adattárolás alapelvei, működésük (merevlemez, Audio CD, CD-ROM, CD-R, CD-RW, DVD, Bluray). SCSI, RAID. Nyomtatók, egér, billentyűzet. Telekommunikációs berendezések (modem, ADSL, KábelTV-s internet)
 
 
 ## Számítógép perifériák
@@ -4464,132 +4276,8 @@ Mind technikai, mind üzleti okai vannak az ADSL gyors elterjedésének. A techn
 ### KábelTV-s internet
 
 A kábelszolgáltatók minden városban fő telephellyel rendelkeznek, valamint rengeteg, elektronikával zsúfolt dobozzal szerte a működési területükön, amelyeket fejállomásoknak neveznek.
-A fejállomások nagy sávszélességű kábelekkel vagy üvegkábelekkel kapcsolódnak a fő telephelyhez. Minden fejállomásról egy vagy több kábel indul el, otthonok és irodák százain halad keresztül. Minden előfizető a rajta keresztülhaladó kábelhez csatlakozik. Így a felhasználók osztoznak egy fejállomáshoz vezető kábelen, ezért a kiszolgálás sebessége attól függ, hogy pillanatnyilag hányan használják az adott vezetéket. A kábelek sávszélessége 750 MHz.# 13. Számítógép-hálózati architektúrák, szabványosítók (ISO/OSI, Internet, ITU, IEEE)
+A fejállomások nagy sávszélességű kábelekkel vagy üvegkábelekkel kapcsolódnak a fő telephelyhez. Minden fejállomásról egy vagy több kábel indul el, otthonok és irodák százain halad keresztül. Minden előfizető a rajta keresztülhaladó kábelhez csatlakozik. Így a felhasználók osztoznak egy fejállomáshoz vezető kábelen, ezért a kiszolgálás sebessége attól függ, hogy pillanatnyilag hányan használják az adott vezetéket. A kábelek sávszélessége 750 MHz.
+# 13. Számítógép-hálózati architektúrák, szabványosítók (ISO/OSI, Internet, ITU, IEEE)
 
-## ISO
+# 14. Kiemelt fontosságú kommunikációs protokollok (PPP, Ethernet, IP, TCP, HTTP, RSA)
 
-International Organization for Standardization, Nemzetközi Szabványügyi Szervezet
-
-Mindenféle szabványokat adnak ki, 165 tagállam nemzeti szabványügyi szervezete alkotja. A távközlési szabványokhoz az ISO és az ITU-T gyakran együttműködik, hogy a szabványok kompatibilisek legyenek egymással.
-
-## OSI
-
-A számítógépek kommunikációjához szükséges hálózati protokollt határozza meg.
-
-OSI - Open System Interconnection
-
-A különböző protokollok által nyújtott funkciókat rendezi egymásra épülő rétegekbe. Minden réteg csak az alsóbb rétegek által nyújtott funkciókra támaszkodhat, és az általa nyújtott funkciókat csak a felette lévő réteg számára nyújthatja. Ezt a rendszert gyakran protokoll veremnek is nevezik. Az OSI modell hét réteget definiál, az alsóbb rétegek azok, amelyeket hardver szinten is megvalósítanak, a felsőbbek szoftveresen kerülnek megvalósításra.
-
-A rétegek alulról felfelé
-
-- Fizikai réteg
-    - feladata, hogy a biteket továbbítsa a kommunikációs csatornán
-    - mekkora feszültség kell a 0, 1 bitek reprezentálásához, mennyi idő, hogyan jön létre az összeköttetés stb.
-- Adatkapcsolati réteg
-    - átvitendő adatokat a küldő fél oldalán adatkeretekbe tördeli, és sorrendben továbbítja
-    - a fogadó fél nyugtázza minden keret helyes vételét
-    - forgalomszabályozás, hibakezelés
-- Hálózati réteg
-    - milyen útvonalon kell a csomagokat a forrásállomástól a célig eljuttatni
-    - lehet statikus, és dinamikus meghatározás is
-- Szállítási réteg
-    - forgalomszabályozás, hibajavítás, multiplexelés
-    - megbízhatóság: pl ellenőrző összeggel megnézzük, hogy az adat sérült-e
-- Viszony réteg
-    - két számítógép felhasználói kapcsolatot létesítsen
-    - állományokat mozgathatunk
-- Megjelenítési réteg
-    - átvitt információ szintaktikája, szemantikája
-    - a párbeszéd során absztrakt módon kell definiálni a kódolásokat
-- Alkalmazási réteg
-    - protokollok sokasága, HTTP, FTP
-
-
-## Internet
-
-Összekapcsolt számítógépes hálózatok globális rendszere, ami a TCP/IP protokollt használja a kommunikációhoz. Olyan hálózatok hálózata, amely üzleti, kormányzati, állai, magán, tudományos stb hálózatokból áll. Közös protokollokat használnak és közös szolgáltatásokat nyújtanak.
-
-Nincs központosított irányítása, sem a technológiai megvalósításban, sem a hozzáférésre és használatra vonatkozó politikában.
-
-Elsődleges előfutár-hálózata az ARPANET volt, ami regionális tudományos és katonai hálózatok összekapcsolásának gerincét szolgáltatta. Miután a TCP/IP lett az egyetlen hivatalos protokoll rajta, gyorsan nőtt a hozzá csatlakozó hálózatok, gépek és felhasználók száma.
-
-Azóta mégtöbb terület csatlakozott hozzá, globális gerinchálózatok épültek ki.
-
-Egy gép rajta van az interneten, ha a TCP/IP protokollt használja, van saját IP-je, és tud más gépeknek csomagokat küldeni az interneten át.
-
-Fő alkalmazási területek hagyományosan:
-
-- e-levél
-- hírek
-- távoli bejelentkezés
-- fájltranszfer
-
-Egy új alkalmazás, a WWW bevezetése vont be több millió új felhasználót a hálózatba. Nem változatott semmit az rendelkezésre álló eszközökön, csak egyszerűbbé tette a használatukat. A böngészők megjelenésével képeket, szöveget tartalmazó oldalakra is el lehetett jutni, és onnan más oldalakra továbbnavigálni.
-
-A növekedés nagy része az ún. ISP-knek is köszönhető. Egyéni felhasználóknak nyújtanak szolgáltatásokat, internetelérést.
-
-## ITU
-
-International Telecommunication Union - Nemzetközi Távközlési egyesület
-
-Szükség van világméretű kompatibilitásra, hogy a különböző országokban élő emberek/számítógépek kapcsolatba kerülhessenek egymással.
-A feladata az, hogy szabványosítsa a nemzetközi távközlést.
-
-Három fő ágazata van:
-
-- ITU-R: rádiókommunikációs ágazat
-- ITU-T: távközlési szabványosítási ágazat
-- ITU-D: fejlesztési ágazat
-
-ITU-R
-
-Az 1927-ben Nemzetközi Rádió Tanácsadó Bizottság vagy CCIR néven (francia nevén Comité consultatif international pour la radio ) alapított ágazat kezeli a nemzetközi rádiófrekvenciás spektrum- és műholdpálya-erőforrásokat. 1992-ben a CCIR lett az ITU-R. Feladata a rádiófrekvenciák kiosztása a világszerte egymással versengő csoportoknak.
-
-ITU-T
-
-A szabványosítás a kezdetektől fogva célja az ITU-nak. 1956-ban a Nemzetközi Telefon- és Távirati Tanácsadó Bizottság egységesíti a globális távközlést.
-
-Az ITU-T feladata, hogy műszaki javaslatokat tegyen az adatkommunikáció interfészeire. Ezek gyakran válnak nemzetközi szabványokká. Fontos, hogy ezek csak műszaki javaslatokat tartalmaznak. Az elfogadása csak az adott országon múlik.
-
-ITU-D
-
-Az 1992-ben létrehozott ágazat hozzájárul az információs és kommunikációs technológiákhoz (IKT) való igazságos, fenntartható és megfizethető hozzáférés terjesztéséhez.
-
-## IEEE
-
-Villamos és Elektronikai Mérnökök Intézete
-
-A világ legnagyobb szakmai szervezete.
-Konferenciák és folyóiratok mellett szabványokat dolgoznak ki a villamosmérnöki tudományok és az informatika terén.
-
-Az IEEE 802-es bizottsága több LAN fajtát szabványosított. A sikertörténetek (802.3 és 802.11, logikai kapcsolatvezérlés és vezeték nélküli LAN) hatása óriási volt.# 14. Kiemelt fontosságú kommunikációs protokollok (PPP, Ethernet, IP, TCP, HTTP, RSA)
-
-## PPP
-
-Magas szintű adatkapcsolati protokoll kétpontos vonalakhoz.
-Mindenféle fizikai rétegek feletti használatra alkalmas.
-
-Szolgáltatásai:
-
-- egyértelműen ábrázolja a keret végét és a következő keret elejét, a keretformátum megoldja a hibajelzést is
-- adatkapcsolat-vezérlő protokollt tartalmaz a vonalak felélesztésére, tesztelésére, vonalak bontására
-- különböző hálózati vezérlő protokollokat tartalmaz mindegyik támogatott hálózati réteghez
-
-## Ethernet
-
-Az Ethernet egy számítógépes hálózati technológiák családja, amelyet helyi hálozatban (LAN), városi hálózatokban (MAN) és nagy kiterjedésű hálózatokban (WAN) használnak.
-Először 1983-ban szabványosították IEEE 802.3 néven. Az Ethernet-et azóta finomították, hogy támogassa a nagyobb bitsebességet, a nagyobb csomópontok számát és a nagyobb összeköttetési távolságokat.
-
-Az Ethernet egy állomása a közvetítő közeggel (kábel) való állandó kapcsolatot kihasználva bele tud hallgatni a csatornába, így ki tudja várni, amíg a csatorna felszabadul, és a saját üzenetét leadhatja anélkül, hogy ezzel más üzenet sérüljön, tehát a torlódás elkerülhető. A csatornát az állomások folyamatosan figyelik, ha ütközést tapasztalnak, akkor zavarni kezdik a csatornát, hogy figyelmeztessék a küldőket, ezután véletlen ideig várnak, majd adni kezdenek. Ha ezek után további ütközések történnek, az eljárás ugyanez, de a véletlenszerű várakozás idejét kétszeresére növelik, így időben szétszórják a versenyhelyzeteket, esélyt adva arra, hogy valaki adni tudjon.
-
-## IP
-
-Az internet hálózat egyik alapvető szabványa (avagy protokollja). Ezen protokoll segítségével kommunikálnak egymással az internetre kötött csomópontok (számítógépek, hálózati eszközök, webkamerák stb.). A protokoll meghatározza az egymásnak küldhető üzenetek felépítését, sorrendjét stb.
-
-A k
-
-## TCP
-
-## HTTP
-
-## RSA
