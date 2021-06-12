@@ -85,7 +85,71 @@ Mohó algoritmus a töredékes hátizsákra:
 - számoljuk ki minden tárgyra az érték/súly arányt
 - tegyük a hátizsákba a legnagyobb ilyen arányú tárgyat, az egészet ha belefér, vagy törjük, ha nem
 
+### Rendező algoritmusok
+input: n számból álló tömb\
+output: bemenő tömb elemeinek olyan sorrendje, ahol minden következő elem nagyobbegyenlő az előzőnél\
+fontossága: sok probléma triviális, ha rendezett a bemenet (pl bináris keresés, medián megállapítás)\
+- Buborék rendezés
+	- mindig 2 elemet vizsgálunk,úgy csúszik kerül a legkisebb elem az első helyre
+- Beszúró rendezés
+	- folyton haladunk előre a tömbben, az aktuális elemet beszúrjuk a megfelelő helyre
+- Összefésülő rendezés
+	- oszd meg és uralkodj
+- Helyben rendezés
+- Kupacrendezés
+- Gyorsrendezés
+- Leszámláló rendezés
+- Számjegyes rendezés
+- Edényrendezés
 
+### Gráfalgoritmusok
+
+#### Szélességi keresés
+Feladat: Járjuk be az összes csúcsot ami egy s kezdő csúcsból elérhető.Mindeközben kiszámoljuk az elérhető csúcsok távolságát s-től
+
+Bemenet: Irányítatlan vagy irányított G gráf és annak egy s csúcsa
+
+Kimenet: Egy szótár, ami tartalmazza az s-ből elérhető csúcsokat és azok távolságát 
+
+#### Mélységi keresés
+
+Amikor egy megoldást megtalálni elégséges, nincs szükség mindre/optimálisra, pl. (ki)útkeresés
+
+#### Minimális feszítőfák
+
+##### Kruskal algoritmus
+
+- Minden lépésben a legkisebb, két fát összekötő élt húzzuk be (egyesítjük egyetlen fává a két fát)
+- Mohó algoritmus!
+
+##### Prim algoritmus
+
+- minden lépésben új csúcsot kötünk be a fába
+- legolcsóbb éllel elérhető csúcsot választjuk
+- Mohó algoritmus!
+Sűrű gráfok esetén (sok él van) Prim előnyösebb, egyébként Kruskal
+
+#### Legrövidebb utak (csúcsból kiindulva)
+
+##### Dijkstra algoritmus
+
+- azokat a csúcsokat tárolja amihez már megtalálta a legrövidebb utat
+- minden lépésben egyel bővíti az elért csúcsok halmazát
+- legkisebb legrövidebb úttal bíró csúcsot választja
+- Mohó algoritmus!
+- nem ad helyes megoldást negatív élsúlyok esetén
+
+##### Bellman-Ford algoritmus
+
+- negatív súlyok esetén is működik
+
+##### Floyd-Warshall algoritmus (legrövidebb utak minden pontpárra)
+
+- dinamikus programozás
+- minden egyes lépésben egyre több csúcsot használhatunk
+Ha nincsenek negatív élsúlyok és ritka a gráf akkor Dijsktra minden kezdőpontból O(VElogV)
+Ha vannak negatív élsúlyok, de nincsenek negatív összköltségű körök vagy sűrű a gráf akkor Floyd-Warshall O(V3)
+Ha negatív összköltésgű körök is lehetnek akkor Ford-Bellman minden kezdőcsúcsra O(V2E)
 
 # 2. Elemi adatszerkezetek, bináris keresőfák, hasító táblázatok, gráfok és fák számítógépes reprezentációja
 
