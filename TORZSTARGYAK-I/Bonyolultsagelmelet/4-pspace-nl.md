@@ -1,28 +1,30 @@
+
+
 # 4. A PSPACE osztály. PSPACE-teljes problémák. Logaritmikus tárigényű visszavezetés. NL-teljes problémák
 
-## PSPACE osztály
-
+## PSPACE osztály = $Space(n^k)$
+Polinom tárban (det. vagy nemdet.) eldönthető problémák osztálya.
 Savitch-tétel
 
 - Elérhetőség eldönthető O(log^2n) tárban
 
-Az f(n) tárban nemdeterminisztikusan eldönthető problémák mind eldönthetők determinisztikusan, f^2(n) tárban is
+Az $f(n)$ tárban nemdeterminisztikusan eldönthető problémák mind eldönthetők determinisztikusan,$f^2(n)$ tárban is
 
-Tehát: NSPACE(f(n)) részhalmaza SPACE(f^2(n))-nek
+Tehát: $NSPACE(f(n))$ részhalmaza $SPACE(f^2(n))$-nek
 és mivel polinom négyzete polinom
 PSPACE = NPSPACE
 
-Polinom tárban (det. vagy nemdet.) eldönthető problémák osztálya
-
 ## PSPACE-teljes problémák
+**Nehézség, teljesség:**
+$A$ egy **probléma** $C$ pediga problémák egy **osztálya**
+	1. **C-nehéz:** Minden $C$-beli probléma visszavezethető $A$-ra
+	2. **C-teljes:** $A$ probléma ráadásul $C$-ben van
 
 QSAT PSPACE-teljes
-
 QSAT (kvantifikált SAT)
 
-- adott egy ítéletkalkulusbeli logikai formula, változó kvantorokkal az elején (létezik, bármely, létezik, bármely stb)
-- magja CNF alakú, kvantormentes
-- igaz-e ez a formula?
+- *Adott:* adott egy ítéletkalkulusbeli logikai formula, változó kvantorokkal az elején (létezik, bármely, létezik, bármely stb), **magja CNF alakú, kvantormentes**
+- *Kérdés:* igaz-e ez a formula?
 
 QSAT mint kétszemélyes játék
 
@@ -50,16 +52,28 @@ Adott két reguláris kifejezés, igaz-e, hogy ugyanazokra a szavakra illeszkedn
 Adott két nemdet automata, ekvivalensek-e?
 Adott, egy SOKOBAN/RUSH HOUR feladvány, megoldható-e?
 
-## Logtáras visszavezetés
+## Logtáras visszavezetés = L= Space(log 𝑛)
 
 Polinomidejű visszavezetés túl erős, ha pl P-beli problémákat akarunk egymáshoz viszonyítani, mert egy polinomidejű visszavezetés alatt már akár meg is oldhatnánk egy P-beli problémát
 
 Logtáras visszavezetés
+Jele: $A \le_l  B$.
 
-f egy olyan függvény, hogy
-
+ Ha $f$ egy olyan függvény, hogy
 - A inputjaiból B inputjait készíti
 - választartó módon
 - és logaritmikus tárban kiszámítható
 
 akkor f egy logtáras visszavezetés A-ról B-re.
+
+## NL-teljes problémák = NSpace(log 𝑛)
+Nemdeterminisztikus logtáras problémák
+
+Elérhetőség 
+1. Adott: egy 𝐺 = (𝑉, 𝐸) irányított gráf. Feltehetjük, hogy 𝑉 = {1, 2, . . . , 𝑛}. 
+2. Kérdés: létezik-e 1-ből 𝑛-be vezető irányított út?
+Nemdeterminisztikus módon választunk 1 és $n$ között csúcsot és mivel az inputot olvasni kell, outputra nem irunk semmit, csak két változót tartunk számon, amibe csak $1...n$ vannak számok így logtáras lesz.
+
+
+**Egyéb infók:**
+L $\subseteq$ NL (részhalmaza, vagy egyenlő vele)

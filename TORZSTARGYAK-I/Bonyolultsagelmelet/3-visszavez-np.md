@@ -1,15 +1,17 @@
+
 # 3. Hatékony visszavezetés. Nemdeterminizmus. A P és NP osztályok. NP-teljes problémák
 
 ## Hatékony visszavezetés
-
-Visszavezetésnek nevezzük azt, mikor ha van egy problémánk, amit nem tudjuk, hogy kéne megoldanunk, és egy problémánk, amit tudjuk hogy oldjunk meg, és a nem ismert probléma inputjaiból
+**Visszavezetésnek** nevezzük azt, mikor ha van egy problémánk, amit nem tudjuk, hogy kéne megoldanunk, és egy problémánk, amit tudjuk hogy oldjunk meg, és a nem ismert probléma inputjaiból
 elkészítjük az ismert probléma egy inputját, és így oldjuk azt meg.
 
-- Az átalakításnak tartnaia kell a választ
-- Mindenre jó outputot kell adnia
+Hatékonynak akkor nevezhetjük, ha ez az **inputkonverzió polinomidejű**. Ezt Turing-visszavezetésnek is hívják. 
 
-Hatékonynak akkor nevezhetjük, ha ez az *inputkonverzió* polinomidejű. Ezt Turing-visszavezetésnek
-is hívják. 
+**Formailag:**
+	Legyenek $A$ és $B$ eldöntési problémák, azt mondjuk, hogy $A$ (**hatékonyan**) visszavezethető $B$-re, ha van olyan $f$ (**polinomidejű**) inputkonverzió, ami:
+	- $A$ inputjaiból $B$ inputjait készíti
+	- **Tartja a választ:** $A(x) = B(f(x))$
+**Jele:** $A \le_p B$ ($B$ legalább olyan nehéz mint $A$)
 
 ## Nemdeterminizmus
 
@@ -21,13 +23,21 @@ A *P* osztályban azok a problémák vannak, amelyek determinisztikusan polinomi
 
 Az *NP* osztályban azok a problémák vannak, amelyek nemdeterminisztikusan polinomidőben megoldhatók.
 
+
 ## NP teljes problémák
+
+**Nehézség, teljesség:**
+$A$ egy **probléma** $C$ pediga problémák egy **osztálya**
+	1. **C-nehéz:** Minden $C$-beli probléma visszavezethető $A$-ra
+	2. **C-teljes:** $A$ probléma ráadásul $C$-ben van
+
 
 Egy probléma akkor *NP*-teljes, ha *NP*-beli és *NP*-nehéz.
 
-- *NP*-beli, ha nemdeterminisztikusan tudunk tanúkat generálni hozzá, amik igen példányai a
-problémának
-- *NP*-nehéz, ha minden más *NP*-beli problémát hatékonyan vissza tudunk vezetni rá.
+- **NP-beli**, ha nemdeterminisztikusan tudunk tanúkat generálni hozzá, amik igen példányai a
+problémának.
+- **NP-nehéz**, ha minden más *NP*-beli problémát hatékonyan vissza tudunk vezetni rá.
+- **NP-teljes**, Vegyünk egy ismerten NP-teljes problémát és **vezessük ezt** az új problémára vissza
 
 ### Példák
 
