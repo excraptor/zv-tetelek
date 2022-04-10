@@ -1,20 +1,24 @@
-# 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
 
+# 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
 ## Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák
 
 ### Feladatreprezentáció
 
 Tekintsünk egy diszkrét, statikus, determinisztikus és teljesen megfigyelhető feladatkörnyezetet. Tegyük fel, hogy a világ tökéletesen modellezhető a következőkkel:
 
-- lehetséges állapotok halmaza
-- egy kezdőállapot
-- lehetséges cselekvések halmaza (állapotátmenet függvény, minden állapothoz hozzárendelünk egy (cselekvés, állapot) rendezett párokból álló halmazt, tehát egy állapotban milyen cselekvések hatására milyen állapotba juthat az ágensünk)
-- állapotátmenet költségfüggvénye, minden lehetséges állapot-cselekvés-állapot hármashoz hozzárendelünk egy költséget, azaz egy állapotból egy (másik) állapotba jutásnak mekkora a költsége
-- célállapotok halmaza, tehát hova szeretnénk, hogy eljusson az ágensünk
+- **lehetséges állapotok halmaza**
+- **egy kezdőállapot**
+- **lehetséges cselekvések halmaza** (állapotátmenet függvény, minden állapothoz hozzárendelünk egy (cselekvés, állapot) rendezett párokból álló halmazt, tehát egy állapotban milyen cselekvések hatására milyen állapotba juthat az ágensünk)
+- **állapotátmenet költségfüggvénye**, minden lehetséges állapot-cselekvés-állapot hármashoz hozzárendelünk egy költséget, azaz egy állapotból egy (másik) állapotba jutásnak mekkora a költsége
+- **célállapotok halmaza**, tehát hova szeretnénk, hogy eljusson az ágensünk
 
-Ez egy súlyozott gráfot definiál, ez a gráf az állapottér
+Ez egy **súlyozott gráfot** definiál, ez a gráf az **állapottér**
 
 Feltesszük továbbá, hogy az állapotok száma véges, vagy megszámlálható. Úton állapotok cselekvésekkel összekötött sorozatát értjük, ennek van egy összköltsége is.
+pl: Utazástervezési feladat: útvonaltervezés, 
+állapotok = hely és időpont párok; 
+cselekvés = közlekedési eskzözök aktuális állapotból való indulása
+költség= idő és pénz fgv-e
 
 ### Vak (informálatlan) keresés
 
@@ -22,7 +26,7 @@ Feltesszük továbbá, hogy az állapotok száma véges, vagy megszámlálható.
 
 Adott kezdőállapotból találjunk minimális költségű utat egy célállapotba. Az állapottér nem mindig adott explicit módon, és végtelen is lehet.
 
-Ötlet: keresőfa építése, a kezdőállapotból növesszünk fát a szomszédos állapotok hozzávételével, amíg célállapotot nem találunk. 
+**Ötlet:** keresőfa építése, a kezdőállapotból növesszünk fát a szomszédos állapotok hozzávételével, amíg célállapotot nem találunk. 
 A keresőfa NEM azonos a feladat állapotterével, pl ha van két csúcs között oda-vissza él.
 
 fakeresés
@@ -42,23 +46,23 @@ A hatékonyságot növelhetjük, ha úgy szúrunk be csúcsokat a perembe, hogy 
 
 Fakeresés, ahol a perem egy FIFO perem.
 
-- Teljes, minden, véges számú állapot érintésével elérhető állapotot véges időben elér
-- Általában nem optimális, de pl akkor igen, ha a költség a mélység nem csökkenő függvénye
-- időigény = tárigény O(b^{d+1})
-    - b: szomszédok maximális száma
-    - d: a legkisebb mélységű célállapot mélysége
+- **Teljes**, minden, véges számú állapot érintésével elérhető állapotot véges időben elér
+- **Általában nem optimális**, de pl akkor igen, ha a költség a mélység nem csökkenő függvénye
+- időigény = tárigény $O(b^{d+1})$
+    - **b:** szomszédok maximális száma
+    - **d:** a legkisebb mélységű célállapot mélysége
 
 #### Mélységi keresés
 
 Fakeresés, LIFO perem
 
-- Teljes, ha a keresési fa véges mélységű
-- Nem optimális
-- Időigény: legrosszabb esetben O(b^m) (nagyon rossz, lehet végtelen), tárigény legrosszabb esetben O(bm) (ez egész bíztató)
+- **Teljes**, ha a keresési fa véges mélységű
+- **Nem optimális**
+- Időigény: legrosszabb esetben $O(b^m)$ (nagyon rossz, lehet végtelen), tárigény legrosszabb esetben $O(bm)$ (ez egész bíztató)
 
 #### Iteratívan mélyülő keresés
 
-Mélységi keresések sorozata 1, 2, 3 stb méylségre korlátozva, amíg célállapotot nem találunk.
+Mélységi keresések sorozata 1, 2, 3 stb korlátozva, amíg célállapotot nem találunk.
 
 - Teljesség és optimalitás a szélességivel egyezik meg
 - időigény = O(b^d) (akár jobb is lehet, mint a szélességi), tárigény = O(bd) (jobb, mint a mélységi)
@@ -69,49 +73,51 @@ Ez a legjobb informálatlan kereső.
 
 A peremben a rendezés költség alapú, mindig először a legkisebb útköltségű csúcsot terjesztjük ki.
 
-- Teljes és optimális, ha minden él költsége nagyobb mint nulla
-- Idő és tárigény nagyban függ a költségfüggvénytől
+- **Teljes és optimális**, ha minden él költsége nagyobb mint nulla
+- (Idő és tárigény nagyban függ a **költségfüggvénytől**)
 
 #### Gráfkeresés
 
-Ha nem fa az állapottér!
+$$\textbf{Ha nem fa az állapottér!}$$
 
-Fakeresés, de a perem mellett még tárolunk egy ún. zárt halmazt is. A zárt halmazba azok a csúcsok kerülnek, amiket már kiterjesztettünk. A perembe helyezés előtt minden csúcsra megnézzük, hogy már a zárt halmazban van-e. Ha igen, nem tesszük a perembe. Másrészt minden peremből kivett csúcsot a zárt halmazba teszünk. Így minden állapothoz a legelső megtalált út lesz tárolva.
+Ha a **kezdőállapotból több út is vezet egy állapotba**, akkor a **fakeresés végtelen ciklusba eshet**
+Fakeresés, de a perem mellett még tárolunk egy ún. **zárt halmazt** is. A zárt halmazba **azok a csúcsok kerülnek**, amiket **már kiterjesztettünk**. A perembe helyezés előtt minden csúcsra megnézzük, hogy már a zárt halmazban van-e. Ha igen, nem tesszük a perembe. Másrészt minden peremből kivett csúcsot a zárt halmazba teszünk. Így minden állapothoz a legelső megtalált út lesz tárolva.
 
 ## Informált keresés, heurisztikák
 
-Itt már tudjuk, hogy "hova megyünk".
+**Itt már tudjuk, hogy "hova megyünk".**
 
-Heurisztika: minden állapotból megbecsüli, hogy mekkora az optimális út költsége az adott állapotból egy célállapotba: tehát értelmesebben tudunk következő szomszédot választani. Pl. légvonalbeli távolság a célig a térképen egy útvonal-tervezési problémához jó heurisztika.
+**Heurisztika:** minden állapotból megbecsüli, hogy mekkora az optimális út költsége az adott állapotból egy célállapotba: **tehát értelmesebben tudunk következő szomszédot választani**. 
+Pl. légvonalbeli távolság a célig a térképen egy útvonal-tervezési problémához jó heurisztika.
 
-h(n): optimális költség közelítése a legközelebbi célállapotba
-g(n): tényleges költség a kezdőállapotból a jelenlegi állapotba
+$h(n)$: optimális költség közelítése a legközelebbi célállapotba $n$ állapotból
+$g(n)$: tényleges költség a kezdőállapotból $n$-be
 
 ### Mohó
 
-Fakeresés, peremben a rendezést h() alapján csináljuk, mindig a legkisebb értékű csúcsot vesszük ki.
+Fakeresés, peremben a rendezést $h()$ alapján csináljuk, mindig a legkisebb értékű csúcsot vesszük ki.
 
 - Teljes, de csak ha a keresési fa véges mélységű
 - Nem optimális
-- időigény, tárigény O(b^m)
+- időigény, tárigény $O(b^m)$
 
 ### A*
 
-A peremben a rendezést f()=h()+g() alapján végezzük, a legkisebb csúcsot vesszük ki. f() a teljes út költségét becsüli a kezdőállapotból a végállapotba. Ha h = 0, és gráfkeresést alkalmazunk, akkor a Dijkstra-t kapjuk.
+A peremben a rendezést $f()=h()+g()$ alapján végezzük, a legkisebb csúcsot vesszük ki. $f()$ **a teljes út költségét becsüli a kezdőállapotból a végállapotba**. Ha $h = 0$, és gráfkeresést alkalmazunk, akkor a **Dijkstra-t** kapjuk.
 
-Egy h heurisztika elfogadható, ha nem ad nagyobb értéket, mint a tényleges optimális érték.
-Fakeresést feltételezve, ha h elfogadható és a keresési fa véges, akkor A* optimális.
+Egy $h$ heurisztika elfogadható, ha nem ad nagyobb értéket, mint a tényleges optimális érték.
+Fakeresést feltételezve, ha $h$ elfogadható és a keresési fa véges, akkor $A^*$ optimális.
 
-Egy h heurisztika konzisztens, ha h(n) <= mint a valódi költség n egyik bármely, plusz a szomszéd heurisztikája.
-Gráfkeresést feltételezve, ha h konzisztens és az állapottér véges, akkor A* optimális.
+Egy $h$ heurisztika **konzisztens**, ha $h(n) \le$ mint a **valódi költség** $n$ egyik bármely, plusz a szomszéd heurisztikája.
+Gráfkeresést feltételezve, ha $h$ **konzisztens és az állapottér véges**, akkor $A^*$ **optimális**.
 
-Az A* optimálisan hatékony, de a tárigénye általában exponenciális, és nagyon nagyban függ h-tól. Az időigény szintén nagyon nagyban függ h-tól.
+Az $A^*$ optimálisan hatékony, de a **tárigénye általában exponenciális**. és nagyon nagyban függ $h$-tól. Az **időigény** szintén nagyon **nagyban függ** $h$-tól.
 
 ### Heurisztikák
 
 A relaxált probléma optimális megoldása pl jó heurisztika lehet.
 
-Relaxált probléma: elhagyunk feltételeket az eredeti problémából.
+**Relaxált probléma:** elhagyunk feltételeket az eredeti problémából.
 Kombinálhatunk több heurisztikát is.
 Készíthetünk mintaadatbázisokat, ahol részproblémák egzakt költségét tároljuk.
 
@@ -130,7 +136,7 @@ Készíthetünk mintaadatbázisokat, ahol részproblémák egzakt költségét t
 Két ágens van, felváltva lépnek. Az egyik maximalizálni akarja a hasznosságfüggvényt (MAX játékos), a másik minimalizálni (MIN játékos).
 Konvenció szerint MAX kezd. Az első célállapot elérésekor a játéknak definíció szerint vége.
 
-Zéró összegű játék: A MIN játékos minimalizálja a hasznosságot, ami ugyanaz, mint maximalizálni a negatív hasznosságot. Ez a negamax formalizmus. Itt a két játékos nyereségének az összege a végállapotban mindig nulla, innen a zéró összegű elnevezés.
+**Zéró összegű játék:** A MIN játékos minimalizálja a hasznosságot, ami ugyanaz, mint maximalizálni a negatív hasznosságot. Ez a negamax formalizmus. Itt a két játékos nyereségének az összege a végállapotban mindig nulla, innen a zéró összegű elnevezés.
 
 ### Minimax algoritmus, alfa-béta vágás
 
@@ -152,7 +158,7 @@ minÉrték(n)
 4 min = min(min, maxÉrték(a))
 5 return min
 
-Ha n végállapot, visszaadja a hasznosságát. Különben a max-nál n szomszédaira kiszámolja a maximális értéket, ami vagy az aktuális maximum, vagy nézi, hogy a másik játékos mit lépne. 
+Ha $n$ végállapot, visszaadja a hasznosságát. Különben a max-nál n szomszédaira kiszámolja a maximális értéket, ami vagy az aktuális maximum, vagy nézi, hogy a másik játékos mit lépne. 
 Csak elméleti jelentőségű, a minimax algoritmus nem skálázódik. Az összes lehetséges állapot kiszámolása rettentő sok idő lenne pl sakknál.
 
 Alfa-béta vágás
@@ -161,8 +167,8 @@ Ha tudjuk, hogy pl MAX-nak már van egy olyan stratégiája, ahol biztosan egy 1
 
 minÉrték és maxÉrték hívásakor átadjuk az alfa és béta paramétereket is a függvénynek.
 
-Alfa jeletése: MAXnak már felfedeztünk egy olyan stratégiát, amely alfa hasznosságot biztosít, ha ennél kisebbet találnánk, azt nem vizsgáljuk
-Béta jelentése: MINnek már felfedeztünk egy olyan stratégiát, amely béta hasznosságot biztosít, ha ennél nagyobbat találnánk, azt nem vizsgáljuk
+**Alfa jeletése:** MAXnak már felfedeztünk egy olyan stratégiát, amely alfa hasznosságot biztosít, ha ennél kisebbet találnánk, azt nem vizsgáljuk
+**Béta jelentése:** MINnek már felfedeztünk egy olyan stratégiát, amely béta hasznosságot biztosít, ha ennél nagyobbat találnánk, azt nem vizsgáljuk
 
 A gyakorlatban a minimax és az alfa-béta vágásos algoritmusokat is csak meghatározott mélységig vizsgáljuk, illetvve heurisztikákat is alkalmazhatunk. A csúcsok bejárási sorrendje is nagyon fontos, mert pl alfa béta vágásnál egy jó rendezés mellett nagyon sok csúcsot vághatunk le.
 
@@ -170,7 +176,7 @@ A gyakorlatban a minimax és az alfa-béta vágásos algoritmusokat is csak megh
 
 A feladat az állapottérrel adott keresési problémák és az optimalizálási problémák jellemzőit ötvözi. Az állapotok és célállapotok speciális alakúak.
 
-Lehetséges állapotok halmaza: a feladat állapotai az n db változó lehetséges kombinációi
-Célállapotok: a megengedett állapotok, adottak különböző korlátozások, és azok az állapotok a célállapotok, amik minden korlátozást kielégítenek.
+**Lehetséges állapotok halmaza:** a feladat állapotai az $n$ db változó lehetséges kombinációi
+**Célállapotok:** a megengedett állapotok, adottak különböző korlátozások, és azok az állapotok a célállapotok, amik minden korlátozást kielégítenek.
 
 Az út a megoldásig lényegtelen, és gyakran célfüggvény is értelmezve van az állapotok felett, ilyenkor egy optimális célállapot megtalálása a cél.
