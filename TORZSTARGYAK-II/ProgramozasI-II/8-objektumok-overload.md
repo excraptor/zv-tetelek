@@ -1,12 +1,13 @@
+
 # 8. Objektumok életciklusa, létrehozás, inicializálás, másolás, megszüntetés. Dinamikus, lokális és statikus objektumok létrehozása. A statikus adattagok és metódusok, valamint szerepük a programozásban. Operáció és operátor overloading a JAVA és C++ nyelvekben. Kivételkezelés
 
 ## Objektumok létrehozása
 
-Az objektumokat Java-ban és C++-ban is tárolhatjuk statikusan (az adatszegmensben), a veremben (lokálisan) vagy a heapben (dinamikusan).
+Az objektumokat Java-ban és C++ -ban is tárolhatjuk **statikusan** (az adatszegmensben), a **veremben** (lokálisan) vagy a **heapben** (dinamikusan).
 
 Java-ban az objektumok mindig a heap-ben keletkeznek, kivéve a primitív típusokat. Az osztályok konstruktora fogja inicializálni az objektumot. A konstruktor neve meg kell egyezzen az osztály nevével. A konstruktornak nincs visszatérési értéke, de paraméterei lehetnek, amelyekkel meg lehet adni, hogy hogyan inicializáljuk az objektumot.
 
-A new operátor:
+A **new** operátor:
 - Szintaxis: new Osztály(args)
 - Létrehozás lépései:
     - Lefoglalja a számára szükséges memóriát
@@ -15,7 +16,7 @@ A new operátor:
 
 Egy osztályhoz készíthetünk több konstruktort, amelyek különböző paraméterlistával rendelkeznek.
 
-C++-ban is hasonlóan működik a konstruktor: a konstruktor inicializálja az objektumot, azaz tölti fel az adattagjait értékekkel, több különböző paraméter listájú konstruktort lehet létrehozni egy osztályhoz, a konstruktor neve meg kell egyezzen az osztály nevével és visszaadott értéke nem lehet.
+**C++-ban is hasonlóan működik a konstruktor**: a konstruktor inicializálja az objektumot, azaz tölti fel az adattagjait értékekkel, több különböző paraméter listájú konstruktort lehet létrehozni egy osztályhoz, a konstruktor neve meg kell egyezzen az osztály nevével és visszaadott értéke nem lehet.
 
 A paraméter nélküli konstruktor eljárás neve: alapértelmezett (default) konstruktor. Csak ős osztályokban kötelező, akkor ha az osztályból gyermek osztályokat szeretnének létrehozni öröklődéssel. Megvalósítható olymódon is, hogy egy nem default konstruktor minden paraméteréhez default eljárás paramétereket adunk (pl. Osztaly(int x = 1, int y = 2)).
 
@@ -23,7 +24,7 @@ Amennyiben egy gyermek osztály konstruálunk, akkor a konstruktor minden esetbe
 
 C++-ban a heapbeli objektumok létrehozása a new operátorral történik, megszüntetésük pedig a delete operátorral. A létrehozáshoz nem elegendő a memória megfelelő méretben történő lefoglalása, hanem a konstruktor eljárást is meg kell hívni. (Ezért nem lehet objektum példányt létrehozni malloc eljárással.) A new operátorral egyetlen objektum példányt vagy megadott méretű tömböt hozhatunk létre. A new operátor alkalmazásának eredménye mindig egy pointer a new operandusában megadott osztályra.
 
-Szintaxis:
+**Szintaxis:**
   
 Tömbök foglalásakor a default konstruktor hívódik meg. Megszüntetésüknél az üres [] zárójelpár használata kötelező.
 
@@ -41,17 +42,15 @@ Java:
 Valódi másolást Java-ban a clone() metódussal tudunk végrehajtani. Az osztálynak, amit szeretnénk klónozhatóvá tenni implementálnia kell a Cloneable interfészt és meg kell hívnia az ős clone() metódusát (super.clone()).
 
 C++:
-C++-ban a valós klónozás megvalósítására szolgát a copy konstruktor. A copy konstruktor paramétereinek száma 1, ennek az egy paraméternek a típusa pedig a tartalmazó osztályra mutató referencia típus.
+A valós klónozás megvalósítására szolgát a copy konstruktor. A copy konstruktor paramétereinek száma 1, ennek az egy paraméternek a típusa pedig a tartalmazó osztályra mutató referencia típus.
  
 ## Dinamikus, lokális és statikus objektumok létrehozása:
 
 C++:
    
-A statikusan létrehozott objektum az adott kód blokk végén megszűnik, amelyikben létre lett hozva.
-
-Lokális objektumokat default paraméter vagy objektumokat tartalmazó kifejezésekben használhatunk. Szokás még objektum konstansnak is nevezni őket.
-
-Objektumokat dinamikusan a new operátor segítségével tudunk létrehozni, amelynek törléséről a programozónak kell gondoskodnia.
+A **statikusan létrehozott objektum** az adott kód blokk végén megszűnik, amelyikben létre lett hozva.
+**Lokális objektumokat** default paraméter vagy objektumokat tartalmazó kifejezésekben használhatunk. Szokás még objektum konstansnak is nevezni őket.
+**Objektumokat dinamikusan** a new operátor segítségével tudunk létrehozni, amelynek törléséről a programozónak kell gondoskodnia.
 
 Java:
 Java-ban minden objektum dinamikusan jön létre a heap-ben.
