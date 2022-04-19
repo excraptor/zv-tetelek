@@ -1,11 +1,9 @@
+
 # 2. Az SQL adatbázisnyelv: Az adatdefiníciós nyelv (DDL) és az adatmanipulációs nyelv (DML). Relációsémák definiálása, megszorítások típusai és létrehozásuk. Adatmanipulációs lehetőségek és lekérdezések
 
 ## SQL
 
-Structured Query Language
-
-Arra szolgál, hogy adatokat kezeljünk vele
-
+Structured Query Language, egy lekérdező nyelv. Arra szolgál, hogy adatokat kezeljünk vele.
 - beszúrás
 - törlés
 - módosítás
@@ -13,7 +11,7 @@ Arra szolgál, hogy adatokat kezeljünk vele
 
 A nyelv elemeit két fő részre oszthatjuk.
 
-## Az adatdefiníciós nyelv
+## Az adatdefiníciós nyelv (DDL)
 
 Ide tartoznak az adatbázisok, sémák, típusok definíciós utasításai, pl:
 
@@ -21,9 +19,9 @@ Ide tartoznak az adatbázisok, sémák, típusok definíciós utasításai, pl:
 - CREATE TABLE
 - ALTER TABLE
 - DROP TABLE
-- CREATE TRIGGER
+- **CREATE TRIGGER**: Nem tábla létrehozásra van
 
-## Az adat manipulációs nyelv
+## Az adat manipulációs nyelv (DML)
 
 Ide tartoznak a beszúró, módosító, törlő, lekérdező utasítások.
 
@@ -36,11 +34,20 @@ Egyes irodalmak különválasztják a lekérdező utasításokat a manipuláció
 
 ## Relációsémák definiálása, megszorítások típusai és létrehozásuk
 
-Relációsémákat a CREATE TABLE utasítással hozhatunk lére. A sémák különböznek a tábláktól, és nevével ellentétben a CREATE TABLE utasítás csak a relációsémát hozza létre. A tábla már az adatrekordok halmazát jelenti.
+Relációsémákat a 
+```
+CREATE TABLE  tablanev(
+	mező1 típus [oszlopfeltételek],
+	....
+	[tablafeltételek]
+);
+```
+
+utasítással hozhatunk lére. A sémák különböznek a tábláktól, és nevével ellentétben a CREATE TABLE utasítás csak a relációsémát hozza létre. A tábla már az adatrekordok halmazát jelenti.
 
 ### Megszorítások
 
-Oszlopfeltételek:
+**Oszlopfeltételek:**
 
 Csak az adott mezőre vonatkoznak
 
@@ -50,7 +57,7 @@ Csak az adott mezőre vonatkoznak
 - REFERENCES T(oszlop), a T tábla oszlop oszlopára vonatkozó külső kulcs
 - DEFAULT tartalom, az oszlop alapértelmezett értéke tartalom lesz
 
-Táblafeltételek
+**Táblafeltételek**
 
 Ha több oszlopra is vonatkoznak feltételek, azt itt tudjuk megadni.
 
@@ -58,97 +65,99 @@ Ha több oszlopra is vonatkoznak feltételek, azt itt tudjuk megadni.
 - UNIQUE (oszloplista), kulcs, minden érték egyszer fordulhat elő az oszlopban
 - FOREIGN KEY (oszloplista) REFERENCES T(oszloplista), a T tábla oszloplista oszloplistájára vonatkozó külső kulcs
 
-Külső kulcs feltételek és szabályok
-
+**Külső kulcs feltételek és szabályok**
 Az integritás megőrzése szempontjából a külső kulcsokhoz meghatározhatjuk azt is, hogy hogyan viselkedjenek a hivatkozott kulcs törlése vagy módosítása esetén.
 
-ON DELETE
+**ON DELETE**
+- **RESTRICT,** ha van a törlendő rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a törlést
+- **SET NULL,** a törlendő rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
+- **NO ACTION,** a törlendő rekord kulcsára vonatkozó külső kulcs értéke nem változik
+- **CASCADE,** a törlendő rekord kulcsára hivatkozó külső kulcsú rekordok is törlődnek
 
-- RESTRICT, ha van a törlendő rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a törlést
-- SET NULL, a törlendő rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
-- NO ACTION, a törlendő rekord kulcsára vonatkozó külső kulcs értéke nem változik
-- CASCADE, a törlendő rekord kulcsára hivatkozó külső kulcsú rekordok is törlődnek
+ON UPDATE**
 
-ON UPDATE
-
-- RESTRICT, ha van a módosítandó rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a módosítást
-- SET NULL, a módosítandó rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
-- NO ACTION, a módosítandó rekord kulcsára vonatkozó külső kulcs értéke nem változik
-- CASCADE, a módosítandó rekord kulcsára hivatkozó külső kulcsú rekordok is az új értékre változnak
+- **RESTRICT,** ha van a módosítandó rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a módosítást
+- **SET NULL,** a módosítandó rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
+- **NO ACTION,** a módosítandó rekord kulcsára vonatkozó külső kulcs értéke nem változik
+- **CASCADE,** a módosítandó rekord kulcsára hivatkozó külső kulcsú rekordok is az új értékre változnak
 
 
-Táblákra és attribútumokra vonatkozó megszorítások
+**Táblákra és attribútumokra vonatkozó megszorítások**
 
 Elsődleges feladata, hogy megelőzzük az adatbeviteli hibákat, és elkerüljük a hiányzó adatokat a kötelező mezőkből.
 
-NOT NULL: a cella értékét kötelező kitölteni, nem lehet NULL
+**NOT NULL:** a cella értékét kötelező kitölteni, nem lehet NULL
 
-CHECK (feltétel): ellenőrző feltétel arra, hogy milyen értékeket vehet fel az adott oszlop
+**CHECK (feltétel):** ellenőrző feltétel arra, hogy milyen értékeket vehet fel az adott oszlop
 
-DOMAIN: értéktartomány egy oszlop értékeire vonatkozóan
+**DOMAIN:** értéktartomány egy oszlop értékeire vonatkozóan
 
 
 ## Adatmanipulációs lehetőségek és lekérdezések
 
-Adatok beszúrása:
+**Adatok beszúrása:**
 
 Ha csak adott oszlopoknak akarunk értéket adni (pl mert nem kötelező, vagy alapértelmezett érték):
-INSERT  INTO táblanév (oszloplista) VALUES (értéklista);
-
+ `INSERT  INTO táblanév (oszloplista) VALUES (értéklista);`
 Ha minden oszlop értékét ki akarjuk tölteni:
-INSERT  INTO táblanév VALUES (értéklista);
+`INSERT  INTO táblanév VALUES (értéklista);`
 
 Adatok módosítása:
 
-UPDATE táblanév SET oszlop=kifejezés \[oszlop2=kifejezés2\] \[WHERE feltétel\];
+```
+UPDATE táblanév SET
+ oszlop=kifejezés 
+ [oszlop2=kifejezés2] 
+ [WHERE feltétel];
+```
 
 Módosítjuk egy vagy több oszlop értékét az adott táblában, azokon a sorokon, amelyek eleget tesznek a WHERE záradékban tett feltételnek.
 
-Adatok törlése:
+**Adatok törlése:**
 
-DELETE FROM táblanév \[WHERE feltétel\];
+`DELETE FROM táblanév [WHERE feltétel];`
 
 Töröljük az összes rekordot a táblából, amelyek megfelelnek a WHERE záradékban megadott feltételnek.
 
-Lekérdezések:
+**Lekérdezések:**
 
-SELECT oszloplista FROM tábla;
+`SELECT oszloplista FROM tábla;`
 
 A megadott oszlopokat kilistázza az adott táblából. oszloplista helyére megadható \*, ha az összes oszlopot listázni akarjuk.
 
 Teljes szintaxisa:
+```
+SELECT [DISTINCT] oszloplista FROM táblalista 
+[WHERE feltétel]
+[GROUP  BY oszloplista] 
+[HAVING csoportfeltétel]
+[ORDER  BY oszloplista [DESC]];
+```
+**DISTINCT:** csak a különböző sorokat írja ki
+**FROM táblalista:** a táblalistában megadott táblákbó képez Descartes szorzatot
+**WHERE:** kiválasztás a feltétel szerint
+**GROUP BY:** csoportosítás az oszloplistában szereplő oszlopok szerint
+**HAVING:** a csoportosítás után a csoportokra vonatkozó feltétel
+**ORDER BY:** az oszloplistában szereplő adatok rendezése abc szerint növekvő vagy csökkenő sorrendben
 
-SELECT\[DISTINCT\] oszloplista FROM táblalista 
-\[WHERE feltétel\]
-\[GROUP  BY oszloplista\] 
-\[HAVING csoportfeltétel\]
-\[ORDER  BY oszloplista \[DESC\]\];
+**Összesítő függvények**
 
-DISTINCT: csak a különböző sorokat írja ki
-FROM táblalista: a táblalistában megadott táblákbó képez Descartes szorzatot
-WHERE: kiválasztás a feltétel szerint
-GROUP BY: csoportosítás az oszloplistában szereplő oszlopok szerint
-HAVING: a csoportosítás után a csoportokra vonatkozó feltétel
-ORDER BY: az oszloplistában szereplő adatok rendezése abc szerint növekvő vagy csökkenő sorrendben
+Leggyakrabban a **GROUP BY-jal együtt** szoktuk használni, de enélkül is lehet.
+**Leginkább** a **SELECT utáni oszloplistában**, de a **where-ben** és a **having-ban** is használható. Az eredményoszlopokat AS kulcsszóval el is nevezhetjük.
 
-összesítő függvények
+**MIN(oszlop):** az oszlopban lévő minimumot adja vissza
+**MAX(oszlop):** maxot
+**AVG(oszlop):** az oszlop átlaga
+**SUM(oszlop):** az oszlop összege
+**COUNT (\[DISTINCT\]** oszlop): az eredményben szereplő (különböző) rekordok száma
 
-Leggyakrabban a GROUP BY-jal együtt szoktuk használni, de enélkül is lehet.
-Leginkább a SELECT utáni oszlolistában, de a where-ben és a having-ban is használható. Az eredményoszlopokat AS kulcsszóval el is nevezhetjük.
+**Természetes összekapcsolás**
 
-MIN(oszlop): az oszlopban lévő minimumot adja vissza
-MAX(oszlop): maxot
-AVG(oszlop): az oszlop átlaga
-SUM(oszlop): az oszlop összege
-COUNT(\[DISTINCT\] oszlop): az eredményben szereplő (különböző) rekordok száma
-
-Természetes összekapcsolás
-
-SELECT * FROM T1, T2 WHERE T1.X = T2.X;
+**SELECT * FROM T1, T2 WHERE T1.X = T2.X;**
 
 X az most egy oszlop, egy kulcs-külső kulcs kapcsolat.
 
-Erre használható még SQL-ben az INNER JOIN kulcsszó is.
+Erre használható még SQL-ben az **INNER JOIN** kulcsszó is.
 
 SELECT * FROM T1, T2 INNER JOIN T2 ON T1.X = T2.X;
 
