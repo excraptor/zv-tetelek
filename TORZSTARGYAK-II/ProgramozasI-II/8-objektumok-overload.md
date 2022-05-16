@@ -1,4 +1,3 @@
-
 # 8. Objektumok életciklusa, létrehozás, inicializálás, másolás, megszüntetés. Dinamikus, lokális és statikus objektumok létrehozása. A statikus adattagok és metódusok, valamint szerepük a programozásban. Operáció és operátor overloading a JAVA és C++ nyelvekben. Kivételkezelés
 
 ## Objektumok létrehozása
@@ -38,21 +37,20 @@ Akkor beszélünk klónozásról, ha egy objektum példányt két (vagy több) p
 
 Klónozás lehetséges az „=” segítségével, viszont ilyenkor az objektumok ugyan lemásolódnak, de a referenciájuk ugyanarra a memóriaterületre fog mutatni, azaz, ha pl. az egyik másolt objektum egyik adattagját módosítjuk, az az eredeti objektumra is hatással lesz.
 
-Java:
+**Java:**
 Valódi másolást Java-ban a clone() metódussal tudunk végrehajtani. Az osztálynak, amit szeretnénk klónozhatóvá tenni implementálnia kell a Cloneable interfészt és meg kell hívnia az ős clone() metódusát (super.clone()).
 
-C++:
+**C++:**
 A valós klónozás megvalósítására szolgát a copy konstruktor. A copy konstruktor paramétereinek száma 1, ennek az egy paraméternek a típusa pedig a tartalmazó osztályra mutató referencia típus.
  
 ## Dinamikus, lokális és statikus objektumok létrehozása:
 
-C++:
-   
+**C++:**
 A **statikusan létrehozott objektum** az adott kód blokk végén megszűnik, amelyikben létre lett hozva.
 **Lokális objektumokat** default paraméter vagy objektumokat tartalmazó kifejezésekben használhatunk. Szokás még objektum konstansnak is nevezni őket.
 **Objektumokat dinamikusan** a new operátor segítségével tudunk létrehozni, amelynek törléséről a programozónak kell gondoskodnia.
 
-Java:
+**Java:**
 Java-ban minden objektum dinamikusan jön létre a heap-ben.
 
 ### A statikus adattagok és metódusok
@@ -83,7 +81,7 @@ void sum(int a,int b,int c){ System.out.println(a+b+c); }
 
 ### Operátor kiterjesztés
 
-Java-ban nincs lehetőség az operátorok kiterjesztésére. 
+**Java-ban nincs lehetőség az operátorok kiterjesztésére.**
 A C++ programozási nyelv lehetőséget biztosít arra, hogy az osztályokra kiterjesszük a nyelvben definiált bináris és unáris operátorokat. A kiterjesztésre vonatkozóan több megszorítás is van, ennek ellenére ez a szolgáltatás jelentős lépés az absztrakció növelésének irányába.
 
 - A kiterjesztés CSAK osztályok esetén lehetséges (ebben benne van a class, struct és a union), viszont nem működik tömbökre, pointerekre.

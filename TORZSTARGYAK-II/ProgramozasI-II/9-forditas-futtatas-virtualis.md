@@ -1,4 +1,5 @@
 
+
 # 9. Java és C++ programok fordítása és futtatása. Parancssori paraméterek, fordítási opciók, nagyobb projektek fordítása. Absztrakt-, interfész- és generikus osztályok, virtuális eljárások. A virtuális eljárások megvalósítása, szerepe, használata
 
 
@@ -9,8 +10,8 @@
 Első lépésben az előfordító(preprocessor) a tényleges fordítóprogram futása előtt szövegesen átalakítja a forráskódot.
 Az előfordító különböző szöveges változtatásokat hajt végre a forráskódon, előkészíti azt a tényleges fordításra.
 Feladatai:
-- **Header fájlok beszúrása.**
-- A forrásfájlban fizikailag több sorban elhelyezkedő forráskód logikailag egy sorbatörténő csoportosítása (ha szükséges).
+- **Header fájlok beszúrása. (*.hpp/.h)**
+- A **forrásfájlban (*.cpp)** fizikailag több sorban elhelyezkedő forráskód logikailag egy sorbatörténő csoportosítása (ha szükséges).
 - A kommentek helyettesítése whitespace karakterekkel.
 - Az előfordítónak a programozó által megadott feladatok végrehajtása (szimbólumokbehelyettesítése, feltételes fordítás, makrók, stb.) 
 A leggyakoribb műveletei a szöveghelyettesítés (#define), a szöveges állomány beépítése (#include) valamint a program részeinek feltételtől függő megtartása
@@ -18,11 +19,12 @@ A leggyakoribb műveletei a szöveghelyettesítés (#define), a szöveges állom
 
 ### Fordítás
 
-Fordításkor a forrásfájlokból az első lépésben tárgymodulok (.o) keletkeznek, önmagukban nem futóképesek. Ezt követően szükség van egy szerkesztőre, ami ezeket a modulokat összeszerkeszti.
-Linux/Unix rendszerek esetén a fordító a gcc. Az alábbi módon tudjuk lefordítani a több forrásfájlból álló projektet: 
-gcc -o prog main.cpp class1.cpp class2.cpp
+Fordításkor a forrásfájlokból az első lépésben **tárgymodulok (*.o) keletkeznek**, önmagukban nem futóképesek. 
+Ezt követően szükség van egy szerkesztőre, ami ezeket a modulokat összeszerkeszti.
+Linux/Unix rendszerek esetén a fordító a **gcc**. Az alábbi módon tudjuk lefordítani a több forrásfájlból álló projektet: 
+**gcc -o prog main.cpp class1.cpp class2.cpp**
 Felsoroljuk azokat a fájlokat (a felsorolás sorrendje lényegtelen), amiket le szeretnénk fordítani. Fontos a main.cpp megadása hiszen ez a program belépési pontja.
-A -o prog, megadásakor megadhatjuk a program nevét, ekkor prog néven hozza létre az .exe fájlt. Ha nem mondunk semmit, akkor az alapértelmezett exe fájl neve a.out lesz. Célszerű használni a -o kapcsolót. Az exe kiterjesztés csak Windows esetén van, Linux esetén csak futtatási jogú fájlt kapunk.
+A **-o prog**, megadásakor megadhatjuk a program nevét, ekkor prog néven hozza létre az .exe fájlt. Ha nem mondunk semmit, akkor az alapértelmezett exe fájl neve a.out lesz. Célszerű használni a -o kapcsolót. Az exe kiterjesztés csak Windows esetén van, Linux esetén csak futtatási jogú fájlt kapunk.
 A fordító először mindegyiket lefordítja, melyek a .o kiterjesztésű tárgymodul fájlok lesznek, majd ezek összeszerkesztésre kerülnek
 
 ### Fordítási lehetőségek
@@ -44,11 +46,11 @@ A fordító először mindegyiket lefordítja, melyek a .o kiterjesztésű tárg
 ### A gcc fordító fontosabb fordítási opciói
 
 Szintaxis: gcc [kapcsolók] forrásfájlok
-- -Ob[szint]: A gcc fordítónak a -Ob[szint] kapcsolóval tudjuk megmondani, hogy milyen optimalizálásokat alkalmazzon, a szint maximum 3 lehet (0,1,2), inline eljárások.
-- -c: mint compile, lefordítja és összeállítja a forrást, linkelést nem végez.
-- -o: lehetőségünk van megadni a futtatható állomány nevét, amennyiben nem adunk meg, az alapértelmezett az a.out lesz.
-- -Wall: A figyelmeztetéseket írja ki.
-- -g: engedélyezi a hibakeresési információk elhelyezését a programban, ami emiatt sokkal nagyobb lesz, de nyomon lehet követni a futását például a gdb programmal.
+- **-Ob[szint]**: A gcc fordítónak a -Ob[szint] kapcsolóval tudjuk megmondani, hogy milyen optimalizálásokat alkalmazzon, a szint maximum 3 lehet (0,1,2), inline eljárások.
+- **-c**: mint compile, lefordítja és összeállítja a forrást, linkelést nem végez.
+- **-o**: lehetőségünk van megadni a futtatható állomány nevét, amennyiben nem adunk meg, az alapértelmezett az a.out lesz.
+- **-Wall**: A figyelmeztetéseket írja ki.
+- **-g**: engedélyezi a hibakeresési információk elhelyezését a programban, ami emiatt sokkal nagyobb lesz, de nyomon lehet követni a futását például a gdb programmal.
 
 ### C++ parancssori paraméterek
 
@@ -64,13 +66,14 @@ Ahhoz, hogy Java programokat tudjunk futtatni, illetve fejleszteni, szükségün
 Azonban a fejlesztéshez szükségünk lesz a JDK-ra (Java Development Kit) is. Ez tartalmazza a Java alkalmazások futtatásához, valamint azok készítéséhez, fordításához szükséges programozói eszközöket is (tehát a JRE-t nem kell külön letölteni, a JDK tartalmazza).
 A fordítás folyamata az alábbiak alapján történik:
 
-- Először a .java kiterjesztésű fájlokat a Java-fordító (compiler) egy közbülső nyelvre fordítja
-- Java bájtkódot kapunk eredményül (ez a bájtkód hordozható). A java bájtkód a számítógép számára még nem értelmezhető. (kiterjesztése .class)
+- Először a **.java** kiterjesztésű fájlokat a Java-fordító (compiler) egy közbülső nyelvre fordítja
+- **Java bájtkódot kapunk eredményül** (ez a bájtkód hordozható). A java bájtkód a számítógép számára még nem értelmezhető. (kiterjesztése .class)
 - Ennek a kódnak az értelmezését és fordítását gépi kódra a JVM (Java Virtual Machine) végzi el futásidőben.
  
-Fordítás: javac filename.java
-Futtatás: java filename
-Java fordítási opciók:
+**Fordítás:** javac filename.java
+**Futtatás:** java filename
+
+**Java fordítási opciók:**
 - -g: debug információk generálása
 - -s <könyvtár>: a generált fájlok könyvtárának megadása
 - -sourcepath <path>: a forrásfájlok elérési útvonalát meg lehet adni
@@ -90,7 +93,7 @@ C++-ban a virtuális függvénytábla tartja nyilván a virtuális eljárások c
 
 - Virtuális eljárásokat a virtual kulcsszóval tudunk létrehozni. Az újrafelhasználás során nagy valószínűséggel módosításra kerülő eljárásokat a szülő osztályokban célszerű egyből virtuálisra megírni, mert ezzel jelentős munkát lehet megtakarítani a későbbiekben.
   
-Java:
+**Java:**
 Absztrakt osztályok
 - Az abstract kulcsszóval hozható létre. 
 - Egy absztrakt osztályból nem hozható létre objektum.

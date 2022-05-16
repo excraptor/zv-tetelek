@@ -1,4 +1,5 @@
-# 7. Objektum orientált paradigma és annak megvalósítása a JAVA és C++ nyelvekben. Az absztrakt adattípus, az osztály. Az egységbe zárás, az információ elrejtés, az öröklődés, az újrafelhasználás és a polimorfizmus. A polimorfizmus feloldásának módszere
+
+# 7. Objektum orientált paradigma és annak megvalósítása a JAVA és C++ nyelvekben. Az absztrakt adattípus, az osztály. Az egységbezárás, az információ elrejtés, az öröklődés, az újrafelhasználás és a polimorfizmus. A polimorfizmus feloldásának módszere
 
 
 ## Objektum orientált paradigma
@@ -14,7 +15,7 @@ Az objektum-orientáltság három alapillére:
 ### Egységbezárás és adatelrejtés 
 
 Az egységbe zárás azt fejezi ki, hogy az összetartozó adatok és függvények, eljárások együtt vannak, egy egységbe tartoznak.
-További fontos fogalom az adatelrejtés, ami azt jelenti, hogy kívülről csak az férhető hozzá közvetlenül, amit az objektum osztálya megenged.
+További fontos fogalom az **adatelrejtés**, ami azt jelenti, hogy kívülről csak az férhető hozzá közvetlenül, amit az objektum osztálya megenged.
 
 Ha az objektum, illetve osztály elrejti az összes adattagját, és csak bizonyos metódusokon keresztül férhetnek hozzá a kliensek, akkor az egységbe zárás az absztrakciót és információelrejtés erős formáját valósítja meg
 
@@ -53,7 +54,7 @@ Osztályok között értelmezett viszony, amely segítségével egy általánosa
 
 A hasonlóság kifejezése az ős felé az általánosítás. A különbség a gyerek felé a specializálás.
 
-**Java:** az ==extends== kulcsszóval tudjuk jelezni, hogy az adott osztály egy másik osztálynak a leszármazottja. Java-ban egyszeres öröklődés van, vagyis egy osztály csak is egy ősosztályból származhat (viszont több interfészt implementálhat)
+**Java:** az ==extends== kulcsszóval tudjuk jelezni, hogy az adott osztály egy másik osztálynak a leszármazottja. Java-ban egyszeres öröklődés van, vagyis **egy osztály csak is egy ősosztályból származhat** (viszont több interfészt implementálhat)
 - **super:** segítségével gyerekosztályból hivatkozhatunk szűlőosztály adattagjaira és metódusaira.
 
 **C++:** Az ==osztály neve után vesszővel elválasztva== lehet megadni az ősosztályokat és velük együtt a láthatóságaikat. **Lehetőség van többszörös öröklődésre is.**
