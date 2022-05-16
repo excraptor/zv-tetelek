@@ -1,6 +1,3 @@
-
-
-
 # 7. Eliminációs módszerek, mátrixok trianguláris felbontásai. Lineáris egyenletrendszerek megoldása iterációs módszerekkel. Mátrixok sajátértékeinek és sajátvektorainak numerikus meghatározása
 
 
@@ -10,26 +7,26 @@ A lineáris egyenletrendszerek megoldására szolgáló eljárások. ($Ax = b$)
 ### Gauss-elimináció
 
 - $Ax=b$ alakú lineáris egyenletrendszerek megoldásához tudjuk használni
-- az $Ax=b$ egyenletrendszernek pontosan akkor van egy megoldása, ha $det(A)$ nem 0
+- az $Ax=b$ egyenletrendszernek pontosan akkor van egy megoldása, ha $det(A) \ne 0$
 - ekkor $x = A^{-1}b$
     - de az inverzet kiszámolni túl lassú lenne
 
 A Gauss-eliminációval az A mátrixot felső háromszögmátrixszá alakítjuk, és ha ez sikerül, akkor abból visszahelyettesítésekkel megkaphatjuk x-et. **Műveletigénye:** $O(n^2/2)$.
 
-A felső háromszögmátrixot ún. eliminációs mátrixok segítségével kapjuk meg. Egy eliminációs mátrix dolga, hogy kinullázza az A mátrix egyik oszlopában a főátló alatti elemeket. Ha az összes ilyen eliminációs mátrixot összeszorozzuk balról egymással, akkor kapjuk az $M$ mátrixot. Ekkor az $M*A$ szorzás eredménye lesz a kívánt **felső trianguláris** mátrix.
+A felső háromszögmátrixot ún. eliminációs mátrixok segítségével kapjuk meg. Egy eliminációs mátrix dolga, hogy kinullázza az A mátrix egyik oszlopában a főátló alatti elemeket. Ha az összes ilyen eliminációs mátrixot összeszorozzuk balról egymással, akkor kapjuk az $M$ mátrixot. 
+Ekkor az $M*A$ szorzás eredménye lesz a kívánt **felső trianguláris** mátrix.
 
 ### LU felbontás
+Szükséges a négyzetes mátrix
 
-Az LU felbontás lényege, hogy az A mátrixot egy alsó és egy felső háromszögmátrixra bontjuk. A Gauss eliminációhoz nagyon hasonlít, ott az MA szorzás eredménye egy U felső trianguláris mátrix volt. Ha mindkét oldalt megszorozzuk balról $M^{-1}$-gyel, akkor azt kapjuk, hogy $A = M^{-1}U$. Legyen $M^{-1}=L$, mert $M^{-1}$ egy **alsó trianguláris** mátrix. Ezzel elvégeztük az A mátrix LU felbontását.
+Az LU felbontás lényege, hogy az A mátrixot egy alsó és egy felső háromszögmátrixra bontjuk. A Gauss eliminációhoz nagyon hasonlít, ott az **MA szorzás eredménye egy U felső trianguláris mátrix volt**. Ha mindkét oldalt megszorozzuk balról $M^{-1}$-gyel, akkor azt kapjuk, hogy $A = M^{-1}U$. Legyen $M^{-1}=L$, mert $M^{-1}$ egy **alsó trianguláris** mátrix. Ezzel elvégeztük az A mátrix LU felbontását.
 
 Ekkor az Ax=b egyeletrendszer megoldását a következőképpen kaphatjuk:
 1. $LUx=b$
-2. $y = Ux$
-3. $Ly=b$
-4. $y = L^{-1}b$
-5. $L^{-1}b = Ux$
+2. $Ly=b$ - y egy új mesterséges változó
+3. $Ux = y$ - megoldás x-re
 
-Szükséges a négyzetes mátrix
+
 ### Cholesky felbontás
 
 Ha az **A mátrix**
@@ -37,12 +34,12 @@ Ha az **A mátrix**
 - pozitív definit (ha minden sajátérték pozitív)
 	- Ha az átlóba **csak pozitív** van akkor biztos pozitív definit
 
-akkor felbontható a következőképpen: 
+akkor felbontható a következőképpen: (Az $LU = x$, ből $U = L^T$)
 1. $A=LL^T$ - Ez a Cholesky alak
 2. $Ly = b$ - Az $L^Tx = y$ helyettesítésével megoldjuk y-ra
 3. $L^Tx = y$ - Végül az $y$ segítségével kifejezzük az $x$-et
 
-2x olyan gyors mint az LU felbontás és **numerikusan stabilis**, szóval, ha picit változtatunk az inputon akkor kicsit változik az eredmény.
+2x olyan gyors mint az LU felbontás és **numerikusan stabilis**, ==szóval, ha picit változtatunk az inputon akkor kicsit változik az eredmény.==
 
 ### QR felbontás
 $Q$: egy **ortogonális mátrix**, tehát$QQ^T = Q^TQ = I$, azaz a **transzponáltja egyben az inverze** is
@@ -50,6 +47,10 @@ $R$: egy felső háromszögmátrix
 
 Numerikusan stabilabb, és **nem csak négyzetes mátrixokra** lehet alkalmazni, viszont **költséges**
 
+**Megoldás:**
+1. $Rx=Q^Tb$
+
+**Tétel:** Tetszőleges A négyzetes valós reguláris mátrixnak létezik az A = QR felbontása ortogonláis és felső háromszögmátrixra.
 **Bizonyítás:**
 $A^TA$ pozitív definit, így létezik $R^TR$ Cholesky felbontása.
 
@@ -126,7 +127,7 @@ A k betűk a kitevőben a k. iterációt jelentik, nem k. hatványt.
 ### Inverz hatványmódszer
 
 $Ay=x^k$
-$x^(k+1) = y/||y||$
+$x^{(k+1)} = y/||y||$
 
 Az inverz hatványmódszer azon a felismerésen alapul, hogy ha az A mátrix sajátértéke lambda, és a hozzá tartozó sajátvektor x, akkor A^-1 egy sajátértéke lambda^-1, és a hozzá tartozó sajátvektor x.
 
