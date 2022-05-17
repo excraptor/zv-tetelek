@@ -1,8 +1,3 @@
-
-
-# 1. Adatbázis-tervezés: A relációs adatmodell fogalma. Az egyed-kapcsolat diagram és leképezése relációs modellre, kulcsok fajtái. Funkcionális függőség, a normalizálás célja, normálformák
-
-
 # 1. Adatbázis-tervezés: A relációs adatmodell fogalma. Az egyed-kapcsolat diagram és leképezése relációs modellre, kulcsok fajtái. Funkcionális függőség, a normalizálás célja, normálformák
 
 ## A relációs adatmodell fogalma
@@ -11,15 +6,15 @@ A relációs adatmodell mind az adatokat, mind a köztük lévő kapcsolatokat k
 **Attribútum:**
 - névvel, értéktartománnyal megadott tulajdonság
 - Z értéktartományát dom(Z) jelöli
-- csak elemi típusú értékekből állhat (numerikus, karakter, string)
+- **csak elemi típusú értékekből állhat** (numerikus, karakter, string)
 - gyakran megadjuk az ábrázolás hosszát is
 
 **Relációséma:**
 Ha $A = \{A_1,..,A_n\}$ jelöli az **attribútumhalmazt** és a **séma neve** $R$, akkor a **relációsémát** $R(A_1,...,A_n)$ = $R(A)$ jelöli
 - névvel ellátott attribútumhalmaz
-- névütközés esetén kiírhatjuk a tábla nevét is az attribútum elé
+- **névütközés esetén kiírhatjuk a tábla nevét is az attribútum elé**
 
-A relációséma nem tárol adatot!
+**A relációséma nem tárol adatot!**
 Csak szerkezeti leírást jelent.
 
 Az adatok relációkkal adhatók meg. Egy R(A) séma feletti reláció A értéktartományainak direktszorzatának egy részhalmaza (mindegyik attribútum értékei közül választunk egyet, és ezt egy vektorba pakoljuk). Egy ilyen reláció már megjeleníthető adattábla formájában, egy reláció a táblázat egy sorának felel meg.
@@ -50,7 +45,7 @@ Az egyed-kapcsolat modell konkrét adatmodelltől függetlenül, szemléletesen 
 - **kapcsolatpéldány:** pl Kis József és a 69420. üzenet
 - kapcsolatoknak is lehet tulajdonsága
 
-Azt a modellt, amelyben az adatbázis a tárolandó adatokat egyedekkel, tulajdonságokkal és kapcsolatokkal írja le, egyed-kapcsolat modellnek nevezzük, a hozzá kapcsolódó diagramot pedig egyed-kapcsolat diagrammnak.
+Azt a modellt, amelyben az adatbázis a tárolandó adatokat egyedekkel, tulajdonságokkal és kapcsolatokkal írja le, **egyed-kapcsolat modellnek** nevezzük, a hozzá kapcsolódó diagramot pedig egyed-kapcsolat diagrammnak.
 
 A diagramon
 
@@ -58,7 +53,6 @@ A diagramon
 - a tulajdonságokat ellipszissel
 - a kulcsot aláhúzással
 - a kapcsolatokat rombusszal 
-
 jelöljük.
 
 
@@ -66,7 +60,7 @@ jelöljük.
 
 **Egyedek leképezése**
 - minden egyedhez egy relációsémát írunk fel, melynek neve az egyed neve, attribútumai pedig az egyed attribútumai, kulcsa pedig az egyed kulcsa
-- gyenge egyednél az attribútumokhoz hozzá kell venni a meghatározó kapcsolatokon keresztük csatlakozó egyedek kulcsattribútumait is, külső kulcsként
+- **gyenge egyednél az attribútumokhoz hozzá kell venni a meghatározó kapcsolatokon keresztül csatlakozó egyedek kulcsattribútumait is**, külső kulcsként
 
 **Összetett attr. leképezése**
 
@@ -74,15 +68,15 @@ jelöljük.
 
 **Többértékű attribútumok leképezése**
 
-- egyik lehetőség:
+- **egyik lehetőség:**
     - eltekintünk attól, hogy többértékű, és egyszerű szövegként tároljuk
     - hátránya, hogy nem kezelhetők külön külön az elemek
-- másik lehetőség:
+- **másik lehetőség:**
     - minden sorból annyit veszünk fel, ahány értéke van a többértékű attribútumnak
     - hátránya a sok fölösleges sor
     - kulcsok elromlanak
     - kerülendő
-- harmadik lehetőség
+- **harmadik lehetőség:**
     - új táblát veszünk fel, ahova kigyűjtjük, hogy melyik sorhoz milyen értékei tartoznak a többértékű attribútumnak
     - akár külön kigyűjthetjük egy táblába az összes lehetséges értékét a többértékű attribútumnak, és egy kapcsolótáblával kötjük össze az egyeddel
 
@@ -92,25 +86,23 @@ jelöljük.
 - neve a kapcsolat neve, attribútumai a kapcsolódó egyedek kulcsattribútumai és a kapcsolat saját attribútumai
 - meg kell határozni ennek a sémának is a kulcsát
 - ha ez a kulcs megegyezik valamelyik kapcsolt egyed kulcsával, akkor ez a séma beolvasztható abba az egyedbe, ezt hívjuk konszolidációnak, ez a gyakorlatban egy lépésben is elvégezhető persze
-- 1:1 kapcsolat esetén az egyik tetszőlegesen választott egyedbe beolvaszthatjuk a kapcsolat sémáját
-- 1:N kapcsolat esetén az N oldali egyedet bővítjük a másik egyed kulcsattribútumaival, és a kapcsolat saját attribútumaival
-- N:M kapcsolat esetén új sémát veszünk fel
+- **1:1** kapcsolat esetén az egyik tetszőlegesen választott egyedbe beolvaszthatjuk a kapcsolat sémáját
+- **1:N** kapcsolat esetén az N oldali egyedet bővítjük a másik egyed kulcsattribútumaival, és a kapcsolat saját attribútumaival
+- **N:M** kapcsolat esetén új sémát veszünk fel
 
 **Specializáló kapcsolatok leképezése**
 
 Minden megközelítésnek lehetnek hátrányai, mérlegelnünk kell
 
-Első lehetőség
-
+**Első lehetőség**
 - főtípus és altípus is külön sémában, és az altípus attribútumai közé felvesszük a főtípus attribútumait is
 - minden egyedpéldány csak egy táblában fog szerepelni
 
-Második lehetőség
-
+**Második lehetőség**
 - minden altípushoz új séma, de abban csak a főtípus kulcsattribútumai jelennek meg
 - minden egyedpéldány szerepel a saját altípusának táblájában és a főtípus táblájában is
 
-Harmadik lehetőség
+**Harmadik lehetőség**
 
 - egy közös tábla az összes lehetséges attribútummal
 - minden sorban csak a releváns cellákat töltjük ki

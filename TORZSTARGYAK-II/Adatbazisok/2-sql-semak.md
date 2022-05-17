@@ -1,4 +1,5 @@
 
+
 # 2. Az SQL adatbázisnyelv: Az adatdefiníciós nyelv (DDL) és az adatmanipulációs nyelv (DML). Relációsémák definiálása, megszorítások típusai és létrehozásuk. Adatmanipulációs lehetőségek és lekérdezések
 
 ## SQL
@@ -36,7 +37,7 @@ Egyes irodalmak különválasztják a lekérdező utasításokat a manipuláció
 
 Relációsémákat a 
 ```
-CREATE TABLE  tablanev(
+CREATE TABLE tablanev(
 	mező1 típus [oszlopfeltételek],
 	....
 	[tablafeltételek]
@@ -51,19 +52,19 @@ utasítással hozhatunk lére. A sémák különböznek a tábláktól, és nev�
 
 Csak az adott mezőre vonatkoznak
 
-- PRIMARY KEY, az elsődleges kulcs
-- UNIQUE, kulcs, minden érték egyszer fordulhat elő az oszlopban
-- NOT NULL, az oszlop értéke nem lehet NULL, azaz kötelező kitölteni
-- REFERENCES T(oszlop), a T tábla oszlop oszlopára vonatkozó külső kulcs
-- DEFAULT tartalom, az oszlop alapértelmezett értéke tartalom lesz
+- **PRIMARY KEY**, az elsődleges kulcs
+- **UNIQUE**, kulcs, minden érték egyszer fordulhat elő az oszlopban
+- **NOT NULL**, az oszlop értéke nem lehet NULL, azaz kötelező kitölteni
+- **REFERENCES T(oszlop)**, a T tábla oszlop oszlopára vonatkozó külső kulcs
+- **DEFAULT tartalom**, az oszlop alapértelmezett értéke tartalom lesz
 
 **Táblafeltételek**
 
 Ha több oszlopra is vonatkoznak feltételek, azt itt tudjuk megadni.
 
-- PRIMARY KEY(oszloplista), az elsődleges kulcs
-- UNIQUE (oszloplista), kulcs, minden érték egyszer fordulhat elő az oszlopban
-- FOREIGN KEY (oszloplista) REFERENCES T(oszloplista), a T tábla oszloplista oszloplistájára vonatkozó külső kulcs
+- **PRIMARY KEY(oszloplista)**, az elsődleges kulcs/kulcsok
+- **UNIQUE (oszloplista)**, kulcs, minden érték egyszer fordulhat elő az oszlopban
+- **FOREIGN KEY (oszloplista) REFERENCES T(oszloplista)**, a T tábla oszloplista oszloplistájára vonatkozó külső kulcs
 
 **Külső kulcs feltételek és szabályok**
 Az integritás megőrzése szempontjából a külső kulcsokhoz meghatározhatjuk azt is, hogy hogyan viselkedjenek a hivatkozott kulcs törlése vagy módosítása esetén.
@@ -74,7 +75,7 @@ Az integritás megőrzése szempontjából a külső kulcsokhoz meghatározhatju
 - **NO ACTION,** a törlendő rekord kulcsára vonatkozó külső kulcs értéke nem változik
 - **CASCADE,** a törlendő rekord kulcsára hivatkozó külső kulcsú rekordok is törlődnek
 
-ON UPDATE**
+**ON UPDATE**
 
 - **RESTRICT,** ha van a módosítandó rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a módosítást
 - **SET NULL,** a módosítandó rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
