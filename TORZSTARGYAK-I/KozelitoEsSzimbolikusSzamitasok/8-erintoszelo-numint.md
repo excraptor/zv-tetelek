@@ -1,3 +1,4 @@
+
 # 8. Érintő, szelő, és húr módszer, a konjugált gradiens eljárás. Lagrange interpoláció. Numerikus integrálás
 
 ## Érintő, szelő, húrmódszer, konjugált gradiens eljárás
@@ -60,10 +61,11 @@ A **negatív gradiensvektort** nevezzük **reziduális vektornak** (erre csökke
 A keresési irányban ott lesz a **célfüggvény minimális ahol az új reziduális vektor merőleges az előző keresési irányra**, szóval tudjuk pontosan, hogy hova kell lépnünk az adott irányban.
 
 **Tehát a konjugált gradiens módszer:**
-- meghatározzuk a lépéshosszt ($s_k$)
-- meghatározzuk az új közelítő megoldást (lépünk egyet az előző megoldásból az adott irányba az új lépéshosszal ($\alpha$))
+- meghatározzuk a lépéshosszt
+- meghatározzuk az **új közelítő megoldást** (lépünk egyet az előző megoldásból az adott irányba az új lépéshosszal ($\alpha$))
 - ebből kiszámoljuk az új reziduális vektort
-- és az új keresési irányt
+- Kiszámolunk egy segédváltozót
+- és az új keresési irányt a segédváltozóval
 - és kezdjük elölről
 
 A megállási feltételünk lehet az, hogy az utolsó néhány iterált közelítés eltérése és a reziduális vektorok eltérése bizonyos kicsi határ alatt maradtak.
@@ -98,7 +100,7 @@ $Q_n(f)$-fel jelöljük, $Q_n(f)=\sum_{i = 1}^nw_i f(x_i)$ azaz, ==**az alappont
 - A $w_i$ számokat pedig súlyoknak hívjuk, amiket minden $x_i$ alapponthoz hozzárendelünk.
 
 **Téglalap szabály:**
-Amennyibe **csak egy alappontot** veszünk, akkor az $x_1 = \dfrac{a+b}{2}$ felezőpont és a hozzárendelt $w_i$ súly az intervallum mérete, azaz $b-a$ lesz
+Amennyibe **csak egy alappontot** veszünk, az $x_1 = \dfrac{a+b}{2}$ felezőpontot és a hozzárendelt $w_i$ súly az intervallum mérete, azaz $b-a$ lesz
 
 **Tétel:** A $Q_n$ $n$ alappontos kvadratúra-formula rendje legfeljebb 2n-1 lehet
 
