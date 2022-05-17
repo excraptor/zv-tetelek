@@ -1,30 +1,37 @@
+
 # 14. Kiemelt fontosságú kommunikációs protokollok (PPP, Ethernet, IP, TCP, HTTP, RSA)
 
-## PPP
+## PPP (Point-to-point)
 
-Magas szintű adatkapcsolati protokoll kétpontos vonalakhoz.
+Magas szintű **adatkapcsolati protokoll** kétpontos vonalakhoz.
 Mindenféle fizikai rétegek feletti használatra alkalmas.
 
-Szolgáltatásai:
-
-- egyértelműen ábrázolja a keret végét és a következő keret elejét, a keretformátum megoldja a hibajelzést is
+**Szolgáltatásai:**
+- **egyértelműen ábrázolja a keret végét és a következő keret elejét**, a keretformátum megoldja a hibajelzést is
 - adatkapcsolat-vezérlő protokollt tartalmaz a vonalak felélesztésére, tesztelésére, vonalak bontására
 - különböző hálózati vezérlő protokollokat tartalmaz mindegyik támogatott hálózati réteghez
 
 ## Ethernet
+**adatkapcsolati protokoll**
 
-Az Ethernet egy számítógépes hálózati technológiák családja, amelyet helyi hálozatban (LAN), városi hálózatokban (MAN) és nagy kiterjedésű hálózatokban (WAN) használnak.
-Először 1983-ban szabványosították IEEE 802.3 néven. Az Ethernet-et azóta finomították, hogy támogassa a nagyobb bitsebességet, a nagyobb csomópontok számát és a nagyobb összeköttetési távolságokat.
+Az Ethernet egy számítógépes hálózati technológiák családja, amelyet **helyi hálozatban (LAN)**, **városi hálózatokban (MAN)** és **nagy kiterjedésű hálózatokban (WAN)** használnak.
+Először 1983-ban **szabványosították IEEE 802.3** néven. 
+Az Ethernet-et azóta finomították, hogy támogassa a nagyobb bitsebességet, a nagyobb csomópontok számát és a nagyobb összeköttetési távolságokat.
 
 Az Ethernet egy állomása a közvetítő közeggel (kábel) való állandó kapcsolatot kihasználva bele tud hallgatni a csatornába, így ki tudja várni, amíg a csatorna felszabadul, és a saját üzenetét leadhatja anélkül, hogy ezzel más üzenet sérüljön, tehát a torlódás elkerülhető. A csatornát az állomások folyamatosan figyelik, ha ütközést tapasztalnak, akkor zavarni kezdik a csatornát, hogy figyelmeztessék a küldőket, ezután véletlen ideig várnak, majd adni kezdenek. Ha ezek után további ütközések történnek, az eljárás ugyanez, de a véletlenszerű várakozás idejét kétszeresére növelik, így időben szétszórják a versenyhelyzeteket, esélyt adva arra, hogy valaki adni tudjon.
 
+
 ## IP
+**Hálózati protokoll**
 
 Az internet hálózat egyik alapvető szabványa (avagy protokollja). Ezen protokoll segítségével kommunikálnak egymással az internetre kötött csomópontok (számítógépek, hálózati eszközök, webkamerák stb.). A protokoll meghatározza az egymásnak küldhető üzenetek felépítését, sorrendjét stb.
 
+
 ### Jellemzői 
 
-Az IP a klasszikus OSI besorolás alapján a 3., a Hálózati rétegben helyezkedik el. Csomagkapcsolt hálózatot valósít meg, azaz nem építi fel a kapcsolatot a forrás és a cél között, hanem minden egyes csomagot külön irányít (route-ol). Hibadetektálást és hibajavítást nem végez (ezeket nevezzük „megbízhatatlan” protokollnak), ezeket a funkciókat főleg a szállítási rétegben elhelyezkedő protokollokra bízza (például TCP). Ennek a kialakításnak az oka az, hogy az egyszerűségre törekedtek. Így a hibajavítás terhe főképp a forrás és a cél számítógépeknél jelentkezik, és nem terheli feleslegesen az egyébként is leterhelt hálózati útirányválasztó csomópontokat (router). 
+Az IP a klasszikus OSI besorolás alapján a 3. a Hálózati rétegben helyezkedik el. 
+Csomagkapcsolt hálózatot valósít meg, azaz nem építi fel a kapcsolatot a forrás és a cél között, hanem **minden egyes csomagot külön irányít (route-ol).** 
+Hibadetektálást és hibajavítást nem végez (ezeket nevezzük **„megbízhatatlan” protokollnak**), ezeket a funkciókat főleg a szállítási rétegben elhelyezkedő protokollokra bízza (például TCP). Ennek a kialakításnak az oka az, hogy az egyszerűségre törekedtek. Így a hibajavítás terhe főképp a forrás és a cél számítógépeknél jelentkezik, és nem terheli feleslegesen az egyébként is leterhelt hálózati útirányválasztó csomópontokat (router). 
 
 ### IP-cím 
 
@@ -63,22 +70,22 @@ Az cím 8 részét kettőspontokkal szokás elválasztani, és ha egy re�
 
 ### Csomag fejléc
 
-Az első mező, a Verzió (Version), amely megegyezik az IPv4 Verzió mezőjével, csak itt a 6-os konstans szerepel. 
+Az első mező, a **Verzió (Version)**, amely megegyezik az IPv4 Verzió mezőjével, csak itt a 6-os konstans szerepel. 
 
-A Forgalmi osztály (Traffic Class) mezőt arra használják, hogy a különböző valós idejű szállítási követelményekkel rendelkező csomagok között különbséget tegyenek.
+A **Forgalmi osztály (Traffic Class)** mezőt arra használják, hogy a különböző valós idejű szállítási követelményekkel rendelkező csomagok között különbséget tegyenek.
 
-A Folyamcímke (Flow Label) mezőt majd arra lehet használni, hogy egy forrás és egy cél között felállíthasson egy álösszeköttetést bizonyos tulajdonságokkal és igényekkel. Például egy bizonyos hoszt bizonyos folyamatától egy bizonyos célhoszt bizonyos folyamatáig tartó csomagfolyamnak szigorú késleltetési igényei lehetnek, és ezért fenntartott sávszélességre van szüksége. A folyamot előre fel lehet állítani, és egy azonosítót adni neki. 
+A **Folyamcímke (Flow Label)** mezőt majd arra lehet használni, hogy egy forrás és egy cél között felállíthasson egy álösszeköttetést bizonyos tulajdonságokkal és igényekkel. Például egy bizonyos hoszt bizonyos folyamatától egy bizonyos célhoszt bizonyos folyamatáig tartó csomagfolyamnak szigorú késleltetési igényei lehetnek, és ezért fenntartott sávszélességre van szüksége. A folyamot előre fel lehet állítani, és egy azonosítót adni neki. 
 
-Az Adatmező hossza (Payload Length) mező megmondja, hogy mennyi bájt következik ezután a mező után. A jelentése megváltozott az IPv4 Teljes hossz mezőjéhez képest, hiszen itt az első 40 bájtot már nem számolják bele a mező értékébe. 
+Az **Adatmező hossza (Payload Length)** mező megmondja, hogy mennyi bájt következik ezután a mező után. A jelentése megváltozott az IPv4 Teljes hossz mezőjéhez képest, hiszen itt az első 40 bájtot már nem számolják bele a mező értékébe. 
 (opcionális) A Következő fejrész (Next Header) mező mondja meg, hogy a hat kiegészítő fejrész közül melyik következik. Ha a fejrész az utolsó IP-fejrész, akkor a mező azt mondja meg, hogy melyik szállítási protokoll kezelőjének (TCP, UDP, stb.) kell a csomagot továbbítani. 
 
-Az Átugráskorlát (Hop Limit) gátolja meg a csomagokat abban, hogy örökké élhessenek. Ez gyakorlatilag ugyan az, mint az Élettartam volt az IPv4-ben. 
+Az **Átugráskorlát (Hop Limit)** gátolja meg a csomagokat abban, hogy örökké élhessenek. Ez gyakorlatilag ugyan az, mint az Élettartam volt az IPv4-ben. 
 Ezek után következnek a Forrás címe (Source Address) és a Cél címe (Destination Address) mezők, amelyek egy-egy 16 bájtos (128 bites) címet takarnak
 
 
 ## TCP
 
-A TCP egy kapcsolat-orientált protokoll, amely az OSI modell Szállítási rétegében helyezkedik el. Fő feladata egy megbízható, és biztonságos kapcsolat kiépítése (és fenntartása) két folyamat között. Menetét alapvetően három részre bonthatjuk: 
+A TCP egy **kapcsolat-orientált protokoll**, amely az OSI modell **Szállítási rétegében** helyezkedik el. Fő feladata egy megbízható, és biztonságos kapcsolat kiépítése (és fenntartása) két folyamat között. Menetét alapvetően három részre bonthatjuk: 
 
 - Létrejön a megbízható kapcsolat két állomás között 
 - Megkezdődik a tényleges adatátvitel 
