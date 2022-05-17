@@ -1,14 +1,13 @@
 
 
+
 # 4. A PSPACE osztály. PSPACE-teljes problémák. Logaritmikus tárigényű visszavezetés. NL-teljes problémák
 
 ## PSPACE osztály = $Space(n^k)$
 Polinom tárban (det. vagy nemdet.) eldönthető problémák osztálya.
-Savitch-tétel
-
+**Savitch-tétel**: Az $f(n)$ tárban nemdeterminisztikusan eldönthető problémák mind eldönthetők determinisztikusan,$f^2(n)$ tárban is
 - Elérhetőség eldönthető O(log^2n) tárban
 
-Az $f(n)$ tárban nemdeterminisztikusan eldönthető problémák mind eldönthetők determinisztikusan,$f^2(n)$ tárban is
 
 Tehát: $NSPACE(f(n))$ részhalmaza $SPACE(f^2(n))$-nek
 és mivel polinom négyzete polinom
@@ -16,7 +15,7 @@ PSPACE = NPSPACE
 
 ## PSPACE-teljes problémák
 **Nehézség, teljesség:**
-$A$ egy **probléma** $C$ pediga problémák egy **osztálya**
+$A$ egy **probléma** $C$ pedig a problémák egy **osztálya**
 	1. **C-nehéz:** Minden $C$-beli probléma visszavezethető $A$-ra
 	2. **C-teljes:** $A$ probléma ráadásul $C$-ben van
 
@@ -26,8 +25,7 @@ QSAT (kvantifikált SAT)
 - *Adott:* adott egy ítéletkalkulusbeli logikai formula, változó kvantorokkal az elején (létezik, bármely, létezik, bármely stb), **magja CNF alakú, kvantormentes**
 - *Kérdés:* igaz-e ez a formula?
 
-QSAT mint kétszemélyes játék
-
+**QSAT mint kétszemélyes játék**
 - input ugyanaz
 - van-e az első játékosnak nyerő stratégiája abban a játékban, ahol:
 - - a játékosok sorban értéket adnak a változóknak, első játékos x1-nek, második x2-nek stb
@@ -37,8 +35,7 @@ QSAT mint kétszemélyes játék
 hasonlít a minimaxra
 az éses csúcsoknál lévő játékos minimalizál
 
-Földrajzi játék
-
+**Földrajzi játék**
 - adott egy irányított gráf és egy kijelölt kezdőcsúcs
 - az első játékosnak van-e nyerő stratégiája?
 - - az első játékos kezd, lerakja a bábut a kezdőcsúcsra
