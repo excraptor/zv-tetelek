@@ -1,55 +1,52 @@
+
 # 10. A programozási nyelvek csoportosítása (paradigmák), az egyes csoportokba tartozó nyelvek legfontosabb tulajdonságai
 
 ## Paradigmák
 
 A programozási paradigma egy osztályozási forma, amely a programozási nyelvek jellemzőin alapul.
-- Imperatív, amelyben a programozó utasítja a gépet az állapotának megváltoztatására
-    - Procedurális, amely az utasításokat eljárásokba csoportosítja
-    - Objektumorientált, amely az utasításokat csoportosítja az alap azon részével együtt, amelyen működnek
-        - Smalltalk
-    - Párhuzamos
-        - Occam
-- Dekleratív, amelyben a programozó deklarálja a kívánt eredmény tulajdonságait, de nem azt, hogy hogyan kell azt kiszámítani
-    - Funkcionális, amelynél a kívánt eredményt függvényalkalmazásként deklarálnak
-        - Haskell
-    - Logikai, amelyben a kívánt eredményt a tények és szabályok rendszerével kapcsolatos kérdésre adott válaszként deklarálnak
-        - Prolog
-    - Matematikai, amelyben a kívánt eredményt egy optimalizálási probléma megoldásaként deklarálnak
 
-## Objektumorientált paradigma
+## Imperatív
+Utasításokat használ, hogy egy program állapotát megváltoztassa. 
 
-Az objektum orientál paradigma az objektumok fogalmán alapuló programozási paradigma. Az objektumok egységbe foglalják az adatokat és a hozzájuk tartozó műveleteket. A program egymással kommunikáló objektumok összességéből áll melyek használják egymás műveleteit és adatait.
+## Procedurális
+A feladatokat felbonthatjuk elvégzendő feladatok szerint, tehát *alprogramokat* (függvény, eljárás) hozunk létre. Ezek között paraméterátadással, függvény visszatérési értékkel kommunikálnak.
+Pl: C, C++,...
 
-### Smalltalk
+### Objektumorientált paradigma
+
+Az objektum orientál paradigma az objektumok fogalmán alapuló programozási paradigma. Az objektumok **egységbe foglalják az adatokat** és a hozzájuk tartozó **műveleteket**. A program egymással kommunikáló objektumok összességéből áll melyek használják egymás műveleteit és adatait.
+Öröklödés osztályok között, egyszeres vagy többszörös öröklödéssel. Lehetséges polimorfizmus és absztrakt osztályok létrehozására.
+
+#### Smalltalk
 
 GNU Smalltalk interpreter
-Beolvas minden karaktert az első ! –ig. A „!” jellel jelezzük, hogy végre szeretnénk hajtani az addig beírt kifejezéseket. Több kifejezés futtatása esetén itt is – mint sok más nyelven – jeleznünk kell azt, hogy hol fejeződik be egy kifejezés erre való a „pont” (.)
+Beolvas minden karaktert az első **! –ig**. A „!” jellel jelezzük, hogy végre szeretnénk hajtani az addig beírt kifejezéseket. Több kifejezés futtatása esetén itt is – mint sok más nyelven – jeleznünk kell azt, hogy hol fejeződik be egy kifejezés erre való a **„pont” (.)**
  
 #### Precedencia
 Ha nem zárójelezünk – mindig balról jobbra történik, így a 2+3\*10 értéke 50 lesz, használjunk zárójelet: 2+(3\*10).
 Objektumok, üzenetek
-A Smalltalk nyelv egy objektumorientált nyelv  MINDENT objektumnak tekintünk. 
+A Smalltalk nyelv egy objektumorientált nyelv **MINDENT** objektumnak tekintünk. 
 A programozás során üzeneteket küldünk az egyes objektumoknak. Egy objektumnak háromféle üzenetet küldhetünk:
-- Unáris: szintaxis: ’Hello’ printNl ! 
-- Bináris: szintaxis: 3+5 
-- Kulcsszavas: szintaxis: tomb at:1 put: 10
-Objektumok összehasonlítása: két objektum egyenlő, ha ugyanazt az objektumot reprezentálják és azonos, ha értékük megegyezik és egyazon objektumok.
+- **Unáris:** szintaxis: ’Hello’ printNl ! 
+- **Bináris:** szintaxis: 3+5 
+- **Kulcsszavas:** szintaxis: tomb at:1 put: 10
+**Objektumok összehasonlítása:** két objektum egyenlő, ha ugyanazt az objektumot reprezentálják és azonos, ha értékük megegyezik és egyazon objektumok.
  
 #### Objektumok másolása
 
-- deepCopy (unáris üzenet): Teljes másolat készítése objektumról.
-- shallowCopy (unáris üzenet): Felszíni másolat
-- copy (unáris üzenet): Osztályonként változó lehet, az Object osztályban a shallowCopy-t jelenti.
+- **deepCopy (unáris üzenet):** Teljes másolat készítése objektumról.
+- **shallowCopy (unáris üzenet):** Felszíni másolat
+- **copy (unáris üzenet):** Osztályonként változó lehet, az Object osztályban a shallowCopy-t jelenti.
 
 #### Metaosztály
 
-Mint korában említettük, a Smalltalkban mindent objektumnak tekintünk. Még az osztályok is objektumok. De ha az osztály objektum, akkor az is - mint minden más objektum - valamilyen osztályhoz kell tartozzon. Másképp fogalmazva minden osztály (pontosan) egy másik osztály példánya. Ezen "másik" osztályt metaosztálynak hívjuk
+Mint korában említettük, a Smalltalkban mindent objektumnak tekintünk. Még az osztályok is objektumok. De ha az osztály objektum, akkor az is - *mint minden más objektum* - valamilyen osztályhoz kell tartozzon. Másképp fogalmazva minden osztály (pontosan) egy másik osztály példánya. Ezen "másik" osztályt metaosztálynak hívjuk
 
 #### Object osztály
 
-Az Object osztály minden osztály közös őse, tehát minden objektum az Object osztály egy példánya. Ezért minden, az Object osztálynak rendelkezésre álló művelettel minden más objektum is rendelkezik.
-- class – unáris: visszatérése az objektum osztálya
-- isMemberOf – kulcsszavas: visszatérése logikai érték. Ha a címzett objektum példánya ezen osztálynak, akkor "true" a visszatérési érték, egyébként "false"
+Az Object osztály minden osztály közös **őse**, tehát minden objektum az Object osztály egy példánya. Ezért minden, az Object osztálynak rendelkezésre álló művelettel minden más objektum is rendelkezik.
+- **class** – unáris: visszatérése az objektum osztálya
+- **isMemberOf** – kulcsszavas: visszatérése logikai érték. Ha a címzett objektum példánya ezen osztálynak, akkor "true" a visszatérési érték, egyébként "false"
     - 'Hello' isMemberOf: String ! → true
 
 #### Változók
@@ -68,18 +65,17 @@ Más programozási nyelveken megismert programblokkok szerepével egyezik meg. V
 
 #### Vezérlési szerkezetek
 
-- Feltételes vezérlés:	valtozo > 10 ifTrue: [‘x erteke nagyobb 10-nel’ printNl]
+- **Feltételes vezérlés:**	valtozo > 10 ifTrue: [‘x erteke nagyobb 10-nel’ printNl]
                    			        ifFalse: [‘x erteke nem nagyobb 10-nel’ printNl]
-- Ismétléses vezérlés:	[a<10] whileTrue: [a printNl . a:=a+1]
-- For ciklus:		1 to: 10 do: [:i | i printNl]
-Kollekciók
-- Set: ismétlés nélküli rendezetlen halmaz - new, add()
-    -  
-- Bag: olyan Set, amiben megengedjük az ismétlődést - new, add()
-    -  
-- Dictionary: egy asszociatív tömb (egy olyan tömb, amit nem csak számokkal, hanem (itt) tetszőleges objektummal is indexelhetünk)
-    -  
-Tömb
+- **Ismétléses vezérlés:**	[a<10] whileTrue: [a printNl . a:=a+1]
+- **For ciklus:**		1 to: 10 do: [:i | i printNl]
+
+**Kollekciók**
+- **Set:** ismétlés nélküli rendezetlen halmaz - new, add()
+- **Bag:** olyan Set, amiben megengedjük az ismétlődést - new, add()
+- **Dictionary:** egy asszociatív tömb (egy olyan tömb, amit nem csak számokkal, hanem (itt) tetszőleges objektummal is indexelhetünk)
+
+**Tömb**
 - tömb := Array new: 10
 - tömb at: 1
 - tömb at: 1 put: obj
@@ -100,21 +96,25 @@ Beolvasás	 x := stdin nextLine.S
 Integer üzenetek
  
 
+## Dekleratív programozás
+Deklaráljuk a program elvárt működését, nem akarojuk explicit meghatározni annak mikéntjét.
 
-## Funkcionális programozás
-
+### Funkcionális programozás
+- Értékek, kifejezések és függvények vannak
+- A program maga egy függvény
+- Ciklus helyett **rekurzió**
 - A funkcionális programnyelvek a programozási feladatot egy függvény kiértékelésének tekintik.
-- minden függvény
-- A két fő eleme az érték és a függvény, nevét is függvények kitüntetett szerepének köszönheti.
-- Egy más megfogalmazás szerint, a funkcionális programozás során a programozó inkább azt specifikálja programban, mit kell kiszámítani, nem azt, hogy hogyan, milyen lépésekben.
+- A két fő eleme az **érték** és a **függvény**, nevét is függvények kitüntetett szerepének köszönheti.
+- **Egy más megfogalmazás szerint, a funkcionális programozás során a programozó inkább azt specifikálja programban, mit kell kiszámítani, nem azt, hogy hogyan, milyen lépésekben.**
 - Függvények hívásából és kiértékelésből áll a program. Nincsenek állapotok, mellékhatások (nem számít, mikor, csak az melyik függvényt hívjuk).
 
-### Haskell
+#### Haskell
 
-Egy funkcionális programozási nyelven írt programban nem a kifejezések egymásutánján van a hangsúly. A program egy függvényhívással hajtódik végre. Egy funkcionális program típus- , osztály-, és függvénydeklarációk, illetve definíciók sorozatából és egy kezdeti kifejezés kiértékeléséből áll. A kiértékelést úgy képzeljük el, mint a kezdeti kifejezésben szereplő függvények behelyettesítését. Tehát egy program végrehajtása nem más, mint a kezdeti kifejezésből kiinduló redukciós lépések sorozata. Egy kifejezés normál formájú, ha már tovább nem redukálható (nem átírható) állapotban van. Egy redukálható kifejezést redexnek hívunk.
-Kiértékelési módok
- 
-A Haskell nyelv a lusta kiértékelési stratégiát használja.
+Egy funkcionális programozási nyelven írt programban nem a kifejezések egymásutánján van a hangsúly. A **program egy függvényhívással hajtódik végre.** Egy funkcionális program típus- , osztály-, és függvénydeklarációk, illetve definíciók sorozatából és egy kezdeti kifejezés kiértékeléséből áll. A kiértékelést úgy képzeljük el, mint a kezdeti kifejezésben szereplő függvények behelyettesítését. Tehát egy program végrehajtása nem más, mint a kezdeti kifejezésből kiinduló redukciós lépések sorozata. Egy kifejezés normál formájú, ha már tovább nem redukálható (nem átírható) állapotban van. **Egy redukálható kifejezést redexnek hívunk.**
+
+**Kiértékelési módok**
+
+A Haskell nyelv a **lusta kiértékelési stratégiát használja.**
 A lusta kiértékelés során mindig a legkülső redex kerül helyettesítésre, az argumentumokat csak szükség esetén értékeli ki. Ez a módszer mindig megtalálja a kezdeti kifejezés normál formáját. A mohó kiértékelés az argumentumok kiértékelésével kezdődik, csak ezután hajtja végre a függvény alkalmazásának megfelelő redukciós lépést. 
 Futtatás
 Elindítjuk a Haskell interpretert (hugs) és betöltjük az általunk megírt definíciós forrásállományt. Betöltés után rendelkezésre áll az összes általunk megírt függvény, melyek közül bármelyiket meghívhatjuk a függvény nevének beírásával (a megfelelő paraméterezéssel). Amennyiben módosítjuk a definíciós állományt, újra kell tölteni azt.
@@ -134,37 +134,83 @@ Típusok létrehozása
 
 Példák
  
-## Logikai programozás
+### Logikai programozás
 
 A problémakörrel kapcsolatos tényeket logikai képletek formájában fejezik ki, és a programokat következtetési szabályok alkalmazásával hajtják végre, amíg nem találnak választ a problémára, vagy a képletek halmaza nem következetes.
 
-### Prolog
+#### Prolog
 
 A logikai programok egy modellre vonatkoztatott állítások halmaza, melyek a modell tulajdonságait és azok között fellépő kapcsolatokat (relációit) írják le. Egy adott relációt meghatározó állítások részhalmazát predikátumnak nevezzük. A predikátumokat alkotó állítások tények vagy szabályok lehetnek. A tényeket és szabályokat (és majd a Prolognak feltett kérdéseket is) ponttal zárjuk le. Tekintsük a következő példát, mely egy család tagjai között fellépő kapcsolatot írják le.
  
 A szulo predikátum argumentumait szándékosan írtuk kis betűkkel. A kis betűkkel írtakat a Prolog konstansként kezeli. (ka, katalin, szilvia, stb…) Minden nyomtatott nagybetűt vagy nagy kezdőbetűvel kezdődőket változónak tekinti. (X, Y, Szilvia, Magdolna, stb…)
 
+Egy prolog program csak az **adatokat** és az **összefüggéseket** tartalmazza, majd **kérdések hatására** a *programvégrehajtás* beépített **következtető-rendszer** végzi.
+
+
 #### Futtatás
 
-- kiterjesztés .pl
+- kiterjesztés **.pl**
 - A Prolog egy terminálablakba beírt „sicstus” paranccsal indítható. Egy Prolog állományt a következőképpen „tölthetjük be”: (feltéve, hogy az aktuális könyvtárban létezik egy prolog.pl állomány)
 
-#### A Prolog program felépítése
- 
-Termek
-- Egyszerű termek
-    -  
-- Összetett termek
-    - Lista: nagyon hasonlít a Haskell-ben megismert listára. Itt sincsenek indexelve az elemek, rekurzióval fogjuk bejárni a listát. Példa listára: [1,2,3,4,5].
+##### A Prolog program felépítése
+
+ - Prolog érték: **term**
+	- Egyszerű term: alma, 1000,...
+	- Összetett termek
+	    - **Lista:** nagyon hasonlít a Haskell-ben megismert listára. Itt sincsenek indexelve az elemek, rekurzióval fogjuk bejárni a listát. Példa listára: [1,2,3,4,5].
 Kiértékelés
-Kifejezések kiértékelésére a beépített, infix is operátort használhatjuk. Általános alakja:
- 
-Példák
+Kifejezések kiértékelésére a beépített, **infix is operátort**
+- Relációk megadása:
+	- Tények
+	- Következtetés szabályok
+- Kérdésfeltevés interaktív módon
+	- Eldöntendő kérdés
+	- Általános kérdés
+
+**Tények:**
+	Tények fejezik ki, hogy a megadott objetumok között fennáll bizonyos reláció. ```barát(john, mary).```
+Ezek egy adatbázis definiálnak.
+
+**Kérdések:**
+Eldöntendő kérdések ugyanúgy néznek ki, mint a tények csak más a szövegkörnyezet.
+```?- barát(john, mary).```
+
+**Következtető rendszer:**
+Prolog **backtracking** keresést alkalmaz a válaszok megtalálásra.
+Termek
+
+
  
    
 ## Párhuzamos programozás
 
 ### Occam
+Imperatív, folyamatok saját memóriával rendelkeznek, üzenetküldéssel kommunikálnak.
+Occam program részei:
+	- Változók
+	- Folyamatok
+	- Csatornák
+
+**Csatornák:**
+	A csatorna két folyamat közti **adatátvitelre** szolgál
+	- Egyirányú
+	- Küldős és fogadó is legfeljebb egy lehet
+	- biztonságos
+	- **Szinkron:** A küldő és fogadó bevárják egymást, megtörténik az adatátvitel, majd a küldő és fogadó folyatótdik.
+
+**Folyamatok:**
+	Életciklus:
+		- Elindul
+		- Csinál valamit
+		- Befejeződik
+Befejezésnél **holtpontba** kerülhet, erre odakell figyelni.
+**Elemi folyamatok:**
+	- Üres utasitás - **SKIP**
+	- Beépített holtpont - **STOP**
+	- Értékadás - v:=e
+	- Input - c **?** v
+	- Output - c **!** e
+
 
 Az Occam egy párhuzamos programozási nyelv. Ezen paradigma szerint az egyes folyamatok párhuzamosan futnak. Ez több processzoros gépek esetén valós párhuzamosságot jelent (egy processzor egy folyamatot dolgoz fel), de egy processzor esetén ez nyilván nem valósulhat meg, az egyes folyamatok „időszeleteket” kapnak, az Occam a párhuzamosságot időosztással szimulálja. Az egyes folyamatok közötti kommunikáció csatornákon keresztül valósul meg. A P1 és P2 folyamatok a C csatornán keresztül kommunikálnak:
  
@@ -218,6 +264,3 @@ Vezérlési szerkezetek
 - Ismétléses vezérlés	
  
 - For ciklus		
- 
-
-## PÉLDÁK HIÁNYOZNAK, KELL EGYÁLTALÁN?

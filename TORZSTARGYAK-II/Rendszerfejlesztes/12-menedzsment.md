@@ -1,9 +1,14 @@
+
 # 12. Projektmenedzsment. Költségbecslés, szoftvermérés
 
 ## Projektmenedzsment
+**Tényezők: (4P):**
+- **Munkatársak (people):** Sikeres projekt legfontosabb tényezői
+- **Termék (product):** Létrehozandó termék
+- **Folyamat (process):** A feladatok, tevékenységek halmaza
+- **Projekt:** Minden olyan tevékenység, ami a termék létrehozásához szükséges.
 
-Összetevői:
-
+**Összetevői:**
 - Az emberek menedzselése
 - Minőség-ellenőrzés és -biztosítás
 - Folyamat továbbfejlesztése
@@ -11,14 +16,13 @@
 - Rendszer építés
 - Hibamenedzsment
 
-Projekt sikertelenségének okai
-
+**Projekt sikertelenségének okai:**
 - A szükséges ráfordítások alulbecslése
 - Technikai nehézségek
 - A projekt csapatban nem megfelelő a kommunikáció
 - A projekt menedzsment hibái
 
-### Az Emberek menedzselése
+### Az emberek menedzselése
 
 Szoftverfejlesztő szervezet legnagyobb vagyona az emberek
 Sok projekt bukásának legfőbb oka a rossz humánmenedzsment
@@ -29,12 +33,26 @@ Az emberek kiválasztása különböző tesztekkel történhet:
 - Programozási képesség
 - Pszichometrikus tesztek
 
-### Minőség-ellenőrzés és –biztosítás
+### Csoportmunka
+- Hatékony együttműködést kell kialakítani
+- Fontos a munkakörnyezet
+	- Nyitott, privát tér kombinálás, közös terek
+- Csoport összetétele és kommunikáció fontos.
 
-Mindenki célja: termék vagy szolgáltatás minőségének magas szinten tartása
+Több formája van pl:
+- *Zárt forma:* Hagyományos felépítés
+- *Véletlenszerű forma:* Laza szerkezet, egyedi kezdeményezések
+- *Nyitott forma:* zárt és véletlenszerű kombinálása
+
+### Minőség-ellenőrzés és –biztosítás
+*Mindenki célja:* termék vagy szolgáltatás minőségének magas szinten tartása
 A termék feleljen meg a specifikációnak
 Fejlesztőnek is lehetnek (belső) igényei, pl. karbantarthatóság
-Egyes jellemzőket nem könnyű specifikálni , pl. karbantarthat óság
+Egyes jellemzőket nem könnyű specifikálni , pl. karbantarthatóság
+
+### Szoftverköltség becslése
+Projekt tevékenységeihez tartozó, **munka-, idő- és pénzköltségek**.
+Becsléseket kell adni és **folyamatosan frissíteni**
 
 ### Folyamat továbbfejlesztése
 
