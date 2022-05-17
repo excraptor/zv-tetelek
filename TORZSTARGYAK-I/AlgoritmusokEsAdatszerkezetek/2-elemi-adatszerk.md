@@ -1,23 +1,24 @@
 
 
 
+
 # 2. Elemi adatszerkezetek, bináris keresőfák, hasító táblázatok, gráfok és fák számítógépes reprezentációja
 
 ## Elemi adatszerkezetek
 
 tömb, láncolt lista, sor, verem, gráf, map, kupac - saját vélemény
 
-Adatszerkezet
+**Adatszerkezet**
 
 - adatok tárolására és szervezésére szolgáló módszer
 - lehetővé teszi a hatékony hozzáférést és módosításokat
 
-Leggyakoribb műveletek
-- Módosító:
+**Leggyakoribb műveletek**
+- *Módosító:*
 	- beszúr 
 	- keres
 	- töröl
-- Lekérdező
+- *Lekérdező:*
 	- min
 	- max
 	- előző
@@ -129,7 +130,7 @@ Szótár
 
 Asszociatív tömb
 
-- egyészek helyett bármilyen típussal indexelhetünk
+- egészek helyett bármilyen típussal indexelhetünk
 
 Map
 
@@ -137,10 +138,9 @@ Map
 
 ### Hasítótáblák
 
-Halmazok és szótárak hatékony megvalósítása
-Keres, beszúr, töröl legyen hatékony
-
-Átlagos esetben $\mathcal{O}(1)$
+- Halmazok és szótárak hatékony megvalósítása
+- Keres, beszúr, töröl legyen hatékony 
+	-	Átlagos esetben: $\mathcal{O}(1)$
 
 Hasítótábla olyan szótár, amikor egy hash függvény segítségével állapítjuk meg, hogy melyik kulcshoz milyen érték tartozzon
 
