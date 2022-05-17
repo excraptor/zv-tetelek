@@ -1,6 +1,3 @@
-
-
-
 # 4. Alakreprezentáció, határ- és régió-alapú alakleíró jellemzők, Fourier leírás
 
 ## Alakreprezentáció
@@ -145,15 +142,9 @@ hármasok, ha nem vesszük mindet figyelembe) jól jellemzik az objektumokat.
 
 **Ez egy transzformáción alapuló alakleírás**
 
-Transzformáljuk (hangsúlyozandó, hogy habár 2D képek szegmenseit jellemezzük, itt
-szigorúan 1D Fourier transzformációt alkalmazunk) a határ K darab
-mintavételezett pontjából (mint komplex s(k)
-számokból) képzett **s** vektort. Az
-eredményül kapott **a** vektor (komplex a(k)
-együtthatók) adják a Fourier leírást (vagyis tartalmazza a Fourier együtthatókat, a transzformáció bázisfüggvényeinek
-súlyait).
+==**Transzformáljuk** (szigorúan 1D Fourier transzformációt alkalmazunk) **a határ K darab mintavételezett pontjából képzett $s$ vektort**. **Az eredményül kapott $a$ vektor adja a Fourier leírást.** (vagyis tartalmazza a Fourier együtthatókat, a transzformáció bázisfüggvényeinek súlyait)
 Az alakzat rekonstrukciójához az inverz
-Fourier-transzformációt kell végrehajtani.
+Fourier-transzformációt kell végrehajtani.==
 
 A K darab Fourier együtthatóból visszakaphatnánk torzítatlanul az eredeti mitnavételezett pontokat, az alakleíráshoz viszont
 nem az összes súlyt, hanem csak egy részüket tartjuk meg, mindössze P<K darab

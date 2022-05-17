@@ -1,7 +1,3 @@
-
-
-
-
 # 2. Elemi adatszerkezetek, bináris keresőfák, hasító táblázatok, gráfok és fák számítógépes reprezentációja
 
 ## Elemi adatszerkezetek
@@ -16,9 +12,9 @@ tömb, láncolt lista, sor, verem, gráf, map, kupac - saját vélemény
 **Leggyakoribb műveletek**
 - *Módosító:*
 	- beszúr 
-	- keres
 	- töröl
 - *Lekérdező:*
+	- keres
 	- min
 	- max
 	- előző
@@ -173,8 +169,3 @@ Binary Search Tree - tömbbel is meg lehet
 - Index of parent= INT[index of child node/2]
 - Index of Left Child = 2 * Index of parent
 - Index of Right Child = 2 * Index of parent+1
-
-
-
-
-

@@ -45,8 +45,7 @@ akkor felbontható a következőképpen: (Az $LU = x$, ből $U = L^T$)
 $Q$: egy **ortogonális mátrix**, tehát$QQ^T = Q^TQ = I$, azaz a **transzponáltja egyben az inverze** is
 $R$: egy felső háromszögmátrix
 
-Numerikusan stabilabb, és **nem csak négyzetes mátrixokra** lehet alkalmazni, viszont **költséges**
-
+Numerikusan stabilabb ez is.
 **Megoldás:**
 1. $Rx=Q^Tb$
 

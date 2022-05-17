@@ -1,4 +1,3 @@
-
 # Részproblémára bontó algoritmusok (mohó, oszd-meg-és-uralkodj, dinamikus programozás), rendező algoritmusok, gráfalgoritmusok (szélességi- és mélységi keresés, minimális feszítőfák, legrövidebb utak)
 
 ## Részproblémára bontó algoritmusok
@@ -88,7 +87,10 @@ fontossága: sok probléma triviális, ha rendezett a bemenet (pl bináris keres
 	- Legrosszabb eset: $\mathcal{O}(n^2)$
 	- Tárigénye: $\mathcal{O}(1)$
 - Összefésülő rendezés
-	- oszd meg és uralkodj: Felbontjuk elemi részekre a tömböt, majd végighaladva összefésüljük őket megfelelő sorrendbe.
+	- oszd meg és uralkodj: Felbontjuk elemi részekre a tömböt, majd végighaladva összefésüljük őket megfelelő sorrendbe. **Stabil rendezés.**
+	- Átlagos eset: $\mathcal{O}(n*logn)$
+	- Legrosszabb eset: $\mathcal{O}(n*logn)$
+	- Tárigénye: $\mathcal{O}(n)$ vagy ha láncolt lista akkor $\mathcal{O}(1)$ 
 - Gyorsrendezés:
 	- Rekurzív algoritmus, kettéosztja a rendezendő listát egy kiemelt elemnél kisebb és nagyobb elemekre, majd a részekre külön-külön alkalmazza a gyorsrendezést. **Nem stabil rendezés**
 	- **Átlagos eset:** $\mathcal{O}(n log n)$
