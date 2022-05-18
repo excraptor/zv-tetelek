@@ -1,4 +1,3 @@
-
 # 13. Számítógép-hálózati architektúrák, szabványosítók (ISO/OSI, Internet, ITU, IEEE)
 
 ## ISO
@@ -18,25 +17,34 @@ A különböző protokollok által nyújtott funkciókat rendezi egymásra épü
 A rétegek alulról felfelé
 
 - **Fizikai réteg**
-    - feladata, hogy a biteket továbbítsa a kommunikációs csatornán
-    - mekkora feszültség kell a 0, 1 bitek reprezentálásához, mennyi idő, hogyan jön létre az összeköttetés stb.
+	- Bitek kommunikációs csatornára való juttatása.
     - Csatlakozás felépítése és lezárása
     - Hubok, repeaterek, hálózati adapterek
+    - Ethernet szabványok is tartoznak ide. (pl: **IEEE 802.11** vezetéknélküli adatátvitel)
 - **Adatkapcsolati réteg**
-    - átvitendő adatokat a küldő fél oldalán adatkeretekbe tördeli, és sorrendben továbbítja
-    - a fogadó fél nyugtázza minden keret helyes vételét
+    - A **küldő** az adatokat egyértelmûen azonosítható adatkeretkre tördeli szét, ellátja a szükséges vezérlõbitekkel, majd sorrendben továbbítja azokat.
+    - A **fogadó** oldal pedig a kapott kereteket megfelelõ sorrendben összeállítja.
+    - Az **küldő** oldal ezenkívül még a fogadó által küldött **nyugtázásokat is feldolgozza.**
+    - **Fizikai címzés: MAC cím**
     - forgalomszabályozás, hibakezelés
     - Bridgek, switchek
 - **Hálózati réteg**
-    - milyen útvonalon kell a csomagokat a forrásállomástól a célig eljuttatni
-    - lehet **statikus, és dinamikus meghatározás** is
+    - Milyen útvonalon kell az *adatkapcsolati réteg által elkészített keretek* a forrásállomástól a célig eljuttatni. $\rightarrow$ **Forgalomirányítás**
+    - lehet 
+	    - **statikus:** Táblázatok amelyek nem változnak
+	   - **dinamikus:** Táblázatok változnak.
     - Hálózati útvonalválasztás és adatáramlás ellenőrzés
     - Routerek, IP switchek
-    - **IP protocol (IP) itt található**
+    - **IP protocol (IP) itt található**, logikai címzés
+    - 
 - **Szállítási réteg**
+	- *minden adat érintetlenül, sértetlenül érkezzen meg a rendeltetési helyére.*
+	- Forrás- és célállomás egymással kommunikál
     - forgalomszabályozás, hibajavítás, multiplexelés
-    - megbízhatóság: pl ellenőrző összeggel megnézzük, hogy az adat sérült-e
-    - **TCP protokoll**
+    - **megbízhatóság:** pl ellenőrző összeggel megnézzük, hogy az adat sérült-e
+    - **TCP protokoll** itt található
+
+
 - **Viszony réteg**
     - két számítógép felhasználói kapcsolatot létesítsen
     - állományokat mozgathatunk

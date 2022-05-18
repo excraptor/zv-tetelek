@@ -1,4 +1,3 @@
-
 # 14. Kiemelt fontosságú kommunikációs protokollok (PPP, Ethernet, IP, TCP, HTTP, RSA)
 
 ## PPP (Point-to-point)
@@ -35,16 +34,26 @@ Hibadetektálást és hibajavítást nem végez (ezeket nevezzük **„me
 
 ### IP-cím 
 
-Az IP-ben a forrás- és célállomásokat (az úgynevezett hostokat) címekkel (IP-címek) azonosítja, amelyek 32 biten ábrázolt egész számok; azonban ezt hagyományosan négy darab 8 bites (azaz 1 byte-os, vagyis 0 és 255 közé eső), ponttal elválasztott számmal írjuk le a könnyebb olvashatóság miatt (pl: 192.168.42.1). A címek felépítése hierarchikus: a szám bal oldala (vagy szakmai nevén a legnagyobb helyiértékű bitek felől indulva) a legfelső szintet jelenti, és jobbra haladva az ez alatti szinteket kapjuk meg, például egy szolgáltatót, a szolgáltató alatti ügyfeleket, és az ügyfelek alatti egyes számítógépeket. 
+Az IP cím egy egyedi **hálózati azonosító**, amelyet az *internetprotokoll* segítségével kommunikáló gépek egymás azonosítására használnak.
+Egy IP cím nem kötődik feltétlen egy eszközhöz, akár több eszköz osztozhat egy címen. (NAT), vagy a gép címe rendszeresen változhat ISP-n keresztül
 
-A teljes IP-cím két részre osztható: 
+Az IP-ben a forrás- és célállomásokat (az úgynevezett hostokat) címekkel (IP-címek) azonosítja, amelyek **32 biten ábrázolt egész számok**; azonban ezt **hagyományosan négy darab 8 bites** (azaz 1 byte-os, vagyis 0 és 255 közé eső), ponttal elválasztott számmal írjuk le a könnyebb olvashatóság miatt (*pl: 192.168.42.1*). 
 
+**A címek felépítése hierarchikus:** a szám bal oldala (vagy szakmai nevén a legnagyobb helyiértékű bitek felől indulva) a legfelső szintet jelenti, és jobbra haladva az ez alatti szinteket kapjuk meg, például egy szolgáltatót, a szolgáltató alatti ügyfeleket, és az ügyfelek alatti egyes számítógépeket. 
+
+**A teljes IP-cím két részre osztható:**
 - egy hálózati azonosítókból 
-- egy hoszt azonosítókból áll. 
+- egy host azonosítókból áll. 
 
-A hálózati azonosító hossza változó méretű lehet, azt a teljes cím első bitjei határozzák meg, az IP- címeket ez alapján címosztályokba soroljuk. 
+**A hálózati azonosító hossza változó méretű lehet**, azt a **teljes cím első bitjei határozzák meg**, az IP- címeket ez alapján **címosztályokba soroljuk**. 
 
 A címosztályok alkalmazása lehetővé teszi a címek optimálisabb kiosztását, azáltal, hogy egy intézmény, szervezet stb. számára egy alacsonyabb osztályú cím is kiosztható adott esetben (kevés hosztja van) így nem foglal le felesleges - fel nem használt, ki nem osztott - címeket, ha nincs rájuk szüksége. 
+
+**Különböző IPv4 címtartományok:**
+24 bites tömb (/8 prefix) : 10.0.0.0 - 10.255.255.255
+20 bites tömb (/12 prefix) : 172.16.0.0 - 172.31.255.255
+16 bites tömb (/16 prefix) : 192.168.0.0- 192.168.255.255
+
 
 ### Alhálózati maszk
 
@@ -68,6 +77,7 @@ Az IPv6-címek 32 bit helyett 128 biten ábrázolják a címeket (ez olyan, mint
 
 Az cím 8 részét kettőspontokkal szokás elválasztani, és ha egy rész csak 0-kból áll akkor megtehetjük, hogy üresen hagyjuk azt a részt, de a kettőspontok maradjanak meg. Például ha egy IPv6 címünk a következő módon néz ki: fe80:0000:0000:0000:0202:b3ff:fe1e:8329, akkor felírhatjuk így is: fe80::202:b3ff:fe1e:8329. 
 
+### ==EZ LEHET NEM KELL INNEN==
 ### Csomag fejléc
 
 Az első mező, a **Verzió (Version)**, amely megegyezik az IPv4 Verzió mezőjével, csak itt a 6-os konstans szerepel. 
@@ -82,16 +92,19 @@ Az **Adatmező hossza (Payload Length)** mező megmondja, hogy mennyi bájt k
 Az **Átugráskorlát (Hop Limit)** gátolja meg a csomagokat abban, hogy örökké élhessenek. Ez gyakorlatilag ugyan az, mint az Élettartam volt az IPv4-ben. 
 Ezek után következnek a Forrás címe (Source Address) és a Cél címe (Destination Address) mezők, amelyek egy-egy 16 bájtos (128 bites) címet takarnak
 
+### ==IDÁIG==
+
 
 ## TCP
 
 A TCP egy **kapcsolat-orientált protokoll**, amely az OSI modell **Szállítási rétegében** helyezkedik el. Fő feladata egy megbízható, és biztonságos kapcsolat kiépítése (és fenntartása) két folyamat között. Menetét alapvetően három részre bonthatjuk: 
 
-- Létrejön a megbízható kapcsolat két állomás között 
-- Megkezdődik a tényleges adatátvitel 
-- A kapcsolat lezárása, és a számára elkülönített erőforrások felszabadítása. 
+- Létrejön a **megbízható kapcsolat** két állomás között 
+- Megkezdődik a tényleges **adatátvitel**
+- A **kapcsolat lezárása, és a számára elkülönített erőforrások felszabadítása.**
 
-A protokoll a hibamentes átvitelhez az úgynevezett pozitív nyugtázás újraküldéssel (positive acknowledgement with retransmission) néven ismert eljárást használja. A TCP kapcsolatok egyes lépéseit állapotoknak nevezzük. A kapcsolat élettartama alatt különböző állapotváltozásokon megy keresztül: 
+A protokoll a **hibamentes átvitelhez** az úgynevezett **pozitív nyugtázás újraküldéssel** (positive acknowledgement with retransmission) néven ismert eljárást használja. 
+A TCP kapcsolatok egyes lépéseit állapotoknak nevezzük. A **kapcsolat élettartama alatt különböző állapotváltozásokon megy keresztül:** 
 
 A leírásban szereplő három rövidítés TCP üzenettípusokat jelöl, melyeket a fejlécben szereplő megfelelő bitek segítségével lehet változtatni. 
 
@@ -101,7 +114,7 @@ A leírásban szereplő három rövidítés TCP üzenettípusokat jelo�
 
 ### Kapcsolat létrehozás
 
-A TCP protokoll ellentétben az UDP-vel kapcsolatorientált, megbízható összeköttetést biztosít két eszköz között.
+A TCP protokoll ellentétben az UDP-vel **kapcsolatorientált**, megbízható összeköttetést biztosít két eszköz között.
 
 - Az adatátvitel megkezdéséhez a forrás-, és a célalkalmazás értesíti az operációs rendszert a kapcsolat létrehozási szándékáról. 
 - Az egyik csomópont kezdeményezi a kapcsolatot, a másiknak pedig fogadnia kell azt. 
@@ -111,10 +124,10 @@ A TCP protokoll ellentétben az UDP-vel kapcsolatorientált, megbízható össze
 
 ### Háromfázisú kézfogás
 
-Az adatátvitel megkezdése előtt kapcsolatot kell létesíteni a két végpont között. Mivel egy TCP szegmensben a maximálisan szállítható adat mérete korlátos, a protokollnak fel kell darabolnia az ennél nagyobb méretű adatfolyamot, majd a másik oldalon ugyanazon sorrendben vissza kell állítani azt. A kapcsolat létrehozásakor szükséges mindkét fél kezdő sorszámának egyeztetése, melyet a SYN vezérlőbittel megjelölt szegmensek elküldésével tesznek meg. Ezt a kapcsolódási folyamatot nevezzük háromfázisú kézfogásnak, melynek lépései a következők:
+Az adatátvitel megkezdése előtt kapcsolatot kell létesíteni a két végpont között. Mivel egy TCP szegmensben a maximálisan szállítható adat mérete korlátos, a protokollnak fel kell darabolnia az ennél nagyobb méretű adatfolyamot, majd a másik oldalon ugyanazon sorrendben vissza kell állítani azt. A kapcsolat létrehozásakor szükséges mindkét fél kezdő sorszámának egyeztetése, melyet a SYN vezérlőbittel megjelölt szegmensek elküldésével tesznek meg. Ezt a kapcsolódási folyamatot nevezzük háromfázisú kézfogásnak, melynek **lépései a következők:**
 
-- Forrásállomás (A) kezdeményezi a kapcsolat létrehozását a célállomással (B), egy SYN szegmens elküldésével, melyben jelzi kezdősorszámát is (seq=x).
-- B megkapja a szegmenst és feljegyzi az A állomás kezdősorszámát, majd küld egy nyugtát a következő szegmens sorszámával (ack=x+1), és saját kezdő sorszámával (seq=y). Ezzel jelzi, hogy épségben megkapta x-edik oktettig a szegmenst, és várja x+1-edik sorszámtól a többi darabot.
+- Forrásállomás (A) kezdeményezi a kapcsolat létrehozását a célállomással (B), egy SYN szegmens elküldésével, melyben jelzi kezdősorszámát is **(seq=x)**.
+- B megkapja a szegmenst és feljegyzi az A állomás kezdősorszámát, majd **küld egy nyugtát a következő szegmens sorszámával (ack=x+1), és saját kezdő sorszámával (seq=y)**. Ezzel jelzi, hogy épségben megkapta x-edik oktettig a szegmenst, és várja x+1-edik sorszámtól a többi darabot.
 - Az A állomás megkapja a választ, melyből megtudja a B állomás kezdő sorszámát (y) és elküldi a következő szegmenst, egyben nyugtázva is a kérést (ack=y+1).
 Ezután megkezdődik az adatok átvitele, és a kapcsolat mindaddig nyitva marad, amíg bármelyik fél nem kéri annak lezárását.
 
@@ -144,14 +157,14 @@ Amikor a TCP elküld egy adatokat tartalmazó szegmenst a hálózaton, elhelyez 
 
 ## HTTP
 
-A HTTP (HyperText Transfer Protocol - hipertext átviteli protokoll) a Világháló általános információ átviteli protokollja. A protokoll meghatározza, hogy az ügyfelek milyen üzeneteket küldhetnek a kiszolgálóknak, és hogy ezekre milyen válaszokat kaphatnak.
+A HTTP (HyperText Transfer Protocol - hipertext átviteli protokoll) a Világháló általános **információ átviteli protokollja**. A protokoll meghatározza, hogy az ügyfelek milyen üzeneteket küldhetnek a kiszolgálóknak, és hogy ezekre milyen válaszokat kaphatnak.
+TCP/IP felett helyezkedik el.
 
-Kapcsolat
-
-- HTTP kliens úgy kezdeményez egy kérést, hogy TCP kapcsolatot létesít egy szerver egy adott portjával (általában 80-as).
+**Kapcsolat**
+- HTTP kliens úgy **kezdeményez egy kérést, hogy TCP kapcsolatot létesít egy szerver egy adott portjával (általában 80-as)**.
 - Azon a porton hallgató HTTP szerver várja az ügyfél kérési üzenetét.
 - A kérelem beérkezésekor a szerver visszaküld egy állapotvonalat, például "HTTP / 1.1 200 OK", és egy saját üzenetet.
-    - Ennek az üzenetnek a törzse általában a kért erőforrás, bár hibaüzenetet vagy más információt is küldhet.
+    - **Ennek az üzenetnek a törzse általában a kért erőforrás**, bár hibaüzenetet vagy más információt is küldhet.
 
 A TCP használatának előnye az, hogy sem a böngészőnek, sem a kiszolgálónak nem kell aggódnia az elveszett, megkettőzött vagy hosszú üzenetek, illetve a nyugták miatt. Az összes ilyen kérdésről a TCP-implementáció gondoskodik. 
 
@@ -160,7 +173,7 @@ Verziók
 A HTTP 1.0-ben az összeköttetés kiépítése után egyetlen kérést küldtek el, amire egyetlen válasz érkezett. Ezután a TCP-összeköttetést lebontották. 
 Ezután jött a HTTP 1.1 ami már támogatja a tartós kapcsolatokat. Ezáltal lehetővé vált, hogy kiépítsünk egy TCP összeköttetést, elküldjünk egy kérést, megkapjuk a választ, majd pedig további kéréseket küldjünk és válaszokat kapjunk. Azáltal, hogy több kérés esetén nem kell külön TCP-kiépítés és lebontás, az egyes kérésekre jutó, a TCP által okozott relatív többletterhelés sokkal kisebb lesz.
 
-Kérés (request)
+**Kérés (request)**
 
 Egy HTTP kérés első sora mindig METÓDUS ERŐFORRÁS VERZIÓ alakú, például: 
 GET /images/logo.gif HTTP/1.1
@@ -189,6 +202,11 @@ Content-type: text/html		(válaszban elküldött szöveg típusa)
 Pragma: no-cache
 Connection: close
 ```
+Különböző HTTP metódusokat hozhatunk létre (8 db):
+- **GET:** Megadottt erőfáros letöltését kezdeményezi
+- **POST:** Feldolgozandó adatot küld a szerverre
+- **PUT:** Feltölti a megadott forrást
+- **DELETE:** Kitörli az adott erőforrást
 
 ## RSA
 
