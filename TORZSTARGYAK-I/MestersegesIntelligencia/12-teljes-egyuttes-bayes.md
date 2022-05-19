@@ -1,5 +1,6 @@
 
 
+
 # 12. Teljes együttes eloszlás tömör reprezentációja, Bayes hálók. Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
 
 **Feltételes valószínűség:** $P(a | b) = P(a \wedge b)/P(b)$
@@ -9,27 +10,32 @@
 ### Teljes együttes eloszlás
 
 Minden lehetséges eseményre tudjuk annak a valószínűségét. Pl van 3 logikai típusú véletlen változónk, akkor összesen 2^3=8-féle eset lehet ezekre. A teljes együttes eloszlásnál mind a 8 esetnek tudjuk a valószínűségét. $\rightarrow$ **az összes elemi esemény valószínűségét megadja.**
-Viszont nyilván ez miatt nem skálázódik
+Viszont nyilván ez miatt nem skálázódik jól.
 
 ### Tömör reprezentáció
 
-A kijelentések függetlensége a legfontosabb tulajdonság a teljes együttes eloszlás tömöríthetőségéhez. Van függetlenség, és feltételes függetlenség.
+A **kijelentések függetlensége** a legfontosabb tulajdonság a teljes együttes eloszlás tömöríthetőségéhez. Van **függetlenség, és feltételes függetlenség**.
 
 **Függetlenség**
 a és b kijelentések **függetlenek**, ha $P(a \wedge b) = P(a)*P(b)$
 
-A függetlenség struktúrát takar. Ha pl $n$ logikai változónk van, amik két független részhalmazra oszthatók  $m$ és $k$ mérettel, akkor a $2^n$ valószínűség tárolása helyett elég $2^m+2^k$ valószínűséget tárolni, ami sokkal kevesebb lehet.
+**A függetlenség struktúrát takar**. Ha pl $n$ logikai változónk van, amik két független részhalmazra oszthatók  $m$ és $k$ mérettel, akkor a $2^n$ valószínűség tárolása helyett elég $2^m+2^k$ valószínűséget tárolni, ami sokkal kevesebb lehet.
 
 Extrém esetben, ha pl. az A1,..., An diszkrét változók kölcsönösen függetlenek (tetszőleges két részhalmaz független), akkor csak O(n) értéket kell tárolni, mivel ez esetben
 
 P(A1,..., An) = P(A1)...P(An)
 
 **Feltételes függetlenség**
+Az abszolút függetlenség ritka. Ezért használhatunk feltételesen függetlenséget.
 $a$ és $b$ kijelentések **feltételesen függetlenek** $c$ feltevésével, akkor és csak akkor, ha $P(a \wedge b | c) = P(a|c)*P(b|c)$. Tipikus eset, ha $a$ és $b$ közös oka $c$.
+Pl: fogfákás és a beakadás közös oka a luk.
 
-**Naiv-Bayes szabály**
+**Naiv-Bayes modell alakja**
 Ha $A$ feltevése mellett $B_1,...,B_n$ kölcsönösen függetlenek, akkor 
-$P(B1, . . . , Bn|A) = \prod_{i=1}^{n} P(B_i|A)$. Ezzel $O(n)$ tömörítés érhető el
+$P(B1, . . . , Bn|A) = \prod_{i=1}^{n} P(B_i|A)$. **Ezzel $O(n)$ tömörítés érhető el**
+
+**Bayes szabály $a$ és $b$ kijelentésekre**
+$P(a|b) = \dfrac{P(b|a)P(a)}{P(b)}$
 
 ### Bayes hálók
 

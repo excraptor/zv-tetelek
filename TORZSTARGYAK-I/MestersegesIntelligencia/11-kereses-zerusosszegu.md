@@ -1,4 +1,5 @@
 
+
 # 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
 ## Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák
 
@@ -28,15 +29,15 @@ Adott kezdőállapotból találjunk minimális költségű utat egy célállapot
 
 **Ötlet:** keresőfa építése, a kezdőállapotból növesszünk fát a szomszédos állapotok hozzávételével, amíg célállapotot nem találunk. 
 A keresőfa NEM azonos a feladat állapotterével, pl ha van két csúcs között oda-vissza él.
-
-fakeresés
-1 perem = { újcsúcs(kezdőállapot) }
-2 while perem.nemüres()
-3 csúcs = perem.elsőkivesz()
-4 if csúcs.célállapot() return csúcs
-5 perem.beszúr(csúcs.kiterjeszt())
-6 return failure
-
+```
+fakeresés():
+	perem = { újcsúcs(kezdőállapot) }
+	while perem.nemüres()
+		csúcs = perem.elsőkivesz()
+		if csúcs.célállapot() return csúcs
+		perem.beszúr(csúcs.kiterjeszt())
+	return failure
+````
 A csúcs.kiterjeszt() létrehozza a csúcsból elérhető összes állapotból a keresőfa csúcsot. 
 A perem egy prioritási sor, ettől függ a bejárási stratégia. 
 
@@ -130,53 +131,59 @@ Készíthetünk mintaadatbázisokat, ahol részproblémák egzakt költségét t
 - egy kezdőállapot
 - lehetséges cselekvések halmaza, és egy állapotátmenet függvény
 - célállapotok
-- hasznosságfüggvény
+- **hasznosságfüggvény**: Minden célállapothoz, hasznosságértéket rendel.
 
 
-Két ágens van, felváltva lépnek. Az egyik maximalizálni akarja a hasznosságfüggvényt (MAX játékos), a másik minimalizálni (MIN játékos).
+**Két ágens van**, felváltva lépnek. Az **egyik maximalizálni** akarja a hasznosságfüggvényt (MAX játékos), a **másik minimalizálni** (MIN játékos).
 Konvenció szerint MAX kezd. Az első célállapot elérésekor a játéknak definíció szerint vége.
 
-**Zéró összegű játék:** A MIN játékos minimalizálja a hasznosságot, ami ugyanaz, mint maximalizálni a negatív hasznosságot. Ez a negamax formalizmus. Itt a két játékos nyereségének az összege a végállapotban mindig nulla, innen a zéró összegű elnevezés.
+**Zéró összegű játék:** A **MIN játékos minimalizálja a hasznosságot, ami ugyanaz, mint maximalizálni a negatív hasznosságot**. Ez a *negamax formalizmus*. Itt a két játékos nyereségének az összege a végállapotban mindig nulla, innen a zéró összegű elnevezés. 
+
+(Játékelméletben: *Az a játék, amelyben a játékosok csak egymás kárára növelhetik a nyereségüket.*)
 
 ### Minimax algoritmus, alfa-béta vágás
 
 Mindkét játékos ismeri a teljes játékgráfot, bármilyen komplex számítást képes elvégezni és nem hibázik (tökéletes racionalitás). A minimax algoritmus alapján lehet megvalósítani a legjobb stratégiát tökéletes racionalitás esetén.
 
 Minimax:
-
+ ```
 maxÉrték(n)
 1 if végállapot(n) return hasznosság(n)
 2 max = -végtelen
 3 for a in n szomszédai
-4 max = max(max, minÉrték(a))
+4 	max = max(max, minÉrték(a))
 5 return max
 
 minÉrték(n)
 1 if végállapot(n) return hasznosság(n)
 2 min = +végtelen
 3 for a in n szomszédai
-4 min = min(min, maxÉrték(a))
+4 	min = min(min, maxÉrték(a))
 5 return min
-
+```
 Ha $n$ végállapot, visszaadja a hasznosságát. Különben a max-nál n szomszédaira kiszámolja a maximális értéket, ami vagy az aktuális maximum, vagy nézi, hogy a másik játékos mit lépne. 
 Csak elméleti jelentőségű, a minimax algoritmus nem skálázódik. Az összes lehetséges állapot kiszámolása rettentő sok idő lenne pl sakknál.
 
-Alfa-béta vágás
-
+**Alfa-béta vágás**
 Ha tudjuk, hogy pl MAX-nak már van egy olyan stratégiája, ahol biztosan egy 10 értékű hasznosságot el tud érni az adott csúcsban, akkor a csúcs további kiértékelésekor nem kell vizsgálni olyan csúcsokat, ahol MIN ki tud kényszeríteni <= 10 hasznosságot, mert ennél már MAX-nak van jobb stratégiája
 
 minÉrték és maxÉrték hívásakor átadjuk az alfa és béta paramétereket is a függvénynek.
 
-**Alfa jeletése:** MAXnak már felfedeztünk egy olyan stratégiát, amely alfa hasznosságot biztosít, ha ennél kisebbet találnánk, azt nem vizsgáljuk
+**Alfa jeletése:** MAXnak már felfedeztünk egy olyan stratégiát, amely alfa hasznosságot biztosít, ha ennél kisebbet találnánk, azt nem vizsgáljuk.
 **Béta jelentése:** MINnek már felfedeztünk egy olyan stratégiát, amely béta hasznosságot biztosít, ha ennél nagyobbat találnánk, azt nem vizsgáljuk
 
-A gyakorlatban a minimax és az alfa-béta vágásos algoritmusokat is csak meghatározott mélységig vizsgáljuk, illetvve heurisztikákat is alkalmazhatunk. A csúcsok bejárási sorrendje is nagyon fontos, mert pl alfa béta vágásnál egy jó rendezés mellett nagyon sok csúcsot vághatunk le.
+A gyakorlatban a minimax és az alfa-béta vágásos algoritmusokat is csak meghatározott mélységig vizsgáljuk, illetve heurisztikákat is alkalmazhatunk. A csúcsok bejárási sorrendje is nagyon fontos, mert pl alfa béta vágásnál egy jó rendezés mellett nagyon sok csúcsot vághatunk le.
 
 ## Korlátozás kielégítési feladat
 
 A feladat az állapottérrel adott keresési problémák és az optimalizálási problémák jellemzőit ötvözi. Az állapotok és célállapotok speciális alakúak.
 
-**Lehetséges állapotok halmaza:** a feladat állapotai az $n$ db változó lehetséges kombinációi
+**Lehetséges állapotok halmaza:** a feladat állapotai az $n$ db változó lehetséges értékkombinációi.
+$D = D_1x...xD_n$, ahol $D_i$ az i. változó lehetséges **értékei**
 **Célállapotok:** a megengedett állapotok, adottak különböző korlátozások, és azok az állapotok a célállapotok, amik minden korlátozást kielégítenek.
 
 Az út a megoldásig lényegtelen, és gyakran célfüggvény is értelmezve van az állapotok felett, ilyenkor egy optimális célállapot megtalálása a cél.
+
+PL: Gráfszínezési probléma.
+Adott egy $G(V,E)$ gráf, ahol $n = |V|$. A változók a gráf pontjai. Az $i$ pont lehetséges színeinek halmaza a $D_i$ és $D_1 = ... = D_n$.
+Minden $e \in E$ élhez rendelünk egy $C_e$ korlátozást, amely azokat a színezéseket engedi meg, ahol az $e$ él két végpontja különböző színű.
