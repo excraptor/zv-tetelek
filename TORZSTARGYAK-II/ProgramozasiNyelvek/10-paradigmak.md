@@ -1,4 +1,5 @@
 
+
 # 10. A programozási nyelvek csoportosítása (paradigmák), az egyes csoportokba tartozó nyelvek legfontosabb tulajdonságai
 
 ## Paradigmák
@@ -8,14 +9,20 @@ A programozási paradigma egy osztályozási forma, amely a programozási nyelve
 ## Imperatív
 Utasításokat használ, hogy egy program állapotát megváltoztassa. 
 
-## Procedurális
+### Procedurális
 A feladatokat felbonthatjuk elvégzendő feladatok szerint, tehát *alprogramokat* (függvény, eljárás) hozunk létre. Ezek között paraméterátadással, függvény visszatérési értékkel kommunikálnak.
 Pl: C, C++,...
 
 ### Objektumorientált paradigma
 
-Az objektum orientál paradigma az objektumok fogalmán alapuló programozási paradigma. Az objektumok **egységbe foglalják az adatokat** és a hozzájuk tartozó **műveleteket**. A program egymással kommunikáló objektumok összességéből áll melyek használják egymás műveleteit és adatait.
-Öröklödés osztályok között, egyszeres vagy többszörös öröklödéssel. Lehetséges polimorfizmus és absztrakt osztályok létrehozására.
+Az objektum orientál paradigma az objektumok fogalmán alapuló programozási paradigma. Az objektumok **egységbe foglalják az adatokat** és a hozzájuk tartozó **műveleteket**. A program **egymással kommunikáló objektumok összességéből áll** melyek használják egymás műveleteit és adatait.
+
+**Öröklödés** osztályok között, egyszeres vagy többszörös öröklödéssel. 
+Lehetséges **polimorfizmus és absztrakt/interfész osztályok létrehozására**.
+Polimorfizmus:
+
+
+A legtöbb OOP nyelv osztályalapú, azaz az objektumok osztályok példányai és típusuk az osztály.
 
 #### Smalltalk
 
@@ -40,7 +47,7 @@ A programozás során üzeneteket küldünk az egyes objektumoknak. Egy objektum
 
 #### Metaosztály
 
-Mint korában említettük, a Smalltalkban mindent objektumnak tekintünk. Még az osztályok is objektumok. De ha az osztály objektum, akkor az is - *mint minden más objektum* - valamilyen osztályhoz kell tartozzon. Másképp fogalmazva minden osztály (pontosan) egy másik osztály példánya. Ezen "másik" osztályt metaosztálynak hívjuk
+Mint korában említettük, a Smalltalkban mindent objektumnak tekintünk. **Még az osztályok is objektumok**. De ha az osztály objektum, akkor az is - *mint minden más objektum* - valamilyen osztályhoz kell tartozzon. Másképp fogalmazva minden osztály (pontosan) egy másik osztály példánya. Ezen "másik" osztályt **metaosztálynak** hívjuk
 
 #### Object osztály
 
@@ -110,16 +117,20 @@ Deklaráljuk a program elvárt működését, nem akarojuk explicit meghatározn
 
 #### Haskell
 
-Egy funkcionális programozási nyelven írt programban nem a kifejezések egymásutánján van a hangsúly. A **program egy függvényhívással hajtódik végre.** Egy funkcionális program típus- , osztály-, és függvénydeklarációk, illetve definíciók sorozatából és egy kezdeti kifejezés kiértékeléséből áll. A kiértékelést úgy képzeljük el, mint a kezdeti kifejezésben szereplő függvények behelyettesítését. Tehát egy program végrehajtása nem más, mint a kezdeti kifejezésből kiinduló redukciós lépések sorozata. Egy kifejezés normál formájú, ha már tovább nem redukálható (nem átírható) állapotban van. **Egy redukálható kifejezést redexnek hívunk.**
+Egy tisztán funkcionális programozási nyelven írt programban nem a kifejezések egymásutánján van a hangsúly. 
+**Erősen vagy statikusan típusos nyelv**, így ahol a nyelv T-típust várja, csak T-típusra kiértékelődő kifejezést fogad el.
+A **program egy függvényhívással hajtódik végre.** 
+Egy funkcionális program típus- , osztály-, és függvénydeklarációk, illetve definíciók sorozatából és egy kezdeti kifejezés kiértékeléséből áll. A kiértékelést úgy képzeljük el, mint a kezdeti kifejezésben szereplő függvények behelyettesítését. Tehát egy program végrehajtása nem más, mint a kezdeti kifejezésből kiinduló redukciós lépések sorozata. Egy kifejezés normál formájú, ha már tovább nem redukálható (nem átírható) állapotban van. **Egy redukálható kifejezést redexnek hívunk.**
 
 **Kiértékelési módok**
 
 A Haskell nyelv a **lusta kiértékelési stratégiát használja.**
-A lusta kiértékelés során mindig a legkülső redex kerül helyettesítésre, az argumentumokat csak szükség esetén értékeli ki. Ez a módszer mindig megtalálja a kezdeti kifejezés normál formáját. A mohó kiértékelés az argumentumok kiértékelésével kezdődik, csak ezután hajtja végre a függvény alkalmazásának megfelelő redukciós lépést. 
+**A lusta kiértékelés során** mindig a legkülső redex kerül helyettesítésre, az argumentumokat csak szükség esetén értékeli ki. Ez a **módszer mindig megtalálja a kezdeti kifejezés normál formáját**. 
+A mohó kiértékelés az argumentumok kiértékelésével kezdődik, csak ezután hajtja végre a függvény alkalmazásának megfelelő redukciós lépést. 
 Futtatás
 Elindítjuk a Haskell interpretert (hugs) és betöltjük az általunk megírt definíciós forrásállományt. Betöltés után rendelkezésre áll az összes általunk megírt függvény, melyek közül bármelyiket meghívhatjuk a függvény nevének beírásával (a megfelelő paraméterezéssel). Amennyiben módosítjuk a definíciós állományt, újra kell tölteni azt.
  
-Atomi típusok: Int, Float, Bool
+**Atomi típusok:** Int, Float, Bool
 Függvények definiálása
    
 A visszatérési értéket a kiértékelése határozza meg, ami lehet egy konstans érték vagy akár egy rekurzív kifejezés is
@@ -136,11 +147,16 @@ Példák
  
 ### Logikai programozás
 
-A problémakörrel kapcsolatos tényeket logikai képletek formájában fejezik ki, és a programokat következtetési szabályok alkalmazásával hajtják végre, amíg nem találnak választ a problémára, vagy a képletek halmaza nem következetes.
+A problémakörrel kapcsolatos **tényeket** logikai képletek formájában fejezik ki, és a programokat **következtetési szabályok** alkalmazásával hajtják végre, amíg nem találnak választ a problémára, vagy a képletek halmaza nem következetes.
 
 #### Prolog
 
-A logikai programok egy modellre vonatkoztatott állítások halmaza, melyek a modell tulajdonságait és azok között fellépő kapcsolatokat (relációit) írják le. Egy adott relációt meghatározó állítások részhalmazát predikátumnak nevezzük. A predikátumokat alkotó állítások tények vagy szabályok lehetnek. A tényeket és szabályokat (és majd a Prolognak feltett kérdéseket is) ponttal zárjuk le. Tekintsük a következő példát, mely egy család tagjai között fellépő kapcsolatot írják le.
+Prolog program csak az **adatokat** és az **összefüggéseket** tartalmazza. **Kérdések** hatására a programvégrehajtást beépített **következtető-rendszer** végzi.
+
+A logikai programok egy modellre vonatkoztatott állítások halmaza, melyek a modell tulajdonságait és azok között fellépő kapcsolatokat (relációit) írják le.
+Egy adott relációt meghatározó állítások részhalmazát predikátumnak nevezzük. A **predikátumokat alkotó állítások tények vagy szabályok lehetnek**. A tényeket és szabályokat (és majd a Prolognak feltett kérdéseket is) **ponttal zárjuk le**. 
+
+Tekintsük a következő példát, mely egy család tagjai között fellépő kapcsolatot írják le.
  
 A szulo predikátum argumentumait szándékosan írtuk kis betűkkel. A kis betűkkel írtakat a Prolog konstansként kezeli. (ka, katalin, szilvia, stb…) Minden nyomtatott nagybetűt vagy nagy kezdőbetűvel kezdődőket változónak tekinti. (X, Y, Szilvia, Magdolna, stb…)
 
@@ -176,17 +192,31 @@ Eldöntendő kérdések ugyanúgy néznek ki, mint a tények csak más a szöveg
 ```?- barát(john, mary).```
 
 **Következtető rendszer:**
-Prolog **backtracking** keresést alkalmaz a válaszok megtalálásra.
-Termek
-
-
+- Prolog **backtracking** keresést alkalmaz a válaszok megtalálásra.
+- ==Részcélokra bontás majd egymás után válasz keresés!==
+- Célokat és a tényeket illesztéssel kapcsolja össze.
+- Ha nem talál részcélra válasz, akkor **visszalép** az előző részcélra és új illeszkedő elemet talál rá.
  
    
 ## Párhuzamos programozás
 
+Egyszerre több szálon történik a végrehajtás $\rightarrow$ végrehajtási szál: **folyamat (process)**
+
+Előnyei: 
+- Természetes kifejezésmód
+- Sebességnövekedés
+
+Hátrányai:  
+- Bonyolultabb a szekvenciálisnál
+
+Sokféle probléma léphet fel a **közös memória** és az **osztott memória** adathozzáférés miatt.
+Kezelni kell a folyamatok létrehozását és megszüntetését és együttműködését.
+
+Felléphet **holtpont** = Kölcsönös egymásra várakozás, vagy **éhezés**, amikor nincs holtpont mégis erőforráshoz nem jut hozzá.
+
 ### Occam
-Imperatív, folyamatok saját memóriával rendelkeznek, üzenetküldéssel kommunikálnak.
-Occam program részei:
+**Imperatív**, folyamatok saját memóriával rendelkeznek, üzenetküldéssel kommunikálnak.
+**Occam program részei:**
 	- Változók
 	- Folyamatok
 	- Csatornák
@@ -212,9 +242,9 @@ Befejezésnél **holtpontba** kerülhet, erre odakell figyelni.
 	- Output - c **!** e
 
 
-Az Occam egy párhuzamos programozási nyelv. Ezen paradigma szerint az egyes folyamatok párhuzamosan futnak. Ez több processzoros gépek esetén valós párhuzamosságot jelent (egy processzor egy folyamatot dolgoz fel), de egy processzor esetén ez nyilván nem valósulhat meg, az egyes folyamatok „időszeleteket” kapnak, az Occam a párhuzamosságot időosztással szimulálja. Az egyes folyamatok közötti kommunikáció csatornákon keresztül valósul meg. A P1 és P2 folyamatok a C csatornán keresztül kommunikálnak:
- 
-A folyamatok közötti kommunikációt mindig csatornákkal valósítjuk meg. A fenti példában a P1 folyamat a C csatornán keresztül valamilyen adatot küld a P2 folyamatnak. Ez a következőképpen valósul meg: ha egy folyamat elérkezik arra a pontra, ahol értéket küld [fogad], várakozik a másik folyamatra, amíg az is el nem ér a fogad [küld] pontra. Amikor mindketten készen állnak az adatcserére (azaz mindkét folyamatban a küldés [fogadás] pontra került a vezérlés) létrejön az adatcsere, majd mindkettő folytatja a futását.
+Az Occam egy **párhuzamos programozási nyelv**. Ezen paradigma szerint az **egyes folyamatok párhuzamosan futnak**. Ez több processzoros gépek esetén valós párhuzamosságot jelent (egy processzor egy folyamatot dolgoz fel), de egy processzor esetén ez nyilván nem valósulhat meg, az **egyes folyamatok „időszeleteket” kapnak, az Occam a párhuzamosságot időosztással szimulálja**. Az egyes folyamatok közötti kommunikáció csatornákon keresztül valósul meg.**A P1 és P2 folyamatok a C csatornán keresztül kommunikálnak.**
+
+A **folyamatok közötti kommunikációt mindig csatornákkal valósítjuk meg**. A fenti példában a P1 folyamat a C csatornán keresztül valamilyen adatot küld a P2 folyamatnak. Ez a következőképpen valósul meg: ha egy folyamat elérkezik arra a pontra, ahol értéket küld [fogad], várakozik a másik folyamatra, amíg az is el nem ér a fogad [küld] pontra. Amikor mindketten készen állnak az adatcserére (azaz mindkét folyamatban a küldés [fogadás] pontra került a vezérlés) létrejön az adatcsere, majd mindkettő folytatja a futását.
 
 #### Fordítás
 
