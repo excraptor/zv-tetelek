@@ -2,15 +2,15 @@
 
 ## Algoritmusok vezérlési szerkezetei és megvalósításuk C nyelven
 
-Algoritmus: bármilyen jól definiált számítási eljárást, amely bemenetként bizonyos értéket vagy értékeket kap és kimenetként bizonyos értéket vagy értékeket állít elő. Vizsgálhatjuk helyesség, idő- és tárigény szempontjából
+**Algoritmus:** bármilyen jól definiált számítási eljárást, amely bemenetként bizonyos értéket vagy értékeket kap és kimenetként bizonyos értéket vagy értékeket állít elő. Vizsgálhatjuk helyesség, idő- és tárigény szempontjából
 
-Algoritmus vezérlése: Az az előírás, amely az algoritmus minden lépésére (részműveletére) kijelöli, hogy a lépés végrehajtása után melyik lépés végrehajtásával folytatódjon (esetleg fejeződjék be) az algoritmus végrehajtása. Az algoritmusnak, mint műveletnek a vezérlés a legfontosabb komponense.
+**Algoritmus vezérlése:** Az az előírás, amely az algoritmus minden lépésére (részműveletére) kijelöli, hogy a lépés végrehajtása után melyik lépés végrehajtásával folytatódjon (esetleg fejeződjék be) az algoritmus végrehajtása. Az algoritmusnak, mint műveletnek a vezérlés a legfontosabb komponense.
 
 Négy fő vezérlési módot különböztetünk meg:
-- Szekvenciális: Véges sok adott művelet rögzített sorrendben egymás után történő végrehajtása. (sorban egymás után)
-- Szelekciós: Véges sok rögzített művelet közül adott feltétel alapján valamelyik végrehajtása. (if, else, if else, switch)
-- Ismétléses: Adott művelet adott feltétel szerinti ismételt végrehajtása. (for, while, do while)
-- Eljárás: Adott művelet alkalmazása adott argumentumokra, ami az argumentumok értékének pontosan meghatározott változását eredményezi. (void func, int func, double func, …)
+- **Szekvenciális:** Véges sok adott művelet rögzített sorrendben egymás után történő végrehajtása. (sorban egymás után)
+- **Szelekciós:** Véges sok rögzített művelet közül adott feltétel alapján valamelyik végrehajtása. (if, else, if else, switch)
+- **Ismétléses:** Adott művelet adott feltétel szerinti ismételt végrehajtása. (for, while, do while)
+- **Eljárás:** Adott művelet alkalmazása adott argumentumokra, ami az argumentumok értékének pontosan meghatározott változását eredményezi. (void func, int func, double func, …)
 
 A vezérlési módok nyelvek feletti fogalmak.
 
@@ -35,8 +35,7 @@ Az eljárásvezérlés fajtái:
 
 C-ben kicsi a különbség a kettő között.
 
-Függvényművelet
-
+**Függvényművelet**
 - A matematikai függvény fogalmának általánosítása
 - Ha egy részprobléma célja egy érték kiszámítása adott értékek függvényében, akkor a megoldást megfogalmazhatjuk függvényművelettel.
 - A függvényművelet specifikációja tartalmazza:
@@ -45,17 +44,14 @@ Függvényművelet
     - Mindegyik paraméter adattípusát
     - A művelet hatásának leírását
     - A függvényművelet eredménytípusát
-- Minden függvényben szerepelnie kell legalább egy return utasításnak
+- **Minden függvényben szerepelnie kell legalább egy return utasításnak**
 - Ha a függvényben egy ilyen utasítást hajtunk végre, akkor a függvény értékének kiszámítása befejeződik. A hívás helyén a függvény a return által kiszámított értéket veszi fel
 
-Eljárásművelet
-
-- Ha eljárást szeretnénk készíteni C nyelven, akkor egy olyan függvényt kell deklarálni, melynek eredménytípusa void. Ebben az esetben a függvény definíciójában nem kötelező a return utasítás, illetve ha mégis van ilyen, akkor nem adható meg utána kifejezés
-
-Megvalósítás
-
-- csak bemenő módú argumentumok vannak
-- pointerekkel lehet kezelni kimenő argumentumokként is
+**Eljárásművelet**
+- Ha eljárást szeretnénk készíteni C nyelven, akkor egy olyan függvényt kell deklarálni, melynek eredménytípusa **void**. Ebben az esetben a függvény definíciójában nem kötelező a return utasítás, illetve ha mégis van ilyen, akkor nem adható meg utána kifejezés
+- **Megvalósítás:**
+	- csak bemenő módú argumentumok vannak
+	- pointerekkel lehet kezelni kimenő argumentumokként is
 
 ### Szelekciós vezérlés
 
@@ -265,7 +261,4 @@ Diszkrét ismétléses vezérlésről akkor beszélünk, ha a ciklusmago
     - Legyen x = e és hajtsuk végre az M műveletet, majd folytassuk az 1.) lépéssel. 
 - A H halmaz számossága határozza meg, hogy az M művelet hányszor hajtódik végre. Ha a H az üres halmaz, akkor a diszkrét ismétléses vezérlés az M művelet végrehajtása nélkül befejeződik. 
 - A diszkrét ismétléses vezérlésnek nincs közvetlen megvalósítása a C nyelvben. 
-
-   
-  
 
