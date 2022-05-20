@@ -143,7 +143,7 @@ Gyökércsúcsból indulva az útkeresés/bejárás során balra lefelé tartva 
 
 **Idő- és térkomplexitás:**
 Ha $|V|$ a csúcsok és $|E|$ a gráf éleinek száma akkor,
-**Időigénye:**  $\mathcal{O}(|V|+|E|)$
+**Időigénye:**  $\mathcal{O}(|V|+|E|)$ 
 **Tárigénye:** $\mathcal{O}(|V|)$ VAGY $\mathcal{O}(bd)$, ahol a kezdőponttól *d* távolságra lévő csúcsok. A *b* pedig az elágazási tényező.
 
 ### Minimális feszítőfák
