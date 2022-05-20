@@ -1,3 +1,4 @@
+
 # 7. Eliminációs módszerek, mátrixok trianguláris felbontásai. Lineáris egyenletrendszerek megoldása iterációs módszerekkel. Mátrixok sajátértékeinek és sajátvektorainak numerikus meghatározása
 
 
@@ -111,6 +112,7 @@ Ezt a polinomot nevezzük a mátrix **karakterisztikus polinomjának**.
 Valós mátrixnak is lehetnek komplex sajártértékei!
 A mátrix sajártértékeinek a halmazát a mátrix *spektrumának* hívjuk.
 
+ # **SZERINTEM EZ NEM KELL**
 ### Hatványmódszer
 
 A hatványmódszer a legnagyobb abszolútértékű sajátérték meghatározására szolgál.

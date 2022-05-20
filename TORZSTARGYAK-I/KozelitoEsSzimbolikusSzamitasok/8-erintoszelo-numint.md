@@ -124,6 +124,6 @@ Ezek a Newton-Cotes formulák. Lehet **nyitott** és **zárt** attól függően,
 **Trapéz szabály:**
 pl: A legegyszerűbb esetben két alappontunk van és erre a két alappontra egy elsőfokú polinomot tudunk majd illeszteni.
 Felvesszük a pontokat (pl: $x_1$ = $a$  $x_2$ = $b$), meg a súlyt ami $w_1 = w_2 = \dfrac{b-a}{2}$, azaz $(f(a)+f(b))*\dfrac{b-a}{2}))$
-
+(A $\dfrac{b-a}{2}$ az x1, x2-re illesztett Lagrange alappolinommal fog kijönni.)
 ### Összetett kvadratúra-szabályok
 Az $[a,b]$ intervallumokat felbontják $n$ egyforma részre, és ezekre külön-külön csinálnak egy kvadratúra formulát.
