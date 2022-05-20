@@ -1,3 +1,5 @@
+
+
 # 2. Elemi adatszerkezetek, bináris keresőfák, hasító táblázatok, gráfok és fák számítógépes reprezentációja
 
 ## Elemi adatszerkezetek
@@ -105,7 +107,9 @@ Bináris keresőfa
 - min/max is **O(h)**: vagy teljesen jobbra, vagy teljesen balra kell lemennünk
 - következő/előző szintén **O(h)** - amíg jobb/bal gyerek, addig megyünk max
 - beszúr szintén **O(h)** - mindig levélként szúrunk be, úgy, hogy kb megkeressük a helyét
-- töröl is **O(h)**, levelet simán törlünk, egy gyerekeset úgy, hogy a gyereket linkeljük a szülőhöz, két gyerekeset pedig a következővel helyettesítjük
+- töröl is **O(h)**, levelet simán törlünk, egy gyerekeset úgy, hogy a gyereket linkeljük a szülőhöz, két gyerekeset pedig a **következővel** helyettesítjük
+	- Következő: 	
+
 
 ## Hasító táblák
 
@@ -143,10 +147,21 @@ Hasítótábla olyan szótár, amikor egy hash függvény segítségével állap
 példa: **h(k) = k mod m**
 ahol $m$ a hasító tábla mérete
 lehetnek ütközések! **cél: az ütközések minimalizálása**
-**Ütközések minimalizálása**
+
+#### **Ütközések minimalizálása**
+**Láncolt listás megoldás:**
 1. Az adott cellában egy láncolt listát tartunk számon
 	2. A rövid láncok a legjobbak
 	3. **Load factor:** vödrök száma / elemek száma
+
+**Nyílt címzés**
+Listák helyett tömbben "egymás után" tároljuk a megegyező hasított értékű elemeket. $\rightarrow$ Nincs szükség mutatókra.
+
+*Lineáris próba:*
+- Addig próbálgatjuk berakni a tömbe, amíg nem látunk üres  helyet, mindig 1-et lépünk előre.
+
+*Négyzetes próba:*
+- Valamekkora lépéssel lépünk
 
 
 ## Gráfok és fák számítógépes reprezentációja
