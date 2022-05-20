@@ -6,62 +6,50 @@
 
 ### Oszd meg és uralkodj
 
-- a feladatot több részfeladatra osztjuk
-- a részfeladatok hasonlóak az eredeti feladathoz, de kisebbek
-- rekurzívan megoldjuk a kisebb részfeladatokat
-- a megoldásokat összevonjuk, és az adja a végső megoldást
-
-Felosztás: hogyan osztjuk több részfeladatra
-
-Uralkodás: a részfeladatokat rekurzív módon megoldjuk
-
-Összevonás: a részfeladatok megoldásait összevonjuk
+1. **Felosztás:** a feladatot több részfeladatra osztjuk, a részfeladatok hasonlóak az eredeti feladathoz, de kisebbek
+2. **Uralkodás:** rekurzívan megoldjuk a kisebb részfeladatokat.
+3. **Összevonás:** a részfeladatok megoldásait összevonjuk, és az adja a végső megoldást.
 
 #### Példa
-
 Felező-csúcskereső algoritmus
 
-Input: egy számsorozat
-Output: van-e benne csúcs?
+**Input:** egy számsorozat
+**Output:** van-e benne csúcs?
 
 Algoritmus: az *n* méretű sorozat helyett vizsgáljunk egy *(n-1)/2* méretűt, és ebben keressünk csúcsot,
     majd ezt folytatjuk rekurzívan
 
 ### Dinamikus programozás
 
-#### Pénzváltási feladat
-
-Input: *P_1, P_2, ... , P_n* típusú pénzérmék, *F* forint
-Output: legkevesebb hány érmével fizethető ki pontosan *F* forint?
-
-Dinamikus programozás akkor, ha a részproblémák nem függetlenek, hanem vannak közös részeik
-
-Alapgondolat: a már megoldott részproblémák optimális megoldásait megjegyezzük
-
+**Alapgondolat**: Mi lenne, ha a már  megoldott részproblémákat nem számolnánk ki újra  
+minden egyes alkalommal ⇒ eltároljuk a részproblémák megoldásait. ==Idő tárra cseré-  
+lése==
+- Dinamikus programozás akkor, ha a részproblémák nem függetlenek, hanem vannak közös részeik
 - így minden részproblémát csak egyszer fogunk megoldani
+
+**Iteratív megoldás**: bottom-up építkezünk, és minden lehetséges értéket megnézünk
+**Rekurzív megoldás memorizálással**: top-down építkezünk, és kulcs-érték párokat nézünk (csak akkor, ha nem kell minden részmegoldás)
+
+Pénzváltás probléma
+**Input:** *P_1, P_2, ... , P_n* típusú pénzérmék, *F* forint
+**Output:** legkevesebb hány érmével fizethető ki pontosan *F* forint?
   
 Pénzváltási feladat megoldása DP-vel: minden összegre *F*-ig kiszámoljuk, hogy azt minimum hány pénzérmével tudjuk kifizetni
 
 - ötlet: minden érmére megnézzük, hogy a korábbi optimális megoldás a jó, amiben nem volt benne az az érme, vagy az, ha benne van az érme
 - futásidő: *O(Fn)*
 
-Iteratív megoldás: bottom-up építkezünk, és minden lehetséges értéket megnézünk
-Rekurzív megoldás memorizálással: top-down építkezünk, és kulcs-érték párokat nézünk (csak akkor, ha nem kell minden részmegoldás)
-
 ### Mohó algoritmusok
 
-Részfeladatra bontás
-Optimalizálás
+A mohó algoritmusok **lokálisan** legjobb döntést hozzák, de ==NEM mindig optimális== meg-  
+oldás az egész feladatra. Viszont, ha adható ilyen algoritmus akkor rendkívűl hatékony.  
+Két tulajdonság, ha megadható ilyen algoritmus:  
+1.  **Optimális részstruktúra**: A részfeladatok is optimális megoldást adnak.  
+2.  **Mohó választás**:  Lokálisan optimális választások a globális optimális megoldás-  
+hoz vezetnek
 
-A mohó algoritmus minden lépésben az aktuálisan optimálisnak tűnő megoldást választja.
-Nem minden problémára adható mohó algoritmus!
-    De ha igen, akkor az nagyon hatékony
 
-Részproblémára bontáskor a cél: 
-    a mohó választás egyetlen részproblémát eredményezzen, aminek az optimális
-    megoldása a probléma optimális megoldása is egyben
-
-Mohó algoritmusok helyessége:
+**Mohó algoritmusok helyessége:**
 - fogalmazzuk meg a feladatot úgy, hogy minden döntés hatására egy kisebb részprobléma keletkezzen
 - bizonyítsuk be, hogy mindig van mohó választási lehetőség, tehát biztonságos
 - mohó választással olyan részprobléma keletkezik, amihez hozzávéve a mohó választást, az eredeti probléma optimális megoldását kapjuk (optimális részstruktúrák)
@@ -88,46 +76,77 @@ Mohó algoritmus a töredékes hátizsákra:
 ### Rendező algoritmusok
 input: n számból álló tömb\
 output: bemenő tömb elemeinek olyan sorrendje, ahol minden következő elem nagyobbegyenlő az előzőnél\
-fontossága: sok probléma triviális, ha rendezett a bemenet (pl bináris keresés, medián megállapítás)\
+fontossága: sok probléma triviális, ha rendezett a bemenet (pl bináris keresés, medián megállapítás)
+**Stabilitás:** hogy az azonosnak ítélt elemek közötti sorrendet megőrzi-e.
 - Buborék rendezés
-	- mindig 2 elemet vizsgálunk,úgy csúszik kerül a legkisebb elem az első helyre
+	- Elve, hogy egy „buborékkal” haladva a tömbben több menetben elölről hátra a buborékban szereplő két elemet felcseréljük, ha azok rossz sorrendben vannak. **Stabil rendezés.**
+	- Átlagos eset: $\mathcal{O}(n^2)$
+	- Legrosszabb eset: $\mathcal{O}(n^2)$
+	- Tárigénye: $\mathcal{O}(1)$
 - Beszúró rendezés
-	- folyton haladunk előre a tömbben, az aktuális elemet beszúrjuk a megfelelő helyre
+	- folyton haladunk előre a tömbben, az aktuális elemet beszúrjuk a megfelelő helyre. **Stabil rendezés.**
+	- Átlagos eset: $\mathcal{O}(n^2)$
+	- Legrosszabb eset: $\mathcal{O}(n^2)$
+	- Tárigénye: $\mathcal{O}(1)$
 - Összefésülő rendezés
-	- oszd meg és uralkodj
+	- oszd meg és uralkodj: Felbontjuk elemi részekre a tömböt, majd végighaladva összefésüljük őket megfelelő sorrendbe. **Stabil rendezés.**
+	- Átlagos eset: $\mathcal{O}(n*logn)$
+	- Legrosszabb eset: $\mathcal{O}(n*logn)$
+	- Tárigénye: $\mathcal{O}(n)$ vagy ha láncolt lista akkor $\mathcal{O}(1)$ 
+- Gyorsrendezés:
+	- Rekurzív algoritmus, kettéosztja a rendezendő listát egy kiemelt elemnél kisebb és nagyobb elemekre, majd a részekre külön-külön alkalmazza a gyorsrendezést. **Nem stabil rendezés**
+	- **Átlagos eset:** $\mathcal{O}(n log n)$
+	- **Legrosszabb eset:** $\mathcal{O}(n^2)$
+	- **Tárigénye:** $\mathcal{O}(logn)$
+- Leszámláló rendezés
 - Helyben rendezés
 - Kupacrendezés
-- Gyorsrendezés
-- Leszámláló rendezés
 - Számjegyes rendezés
 - Edényrendezés
 
 ### Gráfalgoritmusok
 
 #### Szélességi keresés
-Feladat: Járjuk be az összes csúcsot ami egy s kezdő csúcsból elérhető.Mindeközben kiszámoljuk az elérhető csúcsok távolságát s-től
+Feladat: Járjuk be az összes csúcsot ami egy **s** kezdő csúcsból elérhető. Mindeközben kiszámoljuk az elérhető csúcsok távolságát **s**-től
 
-Bemenet: Irányítatlan vagy irányított G gráf és annak egy s csúcsa
+**Bemenet:** Irányítatlan vagy irányított G gráf és annak egy s csúcsa
 
-Kimenet: Egy szótár, ami tartalmazza az s-ből elérhető csúcsokat és azok távolságát 
+**Kimenet:** Egy szótár, ami tartalmazza az **s**-ből elérhető csúcsokat és azok távolságát 
+
+**Idő- és térkomplexitás:**
+Ha $|V|$ a csúcsok és $|E|$ a gráf éleinek száma akkor,
+**Időigénye:** $\mathcal{O}(|V|+|E|)$
+**Tárigénye:** $\mathcal{O}(|V|)$
+
 
 #### Mélységi keresés
 
 Amikor egy megoldást megtalálni elégséges, nincs szükség mindre/optimálisra, pl. (ki)útkeresés
+Gyökércsúcsból indulva az útkeresés/bejárás során balra lefelé tartva járja be. Ha nem tud sehova lefelé menni tovább, akkor visszalép a legalsó elágazásig és a következő utat választja.
 
+**Idő- és térkomplexitás:**
+Ha $|V|$ a csúcsok és $|E|$ a gráf éleinek száma akkor,
+**Időigénye:**  $\mathcal{O}(|V|+|E|)$
+**Tárigénye:** $\mathcal{O}(|V|)$
 #### Minimális feszítőfák
 
 ##### Kruskal algoritmus
 
 - Minden lépésben a legkisebb, két fát összekötő élt húzzuk be (egyesítjük egyetlen fává a két fát)
-- Mohó algoritmus!
+- Ha a gráf összefüggő, akkor **minimális feszitőfa megalkotására** szolgál, AMÚGY meg **minimális feszitőerdőt** hoz létre.
+- **Mohó algoritmus!**
+- **Algoritmus:**
+	- Éleket súlyok szerint növekvőbe rendezzük
+	- Ezeket megvizsgáljuk, hogy melyeket vegyük be
+	- Gráfok csúcsa halmazt alkot, és csak akkor kerülnek be, ha két végpontja különböző halmazban van $\rightarrow$ halmazegyesítés.
 
 ##### Prim algoritmus
 
+Összefüggő súlyozott gráf minimális feszítőfáját határozza meg.
 - minden lépésben új csúcsot kötünk be a fába
 - legolcsóbb éllel elérhető csúcsot választjuk
-- Mohó algoritmus!
-Sűrű gráfok esetén (sok él van) Prim előnyösebb, egyébként Kruskal
+- **Mohó algoritmus!**
+Sűrű gráfok esetén (sok él van) Prim előnyösebb, egyébként Kruskal.
 
 #### Legrövidebb utak (csúcsból kiindulva)
 
@@ -136,20 +155,24 @@ Sűrű gráfok esetén (sok él van) Prim előnyösebb, egyébként Kruskal
 - azokat a csúcsokat tárolja amihez már megtalálta a legrövidebb utat
 - minden lépésben egyel bővíti az elért csúcsok halmazát
 - legkisebb legrövidebb úttal bíró csúcsot választja
-- Mohó algoritmus!
-- nem ad helyes megoldást negatív élsúlyok esetén
+- **Mohó algoritmus!**
+- nem ad helyes megoldást negatív élsúlyok esetén (beragadhat).
+- **Időigény:** $\mathcal{O}(|E|+|V|*log|V|)$
 
 ##### Bellman-Ford algoritmus
 
 - negatív súlyok esetén is működik
-
+- **Időigény:** $\mathcal{O}(|V|*|E|)$
 ##### Floyd-Warshall algoritmus (legrövidebb utak minden pontpárra)
 
 - dinamikus programozás
 - minden egyes lépésben egyre több csúcsot használhatunk
-Ha nincsenek negatív élsúlyok és ritka a gráf akkor Dijsktra minden kezdőpontból O(VElogV)
-Ha vannak negatív élsúlyok, de nincsenek negatív összköltségű körök vagy sűrű a gráf akkor Floyd-Warshall O(V3)
-Ha negatív összköltésgű körök is lehetnek akkor Ford-Bellman minden kezdőcsúcsra O(V2E)
+-  **Időigény:** $\mathcal{O}(|V|^3)$
+
+
+1. Ha nincsenek negatív élsúlyok és ritka a gráf akkor **Dijsktra**
+2. Ha vannak negatív élsúlyok, de nincsenek negatív összköltségű körök vagy sűrű a gráf akkor **Floyd-Warshall**
+3. Ha negatív összköltésgű körök is lehetnek akkor **Ford-Bellman**
 
 # 2. Elemi adatszerkezetek, bináris keresőfák, hasító táblázatok, gráfok és fák számítógépes reprezentációja
 
@@ -157,20 +180,21 @@ Ha negatív összköltésgű körök is lehetnek akkor Ford-Bellman minden kezd�
 
 tömb, láncolt lista, sor, verem, gráf, map, kupac - saját vélemény
 
-Adatszerkezet
+**Adatszerkezet**
 
 - adatok tárolására és szervezésére szolgáló módszer
 - lehetővé teszi a hatékony hozzáférést és módosításokat
 
-Leggyakoribb műveletek
-
-- beszúr
-- keres
-- töröl
-- min
-- max
-- előző
-- következő
+**Leggyakoribb műveletek**
+- *Módosító:*
+	- beszúr 
+	- töröl
+- *Lekérdező:*
+	- keres
+	- min
+	- max
+	- előző
+	- következő
 
 Megfelelő adatszerkezet kulcs az implementáció futásidejéhez!
 
@@ -178,52 +202,56 @@ Megfelelő adatszerkezet kulcs az implementáció futásidejéhez!
 
 Az adatok lineárisan követik egymást.
 Egy érték többször is előfordulhat.
-
-Műveletek: érték, értékad, keres, beszúr, töröl
-
-Közvetlen elérés
-
+**Műveletek**: érték, értékad, keres, beszúr, töröl
+1. **Közvetlen elérés**
 - minden index közvetlen elérésű, közvetlenül írható/olvasható
 - érték: O(1), keres: O(n)
-- beszúr és töröl esetén változik a méret, át kell másolni az elemeket egy új helyre
+- beszúr és töröl esetén **változik a méret**, át kell másolni az elemeket egy új helyre
 - beszúr: O(n), töröl: O(n)
-- ötlet: ha tele van a tömb, duplázzuk meg a kapacitást
-- ha negyedére csökken, felezzük a kapacitást
+- ötlet: ha tele van a tömb, **duplázzuk meg a kapacitást**
+- ha negyedére csökken, **felezzük a kapacitást**
 - így nem kell mindig az egész tömböt másolni
 
-Láncolt lista
+2. **Láncolt lista**
+minden érték mellé mutatókat tárolunk a következő/megelőző elemre.
 
-minden érték mellé mutatókat tárolunk a következő/megelőző elemre
+- **egyszeresen láncolt:** következő elemre mutat
+- **kétszeresen láncolt:** előző és következőre is mutat
+- **ciklikus:** az utolsó az első elemre mutat
+- **őrszem:** egy nil elem, ami a lista elejére (fej) mutat
 
-- egyszeresen láncolt: következő elemre mutat
-- kétszeresen láncolt: előző és következőre is mutat
-- ciklikus: az utolsó az első elemre mutat
-- őrszem: egy nil elem, ami a lista elejére (fej) mutat
 
 Közvetlen elérés vs Láncolt lista
 
-- KÉ: érték konstans, módosító lassú
-- LL: érték lassú, módosító gyors, sok memória kell a mutatóknak
+- **Közvetlen elérés:** ÉRTÉK() konstans, módosító lassú
+- **Láncolt lista:** ÉRTKÉ()  lassú, módosító gyors, sok memória kell a mutatóknak
 
 ### Verem és sor
-
 Stack, Queue
 
 Olyan listák, ahol a beszúrás és a törlés csak adott pozíción történhet
 
-- verem: legutoljára beszúrt elemet vehetjük csak ki (LIFO - Last In First Out)
-- sor: legkorábban beszúrt elemet vehetjük csak ki (FIFO - First In First Out)
+- verem: legutoljára beszúrt elemet vehetjük csak ki **(LIFO - Last In First Out)**
+- sor: legkorábban beszúrt elemet vehetjük csak ki **(FIFO - First In First Out)**
 
 Verem műveletek
 
-- push: verem tetejére rakunk egy elemet
-- pop: verem tetejéről levesszük
+- **push:** verem tetejére rakunk egy elemet
+- **pop:** verem tetejéről levesszük
+- $n$ verem méret esetén
+	- Elérési idő: O(1), de csak a verem tetején lévő elemet tudjuk elérni (**pop**)
+	- Beszúrás: O(1), mert mindig a tetejére pakolunk  (**push**)
+	- Törlés: O(1), de csak a tetején lévő elemet tudjuk törölni (**pop**)
+
 
 Sor műveletek:
 
-- enqueue: sor végére rakunk
-- dequeue: sor elejéről elveszünk
-
+- **enqueue:** sor végére rakunk
+- **dequeue:** sor elejéről elveszünk
+- $n$ sor méret esetén legrosszabb esetben:
+	- Elérés: $\mathcal{O}(n)$ 
+	- Beszúrás: $\mathcal{O}(1)$ 
+	- Törlés: $\mathcal{O}(1)$
 ### Prioritási sor és kupac
 
 Prioritási sor
@@ -232,7 +260,7 @@ Prioritási sor
 
 lehet mondjuk listával megvalósítani, veremmel vagy sorral nem érdemes, mert nem számít a sorrend
 
-Prioritási sor hatékony megvalósítása: kupac (heap)
+Prioritási sor hatékony megvalósítása: **kupac (heap)**
 
 Kupac
 
@@ -242,18 +270,18 @@ Kupac
 ## Bináris keresőfák
 
 Keres, beszúr, töröl, min, max, következő, előző
-Mind legyen O(logn)
+Mind legyen $\mathcal{O}(logn)$
 
 Bináris keresőfa
 
 - minden csúcsnak max két gyereke van
 - balra vannak a kisebb elemek
 - jobbra a nagyobbak
-- keresés O(h) idejű (h a fa magassága)
-- min/max is O(h): vagy teljesen jobbra, vagy teljesen balra kell lemennünk
-- következő/előző szintén O(h) - amíg jobb/bal gyerek, addig megyünk max
-- beszúr szintén O(h) - mindig levélként szúrunk be, úgy, hogy kb megkeressük a helyét
-- töröl is O(h), levelet simán törlünk, egy gyerekeset úgy, hogy a gyereket linkeljük a szülőhöz, két gyerekeset pedig a következővel helyettesítjük
+- keresés **O(h)** idejű (h a fa magassága)
+- min/max is **O(h)**: vagy teljesen jobbra, vagy teljesen balra kell lemennünk
+- következő/előző szintén **O(h)** - amíg jobb/bal gyerek, addig megyünk max
+- beszúr szintén **O(h)** - mindig levélként szúrunk be, úgy, hogy kb megkeressük a helyét
+- töröl is **O(h)**, levelet simán törlünk, egy gyerekeset úgy, hogy a gyereket linkeljük a szülőhöz, két gyerekeset pedig a következővel helyettesítjük
 
 ## Hasító táblák
 
@@ -262,7 +290,7 @@ Bináris keresőfa
 Halmaz
 
 - egy elem legfeljebb egyszer szerepelhet benne
-- keres helyett tartalmaz-e
+- keres helyett **tartalmaz-e**
 - beszúr, töröl
 - metszet, unió
 
@@ -274,7 +302,7 @@ Szótár
 
 Asszociatív tömb
 
-- egyészek helyett bármilyen típussal indexelhetünk
+- egészek helyett bármilyen típussal indexelhetünk
 
 Map
 
@@ -282,29 +310,31 @@ Map
 
 ### Hasítótáblák
 
-Halmazok és szótárak hatékony megvalósítása
-Keres, beszúr, töröl legyen hatékony
-
-Átlagos esetben O(1)
+- Halmazok és szótárak hatékony megvalósítása
+- Keres, beszúr, töröl legyen hatékony 
+	-	Átlagos esetben: $\mathcal{O}(1)$
 
 Hasítótábla olyan szótár, amikor egy hash függvény segítségével állapítjuk meg, hogy melyik kulcshoz milyen érték tartozzon
 
-példa: h(k) = k mod m
-ahol m a hasító tábla mérete
-lehetnek ütközések! cél: az ütközések minimalizálása
+példa: **h(k) = k mod m**
+ahol $m$ a hasító tábla mérete
+lehetnek ütközések! **cél: az ütközések minimalizálása**
+**Ütközések minimalizálása**
+1. Az adott cellában egy láncolt listát tartunk számon
+	2. A rövid láncok a legjobbak
+	3. **Load factor:** vödrök száma / elemek száma
+
 
 ## Gráfok és fák számítógépes reprezentációja
 
-Szomszédsági mátrix
+1. **Szomszédsági mátrix**
+	- minden csúcshoz hozzárendelünk egy számot
+	- ha a és b között van él, akkor matrix\[a\]\[b\] = 1 és matrix\[b\]\[a\] = 1
+	- ha nincs, akkor 0
 
-- minden csúcshoz hozzárendelünk egy számot
-- ha a és b között van él, akkor matrix\[a\]\[b\] = 1 és matrix\[b\]\[a\] = 1
-- ha nincs, akkor 0
-
-Szomszédsági lista
-
-- minden listaelem egy csúcs, ami szintén egy lista
-- minden csúcshoz tartozó listában tároljuk a vele szomszédos csúcsokat
+2. **Szomszédsági lista**
+	- minden listaelem egy csúcs, ami szintén egy lista
+	- minden csúcshoz tartozó listában tároljuk a vele szomszédos csúcsokat
 
 Bal gyerek, jobb testvér
 
@@ -317,22 +347,19 @@ Binary Search Tree - tömbbel is meg lehet
 - Index of Right Child = 2 * Index of parent+1
 
 
-
-
-
-
 # 3. Hatékony visszavezetés. Nemdeterminizmus. A P és NP osztályok. NP-teljes problémák
 
 ## Hatékony visszavezetés
-
-Visszavezetésnek nevezzük azt, mikor ha van egy problémánk, amit nem tudjuk, hogy kéne megoldanunk, és egy problémánk, amit tudjuk hogy oldjunk meg, és a nem ismert probléma inputjaiból
+**Visszavezetésnek** nevezzük azt, mikor ha van egy problémánk, amit nem tudjuk, hogy kéne megoldanunk, és egy problémánk, amit tudjuk hogy oldjunk meg, és a nem ismert probléma inputjaiból
 elkészítjük az ismert probléma egy inputját, és így oldjuk azt meg.
 
-- Az átalakításnak tartnaia kell a választ
-- Mindenre jó outputot kell adnia
+Hatékonynak akkor nevezhetjük, ha ez az **inputkonverzió polinomidejű**. Ezt Turing-visszavezetésnek is hívják. 
 
-Hatékonynak akkor nevezhetjük, ha ez az *inputkonverzió* polinomidejű. Ezt Turing-visszavezetésnek
-is hívják. 
+**Formailag:**
+	Legyenek $A$ és $B$ eldöntési problémák, azt mondjuk, hogy $A$ (**hatékonyan**) visszavezethető $B$-re, ha van olyan $f$ (**polinomidejű**) inputkonverzió, ami:
+	- $A$ inputjaiból $B$ inputjait készíti
+	- **Tartja a választ:** $A(x) = B(f(x))$
+**Jele:** $A \le_p B$ ($B$ legalább olyan nehéz mint $A$)
 
 ## Nemdeterminizmus
 
@@ -344,46 +371,54 @@ A *P* osztályban azok a problémák vannak, amelyek determinisztikusan polinomi
 
 Az *NP* osztályban azok a problémák vannak, amelyek nemdeterminisztikusan polinomidőben megoldhatók.
 
+
 ## NP teljes problémák
+
+**Nehézség, teljesség:**
+$A$ egy **probléma** $C$ pediga problémák egy **osztálya**
+	1. **C-nehéz:** Minden $C$-beli probléma visszavezethető $A$-ra
+	2. **C-teljes:** $A$ probléma ráadásul $C$-ben van
+
 
 Egy probléma akkor *NP*-teljes, ha *NP*-beli és *NP*-nehéz.
 
-- *NP*-beli, ha nemdeterminisztikusan tudunk tanúkat generálni hozzá, amik igen példányai a
-problémának
-- *NP*-nehéz, ha minden más *NP*-beli problémát hatékonyan vissza tudunk vezetni rá.
+- **NP-beli**, ha nemdeterminisztikusan tudunk tanúkat generálni hozzá, amik igen példányai a
+problémának.
+- **NP-nehéz**, ha minden más *NP*-beli problémát hatékonyan vissza tudunk vezetni rá.
+- **NP-teljes**, Vegyünk egy ismerten NP-teljes problémát és **vezessük ezt** az új problémára vissza
 
 ### Példák
 
 SAT, Hátizsák, Hamilton-út, Hamilton-kör, Euler-kör, ILP, Részletösszeg, Partíció
 
+
+
+
 # 4. A PSPACE osztály. PSPACE-teljes problémák. Logaritmikus tárigényű visszavezetés. NL-teljes problémák
 
-## PSPACE osztály
-
-Savitch-tétel
-
+## PSPACE osztály = $Space(n^k)$
+Polinom tárban (det. vagy nemdet.) eldönthető problémák osztálya.
+**Savitch-tétel**: Az $f(n)$ tárban nemdeterminisztikusan eldönthető problémák mind eldönthetők determinisztikusan,$f^2(n)$ tárban is
 - Elérhetőség eldönthető O(log^2n) tárban
 
-Az f(n) tárban nemdeterminisztikusan eldönthető problémák mind eldönthetők determinisztikusan, f^2(n) tárban is
 
-Tehát: NSPACE(f(n)) részhalmaza SPACE(f^2(n))-nek
+Tehát: $NSPACE(f(n))$ részhalmaza $SPACE(f^2(n))$-nek
 és mivel polinom négyzete polinom
 PSPACE = NPSPACE
 
-Polinom tárban (det. vagy nemdet.) eldönthető problémák osztálya
-
 ## PSPACE-teljes problémák
+**Nehézség, teljesség:**
+$A$ egy **probléma** $C$ pedig a problémák egy **osztálya**
+	1. **C-nehéz:** Minden $C$-beli probléma visszavezethető $A$-ra
+	2. **C-teljes:** $A$ probléma ráadásul $C$-ben van
 
 QSAT PSPACE-teljes
-
 QSAT (kvantifikált SAT)
 
-- adott egy ítéletkalkulusbeli logikai formula, változó kvantorokkal az elején (létezik, bármely, létezik, bármely stb)
-- magja CNF alakú, kvantormentes
-- igaz-e ez a formula?
+- *Adott:* adott egy ítéletkalkulusbeli logikai formula, változó kvantorokkal az elején (létezik, bármely, létezik, bármely stb), **magja CNF alakú, kvantormentes**
+- *Kérdés:* igaz-e ez a formula?
 
-QSAT mint kétszemélyes játék
-
+**QSAT mint kétszemélyes játék**
 - input ugyanaz
 - van-e az első játékosnak nyerő stratégiája abban a játékban, ahol:
 - - a játékosok sorban értéket adnak a változóknak, első játékos x1-nek, második x2-nek stb
@@ -393,8 +428,7 @@ QSAT mint kétszemélyes játék
 hasonlít a minimaxra
 az éses csúcsoknál lévő játékos minimalizál
 
-Földrajzi játék
-
+**Földrajzi játék**
 - adott egy irányított gráf és egy kijelölt kezdőcsúcs
 - az első játékosnak van-e nyerő stratégiája?
 - - az első játékos kezd, lerakja a bábut a kezdőcsúcsra
@@ -408,19 +442,31 @@ Adott két reguláris kifejezés, igaz-e, hogy ugyanazokra a szavakra illeszkedn
 Adott két nemdet automata, ekvivalensek-e?
 Adott, egy SOKOBAN/RUSH HOUR feladvány, megoldható-e?
 
-## Logtáras visszavezetés
+## Logtáras visszavezetés = L= Space(log 𝑛)
 
 Polinomidejű visszavezetés túl erős, ha pl P-beli problémákat akarunk egymáshoz viszonyítani, mert egy polinomidejű visszavezetés alatt már akár meg is oldhatnánk egy P-beli problémát
 
 Logtáras visszavezetés
+Jele: $A \le_l  B$.
 
-f egy olyan függvény, hogy
-
+ Ha $f$ egy olyan függvény, hogy
 - A inputjaiból B inputjait készíti
 - választartó módon
 - és logaritmikus tárban kiszámítható
 
 akkor f egy logtáras visszavezetés A-ról B-re.
+
+## NL-teljes problémák = NSpace(log 𝑛)
+Nemdeterminisztikus logtáras problémák
+
+Elérhetőség 
+1. Adott: egy 𝐺 = (𝑉, 𝐸) irányított gráf. Feltehetjük, hogy 𝑉 = {1, 2, . . . , 𝑛}. 
+2. Kérdés: létezik-e 1-ből 𝑛-be vezető irányított út?
+Nemdeterminisztikus módon választunk 1 és $n$ között csúcsot és mivel az inputot olvasni kell, outputra nem irunk semmit, csak két változót tartunk számon, amibe csak $1...n$ vannak számok így logtáras lesz.
+
+
+**Egyéb infók:**
+L $\subseteq$ NL (részhalmaza, vagy egyenlő vele)
 
 # 5. Véges automata és változatai, a felismert nyelv definíciója. A reguláris nyelvtanok, a véges automaták és a reguláris kifejezések ekvivalenciája. Reguláris nyelvekre vonatkozó pumpáló lemma, alkalmazása és következményei
 
@@ -682,98 +728,113 @@ Nézzük ekkor mi lehet w2-ben és w4-ben! Egyik sem tartalmazhat két betűt, m
 
 
 ## Eliminációs módszerek
+A lineáris egyenletrendszerek megoldására szolgáló eljárások. ($Ax = b$)
 
 ### Gauss-elimináció
 
-- Ax=b alakú lineáris egyenletrendszerek megoldásához tudjuk használni
-- az Ax=b egyenletrendszernek pontosan akkor van egy megoldása, ha det(A) nem 0
-- ekkor x = A^-1b
+- $Ax=b$ alakú lineáris egyenletrendszerek megoldásához tudjuk használni
+- az $Ax=b$ egyenletrendszernek pontosan akkor van egy megoldása, ha $det(A) \ne 0$
+- ekkor $x = A^{-1}b$
     - de az inverzet kiszámolni túl lassú lenne
 
-A Gauss-eliminációval az A mátrixot felső háromszögmátrixszá alakítjuk, és ha ez sikerül, akkor abból visszahelyettesítésekkel megkaphatjuk x-et. Műveletigénye O(n^2/2).
+A Gauss-eliminációval az A mátrixot felső háromszögmátrixszá alakítjuk, és ha ez sikerül, akkor abból visszahelyettesítésekkel megkaphatjuk x-et. **Műveletigénye:** $O(n^2/2)$.
 
-A felső háromszögmátrixot ún. eliminációs mátrixok segítségével kapjuk meg. Egy eliminációs mátrix dolga, hogy kinullázza az A mátrix egyik oszlopában a főátló alatti elemeket. Ha az összes ilyen eliminációs mátrixot összeszorozzuk balról egymással, akkor kapjuk az M mátrixot. Ekkor az MA szorzás eredménye lesz a kívánt felső trianguláris mátrix.
+A felső háromszögmátrixot ún. eliminációs mátrixok segítségével kapjuk meg. Egy eliminációs mátrix dolga, hogy kinullázza az A mátrix egyik oszlopában a főátló alatti elemeket. Ha az összes ilyen eliminációs mátrixot összeszorozzuk balról egymással, akkor kapjuk az $M$ mátrixot. 
+Ekkor az $M*A$ szorzás eredménye lesz a kívánt **felső trianguláris** mátrix.
 
 ### LU felbontás
+Szükséges a négyzetes mátrix
 
-Az LU felbontás lényege, hogy az A mátrixot egy alsó és egy felső háromszögmátrixra bontjuk. A Gauss eliminációhoz nagyon hasonlít, ott az MA szorzás eredménye egy U felső trianguláris mátrix volt. Ha mindkét oldalt megszorozzuk balról M^-1-gyel, akkor azt kapjuk, hogy A = M^-1U. Legyen M^-1=L, mert M^-1 egy alsó trianguláris mátrix. Ezzel elvégeztük az A mátrix LU felbontását.
+Az LU felbontás lényege, hogy az A mátrixot egy alsó és egy felső háromszögmátrixra bontjuk. A Gauss eliminációhoz nagyon hasonlít, ott az **MA szorzás eredménye egy U felső trianguláris mátrix volt**. Ha mindkét oldalt megszorozzuk balról $M^{-1}$-gyel, akkor azt kapjuk, hogy $A = M^{-1}U$. Legyen $M^{-1}=L$, mert $M^{-1}$ egy **alsó trianguláris** mátrix. Ezzel elvégeztük az A mátrix LU felbontását.
 
 Ekkor az Ax=b egyeletrendszer megoldását a következőképpen kaphatjuk:
+1. $LUx=b$
+2. $Ly=b$ - y egy új mesterséges változó
+3. $Ux = y$ - megoldás x-re
 
-- Ax=b
-- LUx=b
-- y = Ux
-- Ly=b
-- y = L^-1b
-- L^-1b = Ux
 
 ### Cholesky felbontás
 
-Ha az A mátrix
-
+Ha az **A mátrix**
 - szimmetrikus
-- pozitív definit
-    - minden sajátértéke pozitív
+- pozitív definit (ha minden sajátérték pozitív)
+	- Ha az átlóba **csak pozitív** van akkor biztos pozitív definit
 
-akkor felbontható a következőképpen: A=LL^T, tehát U az most pont L transzponáltja lesz.
+akkor felbontható a következőképpen: (Az $LU = x$, ből $U = L^T$)
+1. $A=LL^T$ - Ez a Cholesky alak
+2. $Ly = b$ - Az $L^Tx = y$ helyettesítésével megoldjuk y-ra
+3. $L^Tx = y$ - Végül az $y$ segítségével kifejezzük az $x$-et
+
+2x olyan gyors mint az LU felbontás és **numerikusan stabilis**, ==szóval, ha picit változtatunk az inputon akkor kicsit változik az eredmény.==
 
 ### QR felbontás
+$Q$: egy **ortogonális mátrix**, tehát$QQ^T = Q^TQ = I$, azaz a **transzponáltja egyben az inverze** is
+$R$: egy felső háromszögmátrix
 
-Ha az A mátrix
+Numerikusan stabilabb ez is.
+**Megoldás:**
+1. $Rx=Q^Tb$
 
-- négyzetes
-- valós
-- reguláris (det(A) nem  0)
+**Tétel:** Tetszőleges A négyzetes valós reguláris mátrixnak létezik az A = QR felbontása ortogonláis és felső háromszögmátrixra.
+**Bizonyítás:**
+$A^TA$ pozitív definit, így létezik $R^TR$ Cholesky felbontása.
 
-akkor létezik QR felbontása.
-
-Q egy úgynevezett ortogonális mátrix (és négyzetes is). Ez azt jelenti, hogy Q^TQ = QQ^T = I.
-R egy felső háromszögmátrix
-
-Bizonyítás:
-A^TA pozitív definit, így létezik R^TR Cholesky felbontása.
-
-Legyen ekkor Q egyenlő A^R-1-gyel.
+Legyen ekkor Q egyenlő $A^{R-1}$-gyel.
 
 Igazoljuk, hogy Q ortogonális.
 
-Q^TQ = (AR^-1)^T\*(A^R^-1) = (R^-1)^T\*A^T\*A\*R^-1 = (R^-1)^T\*R^T\*R\*R^-1 = I\*I = I
-        behelyettesítés     transzponálásos azonosság  A^TA=R^TR           inverzek kiütik egymást
+Q^TQ = (AR^{-1})^T (A^R^-1)}= (R^-1)^T\*A^T\*A\*R^-1 = (R^-1)^T\*R^T\*R\*R^-1 = I\*I = I
 
-Tehát Q valóban ortogonális.
+    behelyettesítés transzponálásos azonosság  A^TA=R^TR inverzek kiütik egymást
+
+Tehát Q valóban ortogonális 
 
 ## Lineáris egyenletrendszerek megoldása iterációs módszerekkel
 
+**Iterációs módszerek:** Egy kezdő állapotból, minden iteráció után egyre jobb közelítést adnak a megoldásnak. 
+
+**Nagy méretű mátrixokra**, vagy ha **eliminációs módszerek eredményei kerekitési hibával terheltek**
 ### Jacobi iteráció
 
-Átrendezzük úgy az egyenletrendszert, hogy a baloldalon egy-egy változót kifejezünk
+Átrendezzük úgy az egyenletrendszert, hogy a **bal oldalon egy-egy változót kifejezünk**.
+Minden egyenlet esetén, úgy oldjuk meg, hogy az i-edik egyenletben az i-edik változó együtthatójával osztunk, majd az i-edik tagon kívűl mindegyiket kivonjuk az egyenletből:
 
-Választunk valami indulóvektort, ami ilyen kezdő megoldás kb
+**Formálisan:**
+$x^{(k+1)} = -D^{-1}(A-D)x^{(k)}+D^{-1}b$,
+- $D$ egy diagonális mátrix (A főátlóbeli elemeit tartalmazza)
+- $D^{-1}$-el való szorzás pont az i-edik egyenlet elosztása az i-edik együtthatóval.
+- Az $A-D$ a jobb oldalra való átvivést jelképezi.
+
+Választunk valami **indulóvektort**, ami ilyen kezdő megoldás kb
 A vektor elemeit behelyettesítjük a jobboldalra, és ebből kapunk egy új vektort a baloldalon, ezzel folytatjuk.
 
 Csak akkor konvergál, ha a mátrix *szigorúan diagonálisan domináns*, vagyis az összes főátlóbeli elem abszolút értéke a legnagyobb az adott sorban.
 
-### Gauss-Sediel iteráció
+### Gauss-Seidel iteráció
 
-Ugyanaz, mint a Jacobi, csak ha már egy változó új értékét kiszámoltuk, akkor a következő sorokban már azt az új értéket használjuk. 
+Ugyanaz, mint a Jacobi, csak ha már **egy változó új értékét kiszámoltuk**, akkor a következő sorokban már azt az **új értéket használjuk**. 
+
+- A Gauss-Seidel gyorsabban konvergál a megoldáshoz, mint a Jacobi
 
 ## Mátrixok sajátértékeinek és sajátvektorainak numerikus meghatározása
 
 ### Sajátérték, sajátvektor
+Legyen $A$ egy négyzetes mátrix.
 
-Ax = lambda x
-
-x a sajátvektor, lambda a sajátérték
+$Ax = \lambda x$
+$x$ a **sajátvektor**, $\lambda$ a **sajátérték**
 
 A sajátérték olyan szám, amivel ha megszorozzuk a hozzá tartozó sajátvektort, akkor ugyanazt az eredményt kapjuk, mintha azt a vektort a mátrixszal szoroztuk volna meg.
 
-Meghatározása: det(A - lambdaI) = 0
+**Meghatározása:** $det(A - \lambda I) = 0$
 tehát, a főátló minden eleméből kivonunk lambdát, és ennek a mátrixnak keressük a determinánsát
-ez egy polinomot fog eredményezni, amiben lambdák a változók, és ennek a polinomnak a gyökei lesznek a sajátértékek
+ez egy polinomot fog eredményezni, amiben lambdák a változók, és ennek a **polinomnak a gyökei** lesznek **a sajátértékek**.
 
-Ezt a polinomot nevezzük a mátrix *karakterisztikus polinomjának*.
+Ezt a polinomot nevezzük a mátrix **karakterisztikus polinomjának**.
+
+![sajatérték](sajatertek.JPG)
+
 Valós mátrixnak is lehetnek komplex sajártértékei!
-
 A mátrix sajártértékeinek a halmazát a mátrix *spektrumának* hívjuk.
 
 ### Hatványmódszer
@@ -781,8 +842,8 @@ A mátrix sajártértékeinek a halmazát a mátrix *spektrumának* hívjuk.
 A hatványmódszer a legnagyobb abszolútértékű sajátérték meghatározására szolgál.
 Iterációs módszer.
 
-y^k = Ax^k
-x^(k+1) = y^k/||y^k||
+$y^k = Ax^k$
+$x^{(k+1)} = y^k/||y^k||$
 
 a kiindulási x vektor ne legyen a nullvektor, és nem lehet merőleges a legnagyobb abszolútértékú sajátértékhez tartozó sajátvektorra.
 
@@ -790,10 +851,11 @@ A k betűk a kitevőben a k. iterációt jelentik, nem k. hatványt.
 
 ### Inverz hatványmódszer
 
-Ay=x^k
-x^(k+1) = y/||y||
+$Ay=x^k$
+$x^{(k+1)} = y/||y||$
 
 Az inverz hatványmódszer azon a felismerésen alapul, hogy ha az A mátrix sajátértéke lambda, és a hozzá tartozó sajátvektor x, akkor A^-1 egy sajátértéke lambda^-1, és a hozzá tartozó sajátvektor x.
+
 
 
 
@@ -807,124 +869,163 @@ Mindegyik egyváltozós függvény zérushelyét keresi, iterációs módszerrel
 
 Más néven Newton-módszer
 
-f(x)=0 egyenlet zérushelyét keressük, ez legyen x*
+$f(x)=0$ egyenlet zérushelyét keressük, ez legyen $x*$
 
-Ennek egy környezetében, ha f(x) differenciálható, válasszunk ebből a környezetből egy kezdőértéket
+Ennek egy környezetében, ha $f(x)$ differenciálható, válasszunk ebből a környezetből egy kezdőértéket
 
 Az iteráció, amit használunk:
 
-x_k+1 = x_k-f(x_k)/f'(x_k)
+$x_{k+1} = x_k - \dfrac{f(x_k)}{f'(x_k)}$
 
-Magyarul, a következő megoldást úgy kapjuk, hogy az előző megoldásból kivonjuk a függvény x_k helyen felvett értékének és a függvény deriváltjának az x_k pontban felvett értékének a hányadosát.
+Magyarul, a következő megoldást úgy kapjuk, hogy **az előző megoldásból kivonjuk a függvény $x_k$ helyen felvett értékének és a függvény deriváltjának az $x_k$ pontban felvett értékének a hányadosát.** $\rightarrow$ Ezzel képezzük az adott ponthoz húzott *érintőt*.
 
-Ha az f(x) függvény kétszer folytonosan differenciálható az x* egy környezetében, akkor van olyan pont, ahonnan indulva a Newton-módszer kvadratikusan konvergens sorozatot ad meg, aka gyorsan konvergál a megoldáshoz.
+Ha az $f(x)$ függvény kétszer folytonosan differenciálható az $x^*$ egy környezetében, akkor van olyan pont, ahonnan indulva a Newton-módszer **kvadratikusan konvergens** sorozatot ad meg, **aka gyorsan konvergál a megoldáshoz**.
 
-|x*-x_{k+1}| <= C|x*-x_k|^2
+$|x*-x_{k+1}| <= C|x*-x_k|^2$
 
 ### Szelőmódszer
+A Newton módszer hátránya, hogy szükség van a **deriváltak** kiszámítására $\rightarrow$ költséges.
 
-Legyen megint x* az f(x)=0 egyenlet egyszeres gyöke, és megint ezt keressük iterációval.
+Legyen megint $x^*$ az $f(x)=0$ egyenlet egyszeres gyöke, és megint ezt keressük numerikus iterációval.
 
-A függvény deriváltját nem mindig tudjuk, de a függvényt ki tudjuk értékelni minden helyen. Ekkor f' helyett használhatjuk az (f(x_k)-f(x_{k-1}))/(x_k-x_{k-1}) képletet.
+A függvény deriváltját nem mindig tudjuk, de a függvényt ki tudjuk értékelni minden helyen. Ekkor $f'(x_k)$ helyett használhatjuk az numerikus deriváltat. 
+$f'(x_k)$ =$\dfrac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}$
 
-Ekkor f' helyére a felső képletet behelyettesítve megkapjuk a szelőmódszer iterációs képletét:
+Ekkor $f'$ helyére a felső képletet behelyettesítve megkapjuk a szelőmódszer iterációs képletét:
 
-x_{k+1} = x_k-f(x_k)*(x_k-x_{k-1})/(f(x_k)-f(x_{k-1}))
+$x_{k+1} = x_k- \dfrac{f(x_k)*(x_k-x_{k-1})}{f(x_k)-f(x_{k-1})}$
 
-Azért szelőmódszer a neve, mert x_{k+1} az az (x_k, f(x_k})) és (x_{k-1}, f(x_{k-1})) pontokon átmenő egyenes és az x tengely metszéspontjának koordinátája.
+Azért szelőmódszer a neve, mert $x_{k+1}$ az az $(x_k, f(x_k))$ és $(x_{k-1}, f(x_{k-1}))$ **pontokon átmenő egyenes és az x tengely metszéspontjának koordinátája.**
 
-Olyan x0, x1 kezdőértékekkel szokás indítani, amelyek közrefogják a gyököt, amit keresünk.
+Olyan $x_0, x_1$ **kezdőértékekkel szokás indítani, amelyek közrefogják a gyököt,** amit keresünk.
 
 ### Húrmódszer
 
 A szelőmódszer egy változata.
 
-Feltesszük, hogy a kezdeti x0, x1 pontokban az f(x) függvény ellentétes előjelű, és f(x_{k+1}) függvényében a megelőző két pontból azt választjuk, amivel ez a tulajdonság fennmarad.
+Feltesszük, hogy a kezdeti $x_0, x_1$ pontokban az $f(x)$ függvény ellentétes előjelű, és $f(x_{k+1})$ függvényében a megelőző két pontból azt választjuk, amivel ez a tulajdonság fennmarad.
 
 ### Konjugált gradiens eljárás
+Az eljárás olyan lineáris ($Ax = b$ alakú) egyenletrendszerek megoldására alkalmaz, ahol az $A$ **együtthatómátrix szimmetrikus** ($A = A^T$), **pozitív definit** ($\forall x \ne 0$ $x^T Ax > 0$) és **valós** ($A \in \mathbb{R}^{n*n}$). 
+Pontos számolásokkal véges sok lépésben megtalálná a megoldást, de a **kerekítési hibák miatt iterációs eljárásnak veszik**.
 
-Szimmetrikus, pozitív definit mátrixú lineáris egyenletrendszerek megoldására alkalmas. Pontos számolásokkal véges sok lépésben megtalálná a megoldást, de a kerekítési hibák miatt iterációs eljárásnak veszik.
+**Gradiens:** Változók parciális deriváltjai vektorba rendezve. Van iránya és nagysága.
+Ismert, hogy a többváltozós függvények gradiensvektorával ellentétes irányban csökken a leggyorsabban.
 
-q(x) = 1/2x^TAx−x^Tb kvadratikus függvény minimumpontját keressük, mert ez ugyanaz, mint az eredeti egyenletrendszerünk megoldása, ha létezik.
+$q(x) = \dfrac{1}{2}x^TAx−x^Tb$ kvadratikus függvény minimumpontját keressük, mert ez ugyanaz, mint az eredeti egyenletrendszerünk megoldása, ha létezik.
 
-Úgy keressük a következő közelítő megoldást, hogy van egy keresési irányunk, és egy lépésközünk, és az aktuális pontból lépünk ebbe az irányba ekkora lépésközzel egyet.
+Úgy keressük a következő közelítő megoldást, hogy van egy **keresési irányunk ($s_k$)**, és egy **lépésközünk ($\alpha$)**, és az aktuális pontból lépünk ebbe az irányba ekkora lépésközzel egyet.
 
-A negatív gradiensvektort nevezzük reziduális vektornak (erre csökken a függvényünk).
-Ez lesz r = b-Ax.
-A keresési irányban ott lesz a célfüggvény minimális ahol az új reziduális vektor merőleges az előző keresési irányra, szóval tudjuk pontosan, hogy hova kell lépnünk az adott irányban.
+A **negatív gradiensvektort** nevezzük **reziduális vektornak** (erre csökken a függvényünk).
+**Ez lesz $r = b-Ax$.**
+A keresési irányban ott lesz a **célfüggvény minimális ahol az új reziduális vektor merőleges az előző keresési irányra**, szóval tudjuk pontosan, hogy hova kell lépnünk az adott irányban.
 
-Tehát a konjugált gradiens módszer:
-
+**Tehát a konjugált gradiens módszer:**
 - meghatározzuk a lépéshosszt
-- meghatározzuk az új közelítő megoldást (lépünk egyet az előző megoldásból az adott irányba az új lépéshosszal)
+- meghatározzuk az **új közelítő megoldást** (lépünk egyet az előző megoldásból az adott irányba az új lépéshosszal ($\alpha$))
 - ebből kiszámoljuk az új reziduális vektort
-- és az új keresési irányt
+- Kiszámolunk egy segédváltozót
+- és az új keresési irányt a segédváltozóval
 - és kezdjük elölről
 
 A megállási feltételünk lehet az, hogy az utolsó néhány iterált közelítés eltérése és a reziduális vektorok eltérése bizonyos kicsi határ alatt maradtak.
 
 ## Lagrange interpoláció
 
-Függvényközelítéses módszer. Van pár alappontunk, és ezekre szeretnénk egy polinomot illeszteni. Ezek az alappontok legyenek páronként különbözőek.
+**Függvényközelítéses módszer.** Van pár alappontunk, és ezekre szeretnénk egy polinomot illeszteni. Ezek az **alappontok legyenek páronként különbözőek.**
 
-
-Minden pontra felírunk egy egyenletet. Ahány alappontunk van, max annyiad fokú lesz a kapott polinomunk. Az egyenlet úgy fog kinézni, hogy ismerjük az x_i értéket, és mindenhova behelyettesítjük őket, és ezeknek az x_i^1, x_i^2, stb változóknak keressük az együtthatóját. Az egyenlet jobb oldalán pedig az f(x_i) értékek vannak.
+Minden pontra felírunk egy egyenletet. **Ahány alappontunk van, max annyiad fokú lesz a kapott polinomunk**. Az egyenlet úgy fog kinézni, hogy ismerjük az $x_i$ értéket, és mindenhova behelyettesítjük őket, és ezeknek az $x_i^1, x_i^2$, stb változóknak keressük az együtthatóját. Az egyenlet jobb oldalán pedig az $f(x_i)$ értékek vannak.
 
 Ebből kapunk egy lineáris egyenletrendszert, ahol az együtthatókat keressük. Ennek az egyenletrendszernek a mátrixa egy Vandermonde-mátrix lesz. Ebből következik, hogy pontosan egy polinom létezik, ami az adott pontokon áthalad.
 
-A Lagrange-interpoláció az interpoláló polinomot a Szumma f(x_i)L_i(x) alakban adja meg.
-L_i(x)-et úgy kapjuk, hogy egy nagy törtet veszünk - a számlálóban összeszorozzuk az összes x-x_j-t, ahol *j nem egyenlő i-vel*, tehát x-x_i szorzó kimarad belőle
-A nevezőben pedig x_i-x_j-ket szorzunk össze, mindenhol, ahol j nem egyenlő i-vel szintén (különben nullával osztanánk).
+A Lagrange-interpoláció az interpoláló polinomot a $\sum_{i=1}^n f(x_i)L_i(x)$ alakban adja meg.
+$L_i(x)$-et úgy kapjuk, hogy egy nagy törtet veszünk - a **számlálóban összeszorozzuk** az összes $x-x_j$-t, ahol *j nem egyenlő i-vel*, tehát $x-x_i$ szorzó kimarad belőle
+A **nevezőben pedig $x_i-x_j$-ket szorzunk össze**, mindenhol, ahol j nem egyenlő i-vel szintén (különben nullával osztanánk).
 
 ## Numerikus integrálás
+**Határozatlan integrál:**
+$\int f(x) = F(x)dx$,
+ahol $F'(x) = f(x)$ (deriválás megfordítása). **$F(x)$-et primitív függvénynek nevezzük.**
 
-Határozott integrálokat akarunk közelíteni, úgynevezett kvadratúra formulákkal.
+**Határozott integrál:** Célja, hogy egy adott $f(x)$ függvénynek adott $[a,b]$ intervallumon szeretnénk a **görbe alatti (előjeles) területét** kiszámítani.
+$\int_a^b f(x)dx=F(b)-F(a).$ (Newton-Leibnz formula)
 
-Q_n(f)-fel jelöljük, Q_n(f)=Szumma i=1-től n-ig w_i * f(x_i)
+A fenti formula közelítése a cél, tehát **adott egy $f(x)$ függvény határozott integrálját szeretnénk megközelíteni az $[a,b]$ intervallumon**
 
-Általában feltesszük, hogy az összes x_i az \[a,b\] intervallumban van, ugye ebben az intervallumban keressük a határozott integrálját f-nek.
-A w_i számokat pedig súlyoknak hívjuk.
-Homogén és additív leképezés, azaz két függvény összegének a határozott integrálja a két függvény határozott integráljának az összege,
-és egy függvény számszorosának határozott integrálja a függvény határozott integráljának számszorosa.
+### **Kvadratúra formulák:**
 
-A határok szerinti additivitás fontos tulajdonság, tehát pl integrál a-tól b-ig az ugyanaz mint integrál a-tól c-ig plusz integrál c-től b-ig, ahol a < c < b
+$Q_n(f)$-fel jelöljük, $Q_n(f)=\sum_{i = 1}^nw_i f(x_i)$ azaz, ==**az alappontokon felvett függvényérték $w_i$ szerinti súlyozott összege.**==
 
-A kvadratúra-formula hibája a határozott integrál mínusz a kvadratúra formula kifejezéssel definiáljuk. Ha ez nulla, akkor pontos a kvadratúra formula.
+- Veszünk $x_1,..,x_n$ alappontokat, általában feltesszük, hogy az összes $x_i$ az \[a,b\] intervallumban van, ugye ebben az intervallumban keressük a határozott integrálját f-nek.
+- A $w_i$ számokat pedig súlyoknak hívjuk, amiket minden $x_i$ alapponthoz hozzárendelünk.
 
-Kvadratúra formula pontossági rendje az *r* természetes szám, ha az pontos az 1, x, x^2, x^3, ..., x^r hatványfüggvényekre, de nem pontos x^{r+1}-re. A rend meghatározása ekvivalens egy egyenletrendszer megoldásával. Ha az alappontokat (tehát x1, x2, stb) ismeretlennek tekintjük, akkor ez egy r+1 egyenletből álló egyenletrendszer (mert elmegyünk x^r-ig, plusz az x^0, azaz 1), amiben 2n változó van (n súly és n darab x).
+**Téglalap szabály:**
+Amennyibe **csak egy alappontot** veszünk, az $x_1 = \dfrac{a+b}{2}$ felezőpontot és a hozzárendelt $w_i$ súly az intervallum mérete, azaz $b-a$ lesz
 
-Az n alappontos kvadratúra formula rendje legfeljebb 2n-1 lehet.
+**Tétel:** A $Q_n$ $n$ alappontos kvadratúra-formula rendje legfeljebb 2n-1 lehet
 
-# 10. Normálformák a predikátumkalkulusban. Egyesítési algoritmus. Következtető módszerek: Alap rezolúció, elsőrendű rezolúció
+### **Interpolációs kvadratúra-formulák:**
+**A téglalap szabálynál veszünk egy $x_1$ alappontot és erre illesztünk egy polinomot, és ennek a polinomnak a határozott integrálják vesszük.**
+
+amennyiben, ha egy kvadratúra formula megkapható a következő alakban:
+- Meghatározzuk a módszertól függően az $x_1,...,x_n$ alappontokat,
+- A kvadratúra-formula értéke az $(x_i,f(x_i))$ pontokra illesztett Lagrange-interpolációs polinom $[a,b]$-n vett integrálja.
+
+**Lagrange-interpolációs polinom:** Az $(x_i, f(x_i))$ pontokra illesztett polinomok előállnak a következő alakban: $\sum_{i=1}^n f(x_i)L_i(x)$, ahol $L_i(x)$ az i-edik Lagrange-alappolinom.
+
+A súlyok: $w_i = \int_a^b L_i(x)dx$
+
+### Newton-Cotes formulák
+Ha az $[a,b]$ intervallumot elosztjuk **ekvidisztánsan** (egyforma méretű intervallumokra), és ezek végpontjait választjuk alappontoknak.
+Ezek a Newton-Cotes formulák. Lehet **nyitott** és **zárt** attól függően, hogy $a$ és $b$ alappontok lehetnek-e.
+**Nyitott esetén:** n+1 egyenlő részre kell osztani az intervallumot
+**Zárt esetén:** n-1 egyenlő részre kell osztani az intervallumot
+
+**Trapéz szabály:**
+pl: A legegyszerűbb esetben két alappontunk van és erre a két alappontra egy elsőfokú polinomot tudunk majd illeszteni.
+Felvesszük a pontokat (pl: $x_1$ = $a$  $x_2$ = $b$), meg a súlyt ami $w_1 = w_2 = \dfrac{b-a}{2}$, azaz $(f(a)+f(b))*\dfrac{b-a}{2}))$
+
+### Összetett kvadratúra-szabályok
+Az $[a,b]$ intervallumokat felbontják $n$ egyforma részre, és ezekre külön-külön csinálnak egy kvadratúra formulát.
+
+
+# 10.Normálformák az elsőrendű logikában. Egyesítési algoritmus. Következtető módszerek: Alap rezolúció és elsőrendű rezolúció, ezek helyessége és teljessége
+**Elsőrendű logika szintaxis:**
+*Elsőrendű változók:* $x, y, z, ..., x_1,y_5...$
+*Függvényjelek:* $f,g,...,f_1,g_5...$
+*Predikátumjelek:* $p,q,r,...,p_1...$
+*Konnektívák:* $\lor, \wedge, \neg, \leftrightarrow, \rightarrow$
+*Kvantorok:* $\forall, \exists$
+*Logikai konstansjelek:* $\downarrow, \uparrow$
 
 ## Normálformák predikátumkalkulusban
+Formulákkal dolgozni tudjunk, úgy nevezett **zárt Skolem** alakra kell hozni
 
-Prenex alak
-
-- elimináljuk a nyilakat
-- kiigazítjuk a formulát (változókat átnevezzük, ha van változónév-ütközés)
-- az összes kvantort kihozzuk a formula elejére, ha páratlan negálás scope-jában volt, akkor fordul, ha páros, nem
-
-Skolem alak
-
-- prenex alak
-- a létezik kvantorhoz tartozó változókat lecseréljük új függvényekre, amik az előtte álló bármely-kvantált változóktól függnek
-
-Zárt Skolem alak
-
-- Skolem alak
-- a szabad változókat lecseréljük konstansokra, pl minden x helyére cx-et írunk
+1. Nyilak eliminálása
+2. Kiigazítás (Változó név ütközés elkerülés)
+	- Különböző kvantorok különböző változókat kötnek
+	- Nincs olyan változó, amely szabadon ($\exists$) és kötötten ($\forall$) is előfordul
+	- Indexelés
+3.  Prenex alakra hozás
+	- Kvantorokat az elejére szervezzük.
+4. Skolem alakra hozás
+	- Összes kvantor elől és mindegyik $\forall$
+	- Töröljük $\exists$ változókat (pl $\exists x$)
+	- A magbeli törölt változók helyére mindenhova $f(x_1,..x_n)$ kerül, ahol $f$ egy **új függvényjel**
+5. Lezárás
+	- Ne maradjon szabad változó-előfordulás
+	- A szabad változó helyére, berakunk egy *új* konstans szimbólumot.
 
 ## Egyesítési algoritmus
 
 Ha F egy formula, akkor F\[x/t\] azt jelenti, hogy F-ben x összes előfordulását helyettesítjük t-vel.
 
-Ha x1, x2, ..., xn változók, és t1, ..., tn termek, akkor az \[x1/t1\], ..., \[xn/tn\] helyettesítés azt jelenti, hogy először x1 helyére írunk t1-et, aztán az eredményben x2 helyére t2-t, stb.
+Ha $x_1, x_2, ..., x_n$ **változók**, és $t_1, ..., t_n$ **termek**, akkor az \[x1/t1\], ..., \[xn/tn\] helyettesítés azt jelenti, hogy először $x_1$ helyére írunk $t_1$-et, aztán az eredményben $x_2$ helyére $t_2é-t, stb.
 
 Formulák halmazaira, pl klózokra is értelmezhetjük ezt.
 
 Klóz végzett helyettesítésnél \[x/t\] azt jelenti, hogy minden klózra elvégezzük az x helyére t helyettesítést, és az eredményeket visszapakoljuk egy halmazba.
-Ha C={l1, l2, ..., ln} literálok halmaza, akkor s a c egyesítője, ha l1\*s = ... = ln\*s.
+Ha $C={l_1, l_2, ..., l_n}$ **literálok halmaza**, akkor $s$ a $c$ egyesítője, ha $l_1$\*s = ... = $l_n$\*s.
 C-re akkor mondjuk, hogy egyesíthető, ha van egyesítője.
 
 Az s helyettesítés általánosabb az s' helyettesítésnél, ha van olyan s" helyettesítés, hogy s\*s" = s'.
@@ -943,23 +1044,33 @@ Nem egyesíthető pl
 - ha x és f(x) a különbség
 - ha g(x) és f(x) a különbség
 
-## Alaprezolúció
-
-- input: elsőrendű formulák egy szigma halmaza
-- output: kielégíthetetlen véges sok lépésben, vagy kielégíthető véges sokban vagy végtelen ciklus
-- szigma elemeit zárt skolem alakra hozzuk, a formula belsejét pedig CNF-re, ez legyen szigma'
-- ekkor E(szigma') a klózok alappéldányainak a halmaza
-- E(szigma')-n futtatjuk az ítéletkalkulusbeli rezolúciós algoritmust
-- E(szigma') általában végtelen
-- vegyük fel E(szigma') egy elemét, és rezolváljunk vele, amíg lehet
+## Alap rezolúció
+Azért ALAP mert **alap termek** vannak benne.
+($E(\Sigma$): Klózok herbrand kiterjesztése)
+- **input:** elsőrendű formulák egy $\Sigma$ halmaza
+- **output:** kielégíthetetlen véges sok lépésben, vagy kielégíthető véges sokban vagy végtelen ciklus
+- Módszer:
+	- $\Sigma$ elemeit zárt skolem alakra hozzuk, a formula belsejét pedig CNF-re, ez legyen $\Sigma'$
+	- ekkor $E(\Sigma'$) a klózok **alap példányainak** a halmaza
+	- $E(\Sigma'$)-n futtatjuk az ítéletkalkulusbeli rezolúciós algoritmust
+	- általában végtelen sok alapterm van
+- vegyük fel $E(\Sigma'$) egy elemét, és rezolváljunk vele, amíg lehet
 - ha kijön az üres klóz, akkor jók vagyunk, ha nem, generálunk tovább
+
+**Helyesség és teljesség:**
+$üresklóz \in Res^*(E(\Sigma'))$, ha $\Sigma \vDash \downarrow$, **AZAZ, HA letudjuk vezetni az üresklózt akkor kielégíthetetlen, és fordítva**
+
+**Bizonyításra pár bulletpoint:**
+1. Zárt Skolem alakra hozás az s-ekvivalens átalakítás, azaz ha $\Sigma$ pontosan akkor kielégíthetetlen,ha $\Sigma'$ is
+2. Herbrand-tétel következménye, hogy $\Sigma'$ pontosan akkor kielégíthetetlen ha $E(\Sigma')$ az
+
 
 ## Elsőrendű rezolúció
 
-- input: elsőrendű formulák egy szigma halmaza
-- output: kielégíthetetlen-e?
-- szigma zárt skolemre, mag cnfre, szigma'
-- szigma' elemeit közvetlenül felvehetjük a listára
+- **input:** elsőrendű formulák egy szigma halmaza
+- **output:** kielégíthetetlen-e?
+- $\Sigma$ zárt skolemre, mag cnfre, $\Sigma'$
+- $\Sigma'$ elemeit közvetlenül felvehetjük a listára
 - ha kijön az üres klóz, kielégíthetetlen
 - ha nem tudunk több klózt levezetni, kielégíthető
 
@@ -975,17 +1086,28 @@ Rezolvensképzés:
 - vesszük C1-ből és C2-ből a maradék literálokat, és berakjuk egy halmazba
 - ezen a halmazon elvégezzük az s helyettesítést, ez lesz a rezolvens
 
+**Helyesség és teljesség:**
+Az elsőrendű klózok $\Sigma$ halmaza pontosan akkor **kielégíthetetlen**, ha $üresklóz \in Res^*(\Sigma)$ (levezethető az üresklóz $\Sigma$ az elsőrendű rezoluciós algoritmussal)
+
+**Bizonyításra pár bulletpoint:**
+1. Helyesség:
+	-  Kijöhet az üres klóz, akkor $\Sigma$ kielégíthetetlen, rezolvensképzés helyességéből következik.
+2. Teljesség:
+	- Ha $\Sigma$ kielégíthetetlen, akkor az üres klóznak vanegy $C_1', ... , C_n' = üresklóz$ alaprezolúciós levezetése.
 
 
-
-# 9. Normálformák az ítéletkalkulusban, teljes rendszerek. Következtető módszerek: Hilbert-kalkulus és rezolúció
+# 9. Normálformák az ítéletkalkulusban, Boole-függvények teljes rendszerei. Következtető módszerek: Hilbert-kalkulus és rezolúció, ezek helyessége és teljessége
+## Ítéletkalkulus
+- Vannak **változók** ezeket $(p,q,r)$ szoktuk jelölni, és a ${0,1}$ halmazból kapnak igazságértéket. 
+- A formulák változókból épülnek fel itéletlogikai összekötő jelekkel (**konnektíva**) pl $\neg$, $\wedge$, $\lor$ stb.
 
 ## Normálformák az ítéletkalkulusban
+Klózok éselése **Konjukció**
+Literálok vagyolása **Diszjunkció**
 
-### Diszjunktív normálforma
+### DNF (Diszjunktív normálforma)
 
 A formula olyan alakja:
-
 - a változók pozitívan vagy negatívan szerepelhetnek benne
 - a zárójelekben lévő pozitív vagy negatív változók között éselés van
 - a zárójelek között vagyolás van
@@ -997,16 +1119,9 @@ A nyilakat elimináljuk a formulából a következő szabályok alkalmazásával
 - F -> G == -F || G
 - F <-> G == (F -> G) && (G -> F) == (-F || G) && (-G || F)
 
-### NNF
 
-A negációkat bevisszük teljesen a változók elé, hogy semmilyen zárójeles kifejezés előtt 
-ne szerepeljen negáció. Ez a formula már nyílmentes is.
-Ehhez a De Morgan szabályokat alkalmazzuk:
-
-- -(F || G) == -F && -G
-- -(F && G) == -F || -G
-
-### CNF
+### CNF (Konjunktív normállforma) 
+diszjunkciók konjunkciója
 
 A CNF alakban klózok vannak, és a klózok vannak összeéselve egymással. Egy klózban változók
 vannak, negatívan vagy pozitívan, és ezek között vagyolás van. Úgy kapjuk, hogy egy már 
@@ -1017,28 +1132,30 @@ NNF-ben lévő formulában alkalmazzuk a disztribúciós szabályt:
 
 ## Teljes rendszerek
 
-Logikai műveletek egy rendszerét akkor nevezzük teljesnek, ha egy, már korábban teljesnek
-ítélt rendszer minden műveletét ki tudjuk fejezni ezen műveletekkel. A {-, &&, ||} rendszer
+Logikai műveletek (Boole függvények) egy rendszerét akkor nevezzük teljesnek, ha egy, már korábban teljesnek
+ítélt rendszer minden műveletét ki tudjuk fejezni ezen műveletekkel. 
+$\neg$, $\wedge$, $\lor$ stb.
+A {$\neg$, $\wedge$, $\lor$} rendszer
 teljes, mert minden formulát CNF alakra tudunk hozni. Ezek alapján teljes még:
 
-- {-, &&}
-- - A negáció okés, az éselés okés, a vagyolást ki tudjuk fejezni: 
-- - - p || q == -(-p && -q)
-- {-, ||}
-- - A negáció okés, a vagyolás okés, az éselést ki tudjuk fejezni:
-- - - p && q == -(-p || -q)
 
-A {-, ->} rendszer is teljes, mert tudjuk, hogy a {-, ||} rendszer teljes, és ki tudjuk fejezni
+- {$\neg$, $\lor$}
+- - A negáció okés, az éselés okés, a vagyolást ki tudjuk fejezni: 
+- - - $p \lor q$ $\neg(\neg p \wedge  \neg q)$
+- {$\neg$, $\wedge$}
+- - A negáció okés, a vagyolás okés, az éselést ki tudjuk fejezni:
+- - - p $\lor$ q == $\neg$($\neg$p $\wedge$ $\neg$q)
+
+A {$\neg$,$\rightarrow$} rendszer is teljes, mert tudjuk, hogy a {$\neg$, $\lor$} rendszer teljes, és ki tudjuk fejezni
 a műveleteit:
 
 - negáció okés, vagyolás: 
-- - p || q == (-p) -> q
+- - p $\lor$ q == ($\neg$p) $\rightarrow$ q
 
-A {->, lenyíl} rendszer is teljes, mert tudjuk, hogy a {-, ->} rendszer teljes, és ki tudjuk
+A {$\rightarrow$, $\downarrow$} rendszer is teljes, mert tudjuk, hogy a {$\neg$, $\rightarrow$} rendszer teljes, és ki tudjuk
 fejezni a műveleteit:
-
 - nyíl okés
-- -p == p -> lenyíl
+- $\neg$p == p $\rightarrow$ $\downarrow$
 
 Ezt a rendszert nevezzük Hilbert rendszerének.
 
@@ -1054,18 +1171,27 @@ A rezolúciós algoritmus inputja klózoknak egy halmaza, és outputja egy igen 
 A baloldali formulák közé felvesszük először a jobboldali formula negáltját, hiszen ha 
 az így kapott új formulahalmaz kielégíthetetlen (azaz Mod(Szigma) üreshalmaz), akkor
 az eredeti logikai következmény fennáll. 
-
-Ezután listát vezetünk a klózokról. Egy klóz felkerülhet a listára, ha 
-
-- eleme a Szigmának
+Formailag:
+**input**: Klózok $\Sigma$ halmaza
+**output:** kielégíthetetlen-e $\Sigma$?
+**Algoritmus:**:
+Ezután listát vezetünk a klózokról. Egy klóz felkerülhet a listára, ha
+- eleme a $\Sigma$-nak
 - két, korábban már a listán szereplő klóz rezolvense
 
-Két klóznak akkor vehetjük a rezolvensét, ha a mindkettőben szerepel ugyanaz a változó, de az egyikben negatívan, a másikban pedig pozitívan. Ekkor a rezolvens egy olyan klóz lesz, ahol ez a változó már nem fog szerepelni, hanem csak a két klózban maradt összes többi változó.
 
-Ha a listára valamelyik lépésben rákerül az üresklóz, az azt jelenti, hogy Szigma kielégíthetetlen, vagyis az eredeti logikai következmény fennáll. Ha sehogy sem tudjuk levezetni az üresklózt, az azt jelenti, hogy a Szigma kielégíthető, és az eredeti logikai következmény nem áll fenn.
+Két klóznak akkor vehetjük a **rezolvensét**, ha a **mindkettőben szerepel ugyanaz a változó**, de az **egyikben negatívan**, a **másikban pedig pozitívan**. Ekkor a **rezolvens egy olyan klóz** lesz, **ahol ez a változó már nem fog szerepelni, hanem csak a két klózban maradt összes többi változó.**
 
+Ha a listára valamelyik lépésben rákerül az **üresklóz**, az azt jelenti, hogy $\Sigma$ **kielégíthetetlen**, vagyis az eredeti logikai következmény fennáll. 
+**Ha sehogy sem tudjuk levezetni az üresklózt,** az azt jelenti, hogy a $\Sigma$ **kielégíthető,** és az eredeti logikai következmény nem áll fenn.
+
+**Helyesség:** Az algoritmus **kielégíthetetlen** válasszal áll meg, akkor az input $\Sigma$ **valóban kielégíthetetlen**)
+
+**Teljes**: Ha $\Sigma$ **kielégíthetetlen,** akkor az algoritmus mindig a **kielégíthetetlen** válasszal áll meg.
 
 ### Hilbert-kalkulus
+**Hilbert rendszere (egy deduktív rendszer)**: Az input a $\Sigma$ **összes** következményét lehet vele levezetni.
+Ebben a rendszerben **csak** a $\rightarrow$ és a $\downarrow$ logikai konstanst használhatjuk az ítéletváltozókon kívűl
 
 A Hilbert-kalkulusban Hilbert rendszerét használjuk. Az ilyen alakú formulákra is tudunk következtető rendszert építeni. A továbbiakban a formuláink mind Hilbert rendszeréből származnak. 
 
@@ -1073,38 +1199,59 @@ A következtető rendszerünkben az input szintén egy formulahalmaz, illetve eg
 
 Ekkor a formulákról szintén listát vezetünk, ahol a listára felkerülhet egy formula, ha:
 
-- benne van a Szigmában
+- benne van a $\Sigma$
 - axiómapéldány
 - modus ponense két, korábban a listán szereplő formulának
 
 Háromféle axiómánk van:
-Ax1: (F -> (G -> H)) -> ((F -> G) -> (F -> H))
-Ax2: F -> (G -> F)
-Ax3: ((F -> lenyíl) -> lenyíl) -> F
+Ax1: (F $\rightarrow$ (G $\rightarrow$ H)) $\rightarrow$ ((F $\rightarrow$ G) $\rightarrow$ (F $\rightarrow$ H))
+Ax2: F $\rightarrow$ (G $\rightarrow$ F)
+Ax3: ((F $\rightarrow$ $\downarrow$) $\rightarrow$ $\downarrow$) $\rightarrow$ F
 
-Két formulának vehetjük a modus ponensét, ha az egyik formula F, a másik pedig F -> G alakú. Ekkor a modus ponens pontosan G lesz.
+**Két formulának vehetjük a modus ponensét**, ha az egyik formula F, a másik pedig F $\rightarrow$ G alakú. Ekkor a **modus ponens** pontosan G lesz.
 
 Ezekkel a szabályokkal ha a listára kerül a logikai következmény jobb oldalán szereplő formula,
 akkor igazoltuk a logikai következményt.
 
-Érdemes még az algoritmus előtt a dedukció művelettel kezdeni. Ha a jobb oldali formula F -> G alakú, akkor F-et átvehetjük a Szigmába, és ezt mindaddig ismételhetjük, amíg a jobb oldal ilyen alakú.
-# 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
+Érdemes még az algoritmus előtt a dedukció művelettel kezdeni. Ha a jobb oldali formula F -> G alakú, akkor F-et átvehetjük a $\Sigma$, és ezt mindaddig ismételhetjük, amíg a jobb oldal ilyen alakú.
 
+- **Helyesség és teljesség:**
+**Formailag:**
+$\Sigma \vdash F \Leftrightarrow \Sigma \vDash F$
+Ha $\Sigma \vdash F$, akkor $\Sigma \vDash F$, AZAZ, ha valakit letudok vezetni az input $\Sigma$-ból akkor az következménye is a $\Sigma$-nak.
+Tehát van valami $F_1,...,F_n$ levezetés $\Sigma$ felett, És akiket felveszünk a listára az követmezménye lesz a $\Sigma$-nak.
+
+
+
+- **+ infók, ez már bizonyítás szint talán idk**:
+1. **dedukciós tétel**:
+	$\Sigma \vdash (F \rightarrow G) \Leftrightarrow \Sigma \cup \{F\} \vdash G$, 
+	Tehát a $\Sigma$ formulahalmazból akkor tudunk **levezetni egy implikációt** $(F\rightarrow G)$, ha annak a **bal oldalát átrakjuk** $\Sigma$-ba ($\Sigma \cup \{F\}$), és ebből a **formulahalmazból le lehet vezetni a jobboldalt** ($G$)-t
+2. **H-konszistencia:**
+Egy $\Sigma$ formulahalmazt H-konsztizensnek nevezünk, ha **nem** igaz, hogy $\Sigma \vdash \downarrow$.
+Azaz **Hilbert rendszerben nem tudjuk bebizonyítani, hogy a formulahalmaz nem kielégíthető (van modelje).**
+	
+
+# 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
 ## Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák
 
 ### Feladatreprezentáció
 
 Tekintsünk egy diszkrét, statikus, determinisztikus és teljesen megfigyelhető feladatkörnyezetet. Tegyük fel, hogy a világ tökéletesen modellezhető a következőkkel:
 
-- lehetséges állapotok halmaza
-- egy kezdőállapot
-- lehetséges cselekvések halmaza (állapotátmenet függvény, minden állapothoz hozzárendelünk egy (cselekvés, állapot) rendezett párokból álló halmazt, tehát egy állapotban milyen cselekvések hatására milyen állapotba juthat az ágensünk)
-- állapotátmenet költségfüggvénye, minden lehetséges állapot-cselekvés-állapot hármashoz hozzárendelünk egy költséget, azaz egy állapotból egy (másik) állapotba jutásnak mekkora a költsége
-- célállapotok halmaza, tehát hova szeretnénk, hogy eljusson az ágensünk
+- **lehetséges állapotok halmaza**
+- **egy kezdőállapot**
+- **lehetséges cselekvések halmaza** (állapotátmenet függvény, minden állapothoz hozzárendelünk egy (cselekvés, állapot) rendezett párokból álló halmazt, tehát egy állapotban milyen cselekvések hatására milyen állapotba juthat az ágensünk)
+- **állapotátmenet költségfüggvénye**, minden lehetséges állapot-cselekvés-állapot hármashoz hozzárendelünk egy költséget, azaz egy állapotból egy (másik) állapotba jutásnak mekkora a költsége
+- **célállapotok halmaza**, tehát hova szeretnénk, hogy eljusson az ágensünk
 
-Ez egy súlyozott gráfot definiál, ez a gráf az állapottér
+Ez egy **súlyozott gráfot** definiál, ez a gráf az **állapottér**
 
 Feltesszük továbbá, hogy az állapotok száma véges, vagy megszámlálható. Úton állapotok cselekvésekkel összekötött sorozatát értjük, ennek van egy összköltsége is.
+pl: Utazástervezési feladat: útvonaltervezés, 
+állapotok = hely és időpont párok; 
+cselekvés = közlekedési eskzözök aktuális állapotból való indulása
+költség= idő és pénz fgv-e
 
 ### Vak (informálatlan) keresés
 
@@ -1112,7 +1259,7 @@ Feltesszük továbbá, hogy az állapotok száma véges, vagy megszámlálható.
 
 Adott kezdőállapotból találjunk minimális költségű utat egy célállapotba. Az állapottér nem mindig adott explicit módon, és végtelen is lehet.
 
-Ötlet: keresőfa építése, a kezdőállapotból növesszünk fát a szomszédos állapotok hozzávételével, amíg célállapotot nem találunk. 
+**Ötlet:** keresőfa építése, a kezdőállapotból növesszünk fát a szomszédos állapotok hozzávételével, amíg célállapotot nem találunk. 
 A keresőfa NEM azonos a feladat állapotterével, pl ha van két csúcs között oda-vissza él.
 
 fakeresés
@@ -1132,23 +1279,23 @@ A hatékonyságot növelhetjük, ha úgy szúrunk be csúcsokat a perembe, hogy 
 
 Fakeresés, ahol a perem egy FIFO perem.
 
-- Teljes, minden, véges számú állapot érintésével elérhető állapotot véges időben elér
-- Általában nem optimális, de pl akkor igen, ha a költség a mélység nem csökkenő függvénye
-- időigény = tárigény O(b^{d+1})
-    - b: szomszédok maximális száma
-    - d: a legkisebb mélységű célállapot mélysége
+- **Teljes**, minden, véges számú állapot érintésével elérhető állapotot véges időben elér
+- **Általában nem optimális**, de pl akkor igen, ha a költség a mélység nem csökkenő függvénye
+- időigény = tárigény $O(b^{d+1})$
+    - **b:** szomszédok maximális száma
+    - **d:** a legkisebb mélységű célállapot mélysége
 
 #### Mélységi keresés
 
 Fakeresés, LIFO perem
 
-- Teljes, ha a keresési fa véges mélységű
-- Nem optimális
-- Időigény: legrosszabb esetben O(b^m) (nagyon rossz, lehet végtelen), tárigény legrosszabb esetben O(bm) (ez egész bíztató)
+- **Teljes**, ha a keresési fa véges mélységű
+- **Nem optimális**
+- Időigény: legrosszabb esetben $O(b^m)$ (nagyon rossz, lehet végtelen), tárigény legrosszabb esetben $O(bm)$ (ez egész bíztató)
 
 #### Iteratívan mélyülő keresés
 
-Mélységi keresések sorozata 1, 2, 3 stb méylségre korlátozva, amíg célállapotot nem találunk.
+Mélységi keresések sorozata 1, 2, 3 stb korlátozva, amíg célállapotot nem találunk.
 
 - Teljesség és optimalitás a szélességivel egyezik meg
 - időigény = O(b^d) (akár jobb is lehet, mint a szélességi), tárigény = O(bd) (jobb, mint a mélységi)
@@ -1159,49 +1306,51 @@ Ez a legjobb informálatlan kereső.
 
 A peremben a rendezés költség alapú, mindig először a legkisebb útköltségű csúcsot terjesztjük ki.
 
-- Teljes és optimális, ha minden él költsége nagyobb mint nulla
-- Idő és tárigény nagyban függ a költségfüggvénytől
+- **Teljes és optimális**, ha minden él költsége nagyobb mint nulla
+- (Idő és tárigény nagyban függ a **költségfüggvénytől**)
 
 #### Gráfkeresés
 
-Ha nem fa az állapottér!
+$$\textbf{Ha nem fa az állapottér!}$$
 
-Fakeresés, de a perem mellett még tárolunk egy ún. zárt halmazt is. A zárt halmazba azok a csúcsok kerülnek, amiket már kiterjesztettünk. A perembe helyezés előtt minden csúcsra megnézzük, hogy már a zárt halmazban van-e. Ha igen, nem tesszük a perembe. Másrészt minden peremből kivett csúcsot a zárt halmazba teszünk. Így minden állapothoz a legelső megtalált út lesz tárolva.
+Ha a **kezdőállapotból több út is vezet egy állapotba**, akkor a **fakeresés végtelen ciklusba eshet**
+Fakeresés, de a perem mellett még tárolunk egy ún. **zárt halmazt** is. A zárt halmazba **azok a csúcsok kerülnek**, amiket **már kiterjesztettünk**. A perembe helyezés előtt minden csúcsra megnézzük, hogy már a zárt halmazban van-e. Ha igen, nem tesszük a perembe. Másrészt minden peremből kivett csúcsot a zárt halmazba teszünk. Így minden állapothoz a legelső megtalált út lesz tárolva.
 
 ## Informált keresés, heurisztikák
 
-Itt már tudjuk, hogy "hova megyünk".
+**Itt már tudjuk, hogy "hova megyünk".**
 
-Heurisztika: minden állapotból megbecsüli, hogy mekkora az optimális út költsége az adott állapotból egy célállapotba: tehát értelmesebben tudunk következő szomszédot választani. Pl. légvonalbeli távolság a célig a térképen egy útvonal-tervezési problémához jó heurisztika.
+**Heurisztika:** minden állapotból megbecsüli, hogy mekkora az optimális út költsége az adott állapotból egy célállapotba: **tehát értelmesebben tudunk következő szomszédot választani**. 
+Pl. légvonalbeli távolság a célig a térképen egy útvonal-tervezési problémához jó heurisztika.
 
-h(n): optimális költség közelítése a legközelebbi célállapotba
-g(n): tényleges költség a kezdőállapotból a jelenlegi állapotba
+$h(n)$: optimális költség közelítése a legközelebbi célállapotba $n$ állapotból
+$g(n)$: tényleges költség a kezdőállapotból $n$-be
 
 ### Mohó
 
-Fakeresés, peremben a rendezést h() alapján csináljuk, mindig a legkisebb értékű csúcsot vesszük ki.
+Fakeresés, peremben a rendezést $h()$ alapján csináljuk, mindig a legkisebb értékű csúcsot vesszük ki.
 
 - Teljes, de csak ha a keresési fa véges mélységű
 - Nem optimális
-- időigény, tárigény O(b^m)
+- időigény, tárigény $O(b^m)$
 
 ### A*
 
-A peremben a rendezést f()=h()+g() alapján végezzük, a legkisebb csúcsot vesszük ki. f() a teljes út költségét becsüli a kezdőállapotból a végállapotba. Ha h = 0, és gráfkeresést alkalmazunk, akkor a Dijkstra-t kapjuk.
+A peremben a rendezést $f()=h()+g()$ alapján végezzük, a legkisebb csúcsot vesszük ki. $f()$ **a teljes út költségét becsüli a kezdőállapotból a végállapotba**. Ha $h = 0$, és gráfkeresést alkalmazunk, akkor a **Dijkstra-t** kapjuk.
 
-Egy h heurisztika elfogadható, ha nem ad nagyobb értéket, mint a tényleges optimális érték.
-Fakeresést feltételezve, ha h elfogadható és a keresési fa véges, akkor A* optimális.
+Egy $h$ heurisztika elfogadható, ha nem ad nagyobb értéket, mint a tényleges optimális érték.
+Fakeresést feltételezve, ha $h$ elfogadható és a keresési fa véges, akkor $A^*$ optimális.
 
-Egy h heurisztika konzisztens, ha h(n) <= mint a valódi költség n egyik bármely, plusz a szomszéd heurisztikája.
-Gráfkeresést feltételezve, ha h konzisztens és az állapottér véges, akkor A* optimális.
+Egy $h$ heurisztika **konzisztens**, ha $h(n) \le$ mint a **valódi költség** $n$ egyik bármely, plusz a szomszéd heurisztikája.
+Gráfkeresést feltételezve, ha $h$ **konzisztens és az állapottér véges**, akkor $A^*$ **optimális**.
 
-Az A* optimálisan hatékony, de a tárigénye általában exponenciális, és nagyon nagyban függ h-tól. Az időigény szintén nagyon nagyban függ h-tól.
+Az $A^*$ optimálisan hatékony, de a **tárigénye általában exponenciális**. és nagyon nagyban függ $h$-tól. Az **időigény** szintén nagyon **nagyban függ** $h$-tól.
 
 ### Heurisztikák
 
 A relaxált probléma optimális megoldása pl jó heurisztika lehet.
 
-Relaxált probléma: elhagyunk feltételeket az eredeti problémából.
+**Relaxált probléma:** elhagyunk feltételeket az eredeti problémából.
 Kombinálhatunk több heurisztikát is.
 Készíthetünk mintaadatbázisokat, ahol részproblémák egzakt költségét tároljuk.
 
@@ -1220,7 +1369,7 @@ Készíthetünk mintaadatbázisokat, ahol részproblémák egzakt költségét t
 Két ágens van, felváltva lépnek. Az egyik maximalizálni akarja a hasznosságfüggvényt (MAX játékos), a másik minimalizálni (MIN játékos).
 Konvenció szerint MAX kezd. Az első célállapot elérésekor a játéknak definíció szerint vége.
 
-Zéró összegű játék: A MIN játékos minimalizálja a hasznosságot, ami ugyanaz, mint maximalizálni a negatív hasznosságot. Ez a negamax formalizmus. Itt a két játékos nyereségének az összege a végállapotban mindig nulla, innen a zéró összegű elnevezés.
+**Zéró összegű játék:** A MIN játékos minimalizálja a hasznosságot, ami ugyanaz, mint maximalizálni a negatív hasznosságot. Ez a negamax formalizmus. Itt a két játékos nyereségének az összege a végállapotban mindig nulla, innen a zéró összegű elnevezés.
 
 ### Minimax algoritmus, alfa-béta vágás
 
@@ -1242,7 +1391,7 @@ minÉrték(n)
 4 min = min(min, maxÉrték(a))
 5 return min
 
-Ha n végállapot, visszaadja a hasznosságát. Különben a max-nál n szomszédaira kiszámolja a maximális értéket, ami vagy az aktuális maximum, vagy nézi, hogy a másik játékos mit lépne. 
+Ha $n$ végállapot, visszaadja a hasznosságát. Különben a max-nál n szomszédaira kiszámolja a maximális értéket, ami vagy az aktuális maximum, vagy nézi, hogy a másik játékos mit lépne. 
 Csak elméleti jelentőségű, a minimax algoritmus nem skálázódik. Az összes lehetséges állapot kiszámolása rettentő sok idő lenne pl sakknál.
 
 Alfa-béta vágás
@@ -1251,8 +1400,8 @@ Ha tudjuk, hogy pl MAX-nak már van egy olyan stratégiája, ahol biztosan egy 1
 
 minÉrték és maxÉrték hívásakor átadjuk az alfa és béta paramétereket is a függvénynek.
 
-Alfa jeletése: MAXnak már felfedeztünk egy olyan stratégiát, amely alfa hasznosságot biztosít, ha ennél kisebbet találnánk, azt nem vizsgáljuk
-Béta jelentése: MINnek már felfedeztünk egy olyan stratégiát, amely béta hasznosságot biztosít, ha ennél nagyobbat találnánk, azt nem vizsgáljuk
+**Alfa jeletése:** MAXnak már felfedeztünk egy olyan stratégiát, amely alfa hasznosságot biztosít, ha ennél kisebbet találnánk, azt nem vizsgáljuk
+**Béta jelentése:** MINnek már felfedeztünk egy olyan stratégiát, amely béta hasznosságot biztosít, ha ennél nagyobbat találnánk, azt nem vizsgáljuk
 
 A gyakorlatban a minimax és az alfa-béta vágásos algoritmusokat is csak meghatározott mélységig vizsgáljuk, illetvve heurisztikákat is alkalmazhatunk. A csúcsok bejárási sorrendje is nagyon fontos, mert pl alfa béta vágásnál egy jó rendezés mellett nagyon sok csúcsot vághatunk le.
 
@@ -1260,41 +1409,58 @@ A gyakorlatban a minimax és az alfa-béta vágásos algoritmusokat is csak megh
 
 A feladat az állapottérrel adott keresési problémák és az optimalizálási problémák jellemzőit ötvözi. Az állapotok és célállapotok speciális alakúak.
 
-Lehetséges állapotok halmaza: a feladat állapotai az n db változó lehetséges kombinációi
-Célállapotok: a megengedett állapotok, adottak különböző korlátozások, és azok az állapotok a célállapotok, amik minden korlátozást kielégítenek.
+**Lehetséges állapotok halmaza:** a feladat állapotai az $n$ db változó lehetséges kombinációi
+**Célállapotok:** a megengedett állapotok, adottak különböző korlátozások, és azok az állapotok a célállapotok, amik minden korlátozást kielégítenek.
 
 Az út a megoldásig lényegtelen, és gyakran célfüggvény is értelmezve van az állapotok felett, ilyenkor egy optimális célállapot megtalálása a cél.
+
+
 # 12. Teljes együttes eloszlás tömör reprezentációja, Bayes hálók. Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
+
+**Feltételes valószínűség:** $P(a | b) = P(a \wedge b)/P(b)$
 
 ## Teljes együttes eloszlás tömör reprezentációja, Bayes hálók
 
 ### Teljes együttes eloszlás
 
-Minden lehetséges eseményre tudjuk annak a valószínűségét. Pl van 3 logikai típusú véletlen változónk, akkor összesen 2^3=8-féle eset lehet ezekre. A teljes együttes eloszlásnál mind a 8 esetnek tudjuk a valószínűségét.
+Minden lehetséges eseményre tudjuk annak a valószínűségét. Pl van 3 logikai típusú véletlen változónk, akkor összesen 2^3=8-féle eset lehet ezekre. A teljes együttes eloszlásnál mind a 8 esetnek tudjuk a valószínűségét. $\rightarrow$ **az összes elemi esemény valószínűségét megadja.**
+Viszont nyilván ez miatt nem skálázódik
 
 ### Tömör reprezentáció
 
 A kijelentések függetlensége a legfontosabb tulajdonság a teljes együttes eloszlás tömöríthetőségéhez. Van függetlenség, és feltételes függetlenség.
 
-Függetlenség
-a és b kijelentések függetlenek, ha P(a és b) = P(a)*P(b)
+**Függetlenség**
+a és b kijelentések **függetlenek**, ha $P(a \wedge b) = P(a)*P(b)$
 
-A függetlenség struktúrát takar. Ha pl n logikai változónk van, amik két független részhalmazra oszthatók m és k mérettel, akkor a 2^n valószínűség tárolása helyett elég 2^m+2^k valószínűséget tárolni, ami sokkal kevesebb lehet.
+A függetlenség struktúrát takar. Ha pl $n$ logikai változónk van, amik két független részhalmazra oszthatók  $m$ és $k$ mérettel, akkor a $2^n$ valószínűség tárolása helyett elég $2^m+2^k$ valószínűséget tárolni, ami sokkal kevesebb lehet.
 
 Extrém esetben, ha pl. az A1,..., An diszkrét változók kölcsönösen függetlenek (tetszőleges két részhalmaz független), akkor csak O(n) értéket kell tárolni, mivel ez esetben
 
 P(A1,..., An) = P(A1)...P(An)
 
-Feltételes függetlenség
-a és b kijelentések feltételesen függetlenek c feltevésével, akkor és csak akkor, ha P(a és b | c) = P(a|c)*P(b|c). Tipikus eset, ha a és b közös oka c.
+**Feltételes függetlenség**
+$a$ és $b$ kijelentések **feltételesen függetlenek** $c$ feltevésével, akkor és csak akkor, ha $P(a \wedge b | c) = P(a|c)*P(b|c)$. Tipikus eset, ha $a$ és $b$ közös oka $c$.
 
-Naiv-Bayes szabály
-Ha A feltevése mellett B1,...,Bn kölcsönösen függetlenek, akkor 
-P(B1, . . . , Bn|A) = Produktum^n_i=1 P(Bi|A)
+**Naiv-Bayes szabály**
+Ha $A$ feltevése mellett $B_1,...,B_n$ kölcsönösen függetlenek, akkor 
+$P(B1, . . . , Bn|A) = \prod_{i=1}^{n} P(B_i|A)$. Ezzel $O(n)$ tömörítés érhető el
 
 ### Bayes hálók
 
 A feltételes függetlenség hasznos, mert tömöríthetjük a teljes együttes eloszlást.
+A teljes együttes eloszlás feltételes függetlenségeit ragadja meg és ezekből egy **speciális gráfot** definiál. Ez tömör és intuitív reprezentációt tesz lehetővé.
+
+Bayes háló esetén alkalmazunk **láncszabályt**, ami azt jelenti, hogy a **teljes együttes eloszlást** (amit majd tömöríteni szeretnénk) **feltételes eloszlások szorzataként** jeleníti meg.
+Formailag:
+$$P(X1, . . . , Xn) = \prod_{i=1}^{n} P(X_i|X_{i+1},...,X_n)$$
+
+Ezután az egyes feltételes valószínűségelből elhagyhatunk változókat $\rightarrow$ $P(X_i|X_{i+1},...,X_n)$ tényezőre, az$\{X_{i+1},...,X_n\}$ változókból vegyünk egy Szülők$(X_i)$ részhalmazt amire igaz hogy,  $P(X_i|X_{i+1}, . . . , Xn) = P=(X_i|$Szülők$(X_i)$
+Ebből tudunk tömöríteni, mivel a Szülők halmaz minimális.
+Formailag:
+$$P(X1, . . . , Xn) = \prod_{i=1}^{n} P(X_i|\text{Szülő}(X_i))$$
+**Ez a teljes eloszlás tömörített reprezentációja.**
+
 
 
 ## Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
@@ -1305,50 +1471,54 @@ Tapasztalati tények felhasználása arra, hogy egy racionális ágens teljesít
 
 Felügyelt tanulás: 
 
-- van az adatok mögött valami f: X -> Y függvény, ezt nem ismerjük
-- adottak tanulópéldák, amik rendezett párok (x, f(x))
-- egy h: X -> Y, függvényt keresünk, ami illeszkedik a példákra, és közelíti f-et
-- egy példában az első elem pl egy email, a második pedig egy valamilyen címke, pl spam
-- h konzisztens az adatokra, ha h(x)==f(x) minden x tanulópéldára
-- a h függvényt mindig valami H hipotézistérben keressük, vagyis valamilyen "alakban"
-- a tanulás realizálható, ha van olyan h eleme H, amire h konzisztens
+- van az adatok mögött valami $f: X \rightarrow Y$ függvény, ezt nem ismerjük
+- adottak tanulópéldák, amik rendezett párok $(x, f(x))$
+- egy $h: X \rightarrow Y$, függvényt keresünk, ami illeszkedik a példákra, és közelíti $f$-et
+- egy példában az első elem pl egy email, a második pedig egy valamilyen címke, pl spam, $\neg$spam
+- $h$ **konzisztens az adatokra, ha** $h(x)==f(x)$ minden $x$ tanulópéldára
+- a $h$ függvényt mindig valami $H$ hipotézistérben keressük, vagyis **valamilyen "alakban"**
+- a tanulás **realizálható**, ha van olyan $h \in H$, amire $h$ konzisztens
 - a gyakorlatban elég, ha h közel van a példákhoz, mert a példák zajt is tartalmazhatnak, amit kifejezetten káros lenne, ha megtanulna az ágens (túltanulás)
 - egy olyan h-t keresünk, ami a tanulópéldákon kívül is jól általánosít
 - nem szabad a tanulópéldákat bemagolni
-- occam borotvája: mindig a legtömörebb leírást kell venni
+- **occam borotvája:** mindig a legtömörebb leírást kell venni
 - a priori ismeretek fontosak, a nulláról való tanulás kb lehetetlen
 - számítási szempontból egyszerű reprezentáció is fontos
 
 ### Döntési fák
+**Induktív (felügyelt) tanulás konkrét példája.**
 
-Induktív (felügyelt) tanulás konkrét példája.
+Feltesszük, hogy $x\in X$-ben diszkrét változók egy vektora van, $f(x)\in Y$-ban pedig szintén valami diszkrét változó egy értéke, pl igen-nem
 
-Feltesszük, hogy X-ben diszkrét változók egy vektora van, Y-ban pedig szintén valami diszkrét változó egy értéke, pl igen-nem
-
-Tulajdonképpen osztályozás, X elemeit kell Y valamelyik osztályába sorolni.
+Tulajdonképpen osztályozás, $X$ **elemeit** kell $Y$ valamelyik **osztályába** sorolni.
 
 Előnye, hogy döntései megmagyarázhatók, mert emberileg értelmezhető lépésekben jutottunk el odáig.
 
-Kifejezőereje megegyezik az ítéletkalkuluséval.
+**Kifejezőereje megegyezik az ítéletkalkuluséval.**
+Mivel vannak valamilyen **ítéletek** (változó értékadások), egy **modell** (egy $x\in X$ változóvektor), és egy **formula** (döntési fából adódoan)
 
-Döntési fa építése
+**Döntési fa építése:**
 
-- adottak pozitív és negatív példák felcímkézve, tipikusan több száz
-- vegyük a gyökérbe azt a változót, ami a legjobban szeparálja a pozitív és negatív példákat
+- adottak **pozitív és negatív példák felcímkézve**, tipikusan több száz
+- vegyük a **gyökérbe** azt a változót, ami a **legjobban szeparálja** a pozitív és negatív **példákat**
 - ezt folytassuk rekurzív módon
-- ha csak pozitív vagy negatív példa van, akkor levélhez értünk, felcímkézzük ezzel a levelet
-- ha üreshalmaz, akkor a szülő szerint többségi szavazattal címkézünk
-- ha nincs több változó, de vannak negatív és pozitív példák is, akkor szintén többségi szavazattal címkézhetjük a levelet
+- ha **csak pozitív vagy negatív példa van**, akkor **levélhez értünk, felcímkézzük** ezzel a levelet
+- ha **üreshalmaz**, akkor a **szülő szerint többségi szavazattal címkézünk**
+- ha **nincs több változó, de vannak negatív és pozitív példák is**, akkor szintén **többségi szavazattal címkézhetjük a levelet**
 
 A legjobban szeparáló attribútumot az információtartalma, azaz entrópiája segítségével választhatjuk ki. 
 
 ### Naiv Bayes módszer
 
-Statisztikai következtetési módszer, amely adatbázisban található példák alapján ismeretlen példákat osztályoz. 
+**Statisztikai következtetési módszer**, amely adatbázisban található példák alapján ismeretlen példákat osztályoz. 
 
 Például emaileket akarunk spam vagy nem spamként osztályozni. Az emailben lévő szavakra meghatározzuk, hogy milyen valószínűséggel fordul elő egy normális üzenetben, vagy egy spam-ban. Ezután meg kell határozni, hogy milyen valószínűséggel kapunk normális üzenetet, és milyennel spam-et.
 
+Legyen $A$ és $B_1,...,B_n$ a nyelvünk változói. (pl $A$ lehet igaz, ha az email spam, hamis ha nem, illetve a $B_i$ változó pedig az i. szó előfordulását jelezheti.
+Tehát a feladat $b_1,...,b_n$ konkrét email esetében meghatázorzni, hogy $A$ mely értékekre lesz a $P(A|b_1,..,b_n)$ **feltételes valószínűség maximális**
+
 Ezután, ha pl kíváncsiak vagyunk, hogy egy szókombinációt tartalmazó email spam vagy nem spam, a szókombinációban előforduló szavak valószínűségét össze kell szorozni, majd megszorozni azzal, hogy milyen valószínűséggel kaptunk normális emailt, és milyennel spam-et. Amelyik valószínűségre nagyobb értéket kapunk, abba az osztályba soroljuk a szókombinációt tartalmazó üzenetet.
+
 
 ### Modellillesztés
 
@@ -1357,25 +1527,28 @@ Lineáris regresszió?
 ### Mesterséges neuronhálók
 
 A mesterséges neuron a következőképpen épül fel
-
-- bemeneti értékek, valamilyen súlyokkal megszorozva
-- w0 bias weight, eltolássúly
+- **Bemenet**: $x = [x_1,...,x_n]$ vektor
+- **Súlyok**: $w = [w_1,...,w_n]$ súlyvektor
+- $w_0$ bias weight, eltolássúly
 - először minden bemeneti értéket megszorozza a hozzá tartozó súllyal, ezeket összeadja, majd kivonja belőle az eltolássúlyt
-- majd a kapott értéken alkalmazzuk az aktivációs függvényt
+- majd a kapott értéken alkalmazzuk az **aktivációs függvényt**
 
 Az aktivációs függvény célja, hogy 1-hez közeli értéket adjon, ha jó input érkezik, és 0-hoz közelit, ha rossz.
 
 Példa aktivációs függvények:
 
-- küszöbfüggvény: 0, ha az input <= mint 0, 1, ha nagyobb (perceptron)
-- szigmoid függvény: g(x) = 1/(1 +e^−x)
-- Rectifier aktiváció: g(x) = max(0, x) (ReLU)
+- **küszöbfüggvény**: 0, ha az input <= mint 0, 1, ha nagyobb (perceptron)
+- **szigmoid függvény:** $g(x) = 1/(1 +e^{-x})$
+- **Rectifier aktiváció:** $g(x) = max(0, x)$ (ReLU)
 
 Neuronokból hálózatokat szokás építeni. Egy hálózatnak lehet több rétege is. Van egy input, egy output és lehet több rejtett rétege is. Egy rétegen belül a neuronok között nincs kapcsolat, csak a rétegek között (előrecsatolt hálózatok). 
 
 ### k-legközelebbi szomszéd módszere
-
-
+Adottak $(x_1,y_1),..,(x_n,y_n)$ példák.
+Adott $x$-re az $y$-t az $x$-hez "közeli" példák alapján határozzuk meg. **Hogyan?**
+1. Keressük meg $x$ ***k* legközelebbi szomszédját**
+	- Leghasonlóbbakat nézzük a predikálandó egyedhez (hasonlósági függvény maximuma/távolság függvény minimuma).
+	- Majd a *k* legközelebbi szomszéd osztálycímkéiből kiválasztja a leggyakoribbat és azt predikálja.
 # 13. LP alapfeladat, példa, szimplex algoritmus, az LP geometriája, generálóelem választási szabályok, kétfázisú szimplex módszer, speciális esetek (ciklizáció-degeneráció, nem korlátos feladat, nincs lehetséges megoldás)
 
 ## LP alapfeladat
@@ -2040,30 +2213,23 @@ Sorompók:
     - Amikor egy processzus a sorompóhoz ér, akkor addig blokkolódik ameddig az összes processzus el nem éri a sorompót
 - A sorompó az utolsó processzus beérkezése után elengedi a azokat
 - Nagy mátrix-okon végzett párhuzamos műveletek
-
-# 1. Adatbázis-tervezés: A relációs adatmodell fogalma. Az egyed-kapcsolat diagram és leképezése relációs modellre, kulcsok fajtái. Funkcionális függőség, a normalizálás célja, normálformák
-
-
 # 1. Adatbázis-tervezés: A relációs adatmodell fogalma. Az egyed-kapcsolat diagram és leképezése relációs modellre, kulcsok fajtái. Funkcionális függőség, a normalizálás célja, normálformák
 
 ## A relációs adatmodell fogalma
-
 A relációs adatmodell mind az adatokat, mind a köztük lévő kapcsolatokat kétdimenziós táblákban tárolja.
 
-Attribútum:
-
+**Attribútum:**
 - névvel, értéktartománnyal megadott tulajdonság
 - Z értéktartományát dom(Z) jelöli
-- csak elemi típusú értékekből állhat
+- **csak elemi típusú értékekből állhat** (numerikus, karakter, string)
 - gyakran megadjuk az ábrázolás hosszát is
 
-Relációséma:
-
+**Relációséma:**
+Ha $A = \{A_1,..,A_n\}$ jelöli az **attribútumhalmazt** és a **séma neve** $R$, akkor a **relációsémát** $R(A_1,...,A_n)$ = $R(A)$ jelöli
 - névvel ellátott attribútumhalmaz
-- R(A), ahol A az attribútumok halmaza
-- névütközés esetén kiírhatjuk a tábla nevét is az attribútum elé
+- **névütközés esetén kiírhatjuk a tábla nevét is az attribútum elé**
 
-A relációséma nem tárol adatot!
+**A relációséma nem tárol adatot!**
 Csak szerkezeti leírást jelent.
 
 Az adatok relációkkal adhatók meg. Egy R(A) séma feletti reláció A értéktartományainak direktszorzatának egy részhalmaza (mindegyik attribútum értékei közül választunk egyet, és ezt egy vektorba pakoljuk). Egy ilyen reláció már megjeleníthető adattábla formájában, egy reláció a táblázat egy sorának felel meg.
@@ -2074,28 +2240,27 @@ Az adatok relációkkal adhatók meg. Egy R(A) séma feletti reláció A érték
 
 Az egyed-kapcsolat modell konkrét adatmodelltől függetlenül, szemléletesen adja meg az adatbázis szerkezetét.
 
-Egyed vagy entitás
-
+**Egyed vagy entitás**
 - a valós világ egy objektuma
 - szeretnénk róla információt tárolni az adatbázisban
-- egyedtípus: általánosságban jelent egy valós objektumot
-- egyedpéldány: egy konkrét objektum
-- gyenge egyed: ha az egyedet nem határozza meg egyértelműen attribútumainak semmilyen részhalmaza
+- **egyedtípus:** általánosságban jelent egy valós objektumot
+- **egyedpéldány:** egy konkrét objektum
+- **gyenge egyed:** ha az egyedet nem határozza meg egyértelműen attribútumainak semmilyen részhalmaza
 
-Tulajdonság vagy attribútum
-
+**Tulajdonság vagy attribútum**
 - az egyed egy jellemzője
-- tulajdonságtípus vs tulajdonságpéldány
-- az attribútumok egy olyan legszűkebb részhalmazát, amely egyértelműen meghatározza az egyedet, kulcsnak nevezzük
+- **tulajdonságtípus:** Pl felhasználók jelszava  általánosságban
+- **tulajdonságpéldány:** pl Egy konkrét jelszó
+- az attribútumok egy olyan legszűkebb részhalmazát, amely egyértelműen meghatározza az egyedet, **kulcsnak** nevezzük
 
-Kapcsolatok
+**Kapcsolatok**
 
 - egyedek között alakulhatnak ki
-- kapcsolattípus: pl felhasználó és üzenet között
-- kapcsolatpéldány: pl Kis József és a 69420. üzenet
+- **kapcsolattípus:** pl felhasználó és üzenet között
+- **kapcsolatpéldány:** pl Kis József és a 69420. üzenet
 - kapcsolatoknak is lehet tulajdonsága
 
-Azt a modellt, amelyben az adatbázis a tárolandó adatokat egyedekkel, tulajdonságokkal és kapcsolatokkal írja le, egyed-kapcsolat modellnek nevezzük, a hozzá kapcsolódó diagramot pedig egyed-kapcsolat diagrammnak.
+Azt a modellt, amelyben az adatbázis a tárolandó adatokat egyedekkel, tulajdonságokkal és kapcsolatokkal írja le, **egyed-kapcsolat modellnek** nevezzük, a hozzá kapcsolódó diagramot pedig egyed-kapcsolat diagrammnak.
 
 A diagramon
 
@@ -2103,81 +2268,75 @@ A diagramon
 - a tulajdonságokat ellipszissel
 - a kulcsot aláhúzással
 - a kapcsolatokat rombusszal 
-
 jelöljük.
 
 
 ### EK leképezése relációs adatmodellre
 
-Egyedek leképezése
-
+**Egyedek leképezése**
 - minden egyedhez egy relációsémát írunk fel, melynek neve az egyed neve, attribútumai pedig az egyed attribútumai, kulcsa pedig az egyed kulcsa
-- gyenge egyednél az attribútumokhoz hozzá kell venni a meghatározó kapcsolatokon keresztük csatlakozó egyedek kulcsattribútumait is, külső kulcsként
+- **gyenge egyednél az attribútumokhoz hozzá kell venni a meghatározó kapcsolatokon keresztül csatlakozó egyedek kulcsattribútumait is**, külső kulcsként
 
-Összetett attr. leképezése
+**Összetett attr. leképezése**
 
 - összetett attribútumot helyettesítünk az őt alkotó elemi attribútumokkal
 
-Többértékű attribútumok leképezése
+**Többértékű attribútumok leképezése**
 
-- egyik lehetőség:
+- **egyik lehetőség:**
     - eltekintünk attól, hogy többértékű, és egyszerű szövegként tároljuk
     - hátránya, hogy nem kezelhetők külön külön az elemek
-- másik lehetőség:
+- **másik lehetőség:**
     - minden sorból annyit veszünk fel, ahány értéke van a többértékű attribútumnak
     - hátránya a sok fölösleges sor
     - kulcsok elromlanak
     - kerülendő
-- harmadik lehetőség
+- **harmadik lehetőség:**
     - új táblát veszünk fel, ahova kigyűjtjük, hogy melyik sorhoz milyen értékei tartoznak a többértékű attribútumnak
     - akár külön kigyűjthetjük egy táblába az összes lehetséges értékét a többértékű attribútumnak, és egy kapcsolótáblával kötjük össze az egyeddel
 
-Kapcsolatok leképezése
+**Kapcsolatok leképezése**
 
 - minden kapcsolathoz felveszünk egy új sémát
 - neve a kapcsolat neve, attribútumai a kapcsolódó egyedek kulcsattribútumai és a kapcsolat saját attribútumai
 - meg kell határozni ennek a sémának is a kulcsát
 - ha ez a kulcs megegyezik valamelyik kapcsolt egyed kulcsával, akkor ez a séma beolvasztható abba az egyedbe, ezt hívjuk konszolidációnak, ez a gyakorlatban egy lépésben is elvégezhető persze
-- 1:1 kapcsolat esetén az egyik tetszőlegesen választott egyedbe beolvaszthatjuk a kapcsolat sémáját
-- 1:N kapcsolat esetén az N oldali egyedet bővítjük a másik egyed kulcsattribútumaival, és a kapcsolat saját attribútumaival
-- N:M kapcsolat esetén új sémát veszünk fel
+- **1:1** kapcsolat esetén az egyik tetszőlegesen választott egyedbe beolvaszthatjuk a kapcsolat sémáját
+- **1:N** kapcsolat esetén az N oldali egyedet bővítjük a másik egyed kulcsattribútumaival, és a kapcsolat saját attribútumaival
+- **N:M** kapcsolat esetén új sémát veszünk fel
 
-Specializáló kapcsolatok leképezése
+**Specializáló kapcsolatok leképezése**
 
 Minden megközelítésnek lehetnek hátrányai, mérlegelnünk kell
 
-Első lehetőség
-
+**Első lehetőség**
 - főtípus és altípus is külön sémában, és az altípus attribútumai közé felvesszük a főtípus attribútumait is
 - minden egyedpéldány csak egy táblában fog szerepelni
 
-Második lehetőség
-
+**Második lehetőség**
 - minden altípushoz új séma, de abban csak a főtípus kulcsattribútumai jelennek meg
 - minden egyedpéldány szerepel a saját altípusának táblájában és a főtípus táblájában is
 
-Harmadik lehetőség
+**Harmadik lehetőség**
 
 - egy közös tábla az összes lehetséges attribútummal
 - minden sorban csak a releváns cellákat töltjük ki
 
 ## Kulcsok fajtái
 
-Szuperkulcs
-
+**Szuperkulcs**
 - egyértelműen azonosítja a tábla sorait
-- R(A) bármely két sora különbözik a szuperkulcson
-- mivel a táblában általában nem engedünk meg ismétlődő sorokat, ezért ha az összes attribútumot vesszük, az midnig szuperkulcs
+- $R(A)$ bármely két sora különbözik a szuperkulcson
+- mivel a táblában általában nem engedünk meg ismétlődő sorokat, ezért ha az összes attribútumot vesszük, az mindig szuperkulcs
 
-Kulcs
-
+**Kulcs**
 - olyan szuperkulcs, amelynek egyetlen valódi részhalmaza sem szuperkulcs
-- ha egyelemű, egyszerű kulcsnak nevezzük
-- ha többelemű, összetettnek
+- ha egyelemű, **egyszerű kulcsnak** nevezzük
+- ha többelemű, **összetettnek**
 - előfordulhat, hogy van több kulcs is, ekkor kiválasztunk egyet
 - a kiválaszott kulcsot elsődleges kulcsnak nevezzük
 
-Külső kulcs
+**Külső kulcs**
 
 - másik, vagy ugyanazon séma elsődleges kulcsára vonatkozik
 
@@ -2200,8 +2359,8 @@ Tárolhatnánk az összes adatunkat egy nagy táblában is, de ilyenkor gondok m
 
 Dekompozíció segítségével megszüntetjük lépésről lépésre a redundanciát úgy, hogy a sémában lévő függőségekre egyre szigorúbb feltételeket adunk.
 
-Elsődleges, másodlagos attribútum: szerepel a séma valamelyik kulcsában, ha nem akkor másodlagos
-Tranzitív, közvetlen függés: Ha X-től függ Z, és van olyan Y, hogy X -> Y és Y -> Z, ellenkező esetben közvetlenül függ
+**Elsődleges, másodlagos attribútum:** szerepel a séma valamelyik kulcsában, ha nem akkor másodlagos
+Tranzitív, közvetlen függés: Ha $X$-től függ $Z$, és van olyan $Y$, hogy $X \rightarrow Y$ és $Y \rightarrow Z$, ellenkező esetben közvetlenül függ
 
 1NF:
 
@@ -2217,17 +2376,15 @@ Tranzitív, közvetlen függés: Ha X-től függ Z, és van olyan Y, hogy X -> Y
 
 BCNF:
 
-- Egy relációséma Boyce-Codd normálformában van, ha bármely nemtriviális L -> B függés esetén L szuperkulcs.
->>>>>>> 6ef0bd001a5ea93950836f58b711eb2c3bb3daee
+- Egy relációséma Boyce-Codd normálformában van, ha bármely nemtriviális $L \rightarrow B$ függés esetén L szuperkulcs.
+
+
 
 # 2. Az SQL adatbázisnyelv: Az adatdefiníciós nyelv (DDL) és az adatmanipulációs nyelv (DML). Relációsémák definiálása, megszorítások típusai és létrehozásuk. Adatmanipulációs lehetőségek és lekérdezések
 
 ## SQL
 
-Structured Query Language
-
-Arra szolgál, hogy adatokat kezeljünk vele
-
+Structured Query Language, egy lekérdező nyelv. Arra szolgál, hogy adatokat kezeljünk vele.
 - beszúrás
 - törlés
 - módosítás
@@ -2235,7 +2392,7 @@ Arra szolgál, hogy adatokat kezeljünk vele
 
 A nyelv elemeit két fő részre oszthatjuk.
 
-## Az adatdefiníciós nyelv
+## Az adatdefiníciós nyelv (DDL)
 
 Ide tartoznak az adatbázisok, sémák, típusok definíciós utasításai, pl:
 
@@ -2243,9 +2400,9 @@ Ide tartoznak az adatbázisok, sémák, típusok definíciós utasításai, pl:
 - CREATE TABLE
 - ALTER TABLE
 - DROP TABLE
-- CREATE TRIGGER
+- **CREATE TRIGGER**: Nem tábla létrehozásra van
 
-## Az adat manipulációs nyelv
+## Az adat manipulációs nyelv (DML)
 
 Ide tartoznak a beszúró, módosító, törlő, lekérdező utasítások.
 
@@ -2258,119 +2415,130 @@ Egyes irodalmak különválasztják a lekérdező utasításokat a manipuláció
 
 ## Relációsémák definiálása, megszorítások típusai és létrehozásuk
 
-Relációsémákat a CREATE TABLE utasítással hozhatunk lére. A sémák különböznek a tábláktól, és nevével ellentétben a CREATE TABLE utasítás csak a relációsémát hozza létre. A tábla már az adatrekordok halmazát jelenti.
+Relációsémákat a 
+```
+CREATE TABLE tablanev(
+	mező1 típus [oszlopfeltételek],
+	....
+	[tablafeltételek]
+);
+```
+
+utasítással hozhatunk lére. A sémák különböznek a tábláktól, és nevével ellentétben a CREATE TABLE utasítás csak a relációsémát hozza létre. A tábla már az adatrekordok halmazát jelenti.
 
 ### Megszorítások
 
-Oszlopfeltételek:
+**Oszlopfeltételek:**
 
 Csak az adott mezőre vonatkoznak
 
-- PRIMARY KEY, az elsődleges kulcs
-- UNIQUE, kulcs, minden érték egyszer fordulhat elő az oszlopban
-- NOT NULL, az oszlop értéke nem lehet NULL, azaz kötelező kitölteni
-- REFERENCES T(oszlop), a T tábla oszlop oszlopára vonatkozó külső kulcs
-- DEFAULT tartalom, az oszlop alapértelmezett értéke tartalom lesz
+- **PRIMARY KEY**, az elsődleges kulcs
+- **UNIQUE**, kulcs, minden érték egyszer fordulhat elő az oszlopban
+- **NOT NULL**, az oszlop értéke nem lehet NULL, azaz kötelező kitölteni
+- **REFERENCES T(oszlop)**, a T tábla oszlop oszlopára vonatkozó külső kulcs
+- **DEFAULT tartalom**, az oszlop alapértelmezett értéke tartalom lesz
 
-Táblafeltételek
+**Táblafeltételek**
 
 Ha több oszlopra is vonatkoznak feltételek, azt itt tudjuk megadni.
 
-- PRIMARY KEY(oszloplista), az elsődleges kulcs
-- UNIQUE (oszloplista), kulcs, minden érték egyszer fordulhat elő az oszlopban
-- FOREIGN KEY (oszloplista) REFERENCES T(oszloplista), a T tábla oszloplista oszloplistájára vonatkozó külső kulcs
+- **PRIMARY KEY(oszloplista)**, az elsődleges kulcs/kulcsok
+- **UNIQUE (oszloplista)**, kulcs, minden érték egyszer fordulhat elő az oszlopban
+- **FOREIGN KEY (oszloplista) REFERENCES T(oszloplista)**, a T tábla oszloplista oszloplistájára vonatkozó külső kulcs
 
-Külső kulcs feltételek és szabályok
-
+**Külső kulcs feltételek és szabályok**
 Az integritás megőrzése szempontjából a külső kulcsokhoz meghatározhatjuk azt is, hogy hogyan viselkedjenek a hivatkozott kulcs törlése vagy módosítása esetén.
 
-ON DELETE
+**ON DELETE**
+- **RESTRICT,** ha van a törlendő rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a törlést
+- **SET NULL,** a törlendő rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
+- **NO ACTION,** a törlendő rekord kulcsára vonatkozó külső kulcs értéke nem változik
+- **CASCADE,** a törlendő rekord kulcsára hivatkozó külső kulcsú rekordok is törlődnek
 
-- RESTRICT, ha van a törlendő rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a törlést
-- SET NULL, a törlendő rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
-- NO ACTION, a törlendő rekord kulcsára vonatkozó külső kulcs értéke nem változik
-- CASCADE, a törlendő rekord kulcsára hivatkozó külső kulcsú rekordok is törlődnek
+**ON UPDATE**
 
-ON UPDATE
-
-- RESTRICT, ha van a módosítandó rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a módosítást
-- SET NULL, a módosítandó rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
-- NO ACTION, a módosítandó rekord kulcsára vonatkozó külső kulcs értéke nem változik
-- CASCADE, a módosítandó rekord kulcsára hivatkozó külső kulcsú rekordok is az új értékre változnak
+- **RESTRICT,** ha van a módosítandó rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a módosítást
+- **SET NULL,** a módosítandó rekord kulcsára hivatkozó külső kulcs értékét NULL-ra állítjuk
+- **NO ACTION,** a módosítandó rekord kulcsára vonatkozó külső kulcs értéke nem változik
+- **CASCADE,** a módosítandó rekord kulcsára hivatkozó külső kulcsú rekordok is az új értékre változnak
 
 
-Táblákra és attribútumokra vonatkozó megszorítások
+**Táblákra és attribútumokra vonatkozó megszorítások**
 
 Elsődleges feladata, hogy megelőzzük az adatbeviteli hibákat, és elkerüljük a hiányzó adatokat a kötelező mezőkből.
 
-NOT NULL: a cella értékét kötelező kitölteni, nem lehet NULL
+**NOT NULL:** a cella értékét kötelező kitölteni, nem lehet NULL
 
-CHECK (feltétel): ellenőrző feltétel arra, hogy milyen értékeket vehet fel az adott oszlop
+**CHECK (feltétel):** ellenőrző feltétel arra, hogy milyen értékeket vehet fel az adott oszlop
 
-DOMAIN: értéktartomány egy oszlop értékeire vonatkozóan
+**DOMAIN:** értéktartomány egy oszlop értékeire vonatkozóan
 
 
 ## Adatmanipulációs lehetőségek és lekérdezések
 
-Adatok beszúrása:
+**Adatok beszúrása:**
 
 Ha csak adott oszlopoknak akarunk értéket adni (pl mert nem kötelező, vagy alapértelmezett érték):
-INSERT  INTO táblanév (oszloplista) VALUES (értéklista);
-
+ `INSERT  INTO táblanév (oszloplista) VALUES (értéklista);`
 Ha minden oszlop értékét ki akarjuk tölteni:
-INSERT  INTO táblanév VALUES (értéklista);
+`INSERT  INTO táblanév VALUES (értéklista);`
 
 Adatok módosítása:
 
-UPDATE táblanév SET oszlop=kifejezés \[oszlop2=kifejezés2\] \[WHERE feltétel\];
+```
+UPDATE táblanév SET
+ oszlop=kifejezés 
+ [oszlop2=kifejezés2] 
+ [WHERE feltétel];
+```
 
 Módosítjuk egy vagy több oszlop értékét az adott táblában, azokon a sorokon, amelyek eleget tesznek a WHERE záradékban tett feltételnek.
 
-Adatok törlése:
+**Adatok törlése:**
 
-DELETE FROM táblanév \[WHERE feltétel\];
+`DELETE FROM táblanév [WHERE feltétel];`
 
 Töröljük az összes rekordot a táblából, amelyek megfelelnek a WHERE záradékban megadott feltételnek.
 
-Lekérdezések:
+**Lekérdezések:**
 
-SELECT oszloplista FROM tábla;
+`SELECT oszloplista FROM tábla;`
 
 A megadott oszlopokat kilistázza az adott táblából. oszloplista helyére megadható \*, ha az összes oszlopot listázni akarjuk.
 
 Teljes szintaxisa:
+```
+SELECT [DISTINCT] oszloplista FROM táblalista 
+[WHERE feltétel]
+[GROUP  BY oszloplista] 
+[HAVING csoportfeltétel]
+[ORDER  BY oszloplista [DESC]];
+```
+**DISTINCT:** csak a különböző sorokat írja ki
+**FROM táblalista:** a táblalistában megadott táblákbó képez Descartes szorzatot
+**WHERE:** kiválasztás a feltétel szerint
+**GROUP BY:** csoportosítás az oszloplistában szereplő oszlopok szerint
+**HAVING:** a csoportosítás után a csoportokra vonatkozó feltétel
+**ORDER BY:** az oszloplistában szereplő adatok rendezése abc szerint növekvő vagy csökkenő sorrendben
 
-SELECT\[DISTINCT\] oszloplista FROM táblalista 
-\[WHERE feltétel\]
-\[GROUP  BY oszloplista\] 
-\[HAVING csoportfeltétel\]
-\[ORDER  BY oszloplista \[DESC\]\];
+**Összesítő függvények**
 
-DISTINCT: csak a különböző sorokat írja ki
-FROM táblalista: a táblalistában megadott táblákbó képez Descartes szorzatot
-WHERE: kiválasztás a feltétel szerint
-GROUP BY: csoportosítás az oszloplistában szereplő oszlopok szerint
-HAVING: a csoportosítás után a csoportokra vonatkozó feltétel
-ORDER BY: az oszloplistában szereplő adatok rendezése abc szerint növekvő vagy csökkenő sorrendben
+Leggyakrabban a **GROUP BY-jal együtt** szoktuk használni, de enélkül is lehet.
+**Leginkább** a **SELECT utáni oszloplistában**, de a **where-ben** és a **having-ban** is használható. Az eredményoszlopokat AS kulcsszóval el is nevezhetjük.
 
-összesítő függvények
+**MIN(oszlop):** az oszlopban lévő minimumot adja vissza
+**MAX(oszlop):** maxot
+**AVG(oszlop):** az oszlop átlaga
+**SUM(oszlop):** az oszlop összege
+**COUNT (\[DISTINCT\]** oszlop): az eredményben szereplő (különböző) rekordok száma
 
-Leggyakrabban a GROUP BY-jal együtt szoktuk használni, de enélkül is lehet.
-Leginkább a SELECT utáni oszlolistában, de a where-ben és a having-ban is használható. Az eredményoszlopokat AS kulcsszóval el is nevezhetjük.
+**Természetes összekapcsolás**
 
-MIN(oszlop): az oszlopban lévő minimumot adja vissza
-MAX(oszlop): maxot
-AVG(oszlop): az oszlop átlaga
-SUM(oszlop): az oszlop összege
-COUNT(\[DISTINCT\] oszlop): az eredményben szereplő (különböző) rekordok száma
-
-Természetes összekapcsolás
-
-SELECT * FROM T1, T2 WHERE T1.X = T2.X;
+**SELECT * FROM T1, T2 WHERE T1.X = T2.X;**
 
 X az most egy oszlop, egy kulcs-külső kulcs kapcsolat.
 
-Erre használható még SQL-ben az INNER JOIN kulcsszó is.
+Erre használható még SQL-ben az **INNER JOIN** kulcsszó is.
 
 SELECT * FROM T1, T2 INNER JOIN T2 ON T1.X = T2.X;
 
@@ -2385,20 +2553,27 @@ Valamelyik, vagy mindkét tábla összes rekordja szerepelni fog az eredményben
 Baloldali összekapcsolásnál a baloldali tábla minden rekordja megmarad, és ezekhez a rekordokhoz párosítjuk a jobboldali tábla rekordjait. Jobboldalinál pont fordítva. Teljes összekapcsolásnál pedig mindkét tábla összes rekordja megmarad, és mindenhol a hiányzó helyeken NULL értékek lesznek.
 
 Lekérdezések eredményén, amikor ugyanannyi és ugyanolyan típusú oszlopot kérünk le, használhatunk halmazműveleteket is, pl UNION vagy INTERSECT.
+
+
 # 3. Simítás/szűrés képtérben (átlagoló szűrők, Gauss simítás és mediánszűrés); élek detektálása (gradiens-operátorokkal és Marr-Hildreth módszerrel)
+
+**Zaj:** A képpont-intenzitások nemkívánatos változása
+![Zaj kép](zaj.JPG "Title")
 
 ## Simítás/szűrés képtérben
 
 ### Átlagoló szűrés
 
 Vesszük egy képpontnak egy környezetét, és vesszük ebben a környezetben az összes képpont átlagát. Ezzel az átlag lesz a képpont új értéke. 
-Ezt az átlagolást konvolúcióval is végezhetjük, ahol a konvolúciós maszkunkban minden érték 1/n^2, ha n*n-es a maszk.
+Ezt az átlagolást konvolúcióval is végezhetjük, ahol a konvolúciós maszkunkban minden érték $\dfrac{1}{n^2}$, ha $n*n$-es a maszk.
 
-- ez a fajta zajszűrés rontja az éleket
 - minél nagyobb környezetet nézünk, annál erősebb a simító hatás
-- haszna: csökkenti a zajt
-- kára: gyengíti az éleket, homályossá teszi a képet
-- súlyozott átlagolást is lehet csinálni - konvolúció
+- **haszna:**
+	-  csökkenti a zajt
+- **kára:**
+	- gyengíti az éleket
+	- homályossá teszi a képet
+- **súlyozott átlagolást is lehet csinálni** - konvolúció
     - a legnagyobb súly az aktuális pontunknak legyen
     - ahogy távolodunk a ponttól, annál kisebbek legyenek a súlyok
 
@@ -2407,7 +2582,7 @@ Ezt az átlagolást konvolúcióval is végezhetjük, ahol a konvolúciós maszk
 - ahogy távolodunk a ponttól, annál kisebbek legyenek a súlyok
 - erre nagyon jó a gauss harang
 - minden sűrűségfüggvény integrálja 1
-    - minél nagyobb a szigma, annál szélesebb, de annál alacsonyabb a harang
+    - minél nagyobb a $\sigma$ (szigma), annál szélesebb, de annál alacsonyabb a harang
     - ezzel szépen lehet jeleket simítani
 
 
@@ -2426,37 +2601,38 @@ Lehet olyat is, hogy csak akkor simítunk, ha az adott képpont intenzitásának
 
 ### Medián szűrés
 
-medián = sorbarendezzük az értékeket, és a középsőt vesszük
-min <= med <= max
+**medián** = sorbarendezzük az értékeket, és a középsőt vesszük
+$min \le med \le max$
 
 medián nem lineáris
 
-medián szűrés:
+**medián szűrés:**
     nézzük egy környezetét a pontnak, ezt rendezzük sorba, és a középső érték legyen a képpont új értéke
-só-bors zaj eltüntetésére szépen alkalmas
-    tiszta képet kapunk, ha pl 5x5-ös környezetben nézve a 25 képpontból max 12 teljesen fekete vagy teljesen fehér képpont van
-megszünteti az egyedi, és kis kiterjedésű kiugrásokat
-jobban megőrzi az éleket, mint az átlagolás
-nagy kiterjedésű zajfoltoknál jel-elnyomó
+**só-bors zaj eltüntetésére szépen alkalmas**
+
+tiszta képet kapunk, ha pl 5x5-ös környezetben nézve a 25 képpontból max 12 teljesen fekete vagy teljesen fehér képpont van
+**megszünteti az egyedi, és kis kiterjedésű kiugrásokat**
+**jobban megőrzi az éleket**, mint az átlagolás
+**nagy kiterjedésű zajfoltoknál jel-elnyomó**
     a zajt hagyja meg, és a lényeg tűnhet el
 
 
 ## Élek detektálása
 
-él ott van a képen, ahol az intenzitás valamilyen irányban felugrik, vagy lecsökken
+**él ott van a képen, ahol az intenzitás valamilyen irányban felugrik, vagy lecsökken**
     
-élek nagyon fontosak a látásunban
-    ahol markánsak az élek, azokat jól érzékeljük
+élek nagyon fontosak a látásunban, **ahol markánsak az élek, azokat jól érzékeljük**
 
-lehet ideális/lépcsős él
-lejtős él
-tető
-vonal
-zajos
+Tipikus élprofilok:
+*	lehet ideális/lépcsős él
+*	lejtős él
+*	tető
+*	vonal
+*	zajos
 
-felidézés: tangens függvény
-tangens: érintő iránytangense/meredeksége
-első derivált: hol vannak szélsőértékek, monotonitás
+
+**tangens:** érintő iránytangense/meredeksége
+**első derivált:** hol vannak szélsőértékek, monotonitás
 derivált pozitív, nő, negatív, csökken
 
 él ott van, ahol az intenzitásprofil első deriváltja nagy
@@ -2466,82 +2642,81 @@ derivált pozitív, nő, negatív, csökken
 
 többváltozós függvényeket is lehet deriválni, pl parciálisan
     egyik változót lerögzítjük, és a másik szerint deriválunk
-gradiens - első parciális deriváltakból alkotott vektor
+**gradiens**: első parciális deriváltakból alkotott vektor
     2D-ben az érintőre merőleges vektor
-        ennek van két komponense
+        ennek van két komponense (x és y szerint vett derivált)
 
-gradiens nagysága - magnitúdó
-    valamilyen vektornorma - legyen kettes norma (euklideszi norma)
-        ekkor a gradiens kettes normája a komponensek négyzetösszegének a négyzetgyöke
-    első vektornormánál a gradienskomponensek abszolútértékének az összegét nézzük
+**gradiens nagysága** - *magnitúdó*
+első vektornormánál a **gradienskomponensek abszolútértékének az összegét** nézzük
     
     2D-ben a kettes vektornorma az a pitagorasz tételből jön
-
-2D-ben van a gradiensnek iránya is 
-    arctan(y/x)
+   
+  
+2D-ben van a gradiensnek iránya is  **arctan(y/x)**
 
 él iránya a gradiensre merőleges
 
 diszkrét gradiens operátorok
 
-roberts, prewitt, sobel, frei-chen
+**roberts, prewitt, sobel, frei-chen**
 
 mind a négy módszer konvolúciós maszkpárokat alkalmaz
-roberts operátor
-    adott két 3x3-as mátrix, ha az egyikkel konvolválunk, akkor az x irányú parciális deriváltat közelítjük, ha a másikkal, akkor az y irányút
+**1. roberts operátor**
+* adott két 3x3-as mátrix, ha az egyikkel konvolválunk, akkor az x irányú parciális deriváltat közelítjük, ha a másikkal, akkor az y irányút
     igazából nem is kell konvolúció
-        x: a képpont értékéből kivonjuk az északkeleti szomszédját
-        y: a képpont értékéből kivonjuk az északnyugati szomszédját
-    pro: könnyen számítható
-    kontra: zajérzékeny
+* **x:** a képpont értékéből kivonjuk az északkeleti szomszédját
+* **y:** a képpont értékéből kivonjuk az északnyugati szomszédját*
 
-prewitt operátor
-    itt is két 3x3-as maszk van, csak kicsit más, mint az előbb
-        x: baloldali oszlop csupa 1, jobboldali csupa -1, középen 0
-        y: felső sor -1, alsó sor 1, középen 0
+**pro: könnyen számítható
+    kontra: zajérzékeny**
 
-sobel operátor
-    két 3x3 maszk
-    ha négyzet mozaikon mintavételezett a képünk
-    akkor ami két pixel élen osztozkodik (vízszintesen vagy függőlegesen szomszédos)
-    akkor azok közelebb vannak egymáshoz, mintha csak csúcson érintkeznének
+**2. prewitt operátor**
+* itt is két 3x3-as maszk van, csak kicsit más, mint az előbb
+* **x:** baloldali oszlop csupa 1, jobboldali csupa -1, középen 0
+* **y:** felső sor -1, alsó sor 1, középen 0
+
+**3. sobel operátor**
+* két 3x3 maszk
+* ha négyzet mozaikon mintavételezett a képünk
+    akkor ami két pixel élen osztozkodik (vízszintesen 	
+vagy függőlegesen szomszédos), akkor azok közelebb vannak egymáshoz, mintha csak csúcson érintkeznének
      
-frei-chen operátor
-    ugyanaz, mint a sobel, csak 2 helyett gyök(2)
+**4. frei-chen operátor**
+* ugyanaz, mint a sobel, csak 2 helyett gyök(2)
 
-gradiens maszk tervezése x irányban
-    szimmetrikus
-        ne húzzon el se balra, se jobbra
-    asszimetrikus
-        ne húzzon el se fel, se le
-    legyen az összege az elemeknek 0
+**gradiens maszk tervezése x irányban**
+* szimmetrikus ne húzzon el se balra, se jobbra
+* asszimetrikus ne húzzon el se fel, se le
+* legyen az összege az elemeknek 0
 
-8 irányban élt kereső gradiens operátorok
-    compass operátorok
+8 irányban élt kereső gradiens operátorok **compass operátorok**
 
-prewitt compass operátor
-    8 különböző maszkkal dolgozik, a 8 égtáj irányába
+**prewitt compass operátor**
+* 8 különböző maszkkal dolgozik, a 8 égtáj irányába
     maszkelemek összege 0
 
-robinson-3 compass operátor
-    3-féle elem szerepel a maszkokban
-robinson-5 compass operátor
-    5-féle elem
+**robinson-3 compass operátor**
+* 3-féle elem szerepel a maszkokban (1, -1)
+    
+**robinson-5 compass operátor**
+* 5-féle elem (-2 ,-1 ,0 , 1, 2)
 
-kirsch compass operátor
-    0, -3, 5 értékek szerepelnek benne
+**kirsch compass operátor**
+* 0, -3, 5 értékek szerepelnek benne
 
 ### Marr-Hildreth módszer
 
-konvolváljuk a képet egy vagy több alkalmas LoG függvénnyel
-    keressünk közös nulla átmeneteket
-        nulla átmenet ott van, ahol adott pont kis környezetében előfordulnak pozitív és negatív értékek is 
-    eredménye mindig egy bináris éltérkép
-    lehetnek fantomélek is 
-        de ez a gyakorlatban elhanyagolható
+**LoG:** Gauss laplace transzformáltja.
+**Laplace:** Gradiens önmagával vett szorzata, amit másodfokú deriváltak közelítésére használnak. SKALÁR
+
+1. konvolváljuk a képet egy vagy több alkalmas **LoG függvénnyel**
+2.  keressünk közös **nulla átmeneteket**
+ * nulla átmenet ott van, ahol adott pont kis környezetében előfordulnak pozitív és negatív értékek is 
+* **eredménye** mindig egy bináris éltérkép
+    lehetnek fantomélek is, de ez a gyakorlatban elhanyagolható
     
-LoG a frekvenciatérben
-    konvolúciós tétel szerint f*LoG gyorsan számítható fourier-trafóval meg pontonkénti szorzással
+**LoG a frekvenciatérben**
+    konvolúciós tétel szerint **f*LoG** gyorsan számítható fourier-trafóval meg pontonkénti szorzással
     adott szigmára előre kiszámíthatjuk a sombrero fourier trafóját
     ezt is eltárolhatjuk
 # 4. Alakreprezentáció, határ- és régió-alapú alakleíró jellemzők, Fourier leírás
@@ -2551,17 +2726,15 @@ LoG a frekvenciatérben
 Az alak/forma megítélésének fontos szerep jut a látásunkban.
 Az alak (shape) nem bír egzakt matematikai definícióval
 
-A szegmentálást
-követően az objektumok kontúrjaiból vagy foltjaiból (attól függően, hogy határ- vagy
-régió-alapú szegmentálást vetettünk-e be) számos alakleíró jellemzőt vonhatunk ki.
-Hangsúlyozandó, hogy itt már elszakadhatunk a digitális képektől, némelyik jellemző
-csak egy szám, mások pedig összetett struktúrák is lehetnek.
+A **szegmentálást** követően az objektumok kontúrjaiból vagy foltjaiból (attól függően, hogy **határ-** vagy **régió-alapú** szegmentálást vetettünk-e be) számos **alakleíró jellemzőt** vonhatunk ki.
+Hangsúlyozandó, hogy itt már elszakadhatunk a digitális képektől, **némelyik jellemző
+csak egy szám**, mások pedig **összetett struktúrák is lehetnek**.
 
 Az alakleíró jellemzőket három osztályba soroljuk.
 
 ### Határ alapú alakleíró jellemzők
 
-- lánckód, alakleíró szám
+- **lánckód**, alakleíró szám
 - kerület, terület, kompaktság, cirkularitás
 - közelítés poligonnal
 - parametrikus kontúr, határvonal leíró függvény
@@ -2569,26 +2742,28 @@ Az alakleíró jellemzőket három osztályba soroljuk.
 - görbület, energia
 - strukturális leírás
 
-#### Freeman féle lánckód
+#### Lánckód
+- Az alakzat határpontjait követi/láncolja az óramutató járásával ellentétes irányban.
+- **Határpont:** Az alakzat olyan pontja, melnyek van az alakzathoz nem tartozó 8- ill, 4-szomszédja.
+- **Különböző kezdőpontból más lánckód jöhet ki!**
+- Invariáns a forgatásra, ha a szög $k*\pi/2$, eltolásra
+- Zaj érzékeny, nem skála-invariáns
 
-- 4 vagy 8 szomszédok felé mutató vektort sorszámozza
-- óramutató járásával ellentétes irányban növekszik
-- kiválaszt a kontúron egy kezdőpontot
-- egymás után írja a kontúrt körbekötő vektorok sorszámait
-- a kontúr leírható egy négyes vagy nyolcas számrendszerbeli számmal, ez a lánckód
-- pro: gyors,kompakt,eltolás-invariáns
-- kontra: nem forgás- és skála-invariáns,zajérzékeny,
-- Mivel a lánckód függ a kezdőpont megválasztásától, valamint nem invariáns még a
-90 többszöröseivel való forgatásra sem, így bevezették az alakleíró számot, amit a
-lánckód első deriváltjából kapunk.
+**Különbségkód:** a lánckód első deriváltja, a szomszédok elemek közötti elmozdulások száma
+
+**Normalizálás:** Addig permutáljuk a különbségkódot, amíg a legkisebb értékű kódot kapjuk.
+
+**Alakleíró szám:** A normalizált különbségkód (NEM FÜGG A KEZDŐPONT VÁLASZTÁSTÓL)
 
 #### Kerület, terület számítása
 
-- A kerület és a terület két gyakran bevetett alakleíró jellemző. Mindkettő
-származtatható a lánckódból is.
-- 8-as lánckód esetén: kerület = gyök(2) * (páratlan elemek száma) + páros elemek száma a lánckódban
-- 4-es lánckód esetén: kerület = lánckód rendje (hossza)
-- poligon területe 8-as lánckód esetén: 
+- A kerület és a terület két gyakran bevetett alakleíró jellemző. Mindkettő származtatható a lánckódból is.
+- **8-as lánckód esetén:** 
+	- kerület = gyök(2) * (páratlan elemek száma) + páros elemek száma a lánckódban
+- **4-es lánckód esetén:**
+	-  kerület = lánckód rendje (hossza)
+
+- **poligon területe 8-as lánckód esetén:** 
 	- számontartunk egy y-t, ami kezdetben 0. Ehhez ha a lánckódban lévő következő szám "felfele" mutat hozzáadunk 1-et, ha "lefele", akkor kivonunk 1-et
 	- a területváltozást szintén a lánckódban következő szám iránya határozza meg (y alapján), ahogy az alábbi képen is látszik
 	- a területet úgy kapjuk, hogy foylton összeadogatjuk a területváltozásokat, és a végén vesszük az abszulútértékét
@@ -2596,11 +2771,11 @@ származtatható a lánckódból is.
 ![alt text](asd.png "Title")
 ![alt text](asd2.png "Title")
 
-#### Kompaktság és cirkularitás
+#### Kompaktság és cirkularitás, görbület
 
-- kompaktság = (kerület)^2 / terület
-- cirkularitás = terület / (kerület)^2
-
+- kompaktság = **(kerület)^2 / terület**
+- cirkularitás = **terület / (kerület)^2**
+- **görbület:** a határhoz rajzolt érintőkör sugarának reciproka
 #### Parametrikus kontúr
 
 - A parametrikus kontúr két egyváltozós függvénnyel reprezentálja a szegmenst. A
@@ -2623,35 +2798,30 @@ szomszédsági fa,
 
 #### Befoglaló téglalap, rektangularitás
 
-- álló befoglaló téglalap: az objektum koordinátáinak minimumai és maximumai
-megadják az álló befoglaló téglalap csúcsait.
+- ==**álló befoglaló téglalap:**== az objektum koordinátáinak minimumai és maximumai **megadják az álló befoglaló téglalap csúcsait.**
 - minimális befoglaló téglalap
-- rektangularitás: Azt mondja meg, hogy az objektum „bedobozolásakor” mennyi a
-tárgy és a „levegő” által elfoglalt területek aránya, tehát ---> alakzat területe / minimális befoglaló téglalap
+- ==**rektangularitás:**== Azt mondja meg, hogy az objektum „bedobozolásakor” mennyi a tárgy és a „levegő” által elfoglalt területek aránya, tehát ---> **alakzat területe / minimális befoglaló téglalap**
 
 #### Főtengely, melléktengely, átmérő, excentricitás, főtengely szöge
 
-- főtengely: az alakzaton belül haladó leghosszabb egyenes szakasz
-- melléktengely: az alakzaton belüli, a főtengelyre merőleges leghosszabb egyenes szakasz
-- átmérő: a határ két legtávolabbi pontját köti össze. A főtengely hossza általában nem egyezik meg az átmérővel (csak a
+- **főtengely:** az alakzaton belül haladó leghosszabb egyenes szakasz
+- **melléktengely:** az alakzaton belüli, a főtengelyre merőleges leghosszabb egyenes szakasz
+- **átmérő:** a határ két legtávolabbi pontját köti össze. A főtengely hossza általában nem egyezik meg az átmérővel (csak a
 konvexeknél)
-- excentritás: a fő- és melléktengely hosszaránya---> d1/d2
-- főtengely szöge: a főtengely és az x-tengely által bezárt szög
+- **excentritás:** a fő- és melléktengely hosszaránya: $\dfrac{d1}{d2}$
+- **főtengely szöge:** a főtengely és az x-tengely által bezárt szög
 
 #### Konvex burok, konvex kiegészítés, konkávitási fa, partícionált határ
 
-- konvex burok: az alakzatot tartalmazó minimális konvex alakzat
-- konvex kiegészítés: a konvex burok és az alakzat különbsége
-- konkávitási fa: A fa gyökere a kiindulási alakzat, az első
-szinten a konvex különbség alakzatai
-helyezkednek el, melyekre a faépítést
-rekurzív módon folytatjuk.
-- partícionált határ: A konvex burok határát osztja fel részekre.
+- **konvex burok:** az alakzatot tartalmazó minimális konvex alakzat
+- **konvex kiegészítés:** a konvex burok és az alakzat különbsége
+- **konkávitási fa:** A fa gyökere a kiindulási alakzat, az első szinten a konvex különbség alakzatai helyezkednek el, melyekre a faépítést rekurzív módon folytatjuk.
+- **partícionált határ:** A konvex burok határát osztja fel részekre.
 
 #### Vetületek, törés-költség
 
-- vetületek: A bináris képekből képzett nem-negatív egészekből álló (1D) tömbök.
-- törés-költség: A vetületek továbbragozása, kiszűri a zajos képek oszlopaiban lévő „magányos” objektumpontokat.
+- **vetületek:** A bináris képekből képzett nem-negatív egészekből álló (1D) tömbök.
+- **törés-költség:**	 A vetületek továbbragozása, kiszűri a zajos képek oszlopaiban lévő „magányos” objektumpontokat.
 
 #### Topológiai leírások, Euler-szám, szomszédsági fa,
 
@@ -2669,14 +2839,20 @@ rekurzív módon folytatjuk.
 A váz egy gyakran alkalmazott régió-alapú alakleíró jellemző, mely leírja az objektumok általános formáját.\
 Alapvetően 3-féleképp határozhatjuk meg:
 - a vázat az objektum azon pontjai alkotják, melyekre kettő vagy több legközelebbi határpont található.
+
 - Az objektum határát (minden pontjában) egyidejűleg felgyújtjuk. A váz azokból a pontokból áll, ahol a tűzfrontok találkoznak és kioltják egymást. (Feltételezzük, hogy a tűzfrontok minden irányban egyenletes sebességgel, vagyis izotropikusan terjednek.)
+
 - A vázat az objektumba beírható maximális (nyílt) hipergömbök középpontjai alkotják. Egy beírható hipergömb maximális, ha őt nem tartalmazza egyetlen másik beírható hipergömb sem.
 
 Invariáns az eltolásra, elforgatásra és az uniform skálázásra
 
-#### Momentumok, invariáns momentumok
+### Momentumok, invariáns momentumok
 
-Pro: számok, többszintű képekre is értelmezettek, invariánsak a főbb geometriai műveletekre\
+**Pro:** 
+Egy szám
+* többszintű képekre is értelmezettek, invariánsak a főbb geometriai műveletekre
+	* rotálás, eltolás, skálázás, tükrözés stb..
+
 Bizonyos (centrális) momentumoknak geometriai jelentés is tulajdonítható, illetve fontos jellemzők kifejezhetők a segítségükkel, például súlypont.
 
 Javasoltak viszont 7 ún. invariáns momentumot is (ld. 56. dia), amelyekhez nem
@@ -2685,17 +2861,11 @@ hármasok, ha nem vesszük mindet figyelembe) jól jellemzik az objektumokat.
 
 ## Fourier leírás
 
-Ez egy transzformáción alapuló alakleírás
+**Ez egy transzformáción alapuló alakleírás**
 
-Transzformáljuk (hangsúlyozandó, hogy habár 2D képek szegmenseit jellemezzük, itt
-szigorúan 1D Fourier transzformációt alkalmazunk) a határ K darab
-mintavételezett pontjából (mint komplex s(k)
-számokból) képzett **s** vektort. Az
-eredményül kapott **a** vektor (komplex a(k)
-együtthatók) adják a Fourier leírást (vagyis tartalmazza a Fourier együtthatókat, a transzformáció bázisfüggvényeinek
-súlyait).
+==**Transzformáljuk** (szigorúan 1D Fourier transzformációt alkalmazunk) **a határ K darab mintavételezett pontjából képzett $s$ vektort**. **Az eredményül kapott $a$ vektor adja a Fourier leírást.** (vagyis tartalmazza a Fourier együtthatókat, a transzformáció bázisfüggvényeinek súlyait)
 Az alakzat rekonstrukciójához az inverz
-Fourier-transzformációt kell végrehajtani.
+Fourier-transzformációt kell végrehajtani.==
 
 A K darab Fourier együtthatóból visszakaphatnánk torzítatlanul az eredeti mitnavételezett pontokat, az alakleíráshoz viszont
 nem az összes súlyt, hanem csak egy részüket tartjuk meg, mindössze P<K darab
@@ -2717,15 +2887,15 @@ kiindulási kontúrt.
 
 ## Algoritmusok vezérlési szerkezetei és megvalósításuk C nyelven
 
-Algoritmus: bármilyen jól definiált számítási eljárást, amely bemenetként bizonyos értéket vagy értékeket kap és kimenetként bizonyos értéket vagy értékeket állít elő. Vizsgálhatjuk helyesség, idő- és tárigény szempontjából
+**Algoritmus:** bármilyen jól definiált számítási eljárást, amely bemenetként bizonyos értéket vagy értékeket kap és kimenetként bizonyos értéket vagy értékeket állít elő. Vizsgálhatjuk helyesség, idő- és tárigény szempontjából
 
-Algoritmus vezérlése: Az az előírás, amely az algoritmus minden lépésére (részműveletére) kijelöli, hogy a lépés végrehajtása után melyik lépés végrehajtásával folytatódjon (esetleg fejeződjék be) az algoritmus végrehajtása. Az algoritmusnak, mint műveletnek a vezérlés a legfontosabb komponense.
+**Algoritmus vezérlése:** Az az előírás, amely az algoritmus minden lépésére (részműveletére) kijelöli, hogy a lépés végrehajtása után melyik lépés végrehajtásával folytatódjon (esetleg fejeződjék be) az algoritmus végrehajtása. Az algoritmusnak, mint műveletnek a vezérlés a legfontosabb komponense.
 
 Négy fő vezérlési módot különböztetünk meg:
-- Szekvenciális: Véges sok adott művelet rögzített sorrendben egymás után történő végrehajtása. (sorban egymás után)
-- Szelekciós: Véges sok rögzített művelet közül adott feltétel alapján valamelyik végrehajtása. (if, else, if else, switch)
-- Ismétléses: Adott művelet adott feltétel szerinti ismételt végrehajtása. (for, while, do while)
-- Eljárás: Adott művelet alkalmazása adott argumentumokra, ami az argumentumok értékének pontosan meghatározott változását eredményezi. (void func, int func, double func, …)
+- **Szekvenciális:** Véges sok adott művelet rögzített sorrendben egymás után történő végrehajtása. (sorban egymás után)
+- **Szelekciós:** Véges sok rögzített művelet közül adott feltétel alapján valamelyik végrehajtása. (if, else, if else, switch)
+- **Ismétléses:** Adott művelet adott feltétel szerinti ismételt végrehajtása. (for, while, do while)
+- **Eljárás:** Adott művelet alkalmazása adott argumentumokra, ami az argumentumok értékének pontosan meghatározott változását eredményezi. (void func, int func, double func, …)
 
 A vezérlési módok nyelvek feletti fogalmak.
 
@@ -2750,8 +2920,7 @@ Az eljárásvezérlés fajtái:
 
 C-ben kicsi a különbség a kettő között.
 
-Függvényművelet
-
+**Függvényművelet**
 - A matematikai függvény fogalmának általánosítása
 - Ha egy részprobléma célja egy érték kiszámítása adott értékek függvényében, akkor a megoldást megfogalmazhatjuk függvényművelettel.
 - A függvényművelet specifikációja tartalmazza:
@@ -2760,17 +2929,14 @@ Függvényművelet
     - Mindegyik paraméter adattípusát
     - A művelet hatásának leírását
     - A függvényművelet eredménytípusát
-- Minden függvényben szerepelnie kell legalább egy return utasításnak
+- **Minden függvényben szerepelnie kell legalább egy return utasításnak**
 - Ha a függvényben egy ilyen utasítást hajtunk végre, akkor a függvény értékének kiszámítása befejeződik. A hívás helyén a függvény a return által kiszámított értéket veszi fel
 
-Eljárásművelet
-
-- Ha eljárást szeretnénk készíteni C nyelven, akkor egy olyan függvényt kell deklarálni, melynek eredménytípusa void. Ebben az esetben a függvény definíciójában nem kötelező a return utasítás, illetve ha mégis van ilyen, akkor nem adható meg utána kifejezés
-
-Megvalósítás
-
-- csak bemenő módú argumentumok vannak
-- pointerekkel lehet kezelni kimenő argumentumokként is
+**Eljárásművelet**
+- Ha eljárást szeretnénk készíteni C nyelven, akkor egy olyan függvényt kell deklarálni, melynek eredménytípusa **void**. Ebben az esetben a függvény definíciójában nem kötelező a return utasítás, illetve ha mégis van ilyen, akkor nem adható meg utána kifejezés
+- **Megvalósítás:**
+	- csak bemenő módú argumentumok vannak
+	- pointerekkel lehet kezelni kimenő argumentumokként is
 
 ### Szelekciós vezérlés
 
@@ -2981,14 +3147,15 @@ Diszkrét ismétléses vezérlésről akkor beszélünk, ha a ciklusmago
 - A H halmaz számossága határozza meg, hogy az M művelet hányszor hajtódik végre. Ha a H az üres halmaz, akkor a diszkrét ismétléses vezérlés az M művelet végrehajtása nélkül befejeződik. 
 - A diszkrét ismétléses vezérlésnek nincs közvetlen megvalósítása a C nyelvben. 
 
-   
-  
 
 
 # 6. Egyszerű adattípusok: egész, valós, logikai és karakter típusok és kifejezések. Az egyszerű típusok reprezentációja, számábrázolási tartományuk, pontosságuk, memória igényük és műveleteik. Az összetett adattípusok és a típusképzések, valamint megvalósításuk C nyelven. A pointer, a tömb, a rekord és az unió típus. Az egyes típusok szerepe, használata
 
 
 ## Egyszerű adattípusok: egész, valós, logikai és karakter típusok és kifejezések. Az egyszerű típusok reprezentációja, számábrázolási tartományuk, pontosságuk, memória igényük és műveleteik
+
+
+==Az **adattípus** (gyakran röviden **típus**) az értékek egy halmazához rendelt név vagy címke és ezen halmaz értékein végrehajtható néhány művelet==
 
 Az elemi adattípusok értékeit nem lehet önmagukban értelmes részekre bontani.
 
@@ -2998,16 +3165,16 @@ Ha a nyelv szintaktikája szerint a program egy adott pontján típusnak kellene
 
 A C nyelvben az egész típus az int.
 
-Az int típus értékkészlete az alábbi kulcsszavakkal módosítható:
+Az **int** típus értékkészlete az alábbi kulcsszavakkal módosítható:
 
-- signed: A típus előjeles értékeket fog tartalmazni (int, char).
-- unsigned: A típus csak előjeltelen, nemnegatív értékeket fog tartalmazni (int, char).
-- short: Rövidebb helyen tárolódik, így kisebb lesz az értékkészlet (int).
-- long: Hosszabb helyen tárolódik, így bővebb lesz az értékkészlet (int). Duplán is alkalmazható (long long).
+- **signed** (1 byte): A típus előjeles értékeket fog tartalmazni (int, char).
+- **unsigned** (1 byte): A típus csak előjeltelen, nemnegatív értékeket fog tartalmazni (int, char).
+- **short** (2 byte): Rövidebb helyen tárolódik, így kisebb lesz az értékkészlet (int).
+- **long** (4 byte): Hosszabb helyen tárolódik, így bővebb lesz az értékkészlet (int). Duplán is alkalmazható **(long long, ami 8 byte)**.
 
 Az egész típusok az értékkészlet határain belüli minden egész értéket pontosan ábrázolnak.
 
-Az egyes gépeken az egyes típusok mérete más-más lehet, de minden C megvalósításban teljesülnie kell a sizeof(short) ≤ sizeof(int) ≤ sizeof(long) ≤ sizeof(long long) relációnak.
+Az egyes gépeken az egyes típusok mérete más-más lehet, de minden C megvalósításban teljesülnie kell a ==sizeof(short) ≤ sizeof(int) ≤ sizeof(long) ≤ sizeof(long long)== relációnak.
 
 A C nyelv különféle egész adattípusai az értékhalmazukban különböznek egymástól, az értelmezett műveletükben megegyeznek
 
@@ -3015,29 +3182,25 @@ Az egész adattípusokon általában az 5 matematikai alapműveletet és az ért
 
 Értékadó művelet jobb oldalán álló kifejezés kiértékelése független attól, hogy a bal oldalon milyen típusú változó van.
 
-A / művelet két egész értékre alkalmazva maradékos osztást jelent!
+**A / művelet két egész értékre alkalmazva maradékos osztást jelent!**
 
-Tárolás:
-
+**Tárolás:**
 n bites tárterületnek 2^n állapota van, vagyis egy n biten tárolt adattípusnak legfeljebb ennyi különböző értéke lehet.
 
-Egész típusoknál a kettes komplemenst szokás használni, ha negatív értékek is szerepelhetnek az értékhalmazban.
+**Egész típusoknál a kettes komplemenst** szokás használni, ha negatív értékek is szerepelhetnek az értékhalmazban.
 
-Kettes komplemens:
-
+**Kettes komplemens:**
 - van egy pozitív számunk, és annak keressük a negatív párját
 - a számot kettes számrendszerben felírjuk
 - invertáljuk az összes bitet
 - majd hozzáadunk a végén egyet
 - a kapott szám lesz a szám ellentettje
 
-Értékhalmaz mérete:
-
+**Értékhalmaz mérete:**
 Ha negatív számok nem szerepelnek az értékhalmazban, akkor az értékhalmaz a [0 ... 2^n − 1] zárt intervallum. 
 Ha az értékhalmazban negatív számok is szerepelnek, akkor az értékhalmaz a [−2^(n−1) ... 2^(n−1) − 1] zárt intervallum. 
 
-Műveletei:
-
+**Műveletei:**
 - bitenkénti
     - negáció
     - és
@@ -3055,8 +3218,7 @@ A char adattípus egészként is használható, de alapvetően karakterek (betű
 - Hogy melyik értékhez melyik karakter tartozik, az az alkalmazott kódtáblázattól függ.
 - Bizonyos karakterek (általában a rendezés szerint első néhány) vezérlő karakternek számítanak, és nem megjeleníthetők.
 
-Egy C programban karakter értékeket megadhatunk
-
+**Egy C programban karakter értékeket megadhatunk:**
 - karakterkóddal számértékként, vagy
 - aposztrófok közé írt karakterrel
 
@@ -3064,7 +3226,6 @@ A speciális karaktereket, illetve magát az aposztrófot (és végső soron tet
 Az escape-szekvenciákat a \ (backslash) karakterrel kell kezdeni.
 
 Konvertáljunk egy tetszőleges számjegy karaktert (ch) a neki megfelelő egész számmá és egy egyjegyű egészet (i) karakterré:
-
 ```
 i = ch - '0';
 ch = i + '0';
@@ -3072,10 +3233,10 @@ ch = i + '0';
 
 ### Valós típusok
 
-A C nyelvben a valós adattípusok a float és double.
+A C nyelvben a valós adattípusok a **float** és **double**.
 
-A double adattípus az alábbi kulcsszóval módosítható:
-    - long: Implementációfüggő módon 64, 80, 96 vagy 128 bites pontosságot megvalósító adattípus
+**A double** adattípus az alábbi kulcsszóval módosítható:
+    - **long**: Implementációfüggő módon 64, 80, 96 vagy 128 bites pontosságot megvalósító adattípus
 
 A valós adattípusok az értékkészlet határain belül sem képesek minden valós értéket pontosan ábrázolni. Viszont az értékkészlet határain belüli minden a valós értéket képesek egy típusfüggő e relatív pontossággal ábrázolni, az a-hoz legközelebbi a típus által pontosan ábrázolható x valós értékkel.
 
@@ -3085,11 +3246,10 @@ A valós adattípusok az értékkészlet határain belül sem képesek minden va
 - Értékadó művelet jobb oldalán álló kifejezés kiértékelése független attól, hogy a bal oldalon milyen típusú változó van.
 - A típus pontatlansága miatt az == műveletet nagyon körültekintően kell használni!
 
-Ábrázolása:
+**Ábrázolása:**
+Egy valós értéket tároló memóriaterület **három részre osztható:** az **előjelbitet**, a **törtet** és az **exponenciális kitevőt** kódoló részre.
 
-Egy valós értéket tároló memóriaterület három részre osztható: az előjelbitet, a törtet és az exponenciális kitevőt kódoló részre.
-
-- Az előjelbit 0 értéke a pozitív, 1 értéke a negatív számokat jelöli
+- Az **előjelbit** 0 értéke a pozitív, 1 értéke a negatív számokat jelöli
 - A számot kettes számrendszerben 1.m × 2^k alakra hozzuk, majd az m számjegyeit eltároljuk a törtnek, a k-nak egy típusfüggő b konstanssal növelt értékét pedig a kitevőnek fenntartott részen.
 - Így a tört rész hossza az ábrázolás pontosságát (az értékes számjegyek számát), a kitevő pedig az értéktartomány méretét határozza meg.
 - Nagyon kicsi számokat speciálisan 0.m × 2^(1−b) alakban tárolhatunk, ekkor a kitevő összes bitje 0.
@@ -3122,11 +3282,11 @@ Az összetett adattípusok értékei tovább bonthatóak, további értelmezés�
 
 A C nyelv összetett adattípusai:
 
-- Pointer típus
+- **Pointer típus**
     - Függvény típus
-- Tömb típus
+- **Tömb típus**
     - Sztringek
-- Rekord típus
+- **Rekord típus**
     - Szorzat-rekord
     - Egyesítési-rekord
 
@@ -3180,22 +3340,22 @@ Műveletek:
     - `p != q`
 
 
-A memóriaműveletekhez szükség van az stdlib.h vagy a memory.h használatára.
+**A memóriaműveletekhez szükség van az stdlib.h vagy a memory.h** használatára.
 
-malloc(S), lefoglal egy S méretű memóriaterületet
-sizeof(E), megmondja, hogy egy E típusú érték mekkora helyet igényel a memóriában
-malloc(sizeof(E)), létrehoz egy E típusú érték tárolására is alkalmas változó
-free(p), felszabadítja a p-hez tartozó memóriaterületet, ezután a p-hez nem lesz érvényes változóhivatkozás 
+**malloc(S)**, lefoglal egy S méretű memóriaterületet
+**sizeof(E)**, megmondja, hogy egy E típusú érték mekkora helyet igényel a memóriában
+**malloc(sizeof(E))**, létrehoz egy E típusú érték tárolására is alkalmas változó
+**free(p)**, felszabadítja a p-hez tartozó memóriaterületet, ezután a p-hez nem lesz érvényes változóhivatkozás 
 
 Linux alatt logikailag minden programnak saját memória-tartománya van, amin belül az egyes memóriacímeket egy sorszám azonosítja.
 
-Pointer típusú változó 32 bites rendszereken 4 bájt, 64 bites rendszereken 8 bájt hosszban a hozzá tartozó dinamikus változóhoz foglalt memóriamező kezdőcímét (sorszámát) tartalmazza.
+**Pointer típusú változó** 32 bites rendszereken 4 bájt, 64 bites rendszereken 8 bájt hosszban a hozzá tartozó dinamikus változóhoz foglalt memóriamező kezdőcímét (sorszámát) tartalmazza.
 
 A pointer értéke tehát (második megközelítésben) értelmezhető egy tetszőleges memóriacímként is, amely értelmezés egybeesik a pointer megvalósításával.
 
 Ilyen módon viszont értelmezhetjük a címképző műveletet, ami egy változó memóriabeli pozícióját, címét adja vissza.
 
-- Cím
+- **Cím**
     - `p = &x`
 
 A void* egy speciális, úgynevezett típustalan pointer. Az ilyen típusú pointerek „csak” memóriacímek tárolására alkalmasak, a dereferencia művelet alkalmazása rájuk értelmetlen. Viszont minden típusú pointerrel kompatibilisek értékadás és összehasonlítás tekintetében.
@@ -3212,13 +3372,12 @@ Ha az ilyen sorozatokon a következő műveleteket értelmezzük, akkor egy (abs
 
 Jelöljük ezt a Tömb típust T -vel, a 0, . . . , n − 1 intervallumot pedig I-vel.
 
-Műveletek
-
-- Kiolvas
+**Műveletek**
+- *Kiolvas*
     - a sorozat i. elemének kiolvasása egy változóba
-- Módosít
+- *Módosít*
     - a sorozat i. elemének módosítása egy E típusú értékre
-- Értékadás
+- *Értékadás*
     - a változó felveszi a tömb értékét
 
 Tömb típusú változót az alábbi módon deklarálhatunk:
@@ -3276,7 +3435,8 @@ A T halmazon is a szorzat rekordhoz hasonló módon értelmezhetünk kiolvasó �
 
 Az új adattípust a T 0 változati típusból és T 1 , . . . , T k egyesítési-tag típusokból képzett egyesített-rekord típusnak nevezzük.
 
-```typedef union T {
+```
+typedef union T {
     T1 M1;
     ...
     Tk Mk;
@@ -3293,12 +3453,13 @@ Valamennyi változati mező ugyanazon a memóriacímen kezdődik, ami
 megegyezik a teljes union típusú érték címével (azaz minden mező
 eltolása, offset-je 0).
 
-# 7. Objektum orientált paradigma és annak megvalósítása a JAVA és C++ nyelvekben. Az absztrakt adattípus, az osztály. Az egységbe zárás, az információ elrejtés, az öröklődés, az újrafelhasználás és a polimorfizmus. A polimorfizmus feloldásának módszere
+
+# 7. Objektum orientált paradigma és annak megvalósítása a JAVA és C++ nyelvekben. Az absztrakt adattípus, az osztály. Az egységbezárás, az információ elrejtés, az öröklődés, az újrafelhasználás és a polimorfizmus. A polimorfizmus feloldásának módszere
 
 
 ## Objektum orientált paradigma
 
-Az objektum orientál paradigma az objektumok fogalmán alapuló programozási paradigma. Az objektumok egységbe foglalják az adatokat és a hozzájuk tartozó műveleteket. A program egymással kommunikáló objektumok összességéből áll melyek használják egymás műveleteit és adatait.
+Az objektum orientált paradigma az **objektumok** fogalmán alapuló programozási paradigma. Az objektumok egységbe foglalják az adatokat és a hozzájuk tartozó műveleteket. A program egymással kommunikáló objektumok összességéből áll melyek használják egymás műveleteit és adatait.
 
 Az objektum-orientáltság három alapillére:
 
@@ -3309,23 +3470,22 @@ Az objektum-orientáltság három alapillére:
 ### Egységbezárás és adatelrejtés 
 
 Az egységbe zárás azt fejezi ki, hogy az összetartozó adatok és függvények, eljárások együtt vannak, egy egységbe tartoznak.
-További fontos fogalom az adatelrejtés, ami azt jelenti, hogy kívülről csak az férhető hozzá közvetlenül, amit az objektum osztálya megenged.
+További fontos fogalom az **adatelrejtés**, ami azt jelenti, hogy kívülről csak az férhető hozzá közvetlenül, amit az objektum osztálya megenged.
 
 Ha az objektum, illetve osztály elrejti az összes adattagját, és csak bizonyos metódusokon keresztül férhetnek hozzá a kliensek, akkor az egységbe zárás az absztrakciót és információelrejtés erős formáját valósítja meg
 
 ### Az osztály és objektum
 
-Absztrakt adattípus: Az adattípus leírásának legmagasabb szintje, amelyben az adattípust úgy specifikáljuk, hogy az adatok ábrázolására és a műveletek implementációjára semmilyen előírást nem adunk.
+**Absztrakt adattípus:** Az adattípus leírásának legmagasabb szintje, amelyben az adattípust úgy specifikáljuk, hogy az adatok ábrázolására és a műveletek implementációjára semmilyen előírást nem adunk.
 
-Osztály: Egy absztrakt adattípus. Az adattagokból és a rajta elvégezhető műveleteket zárja egy egységbe. Egészen konkrétan objektumok csoportjának leírása, amelyeknek közös az attribútumaik, operációik és szemantikus viselkedésük van. Ugyanúgy viselkedik, mint minden egyéb primitív típus, tehát pl. változó (objektum) hozható létre belőlük.
+**Osztály:** Egy absztrakt adattípus. Az adattagokból és a rajta elvégezhető műveleteket zárja egy egységbe. Egészen konkrétan objektumok csoportjának leírása, amelyeknek közös az attribútumaik, operációik és szemantikus viselkedésük van. Ugyanúgy viselkedik, mint minden egyéb primitív típus, tehát pl. változó (objektum) hozható létre belőlük.
+- **Létrehozás:** Java-ban és C++-ban is a class kulcsszóval tudunk osztályokat definiálni. Az osztályokból tetszőleges mennyiségben létrehozhatunk példányokat, azaz objektumokat. 
 
-- Létrehozás: Java-ban és C++-ban is a class kulcsszóval tudunk osztályokat definiálni. Az osztályokból tetszőleges mennyiségben létrehozhatunk példányokat, azaz objektumokat. 
+**Objektum:** Egy változó, melynek típusa valamely objektumosztály, vagyis az osztály egy példánya amely rendelkezik állapottal, viselkedéssel, identitással. Az objektumok gyakran megfeleltethetők a való élet objektumainak vagy egyedeinek
 
-Objektum: Egy változó, melynek típusa valamely objektumosztály, vagyis az osztály egy példánya amely rendelkezik állapottal, viselkedéssel, identitással. Az objektumok gyakran megfeleltethetők a való élet objektumainak vagy egyedeinek
-
-- állapot: Egy az objektum lehetséges létezési lehetőségei közül (a tulajdonságok aktuális értéke, pl: lámpaBekapcsolva true vagy false)
-- viselkedés: Az objektum viselkedése annak leírása, hogy az objektum hogy reagál más objektumok kéréseire. (metódusok, pl: lámpa.bekapcsol())
-- identitás: Minden objektum egyedi, még akkor is, ha éppen ugyanabban az állapotban vannak, és ugyanolyan viselkedést képesek megvalósítani.
+- **állapot:** Egy az objektum lehetséges létezési lehetőségei közül (a tulajdonságok aktuális értéke, pl: lámpaBekapcsolva true vagy false)
+- **viselkedés:** Az objektum viselkedése annak leírása, hogy az objektum hogy reagál más objektumok kéréseire. (metódusok, pl: lámpa.bekapcsol())
+- **identitás:** Minden objektum egyedi, még akkor is, ha éppen ugyanabban az állapotban vannak, és ugyanolyan viselkedést képesek megvalósítani.
 
 ### Információ elrejtése
 
@@ -3335,25 +3495,24 @@ Az adattagok, és metódusok láthatóságának vezérléséhez vannak kulcsszav
 
 Láthatósági opciók
 
-- public: mindenhonnan látható
-- protected: csak az osztály scope-ján belül, illetve a később az adott osztályból származtatott gyerekosztályokon belül lehet hivatkozni.
-- private: csak az adott osztályon belül lehet hivatkozni rá
+- **public:** mindenhonnan látható
+- **protected:** csak az osztály scope-ján belül, illetve a később az adott osztályból származtatott gyerekosztályokon belül lehet hivatkozni.
+- **private:** csak az adott osztályon belül lehet hivatkozni rá
 
-(Java-ban alapértelmezetten package private (az adott packagen belül public, egyébként private) a láthatóság, míg C++-ban private)
+(**Java-ban alapértelmezetten package private** (az adott packagen belül public, egyébként private) a láthatóság, míg **C++ -ban private**)
 
 Törekedni kell a minél nagyobb adatbiztonságra és információ elrejtésre: az adat tagok láthatósága legyen private, esetleg indokolt esetben protected.
 
 ### Öröklődés
 
-Osztályok között értelmezett viszony, amely segítségével egy általánosabb típusból (ősosztály) egy sajátosabb típust tudunk létrehozni (utódosztály). Az utódosztály adatokat és műveleteket örököl, kiegészíti ezeket saját adatokkal és műveletekkel, illetve felülírhat bizonyos műveleteket. A kód újrafelhasználásának egyik módja. Megkülönböztetünk egyszeres és többszörös örökítést.
+Osztályok között értelmezett viszony, amely segítségével egy általánosabb típusból (ősosztály) egy sajátosabb típust tudunk létrehozni (utódosztály). Az utódosztály adatokat és műveleteket örököl, kiegészíti ezeket saját adatokkal és műveletekkel, illetve felülírhat bizonyos műveleteket. A kód újrafelhasználásának egyik módja. **Megkülönböztetünk egyszeres és többszörös örökítést**.
 
 A hasonlóság kifejezése az ős felé az általánosítás. A különbség a gyerek felé a specializálás.
 
-Java: az extends kulcsszóval tudjuk jelezni, hogy az adott osztály egy másik osztálynak a leszármazottja. Java-ban egyszeres öröklődés van, vagyis egy osztály csak is egy ősosztályból származhat (viszont több interfészt implementálhat)
+**Java:** az ==extends== kulcsszóval tudjuk jelezni, hogy az adott osztály egy másik osztálynak a leszármazottja. Java-ban egyszeres öröklődés van, vagyis **egy osztály csak is egy ősosztályból származhat** (viszont több interfészt implementálhat)
+- **super:** segítségével gyerekosztályból hivatkozhatunk szűlőosztály adattagjaira és metódusaira.
 
-- super: segítségével gyerekosztályból hivatkozhatunk szűlőosztály adattagjaira és metódusaira.
-
-C++: Az osztály neve után vesszővel elválasztva lehet megadni az ősosztályokat és velük együtt a láthatóságaikat. Lehetőség van többszörös öröklődésre is
+**C++:** Az ==osztály neve után vesszővel elválasztva== lehet megadni az ősosztályokat és velük együtt a láthatóságaikat. **Lehetőség van többszörös öröklődésre is.**
  
 - Az öröklődés során lehetőség van az ős osztály tagjainak láthatósági opcióján változtatni. Ezt az ős osztályok felsorolásakor kell definiálni. Az változtatás csak szigorítást (korlátozást) jelenthet. Az alábbi táblázat a gyermek osztálybeli láthatóságot mutatja be az ős osztálybeli láthatóság és a módosítás függvényében:
  
@@ -3361,7 +3520,7 @@ C++: Az osztály neve után vesszővel elválasztva lehet megadni az ősosztály
 
 Többszörös öröklődésnél előfordulhat olyan eset, amikor egy-egy ős osztály az öröklődési hierarchia különböző pontján ismét megjelenik. Ekkor a gyermek osztályban ennek az ős osztálynak több példánya jelenhet meg. Erre néhány esetben nincs szükség, például ha az ős osztály csak egy eljárás-erőforrás, akkor minden esetben elegendő egyetlen előfordulás a gyermek osztályokban.
  
-A virtuális ős osztályt az őröklődésnél az ős osztályok felsorolásakor virtual módosítóval kell jelezni.
+A virtuális ős osztályt az őröklődésnél az ős osztályok felsorolásakor **virtual módosítóval** kell jelezni.
  
 (Ha nem adom meg a virtual módosító szót, akkor az A osztály többször fog megjelenni a D osztály példányaiban. Hivatkozásnál mindig meg kell mondani, hogy az A melyik példányáról van szó: C::A::m_iN, B::A::m_iN.)
 
@@ -3376,24 +3535,23 @@ A polimorfizmus lehetővé teszi számunkra, hogy egyetlen műveletet különbö
 
 Polimorfizmusra két lehetőség van:
 
-- statikus polimorfizmus (korai hozzárendelés) - a hívott metódus nevének és címének összerendelése szerkesztéskor történik meg. A futtatható programban már fix metóduscímek találhatók. (statikus, private, final metódusok)
-- dinamikus polimorfizmus (késői hozzárendelés) - metódus nevének és címének hozzárendelése a hívás előtti sorban történik, futási időben
+- **statikus polimorfizmus (korai hozzárendelés)** - a hívott metódus nevének és címének összerendelése szerkesztéskor történik meg. A futtatható programban már fix metóduscímek találhatók. (statikus, private, final metódusok)
+- **dinamikus polimorfizmus (késői hozzárendelés)** - metódus nevének és címének hozzárendelése a hívás előtti sorban történik, futási időben
 
 ### Virtuális eljárások
 
 Egy virtuális eljárás címének meghatározása indirekt módon, futás közben történik.
 
-Java-ban eleve csak virtuális eljárások vannak (kivéve a final metódusokat, amelyeket nem lehet felüldefiniálni és a private metódusokat, amelyeket nem lehet örökölni)
+Java-ban eleve **csak virtuális eljárások** vannak (**kivéve** a **final metódusokat**, amelyeket nem lehet felüldefiniálni és a **private metódusokat, amelyeket nem lehet örökölni**)
 
-C++-ban a virtuális függvénytábla tartja nyilván a virtuális eljárások címeit. A VFT táblázat öröklődik, feltöltéséről a konstruktor gondoskodik. A származtatott osztály konstruktora módosítja a virtuális függvénytáblát, kijavítja az ősosztályból örökölt metóduscímeket. Amikor a konstruálási folyamat véget ér, a VFT táblázat minden sora értéket kap, mégpedig a ténylegesen létrehozott osztálynak megfelelő metódus címeket. A VFT táblázat sorai ezután már nem változnak meg.
+C++ -ban a **virtuális függvénytábla** tartja nyilván a virtuális eljárások címeit. A VFT táblázat öröklődik, feltöltéséről a konstruktor gondoskodik. A származtatott osztály konstruktora módosítja a virtuális függvénytáblát, kijavítja az ősosztályból örökölt metóduscímeket. Amikor a konstruálási folyamat véget ér, a VFT táblázat minden sora értéket kap, mégpedig a ténylegesen létrehozott osztálynak megfelelő metódus címeket. A VFT táblázat sorai ezután már nem változnak meg.
 
-- Virtuális eljárásokat a virtual kulcsszóval tudunk létrehozni. Az újrafelhasználás során nagy valószínűséggel módosításra kerülő eljárásokat a szülő osztályokban célszerű egyből virtuálisra megírni, mert ezzel jelentős munkát lehet megtakarítani a későbbiekben.
+- Virtuális eljárásokat a **virtual kulcsszóval** tudunk létrehozni. Az újrafelhasználás során nagy valószínűséggel módosításra kerülő eljárásokat a szülő osztályokban célszerű egyből virtuálisra megírni, mert ezzel jelentős munkát lehet megtakarítani a későbbiekben.
  
 ### Absztrakt osztály, interfész
 
-Java:
-Absztrakt osztályok
-
+**Java:
+Absztrakt osztályok:**
 - Az abstract kulcsszóval hozható létre. 
 - Egy absztrakt osztályból nem hozható létre objektum.
 - Tartalmazhat absztrakt metódusokat (absztrakt metódusnak nincs implementációja, azaz törzse), illetve nem absztraktokat
@@ -3401,27 +3559,26 @@ Absztrakt osztályok
 - Ha egy osztály rendelkezik legalább egy absztrakt metódussal, akkor osztálynak is absztraktnak kell lennie
 - Lehetnek adattagjai
 
-Interfész
-
+**Interfész**
 - Az interface kulcsszóval lehet létrehozni
 - Egy speciális absztrakt osztály
-- Nincsenek sem megvalósított metódusok, sem adattagok. Csupán metódus deklarációkat tartalmaz
-- Gyerekosztályban az implements kulcsszóval lehet implementálni
+- Nincsenek sem megvalósított metódusok, sem adattagok. Csupán metódus deklarációkat tartalmaz (Újabb javaban lehet **public static final** lesz mindegyik adattag)
+- Gyerekosztályban az **implements** kulcsszóval lehet implementálni
 
-C++:
-Absztrakt osztályok:
+**C++:
+Absztrakt osztályok:**
 
-A törzs nélküli virtuális eljárásokat pure virtual eljárásoknak nevezzük (pl.: virtual int getArea() = 0;). A pure virtual eljárás egy üres (NULL) bejegyzést foglal el a VFT (Virtual Function Table) táblázatban. Ha egy osztály ilyen eljárást tartalmaz, akkor azt absztrakt osztálynak nevezzük amiatt, mert ebből az osztályból objektum példányokat létrehozni nem lehet. A gyermek osztályokban minden pure virtual eljárást megfelelő törzzsel kell ellátni, ezt a fordító ellenőrzi. Amíg egyetlen pure virtual eljárás is marad, az osztály absztrakt lesz.
+A törzs nélküli virtuális eljárásokat **pure virtual** eljárásoknak nevezzük (pl.: virtual int getArea() = 0;). A pure virtual eljárás egy üres (NULL) bejegyzést foglal el a VFT (Virtual Function Table) táblázatban. Ha egy osztály ilyen eljárást tartalmaz, akkor azt absztrakt osztálynak nevezzük amiatt, mert ebből az osztályból objektum példányokat létrehozni nem lehet. A gyermek osztályokban minden pure virtual eljárást megfelelő törzzsel kell ellátni, ezt a fordító ellenőrzi. Amíg egyetlen pure virtual eljárás is marad, az osztály absztrakt lesz.
 
 # 8. Objektumok életciklusa, létrehozás, inicializálás, másolás, megszüntetés. Dinamikus, lokális és statikus objektumok létrehozása. A statikus adattagok és metódusok, valamint szerepük a programozásban. Operáció és operátor overloading a JAVA és C++ nyelvekben. Kivételkezelés
 
 ## Objektumok létrehozása
 
-Az objektumokat Java-ban és C++-ban is tárolhatjuk statikusan (az adatszegmensben), a veremben (lokálisan) vagy a heapben (dinamikusan).
+Az objektumokat Java-ban és C++ -ban is tárolhatjuk **statikusan** (az adatszegmensben), a **veremben** (lokálisan) vagy a **heapben** (dinamikusan).
 
 Java-ban az objektumok mindig a heap-ben keletkeznek, kivéve a primitív típusokat. Az osztályok konstruktora fogja inicializálni az objektumot. A konstruktor neve meg kell egyezzen az osztály nevével. A konstruktornak nincs visszatérési értéke, de paraméterei lehetnek, amelyekkel meg lehet adni, hogy hogyan inicializáljuk az objektumot.
 
-A new operátor:
+A **new** operátor:
 - Szintaxis: new Osztály(args)
 - Létrehozás lépései:
     - Lefoglalja a számára szükséges memóriát
@@ -3430,7 +3587,7 @@ A new operátor:
 
 Egy osztályhoz készíthetünk több konstruktort, amelyek különböző paraméterlistával rendelkeznek.
 
-C++-ban is hasonlóan működik a konstruktor: a konstruktor inicializálja az objektumot, azaz tölti fel az adattagjait értékekkel, több különböző paraméter listájú konstruktort lehet létrehozni egy osztályhoz, a konstruktor neve meg kell egyezzen az osztály nevével és visszaadott értéke nem lehet.
+**C++-ban is hasonlóan működik a konstruktor**: a konstruktor inicializálja az objektumot, azaz tölti fel az adattagjait értékekkel, több különböző paraméter listájú konstruktort lehet létrehozni egy osztályhoz, a konstruktor neve meg kell egyezzen az osztály nevével és visszaadott értéke nem lehet.
 
 A paraméter nélküli konstruktor eljárás neve: alapértelmezett (default) konstruktor. Csak ős osztályokban kötelező, akkor ha az osztályból gyermek osztályokat szeretnének létrehozni öröklődéssel. Megvalósítható olymódon is, hogy egy nem default konstruktor minden paraméteréhez default eljárás paramétereket adunk (pl. Osztaly(int x = 1, int y = 2)).
 
@@ -3438,7 +3595,7 @@ Amennyiben egy gyermek osztály konstruálunk, akkor a konstruktor minden esetbe
 
 C++-ban a heapbeli objektumok létrehozása a new operátorral történik, megszüntetésük pedig a delete operátorral. A létrehozáshoz nem elegendő a memória megfelelő méretben történő lefoglalása, hanem a konstruktor eljárást is meg kell hívni. (Ezért nem lehet objektum példányt létrehozni malloc eljárással.) A new operátorral egyetlen objektum példányt vagy megadott méretű tömböt hozhatunk létre. A new operátor alkalmazásának eredménye mindig egy pointer a new operandusában megadott osztályra.
 
-Szintaxis:
+**Szintaxis:**
   
 Tömbök foglalásakor a default konstruktor hívódik meg. Megszüntetésüknél az üres [] zárójelpár használata kötelező.
 
@@ -3452,23 +3609,20 @@ Akkor beszélünk klónozásról, ha egy objektum példányt két (vagy több) p
 
 Klónozás lehetséges az „=” segítségével, viszont ilyenkor az objektumok ugyan lemásolódnak, de a referenciájuk ugyanarra a memóriaterületre fog mutatni, azaz, ha pl. az egyik másolt objektum egyik adattagját módosítjuk, az az eredeti objektumra is hatással lesz.
 
-Java:
+**Java:**
 Valódi másolást Java-ban a clone() metódussal tudunk végrehajtani. Az osztálynak, amit szeretnénk klónozhatóvá tenni implementálnia kell a Cloneable interfészt és meg kell hívnia az ős clone() metódusát (super.clone()).
 
-C++:
-C++-ban a valós klónozás megvalósítására szolgát a copy konstruktor. A copy konstruktor paramétereinek száma 1, ennek az egy paraméternek a típusa pedig a tartalmazó osztályra mutató referencia típus.
+**C++:**
+A valós klónozás megvalósítására szolgát a copy konstruktor. A copy konstruktor paramétereinek száma 1, ennek az egy paraméternek a típusa pedig a tartalmazó osztályra mutató referencia típus.
  
 ## Dinamikus, lokális és statikus objektumok létrehozása:
 
-C++:
-   
-A statikusan létrehozott objektum az adott kód blokk végén megszűnik, amelyikben létre lett hozva.
+**C++:**
+A **statikusan létrehozott objektum** az adott kód blokk végén megszűnik, amelyikben létre lett hozva.
+**Lokális objektumokat** default paraméter vagy objektumokat tartalmazó kifejezésekben használhatunk. Szokás még objektum konstansnak is nevezni őket.
+**Objektumokat dinamikusan** a new operátor segítségével tudunk létrehozni, amelynek törléséről a programozónak kell gondoskodnia.
 
-Lokális objektumokat default paraméter vagy objektumokat tartalmazó kifejezésekben használhatunk. Szokás még objektum konstansnak is nevezni őket.
-
-Objektumokat dinamikusan a new operátor segítségével tudunk létrehozni, amelynek törléséről a programozónak kell gondoskodnia.
-
-Java:
+**Java:**
 Java-ban minden objektum dinamikusan jön létre a heap-ben.
 
 ### A statikus adattagok és metódusok
@@ -3499,7 +3653,7 @@ void sum(int a,int b,int c){ System.out.println(a+b+c); }
 
 ### Operátor kiterjesztés
 
-Java-ban nincs lehetőség az operátorok kiterjesztésére. 
+**Java-ban nincs lehetőség az operátorok kiterjesztésére.**
 A C++ programozási nyelv lehetőséget biztosít arra, hogy az osztályokra kiterjesszük a nyelvben definiált bináris és unáris operátorokat. A kiterjesztésre vonatkozóan több megszorítás is van, ennek ellenére ez a szolgáltatás jelentős lépés az absztrakció növelésének irányába.
 
 - A kiterjesztés CSAK osztályok esetén lehetséges (ebben benne van a class, struct és a union), viszont nem működik tömbökre, pointerekre.
@@ -3546,6 +3700,8 @@ class MyException : public std::exception {
          } 
 };
 ```
+
+
 # 9. Java és C++ programok fordítása és futtatása. Parancssori paraméterek, fordítási opciók, nagyobb projektek fordítása. Absztrakt-, interfész- és generikus osztályok, virtuális eljárások. A virtuális eljárások megvalósítása, szerepe, használata
 
 
@@ -3556,8 +3712,8 @@ class MyException : public std::exception {
 Első lépésben az előfordító(preprocessor) a tényleges fordítóprogram futása előtt szövegesen átalakítja a forráskódot.
 Az előfordító különböző szöveges változtatásokat hajt végre a forráskódon, előkészíti azt a tényleges fordításra.
 Feladatai:
-- Header fájlok beszúrása.
-- A forrásfájlban fizikailag több sorban elhelyezkedő forráskód logikailag egy sorbatörténő csoportosítása (ha szükséges).
+- **Header fájlok beszúrása. (*.hpp/.h)**
+- A **forrásfájlban (*.cpp)** fizikailag több sorban elhelyezkedő forráskód logikailag egy sorbatörténő csoportosítása (ha szükséges).
 - A kommentek helyettesítése whitespace karakterekkel.
 - Az előfordítónak a programozó által megadott feladatok végrehajtása (szimbólumokbehelyettesítése, feltételes fordítás, makrók, stb.) 
 A leggyakoribb műveletei a szöveghelyettesítés (#define), a szöveges állomány beépítése (#include) valamint a program részeinek feltételtől függő megtartása
@@ -3565,11 +3721,12 @@ A leggyakoribb műveletei a szöveghelyettesítés (#define), a szöveges állom
 
 ### Fordítás
 
-Fordításkor a forrásfájlokból az első lépésben tárgymodulok (.o) keletkeznek, önmagukban nem futóképesek. Ezt követően szükség van egy szerkesztőre, ami ezeket a modulokat összeszerkeszti.
-Linux/Unix rendszerek esetén a fordító a gcc. Az alábbi módon tudjuk lefordítani a több forrásfájlból álló projektet: 
-gcc -o prog main.cpp class1.cpp class2.cpp
+Fordításkor a forrásfájlokból az első lépésben **tárgymodulok (*.o) keletkeznek**, önmagukban nem futóképesek. 
+Ezt követően szükség van egy szerkesztőre, ami ezeket a modulokat összeszerkeszti.
+Linux/Unix rendszerek esetén a fordító a **gcc**. Az alábbi módon tudjuk lefordítani a több forrásfájlból álló projektet: 
+**gcc -o prog main.cpp class1.cpp class2.cpp**
 Felsoroljuk azokat a fájlokat (a felsorolás sorrendje lényegtelen), amiket le szeretnénk fordítani. Fontos a main.cpp megadása hiszen ez a program belépési pontja.
-A -o prog, megadásakor megadhatjuk a program nevét, ekkor prog néven hozza létre az .exe fájlt. Ha nem mondunk semmit, akkor az alapértelmezett exe fájl neve a.out lesz. Célszerű használni a -o kapcsolót. Az exe kiterjesztés csak Windows esetén van, Linux esetén csak futtatási jogú fájlt kapunk.
+A **-o prog**, megadásakor megadhatjuk a program nevét, ekkor prog néven hozza létre az .exe fájlt. Ha nem mondunk semmit, akkor az alapértelmezett exe fájl neve a.out lesz. Célszerű használni a -o kapcsolót. Az exe kiterjesztés csak Windows esetén van, Linux esetén csak futtatási jogú fájlt kapunk.
 A fordító először mindegyiket lefordítja, melyek a .o kiterjesztésű tárgymodul fájlok lesznek, majd ezek összeszerkesztésre kerülnek
 
 ### Fordítási lehetőségek
@@ -3591,11 +3748,11 @@ A fordító először mindegyiket lefordítja, melyek a .o kiterjesztésű tárg
 ### A gcc fordító fontosabb fordítási opciói
 
 Szintaxis: gcc [kapcsolók] forrásfájlok
-- -Ob[szint]: A gcc fordítónak a -Ob[szint] kapcsolóval tudjuk megmondani, hogy milyen optimalizálásokat alkalmazzon, a szint maximum 3 lehet (0,1,2), inline eljárások.
-- -c: mint compile, lefordítja és összeállítja a forrást, linkelést nem végez.
-- -o: lehetőségünk van megadni a futtatható állomány nevét, amennyiben nem adunk meg, az alapértelmezett az a.out lesz.
-- -Wall: A figyelmeztetéseket írja ki.
-- -g: engedélyezi a hibakeresési információk elhelyezését a programban, ami emiatt sokkal nagyobb lesz, de nyomon lehet követni a futását például a gdb programmal.
+- **-Ob[szint]**: A gcc fordítónak a -Ob[szint] kapcsolóval tudjuk megmondani, hogy milyen optimalizálásokat alkalmazzon, a szint maximum 3 lehet (0,1,2), inline eljárások.
+- **-c**: mint compile, lefordítja és összeállítja a forrást, linkelést nem végez.
+- **-o**: lehetőségünk van megadni a futtatható állomány nevét, amennyiben nem adunk meg, az alapértelmezett az a.out lesz.
+- **-Wall**: A figyelmeztetéseket írja ki.
+- **-g**: engedélyezi a hibakeresési információk elhelyezését a programban, ami emiatt sokkal nagyobb lesz, de nyomon lehet követni a futását például a gdb programmal.
 
 ### C++ parancssori paraméterek
 
@@ -3611,13 +3768,14 @@ Ahhoz, hogy Java programokat tudjunk futtatni, illetve fejleszteni, szükségün
 Azonban a fejlesztéshez szükségünk lesz a JDK-ra (Java Development Kit) is. Ez tartalmazza a Java alkalmazások futtatásához, valamint azok készítéséhez, fordításához szükséges programozói eszközöket is (tehát a JRE-t nem kell külön letölteni, a JDK tartalmazza).
 A fordítás folyamata az alábbiak alapján történik:
 
-- Először a .java kiterjesztésű fájlokat a Java-fordító (compiler) egy közbülső nyelvre fordítja
-- Java bájtkódot kapunk eredményül (ez a bájtkód hordozható). A java bájtkód a számítógép számára még nem értelmezhető. (kiterjesztése .class)
+- Először a **.java** kiterjesztésű fájlokat a Java-fordító (compiler) egy közbülső nyelvre fordítja
+- **Java bájtkódot kapunk eredményül** (ez a bájtkód hordozható). A java bájtkód a számítógép számára még nem értelmezhető. (kiterjesztése .class)
 - Ennek a kódnak az értelmezését és fordítását gépi kódra a JVM (Java Virtual Machine) végzi el futásidőben.
  
-Fordítás: javac filename.java
-Futtatás: java filename
-Java fordítási opciók:
+**Fordítás:** javac filename.java
+**Futtatás:** java filename
+
+**Java fordítási opciók:**
 - -g: debug információk generálása
 - -s <könyvtár>: a generált fájlok könyvtárának megadása
 - -sourcepath <path>: a forrásfájlok elérési útvonalát meg lehet adni
@@ -3637,7 +3795,7 @@ C++-ban a virtuális függvénytábla tartja nyilván a virtuális eljárások c
 
 - Virtuális eljárásokat a virtual kulcsszóval tudunk létrehozni. Az újrafelhasználás során nagy valószínűséggel módosításra kerülő eljárásokat a szülő osztályokban célszerű egyből virtuálisra megírni, mert ezzel jelentős munkát lehet megtakarítani a későbbiekben.
   
-Java:
+**Java:**
 Absztrakt osztályok
 - Az abstract kulcsszóval hozható létre. 
 - Egy absztrakt osztályból nem hozható létre objektum.
@@ -3689,58 +3847,55 @@ C++-ban generikus osztályokat sablonok (template) segítségével tudunk létre
 A függvénysablonok speciális funkciók, amelyek genrikus típusokkal működhetnek. Ez lehetővé teszi számunkra, hogy létrehozzunk egy függvénysablont, amelynek funkcionalitása egynél több típushoz vagy osztályhoz igazítható anélkül, hogy megismételnénk az egyes típusok teljes kódját.
 
 
+
 # 10. A programozási nyelvek csoportosítása (paradigmák), az egyes csoportokba tartozó nyelvek legfontosabb tulajdonságai
 
 ## Paradigmák
 
 A programozási paradigma egy osztályozási forma, amely a programozási nyelvek jellemzőin alapul.
-- Imperatív, amelyben a programozó utasítja a gépet az állapotának megváltoztatására
-    - Procedurális, amely az utasításokat eljárásokba csoportosítja
-    - Objektumorientált, amely az utasításokat csoportosítja az alap azon részével együtt, amelyen működnek
-        - Smalltalk
-    - Párhuzamos
-        - Occam
-- Dekleratív, amelyben a programozó deklarálja a kívánt eredmény tulajdonságait, de nem azt, hogy hogyan kell azt kiszámítani
-    - Funkcionális, amelynél a kívánt eredményt függvényalkalmazásként deklarálnak
-        - Haskell
-    - Logikai, amelyben a kívánt eredményt a tények és szabályok rendszerével kapcsolatos kérdésre adott válaszként deklarálnak
-        - Prolog
-    - Matematikai, amelyben a kívánt eredményt egy optimalizálási probléma megoldásaként deklarálnak
 
-## Objektumorientált paradigma
+## Imperatív
+Utasításokat használ, hogy egy program állapotát megváltoztassa. 
 
-Az objektum orientál paradigma az objektumok fogalmán alapuló programozási paradigma. Az objektumok egységbe foglalják az adatokat és a hozzájuk tartozó műveleteket. A program egymással kommunikáló objektumok összességéből áll melyek használják egymás műveleteit és adatait.
+## Procedurális
+A feladatokat felbonthatjuk elvégzendő feladatok szerint, tehát *alprogramokat* (függvény, eljárás) hozunk létre. Ezek között paraméterátadással, függvény visszatérési értékkel kommunikálnak.
+Pl: C, C++,...
 
-### Smalltalk
+### Objektumorientált paradigma
+
+Az objektum orientál paradigma az objektumok fogalmán alapuló programozási paradigma. Az objektumok **egységbe foglalják az adatokat** és a hozzájuk tartozó **műveleteket**. A program egymással kommunikáló objektumok összességéből áll melyek használják egymás műveleteit és adatait.
+Öröklödés osztályok között, egyszeres vagy többszörös öröklödéssel. Lehetséges polimorfizmus és absztrakt osztályok létrehozására.
+
+#### Smalltalk
 
 GNU Smalltalk interpreter
-Beolvas minden karaktert az első ! –ig. A „!” jellel jelezzük, hogy végre szeretnénk hajtani az addig beírt kifejezéseket. Több kifejezés futtatása esetén itt is – mint sok más nyelven – jeleznünk kell azt, hogy hol fejeződik be egy kifejezés erre való a „pont” (.)
+Beolvas minden karaktert az első **! –ig**. A „!” jellel jelezzük, hogy végre szeretnénk hajtani az addig beírt kifejezéseket. Több kifejezés futtatása esetén itt is – mint sok más nyelven – jeleznünk kell azt, hogy hol fejeződik be egy kifejezés erre való a **„pont” (.)**
  
 #### Precedencia
 Ha nem zárójelezünk – mindig balról jobbra történik, így a 2+3\*10 értéke 50 lesz, használjunk zárójelet: 2+(3\*10).
 Objektumok, üzenetek
-A Smalltalk nyelv egy objektumorientált nyelv  MINDENT objektumnak tekintünk. 
+A Smalltalk nyelv egy objektumorientált nyelv **MINDENT** objektumnak tekintünk. 
 A programozás során üzeneteket küldünk az egyes objektumoknak. Egy objektumnak háromféle üzenetet küldhetünk:
-- Unáris: szintaxis: ’Hello’ printNl ! 
-- Bináris: szintaxis: 3+5 
-- Kulcsszavas: szintaxis: tomb at:1 put: 10
-Objektumok összehasonlítása: két objektum egyenlő, ha ugyanazt az objektumot reprezentálják és azonos, ha értékük megegyezik és egyazon objektumok.
+- **Unáris:** szintaxis: ’Hello’ printNl ! 
+- **Bináris:** szintaxis: 3+5 
+- **Kulcsszavas:** szintaxis: tomb at:1 put: 10
+**Objektumok összehasonlítása:** két objektum egyenlő, ha ugyanazt az objektumot reprezentálják és azonos, ha értékük megegyezik és egyazon objektumok.
  
 #### Objektumok másolása
 
-- deepCopy (unáris üzenet): Teljes másolat készítése objektumról.
-- shallowCopy (unáris üzenet): Felszíni másolat
-- copy (unáris üzenet): Osztályonként változó lehet, az Object osztályban a shallowCopy-t jelenti.
+- **deepCopy (unáris üzenet):** Teljes másolat készítése objektumról.
+- **shallowCopy (unáris üzenet):** Felszíni másolat
+- **copy (unáris üzenet):** Osztályonként változó lehet, az Object osztályban a shallowCopy-t jelenti.
 
 #### Metaosztály
 
-Mint korában említettük, a Smalltalkban mindent objektumnak tekintünk. Még az osztályok is objektumok. De ha az osztály objektum, akkor az is - mint minden más objektum - valamilyen osztályhoz kell tartozzon. Másképp fogalmazva minden osztály (pontosan) egy másik osztály példánya. Ezen "másik" osztályt metaosztálynak hívjuk
+Mint korában említettük, a Smalltalkban mindent objektumnak tekintünk. Még az osztályok is objektumok. De ha az osztály objektum, akkor az is - *mint minden más objektum* - valamilyen osztályhoz kell tartozzon. Másképp fogalmazva minden osztály (pontosan) egy másik osztály példánya. Ezen "másik" osztályt metaosztálynak hívjuk
 
 #### Object osztály
 
-Az Object osztály minden osztály közös őse, tehát minden objektum az Object osztály egy példánya. Ezért minden, az Object osztálynak rendelkezésre álló művelettel minden más objektum is rendelkezik.
-- class – unáris: visszatérése az objektum osztálya
-- isMemberOf – kulcsszavas: visszatérése logikai érték. Ha a címzett objektum példánya ezen osztálynak, akkor "true" a visszatérési érték, egyébként "false"
+Az Object osztály minden osztály közös **őse**, tehát minden objektum az Object osztály egy példánya. Ezért minden, az Object osztálynak rendelkezésre álló művelettel minden más objektum is rendelkezik.
+- **class** – unáris: visszatérése az objektum osztálya
+- **isMemberOf** – kulcsszavas: visszatérése logikai érték. Ha a címzett objektum példánya ezen osztálynak, akkor "true" a visszatérési érték, egyébként "false"
     - 'Hello' isMemberOf: String ! → true
 
 #### Változók
@@ -3759,18 +3914,17 @@ Más programozási nyelveken megismert programblokkok szerepével egyezik meg. V
 
 #### Vezérlési szerkezetek
 
-- Feltételes vezérlés:	valtozo > 10 ifTrue: [‘x erteke nagyobb 10-nel’ printNl]
+- **Feltételes vezérlés:**	valtozo > 10 ifTrue: [‘x erteke nagyobb 10-nel’ printNl]
                    			        ifFalse: [‘x erteke nem nagyobb 10-nel’ printNl]
-- Ismétléses vezérlés:	[a<10] whileTrue: [a printNl . a:=a+1]
-- For ciklus:		1 to: 10 do: [:i | i printNl]
-Kollekciók
-- Set: ismétlés nélküli rendezetlen halmaz - new, add()
-    -  
-- Bag: olyan Set, amiben megengedjük az ismétlődést - new, add()
-    -  
-- Dictionary: egy asszociatív tömb (egy olyan tömb, amit nem csak számokkal, hanem (itt) tetszőleges objektummal is indexelhetünk)
-    -  
-Tömb
+- **Ismétléses vezérlés:**	[a<10] whileTrue: [a printNl . a:=a+1]
+- **For ciklus:**		1 to: 10 do: [:i | i printNl]
+
+**Kollekciók**
+- **Set:** ismétlés nélküli rendezetlen halmaz - new, add()
+- **Bag:** olyan Set, amiben megengedjük az ismétlődést - new, add()
+- **Dictionary:** egy asszociatív tömb (egy olyan tömb, amit nem csak számokkal, hanem (itt) tetszőleges objektummal is indexelhetünk)
+
+**Tömb**
 - tömb := Array new: 10
 - tömb at: 1
 - tömb at: 1 put: obj
@@ -3791,21 +3945,25 @@ Beolvasás	 x := stdin nextLine.S
 Integer üzenetek
  
 
+## Dekleratív programozás
+Deklaráljuk a program elvárt működését, nem akarojuk explicit meghatározni annak mikéntjét.
 
-## Funkcionális programozás
-
+### Funkcionális programozás
+- Értékek, kifejezések és függvények vannak
+- A program maga egy függvény
+- Ciklus helyett **rekurzió**
 - A funkcionális programnyelvek a programozási feladatot egy függvény kiértékelésének tekintik.
-- minden függvény
-- A két fő eleme az érték és a függvény, nevét is függvények kitüntetett szerepének köszönheti.
-- Egy más megfogalmazás szerint, a funkcionális programozás során a programozó inkább azt specifikálja programban, mit kell kiszámítani, nem azt, hogy hogyan, milyen lépésekben.
+- A két fő eleme az **érték** és a **függvény**, nevét is függvények kitüntetett szerepének köszönheti.
+- **Egy más megfogalmazás szerint, a funkcionális programozás során a programozó inkább azt specifikálja programban, mit kell kiszámítani, nem azt, hogy hogyan, milyen lépésekben.**
 - Függvények hívásából és kiértékelésből áll a program. Nincsenek állapotok, mellékhatások (nem számít, mikor, csak az melyik függvényt hívjuk).
 
-### Haskell
+#### Haskell
 
-Egy funkcionális programozási nyelven írt programban nem a kifejezések egymásutánján van a hangsúly. A program egy függvényhívással hajtódik végre. Egy funkcionális program típus- , osztály-, és függvénydeklarációk, illetve definíciók sorozatából és egy kezdeti kifejezés kiértékeléséből áll. A kiértékelést úgy képzeljük el, mint a kezdeti kifejezésben szereplő függvények behelyettesítését. Tehát egy program végrehajtása nem más, mint a kezdeti kifejezésből kiinduló redukciós lépések sorozata. Egy kifejezés normál formájú, ha már tovább nem redukálható (nem átírható) állapotban van. Egy redukálható kifejezést redexnek hívunk.
-Kiértékelési módok
- 
-A Haskell nyelv a lusta kiértékelési stratégiát használja.
+Egy funkcionális programozási nyelven írt programban nem a kifejezések egymásutánján van a hangsúly. A **program egy függvényhívással hajtódik végre.** Egy funkcionális program típus- , osztály-, és függvénydeklarációk, illetve definíciók sorozatából és egy kezdeti kifejezés kiértékeléséből áll. A kiértékelést úgy képzeljük el, mint a kezdeti kifejezésben szereplő függvények behelyettesítését. Tehát egy program végrehajtása nem más, mint a kezdeti kifejezésből kiinduló redukciós lépések sorozata. Egy kifejezés normál formájú, ha már tovább nem redukálható (nem átírható) állapotban van. **Egy redukálható kifejezést redexnek hívunk.**
+
+**Kiértékelési módok**
+
+A Haskell nyelv a **lusta kiértékelési stratégiát használja.**
 A lusta kiértékelés során mindig a legkülső redex kerül helyettesítésre, az argumentumokat csak szükség esetén értékeli ki. Ez a módszer mindig megtalálja a kezdeti kifejezés normál formáját. A mohó kiértékelés az argumentumok kiértékelésével kezdődik, csak ezután hajtja végre a függvény alkalmazásának megfelelő redukciós lépést. 
 Futtatás
 Elindítjuk a Haskell interpretert (hugs) és betöltjük az általunk megírt definíciós forrásállományt. Betöltés után rendelkezésre áll az összes általunk megírt függvény, melyek közül bármelyiket meghívhatjuk a függvény nevének beírásával (a megfelelő paraméterezéssel). Amennyiben módosítjuk a definíciós állományt, újra kell tölteni azt.
@@ -3825,37 +3983,83 @@ Típusok létrehozása
 
 Példák
  
-## Logikai programozás
+### Logikai programozás
 
 A problémakörrel kapcsolatos tényeket logikai képletek formájában fejezik ki, és a programokat következtetési szabályok alkalmazásával hajtják végre, amíg nem találnak választ a problémára, vagy a képletek halmaza nem következetes.
 
-### Prolog
+#### Prolog
 
 A logikai programok egy modellre vonatkoztatott állítások halmaza, melyek a modell tulajdonságait és azok között fellépő kapcsolatokat (relációit) írják le. Egy adott relációt meghatározó állítások részhalmazát predikátumnak nevezzük. A predikátumokat alkotó állítások tények vagy szabályok lehetnek. A tényeket és szabályokat (és majd a Prolognak feltett kérdéseket is) ponttal zárjuk le. Tekintsük a következő példát, mely egy család tagjai között fellépő kapcsolatot írják le.
  
 A szulo predikátum argumentumait szándékosan írtuk kis betűkkel. A kis betűkkel írtakat a Prolog konstansként kezeli. (ka, katalin, szilvia, stb…) Minden nyomtatott nagybetűt vagy nagy kezdőbetűvel kezdődőket változónak tekinti. (X, Y, Szilvia, Magdolna, stb…)
 
+Egy prolog program csak az **adatokat** és az **összefüggéseket** tartalmazza, majd **kérdések hatására** a *programvégrehajtás* beépített **következtető-rendszer** végzi.
+
+
 #### Futtatás
 
-- kiterjesztés .pl
+- kiterjesztés **.pl**
 - A Prolog egy terminálablakba beírt „sicstus” paranccsal indítható. Egy Prolog állományt a következőképpen „tölthetjük be”: (feltéve, hogy az aktuális könyvtárban létezik egy prolog.pl állomány)
 
-#### A Prolog program felépítése
- 
-Termek
-- Egyszerű termek
-    -  
-- Összetett termek
-    - Lista: nagyon hasonlít a Haskell-ben megismert listára. Itt sincsenek indexelve az elemek, rekurzióval fogjuk bejárni a listát. Példa listára: [1,2,3,4,5].
+##### A Prolog program felépítése
+
+ - Prolog érték: **term**
+	- Egyszerű term: alma, 1000,...
+	- Összetett termek
+	    - **Lista:** nagyon hasonlít a Haskell-ben megismert listára. Itt sincsenek indexelve az elemek, rekurzióval fogjuk bejárni a listát. Példa listára: [1,2,3,4,5].
 Kiértékelés
-Kifejezések kiértékelésére a beépített, infix is operátort használhatjuk. Általános alakja:
- 
-Példák
+Kifejezések kiértékelésére a beépített, **infix is operátort**
+- Relációk megadása:
+	- Tények
+	- Következtetés szabályok
+- Kérdésfeltevés interaktív módon
+	- Eldöntendő kérdés
+	- Általános kérdés
+
+**Tények:**
+	Tények fejezik ki, hogy a megadott objetumok között fennáll bizonyos reláció. ```barát(john, mary).```
+Ezek egy adatbázis definiálnak.
+
+**Kérdések:**
+Eldöntendő kérdések ugyanúgy néznek ki, mint a tények csak más a szövegkörnyezet.
+```?- barát(john, mary).```
+
+**Következtető rendszer:**
+Prolog **backtracking** keresést alkalmaz a válaszok megtalálásra.
+Termek
+
+
  
    
 ## Párhuzamos programozás
 
 ### Occam
+Imperatív, folyamatok saját memóriával rendelkeznek, üzenetküldéssel kommunikálnak.
+Occam program részei:
+	- Változók
+	- Folyamatok
+	- Csatornák
+
+**Csatornák:**
+	A csatorna két folyamat közti **adatátvitelre** szolgál
+	- Egyirányú
+	- Küldős és fogadó is legfeljebb egy lehet
+	- biztonságos
+	- **Szinkron:** A küldő és fogadó bevárják egymást, megtörténik az adatátvitel, majd a küldő és fogadó folyatótdik.
+
+**Folyamatok:**
+	Életciklus:
+		- Elindul
+		- Csinál valamit
+		- Befejeződik
+Befejezésnél **holtpontba** kerülhet, erre odakell figyelni.
+**Elemi folyamatok:**
+	- Üres utasitás - **SKIP**
+	- Beépített holtpont - **STOP**
+	- Értékadás - v:=e
+	- Input - c **?** v
+	- Output - c **!** e
+
 
 Az Occam egy párhuzamos programozási nyelv. Ezen paradigma szerint az egyes folyamatok párhuzamosan futnak. Ez több processzoros gépek esetén valós párhuzamosságot jelent (egy processzor egy folyamatot dolgoz fel), de egy processzor esetén ez nyilván nem valósulhat meg, az egyes folyamatok „időszeleteket” kapnak, az Occam a párhuzamosságot időosztással szimulálja. Az egyes folyamatok közötti kommunikáció csatornákon keresztül valósul meg. A P1 és P2 folyamatok a C csatornán keresztül kommunikálnak:
  
@@ -3909,17 +4113,24 @@ Vezérlési szerkezetek
 - Ismétléses vezérlés	
  
 - For ciklus		
- 
 
-## PÉLDÁK HIÁNYOZNAK, KELL EGYÁLTALÁN?
 # 11. Szoftverfejlesztési folyamat és elemei; a folyamat különböző modelljei
 
+**A szoftverfolyamat:** Tevékenységek és kapcsolódó eredmények, amely során elkészítjük a szoftvert.
 ## Alapvető elemek
 
-- Szoftverspecifikáció: a szoftver funkcióit és korlátait meg kell határozni
-- Szoftvertesztelés és implementáció: a specifikációnak megfelelően a szoftvert elő kell állítani
-- Szoftvervalidáció: a szoftvert ellenőrizni kell, hogy tényleg azt fejlesztettük ki, amit az ügyfél kíván
-- Szoftverevolúció: a szoftvert úgy alakítani, hogy megfeleljen a későbbi kívánságoknak
+- **Szoftverspecifikáció (mit):** 
+	- a szoftver funkcióit és korlátait meg kell határozni
+	- *Legkisebb a változás költséges*
+	- Eredménye a **követelményspecifikáció**
+- **Szoftvertesztelés és implementáció (hogyan):** 
+	- a specifikációnak megfelelően a szoftvert elő kell állítani
+	- Alrendszerek meghatározása, komponens tervezés stb.
+- **Szoftvervalidáció (ellenőrzés):** 
+	- a szoftvert ellenőrizni kell, hogy tényleg azt fejlesztettük ki, amit az ügyfél kíván.
+	- **Verifikáció:** Rendszer megfelel e a specifikációnak
+	- **Validáció:** Megfelel e a megrendelő elvárásainak
+- **Szoftverevolúció (változás):** a szoftvert úgy alakítani, hogy megfeleljen a későbbi kívánságoknak
 
 ## A szoftverfolyamat modelljei
 
@@ -3929,15 +4140,15 @@ absztrakciók, amit a szoftverfejlesztési folyamat különböző megközelíté
 
 ### Vízesés modell
 
-- Specifikáció: rögzítjük a termék követelményeit. Mit tudjon a szoftver, és mit nem.
-- Tervezés: szétválasztódnak a szoftver- és hardverkövetelmények. Megtervezzük a rendszer architektúráját.
-- Implementáció: a szoftver fejlesztése, egységtesztelése. Az egységtesztelés azt a célt szolgálja, hogy a szoftver minden egyes egysége megfelel-e a specifikációnak.
-- Verifikáció: a különálló programegységes és programok integrálása és teljes rendszerként való tesztelése, hogy a rendszer megfelel-e a specifikációnak. A tesztelés után a rendszer átadható az ügyfélnek.
-- Karbantartás: a szoftver életciklusának leghosszabb fázisa. A karbantartásba beletartozik olyan hibák javítása is, amelyek nem merültek fel az életciklus korábbi szakaszaiban, illetve a szolgáltatások továbbfejlesztése.
+- **Specifikáció:** rögzítjük a termék követelményeit. Mit tudjon a szoftver, és mit nem.
+- **Tervezés:** szétválasztódnak a szoftver- és hardverkövetelmények. Megtervezzük a rendszer architektúráját.
+- **Implementáció:** a szoftver fejlesztése, egységtesztelése. Az egységtesztelés azt a célt szolgálja, hogy a szoftver minden egyes egysége megfelel-e a specifikációnak.
+- **Verifikáció:** a különálló programegységes és programok integrálása és teljes rendszerként való tesztelése, hogy a rendszer megfelel-e a specifikációnak. A tesztelés után a rendszer átadható az ügyfélnek.
+- **Karbantartás:** a szoftver életciklusának leghosszabb fázisa. A karbantartásba beletartozik olyan hibák javítása is, amelyek nem merültek fel az életciklus korábbi szakaszaiban, illetve a szolgáltatások továbbfejlesztése.
 
 A fázisok eredménye egy vagy több dokumentum, amelyek jóváhagyása megtörtént. A következő fázis nem indulhat, amíg az előző be nem fejeződött.
 
-Probléma: a folyamat korai szakaszaiban állást kell foglalnunk és el kell köteleznünk magunkat, és nehéz az ügyfélhez történő alkalmazkodás. Akkor jó, ha előre ismerjük a követelményeket. Nagyobb rendszerek kisebb folyamatainál használják főleg.
+**Probléma:** a folyamat korai szakaszaiban állást kell foglalnunk és el kell köteleznünk magunkat, és nehéz az ügyfélhez történő alkalmazkodás. Akkor jó, ha előre ismerjük a követelményeket. Nagyobb rendszerek kisebb folyamatainál használják főleg.
 
 ### Evolúciós fejlesztés
 
@@ -3945,8 +4156,8 @@ Az evolúciós fejlesztés lényege, hogy ki kell fejleszteni egy korai implemen
 
 Két különböző típusa ismert:
 
-- Feltáró fejlesztés: a folyamat célja az hogy a megrendelővel együtt feltárjuk a követelményeket, és kialakítsuk a véglekges rendszert. A végleges rendszer úgy alakul ki, hogy egyre több, az ügyfél által kért tulajdonságot társítunk a már meglévőkhöz.
-- Eldobható prototípus fejlesztése: ekkor az evolúciós fejlesztés célja, hogy minél jobban megértsük az ügyfél követelményeit, és azokra alapozva a legpontosabban fejlesszük le a terméket.
+- **Feltáró fejlesztés:** a folyamat célja az hogy a megrendelővel együtt feltárjuk a követelményeket, és kialakítsuk a véglekges rendszert. A végleges rendszer úgy alakul ki, hogy egyre több, az ügyfél által kért tulajdonságot társítunk a már meglévőkhöz.
+- **Eldobható prototípus fejlesztése:** ekkor az evolúciós fejlesztés célja, hogy minél jobban megértsük az ügyfél követelményeit, és azokra alapozva a legpontosabban fejlesszük le a terméket.
 
 Az evolúciós fejlesztés jobb, mint a vízesés modell, ha a lehető legpontosabban szeretnénk az ügyfél kívánságainak megfelelő szoftvert fejleszteni. Előnye, hogy a specifikáció inkrementálisan fejleszthető.
 
@@ -3991,21 +4202,23 @@ nincs működő inkremens
 ### RAD (Rapid Application Development)
 
 - Extrém rövid életciklus
-- Működő rendszer 60-90 nap alatt
+	- Működő rendszer 60-90 nap alatt
 - Vízesés modell „nagysebességű” adaptálása
-- Párhuzamos fejlesztés
-- Komponens alapú fejlesztés
+	- Párhuzamos fejlesztés
+	- Komponens alapú fejlesztés
 - Fázisai:
-    - Üzleti modellezés
+    - *Üzleti modellezés*
         -  Milyen információk áramlanak funkciók között
-    - Adatmodellezés
+    - *Adatmodellezés*
         -  Finomítás adatszerkezetekre
-    - Adatfolyam processzus
+    - *Adatfolyam processzus*
         -  Adatmodell megvalósítása
-    - Alkalmazás generálás
+    - *Alkalmazás generálás*
         -  4GT alkalmazása, automatikus generálás, komponensek
-    - Tesztelés
+    - *Tesztelés*
         -  Csak komponens tesztelés
+        - 
+Problémák:
 - Nagy emberi erőforrásigény
 - Fejlesztők és megrendelők intenzív együttműködése szükséges
 - Nem minden típusú fejlesztésnél alkalmazható
@@ -4039,12 +4252,17 @@ nincs működő inkremens
     - Az érdekeltek nyerő feltételei
     - Tárgyalás, kompromisszumok
 
+
 # 12. Projektmenedzsment. Költségbecslés, szoftvermérés
 
 ## Projektmenedzsment
+**Tényezők: (4P):**
+- **Munkatársak (people):** Sikeres projekt legfontosabb tényezői
+- **Termék (product):** Létrehozandó termék
+- **Folyamat (process):** A feladatok, tevékenységek halmaza
+- **Projekt:** Minden olyan tevékenység, ami a termék létrehozásához szükséges.
 
-Összetevői:
-
+**Összetevői:**
 - Az emberek menedzselése
 - Minőség-ellenőrzés és -biztosítás
 - Folyamat továbbfejlesztése
@@ -4052,14 +4270,13 @@ nincs működő inkremens
 - Rendszer építés
 - Hibamenedzsment
 
-Projekt sikertelenségének okai
-
+**Projekt sikertelenségének okai:**
 - A szükséges ráfordítások alulbecslése
 - Technikai nehézségek
 - A projekt csapatban nem megfelelő a kommunikáció
 - A projekt menedzsment hibái
 
-### Az Emberek menedzselése
+### Az emberek menedzselése
 
 Szoftverfejlesztő szervezet legnagyobb vagyona az emberek
 Sok projekt bukásának legfőbb oka a rossz humánmenedzsment
@@ -4070,12 +4287,26 @@ Az emberek kiválasztása különböző tesztekkel történhet:
 - Programozási képesség
 - Pszichometrikus tesztek
 
-### Minőség-ellenőrzés és –biztosítás
+### Csoportmunka
+- Hatékony együttműködést kell kialakítani
+- Fontos a munkakörnyezet
+	- Nyitott, privát tér kombinálás, közös terek
+- Csoport összetétele és kommunikáció fontos.
 
-Mindenki célja: termék vagy szolgáltatás minőségének magas szinten tartása
+Több formája van pl:
+- *Zárt forma:* Hagyományos felépítés
+- *Véletlenszerű forma:* Laza szerkezet, egyedi kezdeményezések
+- *Nyitott forma:* zárt és véletlenszerű kombinálása
+
+### Minőség-ellenőrzés és –biztosítás
+*Mindenki célja:* termék vagy szolgáltatás minőségének magas szinten tartása
 A termék feleljen meg a specifikációnak
 Fejlesztőnek is lehetnek (belső) igényei, pl. karbantarthatóság
-Egyes jellemzőket nem könnyű specifikálni , pl. karbantarthat óság
+Egyes jellemzőket nem könnyű specifikálni , pl. karbantarthatóság
+
+### Szoftverköltség becslése
+Projekt tevékenységeihez tartozó, **munka-, idő- és pénzköltségek**.
+Becsléseket kell adni és **folyamatosan frissíteni**
 
 ### Folyamat továbbfejlesztése
 
@@ -4574,38 +4805,51 @@ Mindenféle szabványokat adnak ki, 165 tagállam nemzeti szabványügyi szervez
 
 A számítógépek kommunikációjához szükséges hálózati protokollt határozza meg.
 
-OSI - Open System Interconnection
+**OSI - Open System Interconnection**
 
 A különböző protokollok által nyújtott funkciókat rendezi egymásra épülő rétegekbe. Minden réteg csak az alsóbb rétegek által nyújtott funkciókra támaszkodhat, és az általa nyújtott funkciókat csak a felette lévő réteg számára nyújthatja. Ezt a rendszert gyakran protokoll veremnek is nevezik. Az OSI modell hét réteget definiál, az alsóbb rétegek azok, amelyeket hardver szinten is megvalósítanak, a felsőbbek szoftveresen kerülnek megvalósításra.
 
 A rétegek alulról felfelé
 
-- Fizikai réteg
+- **Fizikai réteg**
     - feladata, hogy a biteket továbbítsa a kommunikációs csatornán
     - mekkora feszültség kell a 0, 1 bitek reprezentálásához, mennyi idő, hogyan jön létre az összeköttetés stb.
-- Adatkapcsolati réteg
+    - Csatlakozás felépítése és lezárása
+    - Hubok, repeaterek, hálózati adapterek
+- **Adatkapcsolati réteg**
     - átvitendő adatokat a küldő fél oldalán adatkeretekbe tördeli, és sorrendben továbbítja
     - a fogadó fél nyugtázza minden keret helyes vételét
     - forgalomszabályozás, hibakezelés
-- Hálózati réteg
+    - Bridgek, switchek
+- **Hálózati réteg**
     - milyen útvonalon kell a csomagokat a forrásállomástól a célig eljuttatni
-    - lehet statikus, és dinamikus meghatározás is
-- Szállítási réteg
+    - lehet **statikus, és dinamikus meghatározás** is
+    - Hálózati útvonalválasztás és adatáramlás ellenőrzés
+    - Routerek, IP switchek
+    - **IP protocol (IP) itt található**
+- **Szállítási réteg**
     - forgalomszabályozás, hibajavítás, multiplexelés
     - megbízhatóság: pl ellenőrző összeggel megnézzük, hogy az adat sérült-e
-- Viszony réteg
+    - **TCP protokoll**
+- **Viszony réteg**
     - két számítógép felhasználói kapcsolatot létesítsen
     - állományokat mozgathatunk
-- Megjelenítési réteg
+    - Lehet *duplex*
+	    - egyidejűleg kétirányú kommunikáció
+	- vagy *félduplex*
+		- Kétirányú összeköttetés, de egyszerre csak egy fél küldhet üzenetet.
+- **Megjelenítési réteg**
     - átvitt információ szintaktikája, szemantikája
     - a párbeszéd során absztrakt módon kell definiálni a kódolásokat
-- Alkalmazási réteg
-    - protokollok sokasága, HTTP, FTP
+    - Adatok megfelelő formában jelenjenek meg a végfelhasználónál.
+- **Alkalmazási réteg**
+    - protokollok sokasága, **HTTP, FTP**
+    - szolgáltatásai támogatják a szoftver alkalmazások közötti kommunikációt
 
 
 ## Internet
 
-Összekapcsolt számítógépes hálózatok globális rendszere, ami a TCP/IP protokollt használja a kommunikációhoz. Olyan hálózatok hálózata, amely üzleti, kormányzati, állai, magán, tudományos stb hálózatokból áll. Közös protokollokat használnak és közös szolgáltatásokat nyújtanak.
+Összekapcsolt számítógépes hálózatok globális rendszere, ami a **TCP/IP** protokollt használja a kommunikációhoz. Olyan hálózatok hálózata, amely üzleti, kormányzati, állai, magán, tudományos stb hálózatokból áll. Közös protokollokat használnak és közös szolgáltatásokat nyújtanak.
 
 Nincs központosított irányítása, sem a technológiai megvalósításban, sem a hozzáférésre és használatra vonatkozó politikában.
 
@@ -4627,67 +4871,72 @@ Egy új alkalmazás, a WWW bevezetése vont be több millió új felhasználót 
 A növekedés nagy része az ún. ISP-knek is köszönhető. Egyéni felhasználóknak nyújtanak szolgáltatásokat, internetelérést.
 
 ## ITU
-
-International Telecommunication Union - Nemzetközi Távközlési egyesület
+**International Telecommunication Union - Nemzetközi Távközlési egyesület**
 
 Szükség van világméretű kompatibilitásra, hogy a különböző országokban élő emberek/számítógépek kapcsolatba kerülhessenek egymással.
 A feladata az, hogy szabványosítsa a nemzetközi távközlést.
 
-Három fő ágazata van:
+**Három fő ágazata van:**
 
 - ITU-R: rádiókommunikációs ágazat
 - ITU-T: távközlési szabványosítási ágazat
 - ITU-D: fejlesztési ágazat
 
-ITU-R
+**ITU-R**
 
 Az 1927-ben Nemzetközi Rádió Tanácsadó Bizottság vagy CCIR néven (francia nevén Comité consultatif international pour la radio ) alapított ágazat kezeli a nemzetközi rádiófrekvenciás spektrum- és műholdpálya-erőforrásokat. 1992-ben a CCIR lett az ITU-R. Feladata a rádiófrekvenciák kiosztása a világszerte egymással versengő csoportoknak.
 
-ITU-T
+**ITU-T**
 
 A szabványosítás a kezdetektől fogva célja az ITU-nak. 1956-ban a Nemzetközi Telefon- és Távirati Tanácsadó Bizottság egységesíti a globális távközlést.
 
 Az ITU-T feladata, hogy műszaki javaslatokat tegyen az adatkommunikáció interfészeire. Ezek gyakran válnak nemzetközi szabványokká. Fontos, hogy ezek csak műszaki javaslatokat tartalmaznak. Az elfogadása csak az adott országon múlik.
 
-ITU-D
+**ITU-D**
 
 Az 1992-ben létrehozott ágazat hozzájárul az információs és kommunikációs technológiákhoz (IKT) való igazságos, fenntartható és megfizethető hozzáférés terjesztéséhez.
 
 ## IEEE
 
-Villamos és Elektronikai Mérnökök Intézete
+**Villamos és Elektronikai Mérnökök Intézete**
 
 A világ legnagyobb szakmai szervezete.
 Konferenciák és folyóiratok mellett szabványokat dolgoznak ki a villamosmérnöki tudományok és az informatika terén.
 
-Az IEEE 802-es bizottsága több LAN fajtát szabványosított. A sikertörténetek (802.3 és 802.11, logikai kapcsolatvezérlés és vezeték nélküli LAN) hatása óriási volt.
+Az **IEEE 802**-es bizottsága több **LAN** fajtát szabványosított. A sikertörténetek (802.3 és **802.11: WLAN, adatátviteli protokoll**, logikai kapcsolatvezérlés és vezeték nélküli LAN) hatása óriási volt. 
 # 14. Kiemelt fontosságú kommunikációs protokollok (PPP, Ethernet, IP, TCP, HTTP, RSA)
 
-## PPP
+## PPP (Point-to-point)
 
-Magas szintű adatkapcsolati protokoll kétpontos vonalakhoz.
+Magas szintű **adatkapcsolati protokoll** kétpontos vonalakhoz.
 Mindenféle fizikai rétegek feletti használatra alkalmas.
 
-Szolgáltatásai:
-
-- egyértelműen ábrázolja a keret végét és a következő keret elejét, a keretformátum megoldja a hibajelzést is
+**Szolgáltatásai:**
+- **egyértelműen ábrázolja a keret végét és a következő keret elejét**, a keretformátum megoldja a hibajelzést is
 - adatkapcsolat-vezérlő protokollt tartalmaz a vonalak felélesztésére, tesztelésére, vonalak bontására
 - különböző hálózati vezérlő protokollokat tartalmaz mindegyik támogatott hálózati réteghez
 
 ## Ethernet
+**adatkapcsolati protokoll**
 
-Az Ethernet egy számítógépes hálózati technológiák családja, amelyet helyi hálozatban (LAN), városi hálózatokban (MAN) és nagy kiterjedésű hálózatokban (WAN) használnak.
-Először 1983-ban szabványosították IEEE 802.3 néven. Az Ethernet-et azóta finomították, hogy támogassa a nagyobb bitsebességet, a nagyobb csomópontok számát és a nagyobb összeköttetési távolságokat.
+Az Ethernet egy számítógépes hálózati technológiák családja, amelyet **helyi hálozatban (LAN)**, **városi hálózatokban (MAN)** és **nagy kiterjedésű hálózatokban (WAN)** használnak.
+Először 1983-ban **szabványosították IEEE 802.3** néven. 
+Az Ethernet-et azóta finomították, hogy támogassa a nagyobb bitsebességet, a nagyobb csomópontok számát és a nagyobb összeköttetési távolságokat.
 
 Az Ethernet egy állomása a közvetítő közeggel (kábel) való állandó kapcsolatot kihasználva bele tud hallgatni a csatornába, így ki tudja várni, amíg a csatorna felszabadul, és a saját üzenetét leadhatja anélkül, hogy ezzel más üzenet sérüljön, tehát a torlódás elkerülhető. A csatornát az állomások folyamatosan figyelik, ha ütközést tapasztalnak, akkor zavarni kezdik a csatornát, hogy figyelmeztessék a küldőket, ezután véletlen ideig várnak, majd adni kezdenek. Ha ezek után további ütközések történnek, az eljárás ugyanez, de a véletlenszerű várakozás idejét kétszeresére növelik, így időben szétszórják a versenyhelyzeteket, esélyt adva arra, hogy valaki adni tudjon.
 
+
 ## IP
+**Hálózati protokoll**
 
 Az internet hálózat egyik alapvető szabványa (avagy protokollja). Ezen protokoll segítségével kommunikálnak egymással az internetre kötött csomópontok (számítógépek, hálózati eszközök, webkamerák stb.). A protokoll meghatározza az egymásnak küldhető üzenetek felépítését, sorrendjét stb.
 
+
 ### Jellemzői 
 
-Az IP a klasszikus OSI besorolás alapján a 3., a Hálózati rétegben helyezkedik el. Csomagkapcsolt hálózatot valósít meg, azaz nem építi fel a kapcsolatot a forrás és a cél között, hanem minden egyes csomagot külön irányít (route-ol). Hibadetektálást és hibajavítást nem végez (ezeket nevezzük „megbízhatatlan” protokollnak), ezeket a funkciókat főleg a szállítási rétegben elhelyezkedő protokollokra bízza (például TCP). Ennek a kialakításnak az oka az, hogy az egyszerűségre törekedtek. Így a hibajavítás terhe főképp a forrás és a cél számítógépeknél jelentkezik, és nem terheli feleslegesen az egyébként is leterhelt hálózati útirányválasztó csomópontokat (router). 
+Az IP a klasszikus OSI besorolás alapján a 3. a Hálózati rétegben helyezkedik el. 
+Csomagkapcsolt hálózatot valósít meg, azaz nem építi fel a kapcsolatot a forrás és a cél között, hanem **minden egyes csomagot külön irányít (route-ol).** 
+Hibadetektálást és hibajavítást nem végez (ezeket nevezzük **„megbízhatatlan” protokollnak**), ezeket a funkciókat főleg a szállítási rétegben elhelyezkedő protokollokra bízza (például TCP). Ennek a kialakításnak az oka az, hogy az egyszerűségre törekedtek. Így a hibajavítás terhe főképp a forrás és a cél számítógépeknél jelentkezik, és nem terheli feleslegesen az egyébként is leterhelt hálózati útirányválasztó csomópontokat (router). 
 
 ### IP-cím 
 
@@ -4726,22 +4975,22 @@ Az cím 8 részét kettőspontokkal szokás elválasztani, és ha egy re�
 
 ### Csomag fejléc
 
-Az első mező, a Verzió (Version), amely megegyezik az IPv4 Verzió mezőjével, csak itt a 6-os konstans szerepel. 
+Az első mező, a **Verzió (Version)**, amely megegyezik az IPv4 Verzió mezőjével, csak itt a 6-os konstans szerepel. 
 
-A Forgalmi osztály (Traffic Class) mezőt arra használják, hogy a különböző valós idejű szállítási követelményekkel rendelkező csomagok között különbséget tegyenek.
+A **Forgalmi osztály (Traffic Class)** mezőt arra használják, hogy a különböző valós idejű szállítási követelményekkel rendelkező csomagok között különbséget tegyenek.
 
-A Folyamcímke (Flow Label) mezőt majd arra lehet használni, hogy egy forrás és egy cél között felállíthasson egy álösszeköttetést bizonyos tulajdonságokkal és igényekkel. Például egy bizonyos hoszt bizonyos folyamatától egy bizonyos célhoszt bizonyos folyamatáig tartó csomagfolyamnak szigorú késleltetési igényei lehetnek, és ezért fenntartott sávszélességre van szüksége. A folyamot előre fel lehet állítani, és egy azonosítót adni neki. 
+A **Folyamcímke (Flow Label)** mezőt majd arra lehet használni, hogy egy forrás és egy cél között felállíthasson egy álösszeköttetést bizonyos tulajdonságokkal és igényekkel. Például egy bizonyos hoszt bizonyos folyamatától egy bizonyos célhoszt bizonyos folyamatáig tartó csomagfolyamnak szigorú késleltetési igényei lehetnek, és ezért fenntartott sávszélességre van szüksége. A folyamot előre fel lehet állítani, és egy azonosítót adni neki. 
 
-Az Adatmező hossza (Payload Length) mező megmondja, hogy mennyi bájt következik ezután a mező után. A jelentése megváltozott az IPv4 Teljes hossz mezőjéhez képest, hiszen itt az első 40 bájtot már nem számolják bele a mező értékébe. 
+Az **Adatmező hossza (Payload Length)** mező megmondja, hogy mennyi bájt következik ezután a mező után. A jelentése megváltozott az IPv4 Teljes hossz mezőjéhez képest, hiszen itt az első 40 bájtot már nem számolják bele a mező értékébe. 
 (opcionális) A Következő fejrész (Next Header) mező mondja meg, hogy a hat kiegészítő fejrész közül melyik következik. Ha a fejrész az utolsó IP-fejrész, akkor a mező azt mondja meg, hogy melyik szállítási protokoll kezelőjének (TCP, UDP, stb.) kell a csomagot továbbítani. 
 
-Az Átugráskorlát (Hop Limit) gátolja meg a csomagokat abban, hogy örökké élhessenek. Ez gyakorlatilag ugyan az, mint az Élettartam volt az IPv4-ben. 
+Az **Átugráskorlát (Hop Limit)** gátolja meg a csomagokat abban, hogy örökké élhessenek. Ez gyakorlatilag ugyan az, mint az Élettartam volt az IPv4-ben. 
 Ezek után következnek a Forrás címe (Source Address) és a Cél címe (Destination Address) mezők, amelyek egy-egy 16 bájtos (128 bites) címet takarnak
 
 
 ## TCP
 
-A TCP egy kapcsolat-orientált protokoll, amely az OSI modell Szállítási rétegében helyezkedik el. Fő feladata egy megbízható, és biztonságos kapcsolat kiépítése (és fenntartása) két folyamat között. Menetét alapvetően három részre bonthatjuk: 
+A TCP egy **kapcsolat-orientált protokoll**, amely az OSI modell **Szállítási rétegében** helyezkedik el. Fő feladata egy megbízható, és biztonságos kapcsolat kiépítése (és fenntartása) két folyamat között. Menetét alapvetően három részre bonthatjuk: 
 
 - Létrejön a megbízható kapcsolat két állomás között 
 - Megkezdődik a tényleges adatátvitel 

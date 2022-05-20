@@ -1,5 +1,6 @@
 
 
+
 # 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
 ## Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák
 
@@ -66,9 +67,9 @@ Fakeresés, LIFO perem
 Mélységi keresések sorozata 1, 2, 3 stb korlátozva, amíg célállapotot nem találunk.
 
 - Teljesség és optimalitás a szélességivel egyezik meg
-- időigény = O(b^d) (akár jobb is lehet, mint a szélességi), tárigény = O(bd) (jobb, mint a mélységi)
+- időigény =$O(b^d)$ (akár jobb is lehet, mint a szélességi), tárigény = $O(bd)$ (jobb, mint a mélységi)
 
-Ez a legjobb informálatlan kereső.
+**Ez a legjobb informálatlan kereső.**
 
 #### Egyenletes költségű keresés
 
