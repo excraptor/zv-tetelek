@@ -4,27 +4,38 @@
 *Elsőrendű változók:* $x, y, z, ..., x_1,y_5...$
 *Függvényjelek:* $f,g,...,f_1,g_5...$
 *Predikátumjelek:* $p,q,r,...,p_1...$
+*Konstansok*: $a, b, c, ....$
 *Konnektívák:* $\lor, \wedge, \neg, \leftrightarrow, \rightarrow$
 *Kvantorok:* $\forall, \exists$
 *Logikai konstansjelek:* $\downarrow, \uparrow$
 
 ## Normálformák predikátumkalkulusban
 Formulákkal dolgozni tudjunk, úgy nevezett **zárt Skolem** alakra kell hozni
+Példán keresztül:
+Feladat: 
+```(¬(¬∃yq(g(x,x),y) ∨ ¬∀zp(f(z))) ∧ (∀z∃y(q(c,g(z,c)) → p(c)) ∧ ¬∀y(q(f(y),c) ∧ q(c,z))))```
 
-1. Nyilak eliminálása
-2. Kiigazítás (Változó név ütközés elkerülés)
+1. **Nyilak eliminálása**
+```(¬(¬∃yq(g(x,x),y) ∨ ¬∀zp(f(z))) ∧ (∀z∃y(¬q(c,g(z,c)) ∨ p(c)) ∧ ¬∀y(q(f(y),c) ∧ q(c,z))))```
+
+3. **Kiigazítás (Változó név ütközés elkerülés)**
 	- Különböző kvantorok különböző változókat kötnek
 	- Nincs olyan változó, amely szabadon ($\exists$) és kötötten ($\forall$) is előfordul
 	- Indexelés
-3.  Prenex alakra hozás
-	- Kvantorokat az elejére szervezzük.
-4. Skolem alakra hozás
+```(¬(¬∃y1q(g(x,x),y1) ∨ ¬∀z2p(f(z2))) ∧ (∀z3∃y4(¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬∀y5(q(f(y5),c) ∧ q(c,z))))```
+4.  Prenex alakra hozás
+	- Kvantorokat az elejére szervezzük. Ha volt előtte negálás alkalmazzuk rajta
+```∃y1∀z2∀z3∃y4∃y5(¬(¬q(g(x,x),y1) ∨ ¬p(f(z2))) ∧ ((¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬(q(f(y5),c) ∧ q(c,z))))```
+5. Skolem alakra hozás
 	- Összes kvantor elől és mindegyik $\forall$
 	- Töröljük $\exists$ változókat (pl $\exists x$)
-	- A magbeli törölt változók helyére mindenhova $f(x_1,..x_n)$ kerül, ahol $f$ egy **új függvényjel**
-5. Lezárás
+	- A magbeli törölt változók helyére mindenhova $f(x_1,..x_n)$ kerül, ahol $f$ egy **új függvényjel** és az előtte lévő $\forall$ változói szerepelnek benne.
+```∀z2∀z3(¬(¬q(g(x,x),h1) ∨ ¬p(f(z2))) ∧ ((¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬(q(f(h3(z2,z3)),c) ∧ q(c,z))))```
+
+6. Lezárás
 	- Ne maradjon szabad változó-előfordulás
 	- A szabad változó helyére, berakunk egy *új* konstans szimbólumot.
+```∀z2∀z3(¬(¬q(g(c3,c3),h1) ∨ ¬p(f(z2))) ∧ ((¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬(q(f(h3(z2,z3)),c) ∧ q(c,c5))))```
 
 ## Egyesítési algoritmus
 
@@ -40,10 +51,10 @@ C-re akkor mondjuk, hogy egyesíthető, ha van egyesítője.
 
 Az s helyettesítés általánosabb az s' helyettesítésnél, ha van olyan s" helyettesítés, hogy s\*s" = s'.
 
-Egyesítési algoritmus:
+**Egyesítési algoritmus:**
 
-- input: C klóz
-- output: C legáltalánosabb helyettesítője, ha egyesíthető, különben azzal tér vissza, hogy nem egyesíthető
+- **input:** C klóz
+- **output:** C legáltalánosabb helyettesítője, ha egyesíthető, különben azzal tér vissza, hogy nem egyesíthető
 - veszünk két literált, és keressük az első eltérést
 - ha az egyik helyen egy x változó áll, a másikon egy t term, amiben nincs x, akkor x/t és vissza az előző pontra
 - különben return nem egyesíthető
@@ -60,7 +71,7 @@ Azért ALAP mert **alap termek** vannak benne.
 - **input:** elsőrendű formulák egy $\Sigma$ halmaza
 - **output:** kielégíthetetlen véges sok lépésben, vagy kielégíthető véges sokban vagy végtelen ciklus
 - Módszer:
-	- $\Sigma$ elemeit zárt skolem alakra hozzuk, a formula belsejét pedig CNF-re, ez legyen $\Sigma'$
+	- $\Sigma$ elemeit **zárt skolem alakra** hozzuk, a formula **belsejét pedig CNF-re**, ez legyen $\Sigma'$
 	- ekkor $E(\Sigma'$) a klózok **alap példányainak** a halmaza
 	- $E(\Sigma'$)-n futtatjuk az ítéletkalkulusbeli rezolúciós algoritmust
 	- általában végtelen sok alapterm van
@@ -103,4 +114,4 @@ Az elsőrendű klózok $\Sigma$ halmaza pontosan akkor **kielégíthetetlen**, h
 1. Helyesség:
 	-  Kijöhet az üres klóz, akkor $\Sigma$ kielégíthetetlen, rezolvensképzés helyességéből következik.
 2. Teljesség:
-	- Ha $\Sigma$ kielégíthetetlen, akkor az üres klóznak vanegy $C_1', ... , C_n' = üresklóz$ alaprezolúciós levezetése.
+	- Ha $\Sigma$ kielégíthetetlen, akkor az üres klóznak van egy $C_1', ... , C_n' = üresklóz$ alaprezolúciós levezetése.

@@ -1,5 +1,6 @@
 
 
+
 # 9. Normálformák az ítéletkalkulusban, Boole-függvények teljes rendszerei. Következtető módszerek: Hilbert-kalkulus és rezolúció, ezek helyessége és teljessége
 ## Ítéletkalkulus
 - Vannak **változók** ezeket $(p,q,r)$ szoktuk jelölni, és a ${0,1}$ halmazból kapnak igazságértéket. 
@@ -35,6 +36,14 @@ NNF-ben lévő formulában alkalmazzuk a disztribúciós szabályt:
 - (F && G) || (H && I) == (F || H) && (F || I) && (G || H) && (G || I)
 
 ## Teljes rendszerek
+#### Boole függvények
+**Boole függvények** egy $H$ rensdzere **teljes**, ha minden $n \ge 1$-változós Boole-függvény előáll:
+- Projekciókból
+- és H elemeiből
+- alkalmas **kompocízióval**
+
+#### Teljes rendszer
+Olyan Boole függvények, amelyekkel kifejezhető az összes többi is.
 
 Logikai műveletek (Boole függvények) egy rendszerét akkor nevezzük teljesnek, ha egy, már korábban teljesnek
 ítélt rendszer minden műveletét ki tudjuk fejezni ezen műveletekkel. 
@@ -65,7 +74,7 @@ Ezt a rendszert nevezzük Hilbert rendszerének.
 
 ### Rezolúció
 
-A rezolúciónál a formuláink CNF alakban vannak. A rezolúcióval logikai következményeket tudunk
+A rezolúciónál a **formuláink CNF alakban** vannak. A rezolúcióval logikai következményeket tudunk
 bebizonyítani, pl. hogy egy formulahalmaznak logikai következménye egy formula.
 
 Alapból a logikai következmény azt jelenti, hogy azoknak az értékadásonak a halmaza, amelyek kielégítik a jobboldali formulá(ka)t, részhalmaza a jobboldali formulákat kielégítő értékadások
@@ -75,7 +84,7 @@ A rezolúciós algoritmus inputja klózoknak egy halmaza, és outputja egy igen 
 A baloldali formulák közé felvesszük először a jobboldali formula negáltját, hiszen ha 
 az így kapott új formulahalmaz kielégíthetetlen (azaz Mod(Szigma) üreshalmaz), akkor
 az eredeti logikai következmény fennáll. 
-Formailag:
+**Formailag:**
 **input**: Klózok $\Sigma$ halmaza
 **output:** kielégíthetetlen-e $\Sigma$?
 **Algoritmus:**:
@@ -108,9 +117,9 @@ Ekkor a formulákról szintén listát vezetünk, ahol a listára felkerülhet e
 - modus ponense két, korábban a listán szereplő formulának
 
 Háromféle axiómánk van:
-Ax1: (F $\rightarrow$ (G $\rightarrow$ H)) $\rightarrow$ ((F $\rightarrow$ G) $\rightarrow$ (F $\rightarrow$ H))
-Ax2: F $\rightarrow$ (G $\rightarrow$ F)
-Ax3: ((F $\rightarrow$ $\downarrow$) $\rightarrow$ $\downarrow$) $\rightarrow$ F
+- Ax1: (F $\rightarrow$ (G $\rightarrow$ H)) $\rightarrow$ ((F $\rightarrow$ G) $\rightarrow$ (F $\rightarrow$ H))
+- Ax2: F $\rightarrow$ (G $\rightarrow$ F)
+- Ax3: ((F $\rightarrow$ $\downarrow$) $\rightarrow$ $\downarrow$) $\rightarrow$ F
 
 **Két formulának vehetjük a modus ponensét**, ha az egyik formula F, a másik pedig F $\rightarrow$ G alakú. Ekkor a **modus ponens** pontosan G lesz.
 
@@ -121,7 +130,6 @@ akkor igazoltuk a logikai következményt.
 
 - **Helyesség és teljesség:**
 **Formailag:**
-$\Sigma \vdash F \Leftrightarrow \Sigma \vDash F$
 Ha $\Sigma \vdash F$, akkor $\Sigma \vDash F$, AZAZ, ha valakit letudok vezetni az input $\Sigma$-ból akkor az következménye is a $\Sigma$-nak.
 Tehát van valami $F_1,...,F_n$ levezetés $\Sigma$ felett, És akiket felveszünk a listára az követmezménye lesz a $\Sigma$-nak.
 
