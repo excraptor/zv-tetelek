@@ -9,6 +9,20 @@
 *Kvantorok:* $\forall, \exists$
 *Logikai konstansjelek:* $\downarrow, \uparrow$
 
+**Egyéb fontos információk**
+- A változók **objektumok** egy halmazából kapnak értéket. (Pl természetes számok, stringek)
+- Az objektumokat **függvények** fogják újabb objektumokba transzformálni. (összeadás, concat stb.)
+- **prédikátumok** fogják igazságértékké transzformálni. (páros-e, stb.)
+- *Ha a formulában minden változó előfordulás kötött, akkor **mondatnak** nevezzük.*
+- **Termek**: 
+	- Minden változó term
+	- Ha $f/n$ függvényjel, $t_1,..,t_n$ pedig termek, akkor $f(t_1,..,t_n)$ is term.
+
+- Ahhoz, hogy **kitudjunk értékelni egy elsőrendű logikai formulát**, szükség van **strukturára**
+	- A struktúra egy $A = (A, I, \phi)$
+	- *A* egy nemüres halmaz, az **alaphalmaz**
+	- $\phi$ a változóknak egy *default* értékadása, minden $x$ változóhoz egy $\phi(x)\in A$ objektumot rendel.
+	- $I$, egy **interpretációs függvény**, ez rendel függvény- és predikátumjelhez szemantikát az adott struktúrában.
 ## Normálformák predikátumkalkulusban
 Formulákkal dolgozni tudjunk, úgy nevezett **zárt Skolem** alakra kell hozni
 Példán keresztül:
@@ -18,21 +32,21 @@ Feladat:
 1. **Nyilak eliminálása**
 ```(¬(¬∃yq(g(x,x),y) ∨ ¬∀zp(f(z))) ∧ (∀z∃y(¬q(c,g(z,c)) ∨ p(c)) ∧ ¬∀y(q(f(y),c) ∧ q(c,z))))```
 
-3. **Kiigazítás (Változó név ütközés elkerülés)**
+2. **Kiigazítás (Változó név ütközés elkerülés)**
 	- Különböző kvantorok különböző változókat kötnek
 	- Nincs olyan változó, amely szabadon ($\exists$) és kötötten ($\forall$) is előfordul
 	- Indexelés
 ```(¬(¬∃y1q(g(x,x),y1) ∨ ¬∀z2p(f(z2))) ∧ (∀z3∃y4(¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬∀y5(q(f(y5),c) ∧ q(c,z))))```
-4.  Prenex alakra hozás
+3.  **Prenex alakra hozás**
 	- Kvantorokat az elejére szervezzük. Ha volt előtte negálás alkalmazzuk rajta
 ```∃y1∀z2∀z3∃y4∃y5(¬(¬q(g(x,x),y1) ∨ ¬p(f(z2))) ∧ ((¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬(q(f(y5),c) ∧ q(c,z))))```
-5. Skolem alakra hozás
+4. **Skolem alakra hozás**
 	- Összes kvantor elől és mindegyik $\forall$
 	- Töröljük $\exists$ változókat (pl $\exists x$)
 	- A magbeli törölt változók helyére mindenhova $f(x_1,..x_n)$ kerül, ahol $f$ egy **új függvényjel** és az előtte lévő $\forall$ változói szerepelnek benne.
 ```∀z2∀z3(¬(¬q(g(x,x),h1) ∨ ¬p(f(z2))) ∧ ((¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬(q(f(h3(z2,z3)),c) ∧ q(c,z))))```
 
-6. Lezárás
+4. **Lezárás**
 	- Ne maradjon szabad változó-előfordulás
 	- A szabad változó helyére, berakunk egy *új* konstans szimbólumot.
 ```∀z2∀z3(¬(¬q(g(c3,c3),h1) ∨ ¬p(f(z2))) ∧ ((¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬(q(f(h3(z2,z3)),c) ∧ q(c,c5))))```
@@ -66,7 +80,7 @@ Nem egyesíthető pl
 - ha g(x) és f(x) a különbség
 
 ## Alap rezolúció
-Azért ALAP mert **alap termek** vannak benne.
+Azért ALAP mert **alap termek** (Azok a termek, amelyek nem tartalmaznak változót) vannak benne.
 ($E(\Sigma$): Klózok herbrand kiterjesztése)
 - **input:** elsőrendű formulák egy $\Sigma$ halmaza
 - **output:** kielégíthetetlen véges sok lépésben, vagy kielégíthető véges sokban vagy végtelen ciklus
@@ -77,6 +91,7 @@ Azért ALAP mert **alap termek** vannak benne.
 	- általában végtelen sok alapterm van
 - vegyük fel $E(\Sigma'$) egy elemét, és rezolváljunk vele, amíg lehet
 - ha kijön az üres klóz, akkor jók vagyunk, ha nem, generálunk tovább
+
 
 **Helyesség és teljesség:**
 $üresklóz \in Res^*(E(\Sigma'))$, ha $\Sigma \vDash \downarrow$, **AZAZ, HA letudjuk vezetni az üresklózt akkor kielégíthetetlen, és fordítva**
@@ -106,6 +121,7 @@ Rezolvensképzés:
 - elmentjük s-t
 - vesszük C1-ből és C2-ből a maradék literálokat, és berakjuk egy halmazba
 - ezen a halmazon elvégezzük az s helyettesítést, ez lesz a rezolvens
+
 
 **Helyesség és teljesség:**
 Az elsőrendű klózok $\Sigma$ halmaza pontosan akkor **kielégíthetetlen**, ha $üresklóz \in Res^*(\Sigma)$ (levezethető az üresklóz $\Sigma$ az elsőrendű rezoluciós algoritmussal)

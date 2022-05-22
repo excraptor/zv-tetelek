@@ -1,7 +1,7 @@
 
-
-
 # 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
+Különbség a feladatreprezentáció és a játékok között, az **ágensek száma**.
+
 ## Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák
 
 ### Feladatreprezentáció
@@ -21,6 +21,15 @@ pl: Utazástervezési feladat: útvonaltervezés,
 állapotok = hely és időpont párok; 
 cselekvés = közlekedési eskzözök aktuális állapotból való indulása
 költség= idő és pénz fgv-e
+
+**Pl: 8-kirakó**
+Kezdőállapot = maga a kezdőpálya
+Állapotok = célállapotból csusztatásokkal elérhető konfigurációk
+Cselekvés = üres hely mozgatása fel, le, jobbra és balra.
+Költség = konstans minden cselekvésre
+Célállapot = a célállapotot az ábra mutatja
+
+KÉP HOZZÁ (KirakoMestint.JPG)
 
 ### Vak (informálatlan) keresés
 
@@ -115,6 +124,7 @@ Gráfkeresést feltételezve, ha $h$ **konzisztens és az állapottér véges**,
 
 Az $A^*$ optimálisan hatékony, de a **tárigénye általában exponenciális**. és nagyon nagyban függ $h$-tól. Az **időigény** szintén nagyon **nagyban függ** $h$-tól.
 
+PL rá: http://www.inf.u-szeged.hu/~ihegedus/teach/a-star.pdf
 ### Heurisztikák
 
 A relaxált probléma optimális megoldása pl jó heurisztika lehet.
