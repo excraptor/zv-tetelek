@@ -1,4 +1,3 @@
-
 # 3. Hatékony visszavezetés. Nemdeterminizmus. A P és NP osztályok. NP-teljes problémák
 
 ## Hatékony visszavezetés
@@ -40,5 +39,5 @@ problémának.
 - **NP-teljes**, Vegyünk egy ismerten NP-teljes problémát és **vezessük ezt** az új problémára vissza
 
 ### Példák
-
+Pár képen ott van.
 SAT, Hátizsák, Hamilton-út, Hamilton-kör, Euler-kör, ILP, Részletösszeg, Partíció

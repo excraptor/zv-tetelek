@@ -1,17 +1,11 @@
 
-
-
 # 4. A PSPACE osztály. PSPACE-teljes problémák. Logaritmikus tárigényű visszavezetés. NL-teljes problémák
 
 ## PSPACE osztály = $Space(n^k)$
 Polinom tárban (det. vagy nemdet.) eldönthető problémák osztálya.
-**Savitch-tétel**: Az $f(n)$ tárban nemdeterminisztikusan eldönthető problémák mind eldönthetők determinisztikusan,$f^2(n)$ tárban is
-- Elérhetőség eldönthető O(log^2n) tárban
-
-
-Tehát: $NSPACE(f(n))$ részhalmaza $SPACE(f^2(n))$-nek
-és mivel polinom négyzete polinom
-PSPACE = NPSPACE
+**Savitch-tétel**: Az $f(n)$ tárban nemdeterminisztikusan eldönthető problémák mind eldönthetők determinisztikusan, $f^2(n)$ tárban is
+Tehát: $NSPACE(f(n))$ részhalmaza $SPACE(f^2(n))$-nek és mivel polinom négyzete polinom $\rightarrow$ PSPACE = NPSPACE
++Elérhetőség eldönthető O(log^2n) tárban
 
 ## PSPACE-teljes problémák
 **Nehézség, teljesség:**

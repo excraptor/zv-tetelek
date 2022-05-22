@@ -1,5 +1,3 @@
-
-
 # 2. Az SQL adatbázisnyelv: Az adatdefiníciós nyelv (DDL) és az adatmanipulációs nyelv (DML). Relációsémák definiálása, megszorítások típusai és létrehozásuk. Adatmanipulációs lehetőségek és lekérdezések
 
 ## SQL
@@ -96,7 +94,7 @@ Elsődleges feladata, hogy megelőzzük az adatbeviteli hibákat, és elkerülj�
 
 ## Adatmanipulációs lehetőségek és lekérdezések
 
-**Adatok beszúrása:**
+#### **Adatok beszúrása:**
 
 Ha csak adott oszlopoknak akarunk értéket adni (pl mert nem kötelező, vagy alapértelmezett érték):
  `INSERT  INTO táblanév (oszloplista) VALUES (értéklista);`
@@ -114,19 +112,19 @@ UPDATE táblanév SET
 
 Módosítjuk egy vagy több oszlop értékét az adott táblában, azokon a sorokon, amelyek eleget tesznek a WHERE záradékban tett feltételnek.
 
-**Adatok törlése:**
+#### **Adatok törlése:**
 
 `DELETE FROM táblanév [WHERE feltétel];`
 
 Töröljük az összes rekordot a táblából, amelyek megfelelnek a WHERE záradékban megadott feltételnek.
 
-**Lekérdezések:**
+#### **Lekérdezések:**
 
 `SELECT oszloplista FROM tábla;`
 
 A megadott oszlopokat kilistázza az adott táblából. oszloplista helyére megadható \*, ha az összes oszlopot listázni akarjuk.
 
-Teljes szintaxisa:
+**Teljes szintaxisa:** 
 ```
 SELECT [DISTINCT] oszloplista FROM táblalista 
 [WHERE feltétel]
@@ -141,7 +139,7 @@ SELECT [DISTINCT] oszloplista FROM táblalista
 **HAVING:** a csoportosítás után a csoportokra vonatkozó feltétel
 **ORDER BY:** az oszloplistában szereplő adatok rendezése abc szerint növekvő vagy csökkenő sorrendben
 
-**Összesítő függvények**
+#### **Összesítő függvények**
 
 Leggyakrabban a **GROUP BY-jal együtt** szoktuk használni, de enélkül is lehet.
 **Leginkább** a **SELECT utáni oszloplistában**, de a **where-ben** és a **having-ban** is használható. Az eredményoszlopokat AS kulcsszóval el is nevezhetjük.
@@ -152,7 +150,7 @@ Leggyakrabban a **GROUP BY-jal együtt** szoktuk használni, de enélkül is leh
 **SUM(oszlop):** az oszlop összege
 **COUNT (\[DISTINCT\]** oszlop): az eredményben szereplő (különböző) rekordok száma
 
-**Természetes összekapcsolás**
+#### **Természetes összekapcsolás**
 
 **SELECT * FROM T1, T2 WHERE T1.X = T2.X;**
 
@@ -160,16 +158,29 @@ X az most egy oszlop, egy kulcs-külső kulcs kapcsolat.
 
 Erre használható még SQL-ben az **INNER JOIN** kulcsszó is.
 
-SELECT * FROM T1, T2 INNER JOIN T2 ON T1.X = T2.X;
+```SELECT * FROM T1, T2 INNER JOIN T2 ON T1.X = T2.X;```
 
 Használható még a NATURAL JOIN kifejezés is, de ez egy picit máshogy működik. Ennek a használatához a két tábla közös attribútumhalmaza ugyanazokat az oszlopneveket tartalmazza mindkét táblában és a párosított oszlopok típusa is megegyezik. Ebből kifolyólag nem kell megadnunk a kapcsolódó, kulcs és külső kulcs oszlopokat. A közös oszlop csak egy példányban jelenik majd meg.
 
-SELECT * FROM T1 NATURAL JOIN T2;
+```SELECT * FROM T1 NATURAL JOIN T2;```
 
-Jobboldali, baloldali és teljes külső összekapcsolás
-
+**Jobboldali, baloldali és teljes külső összekapcsolás:**
 Valamelyik, vagy mindkét tábla összes rekordja szerepelni fog az eredményben.
 
-Baloldali összekapcsolásnál a baloldali tábla minden rekordja megmarad, és ezekhez a rekordokhoz párosítjuk a jobboldali tábla rekordjait. Jobboldalinál pont fordítva. Teljes összekapcsolásnál pedig mindkét tábla összes rekordja megmarad, és mindenhol a hiányzó helyeken NULL értékek lesznek.
+**Baloldali összekapcsolásnál (LEFT JOIN)** a baloldali tábla minden rekordja megmarad, és ezekhez a rekordokhoz párosítjuk a jobboldali tábla rekordjait. 
+**Jobboldalinál (RIGHT JOIN) pont fordítva**. 
+**Teljes összekapcsolásnál (FULL OUTER JOIN)** pedig mindkét tábla összes rekordja megmarad, és mindenhol a hiányzó helyeken NULL értékek lesznek.
 
-Lekérdezések eredményén, amikor ugyanannyi és ugyanolyan típusú oszlopot kérünk le, használhatunk halmazműveleteket is, pl UNION vagy INTERSECT.
+**Theta kapcsolás**
+Nem feltételezünk, hogy lenne a két táblának közös kapcsolómezője. $\rightarrow$ **Descartes szorzat**
+```SELECT * FROM T1 , T2 WHERE feltétel ;```
+
+
+**Lekérdezések eredményén, amikor ugyanannyi és ugyanolyan típusú oszlopot kérünk le**, használhatunk halmazműveleteket is, pl **UNION vagy INTERSECT**.
+
+#### Alkérdések
+
+Alkérdés tulajdonképpen egy **SELECT** utasítás. Leginkább a **WHERE** és **HAVING** feltételeibe szoktuk megadni.
+
+Lehetőség van megadni őket beszuró, módosító és törlő utasitásokban.
+Pl: ```INSERT INTO táblanév [(oszloplista)] AS (alkérdés);```

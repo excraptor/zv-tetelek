@@ -1,6 +1,11 @@
 
 # 7. Eliminációs módszerek, mátrixok trianguláris felbontásai. Lineáris egyenletrendszerek megoldása iterációs módszerekkel. Mátrixok sajátértékeinek és sajátvektorainak numerikus meghatározása
 
+## Alapvető információk
+**Diagonális mátrix:** Főátlón kívűl csak 0-ák vannak
+**Egységmátrix:** Jele: $I$, a főátlóba 1-esek többi helyen 0-ák.
+**Invertálható mátrix (nem szinguláris):** Ha létezik egy A mátrix ami csak akkor invertálható, ha van egy B mátrix amelyre igaz, hogy $AB = I_n$ == $A^{-1}$.
+**Szinguláris mátrix:** Amelyek determinánsa nulla, és nem létezik inverze.
 
 ## Eliminációs módszerek
 A lineáris egyenletrendszerek megoldására szolgáló eljárások. ($Ax = b$)
@@ -43,7 +48,7 @@ akkor felbontható a következőképpen: (Az $LU = x$, ből $U = L^T$)
 2x olyan gyors mint az LU felbontás és **numerikusan stabilis**, ==szóval, ha picit változtatunk az inputon akkor kicsit változik az eredmény.==
 
 ### QR felbontás
-$Q$: egy **ortogonális mátrix**, tehát$QQ^T = Q^TQ = I$, azaz a **transzponáltja egyben az inverze** is
+$Q$: egy **ortogonális mátrix**, tehát $QQ^T = Q^TQ = I$, azaz a **transzponáltja egyben az inverze** is
 $R$: egy felső háromszögmátrix
 
 Numerikusan stabilabb ez is.
@@ -80,11 +85,27 @@ $x^{(k+1)} = -D^{-1}(A-D)x^{(k)}+D^{-1}b$,
 - $D^{-1}$-el való szorzás pont az i-edik egyenlet elosztása az i-edik együtthatóval.
 - Az $A-D$ a jobb oldalra való átvivést jelképezi.
 
-Választunk valami **indulóvektort**, ami ilyen kezdő megoldás kb
+Választunk valami **indulóvektort**, ami ilyen kezdő megoldás kb.
 A vektor elemeit behelyettesítjük a jobboldalra, és ebből kapunk egy új vektort a baloldalon, ezzel folytatjuk.
 
 Csak akkor konvergál, ha a mátrix *szigorúan diagonálisan domináns*, vagyis az összes főátlóbeli elem abszolút értéke a legnagyobb az adott sorban.
 
+Példa:
+Egyenletrendszer:
+
+$5x_1 + x_2 = 7$
+$x_1 + 2x_2 = 5$
+$x_2 + 3x_3 = 2$
+Rendezzük át az egyenletrendszert: $x^{(k+1)}=Bx^{(k)}+c$ alakúra.
+$x_1^{k+1} = -\dfrac{1}{5}x_2^{(k)}+\dfrac{7}{5}$
+
+$x_2^{k+1} = -\dfrac{1}{2}x_1^{(k)}+\dfrac{5}{2}$
+
+$x_3^{k+1} = -\dfrac{1}{3}x_2^{(k)}+\dfrac{2}{3}$
+
+Választunk egy kezdővektort: $x^{(0)}=(1\ 1\ 1)^T$
+Ezután visszairjuk mátrixos alakra.
+MELLÉKLET KÉPBE (JacobiMatrix.JPG)
 ### Gauss-Seidel iteráció
 
 Ugyanaz, mint a Jacobi, csak ha már **egy változó új értékét kiszámoltuk**, akkor a következő sorokban már azt az **új értéket használjuk**. 
@@ -112,7 +133,7 @@ Ezt a polinomot nevezzük a mátrix **karakterisztikus polinomjának**.
 Valós mátrixnak is lehetnek komplex sajártértékei!
 A mátrix sajártértékeinek a halmazát a mátrix *spektrumának* hívjuk.
 
- # **SZERINTEM EZ NEM KELL**
+ # **SZERINTEM EZ NEM KELL, BÁR SZABIVÁNNÁL LEHET**
 ### Hatványmódszer
 
 A hatványmódszer a legnagyobb abszolútértékű sajátérték meghatározására szolgál.
@@ -131,5 +152,3 @@ $Ay=x^k$
 $x^{(k+1)} = y/||y||$
 
 Az inverz hatványmódszer azon a felismerésen alapul, hogy ha az A mátrix sajátértéke lambda, és a hozzá tartozó sajátvektor x, akkor A^-1 egy sajátértéke lambda^-1, és a hozzá tartozó sajátvektor x.
-
-

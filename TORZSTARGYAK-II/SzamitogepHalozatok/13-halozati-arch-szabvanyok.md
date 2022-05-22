@@ -1,3 +1,4 @@
+
 # 13. Számítógép-hálózati architektúrák, szabványosítók (ISO/OSI, Internet, ITU, IEEE)
 
 ## ISO
@@ -6,6 +7,9 @@ International Organization for Standardization, Nemzetközi Szabványügyi Szerv
 
 Mindenféle szabványokat adnak ki, 165 tagállam nemzeti szabványügyi szervezete alkotja. A távközlési szabványokhoz az ISO és az ITU-T gyakran együttműködik, hogy a szabványok kompatibilisek legyenek egymással.
 
+PL:
+- Az **IEEE 802.11** egy vezeték nélküli adatátviteli protokoll, Az OSI két legalsó rétegét, a fizikai és az adatkapcsolati réteget definiálja.
+- **IEEE 754/1985** lebegőpontos számformátum
 ## OSI
 
 A számítógépek kommunikációjához szükséges hálózati protokollt határozza meg.
@@ -36,7 +40,7 @@ A rétegek alulról felfelé
     - Hálózati útvonalválasztás és adatáramlás ellenőrzés
     - Routerek, IP switchek
     - **IP protocol (IP) itt található**, logikai címzés
-    - 
+    
 - **Szállítási réteg**
 	- *minden adat érintetlenül, sértetlenül érkezzen meg a rendeltetési helyére.*
 	- Forrás- és célállomás egymással kommunikál
@@ -44,6 +48,7 @@ A rétegek alulról felfelé
     - **megbízhatóság:** pl ellenőrző összeggel megnézzük, hogy az adat sérült-e
     - **TCP protokoll** itt található
 
+A felső háromat együtt **felső rétegnek** nevezik
 
 - **Viszony réteg**
     - két számítógép felhasználói kapcsolatot létesítsen
@@ -64,6 +69,7 @@ A rétegek alulról felfelé
 ## Internet
 
 Összekapcsolt számítógépes hálózatok globális rendszere, ami a **TCP/IP** protokollt használja a kommunikációhoz. Olyan hálózatok hálózata, amely üzleti, kormányzati, állai, magán, tudományos stb hálózatokból áll. Közös protokollokat használnak és közös szolgáltatásokat nyújtanak.
+**Legfontosabb alkalmazás rétegei: a HTTP, FTP, SMPT, DNS**
 
 Nincs központosított irányítása, sem a technológiai megvalósításban, sem a hozzáférésre és használatra vonatkozó politikában.
 

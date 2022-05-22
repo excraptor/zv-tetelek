@@ -1,5 +1,4 @@
 
-
 # 2. Elemi adatszerkezetek, bináris keresőfák, hasító táblázatok, gráfok és fák számítógépes reprezentációja
 
 ## Elemi adatszerkezetek
@@ -29,6 +28,7 @@ Megfelelő adatszerkezet kulcs az implementáció futásidejéhez!
 Az adatok lineárisan követik egymást.
 Egy érték többször is előfordulhat.
 **Műveletek**: érték, értékad, keres, beszúr, töröl
+
 1. **Közvetlen elérés**
 - minden index közvetlen elérésű, közvetlenül írható/olvasható
 - érték: O(1), keres: O(n)
@@ -52,13 +52,11 @@ Közvetlen elérés vs Láncolt lista
 - **Közvetlen elérés:** ÉRTÉK() konstans, módosító lassú
 - **Láncolt lista:** ÉRTKÉ()  lassú, módosító gyors, sok memória kell a mutatóknak
 
-### Verem és sor
-Stack, Queue
-
+### Verem és sor (Stack, Queue)
 Olyan listák, ahol a beszúrás és a törlés csak adott pozíción történhet
 
-- verem: legutoljára beszúrt elemet vehetjük csak ki **(LIFO - Last In First Out)**
-- sor: legkorábban beszúrt elemet vehetjük csak ki **(FIFO - First In First Out)**
+- *verem:* legutoljára beszúrt elemet vehetjük csak ki **(LIFO - Last In First Out)**
+- *sor:* legkorábban beszúrt elemet vehetjük csak ki **(FIFO - First In First Out)**
 
 Verem műveletek
 
@@ -80,7 +78,7 @@ Sor műveletek:
 	- Törlés: $\mathcal{O}(1)$
 ### Prioritási sor és kupac
 
-Prioritási sor
+**Prioritási sor**
 
 - érkezés sorrendje lényegtelen, mindig a min/max elemet akarjuk kivenni
 
@@ -88,15 +86,14 @@ lehet mondjuk listával megvalósítani, veremmel vagy sorral nem érdemes, mert
 
 Prioritási sor hatékony megvalósítása: **kupac (heap)**
 
-Kupac
-
+**Kupac**
 - majdnem teljes bináris fa, minden csúcsa legalább akkora, mint a gyerekei -> max elem a gyökérben
 
 
 ## Bináris keresőfák
 
 Keres, beszúr, töröl, min, max, következő, előző
-Mind legyen $\mathcal{O}(logn)$
+**Mind legyen** $\mathcal{O}(logn)$
 
 Bináris keresőfa
 
@@ -108,7 +105,16 @@ Bináris keresőfa
 - következő/előző szintén **O(h)** - amíg jobb/bal gyerek, addig megyünk max
 - beszúr szintén **O(h)** - mindig levélként szúrunk be, úgy, hogy kb megkeressük a helyét
 - töröl is **O(h)**, levelet simán törlünk, egy gyerekeset úgy, hogy a gyereket linkeljük a szülőhöz, két gyerekeset pedig a **következővel** helyettesítjük
-	- Következő: 	
+
+**EZ NEM TUDOM KELL-E SZABIVANHOZ LEHET**
+
+**AVL fák:**
+- AVL-fa, ha $T$ egy nemüres bináris fa:
+	- $T_L$ és $T_R$ magasság-kiegyensúlyozottak
+	- $|h_L-h_R| \le 1$, ahol $h_L$ és $h_R$ rendre a T left és right magasságai.
+	- **Egyensúlyfaktora** a $h_L - h_R$. Ez mindegyik -1, 0 vagy 1 lehet, ellenben forgatni kell.
+
+Minden művelete szinte: $\mathcal{O}{(logn)}$
 
 
 ## Hasító táblák

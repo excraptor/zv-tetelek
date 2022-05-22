@@ -1,6 +1,4 @@
 
-
-
 # 9. Normálformák az ítéletkalkulusban, Boole-függvények teljes rendszerei. Következtető módszerek: Hilbert-kalkulus és rezolúció, ezek helyessége és teljessége
 ## Ítéletkalkulus
 - Vannak **változók** ezeket $(p,q,r)$ szoktuk jelölni, és a ${0,1}$ halmazból kapnak igazságértéket. 

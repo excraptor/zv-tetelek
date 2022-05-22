@@ -45,6 +45,27 @@ A szelőmódszer egy változata.
 
 Feltesszük, hogy a kezdeti $x_0, x_1$ pontokban az $f(x)$ függvény ellentétes előjelű, és $f(x_{k+1})$ függvényében a megelőző két pontból azt választjuk, amivel ez a tulajdonság fennmarad.
 
+### Példák a fenti módszerekre
+PL: $f(x) = x^3 - x +1$ függvény.
+**Newton:**
+ennek a deriváltja: $f'(x) = 3x^2-1$
+Keressünk egy olyan környezetet, ahol lehet egy zérushely. 
+Ha megnézzük a függvényt pár helyen, akkor azt kapjuk, hogy $f(-2) = -5$ és $f(-1) = 1$$, szóval mivel ezek ellentétes előjelűek, válasszuk $x_0 = -1$ értéket.
+Felirjuk a képletel: 
+$x_{k+1} = x_k - \dfrac{x_k^3-x_k+1}{3x_k^2-1}$, behelyettesítve megkapjuk az $x_1$-et. ami itt $-1.5$
+
+**Szelő módszer:**
+Két alappontot kell venni, a fenti függvény esetén tudjuk hogy a $-2$ és $-1$ közrefogja a zérushelyet, szóval legyen ez a két alappont.
+Felírjuk a képletet:
+$x_{k+1} = x_k - \dfrac{(x_k^3 - x_k +1)(x_k-x_{k-1})}{(x_k^3-x_k+1)-(x_{k-1}^3-x_0+1)}$
+
+**Húr módszer esetén:**
+Tudjuk, hogy a $-2$ és $-1$ pontoknál különböző előjelű a függvényérték, szóval ezeket használhatjuk.
+Beirjuk a fenti képletbe a dolgokat. eredményként az jön ki, hogy $f(-\dfrac{7}{6})$ ami közel $0.5787$, tehát ezt a pontot megtartjuk amelyik negatív + ezt az új pontot.
+
+#### Konvergenciájuk
+A **Newton módszer gyorsabban konvergál mint a húrmódszer, a húrmódszer pedig gyorsabban mint a szelő.** Viszont nem kell nekik derivált.
+
 ### Konjugált gradiens eljárás
 Az eljárás olyan lineáris ($Ax = b$ alakú) egyenletrendszerek megoldására alkalmaz, ahol az $A$ **együtthatómátrix szimmetrikus** ($A = A^T$), **pozitív definit** ($\forall x \ne 0$ $x^T Ax > 0$) és **valós** ($A \in \mathbb{R}^{n*n}$). 
 Pontos számolásokkal véges sok lépésben megtalálná a megoldást, de a **kerekítési hibák miatt iterációs eljárásnak veszik**.
@@ -82,6 +103,23 @@ A Lagrange-interpoláció az interpoláló polinomot a $\sum_{i=1}^n f(x_i)L_i(x
 $L_i(x)$-et úgy kapjuk, hogy egy nagy törtet veszünk - a **számlálóban összeszorozzuk** az összes $x-x_j$-t, ahol *j nem egyenlő i-vel*, tehát $x-x_i$ szorzó kimarad belőle
 A **nevezőben pedig $x_i-x_j$-ket szorzunk össze**, mindenhol, ahol j nem egyenlő i-vel szintén (különben nullával osztanánk).
 
+PL:
+Legyen adott 4 alappont: $(-1,2),(0,0),(1,4),(4,0)$, és ennek keressük a harmadfokú interpolációs polinomját:
+
+| x      | -1 | 0 | 1 | 4 |
+|--------|----|---|---|---|
+| p_3(x) | 2  | 0 | 4 | 0 |
+
+Határozzuk meg az $L_i(x)$ polinomokat:
+$L_1(x) =\dfrac{(x-0)(x-1(x-4))}{(-1-0)(-1-1)(-1-4)}$
+
+$L_2(x) =\dfrac{(x+1)(x-1)(x-4))}{(0+1)(0-1)(0-4)}$
+
+$L_3(x) =\dfrac{(x+1)(x-0)(x-4))}{(1+1)(1-0)(1-4)}$
+
+$L_4(x) =\dfrac{(x+1)(x-0)(x-1))}{(4+1)(4-0)(4-1)}$
+
+$p_3(x)=2*L_1(x)+0L_2(x)+4L_3(x)+0L_4(x)$ ..... behelyettesítés és kiszámolás.
 ## Numerikus integrálás
 **Határozatlan integrál:**
 $\int f(x) = F(x)dx$,
