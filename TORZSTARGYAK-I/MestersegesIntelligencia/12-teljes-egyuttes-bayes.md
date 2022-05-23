@@ -1,10 +1,4 @@
-
-
-
 # 12. Teljes együttes eloszlás tömör reprezentációja, Bayes hálók. Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
-
-**Feltételes valószínűség:** $P(a | b) = P(a \wedge b)/P(b)$
-
 ## Teljes együttes eloszlás tömör reprezentációja, Bayes hálók
 
 ### Teljes együttes eloszlás
@@ -32,10 +26,14 @@ Pl: fogfákás és a beakadás közös oka a luk.
 
 **Naiv-Bayes modell alakja**
 Ha $A$ feltevése mellett $B_1,...,B_n$ kölcsönösen függetlenek, akkor 
-$P(B1, . . . , Bn|A) = \prod_{i=1}^{n} P(B_i|A)$. **Ezzel $O(n)$ tömörítés érhető el**
+$P(B1, . . . , Bn|A) = \prod_{i=1}^{n} P(B_i|A)$. ha ez igaz, akkor ez a *Naiv-Bayes modell alakja*, ami a következőképp definiálható:
+$P(B1, . . . , Bn,A) = P(A)\prod_{i=1}^{n} P(B_i|A)$,
+**Ezzel $O(n)$ tömörítés érhető el**
 
 **Bayes szabály $a$ és $b$ kijelentésekre**
-$P(a|b) = \dfrac{P(b|a)P(a)}{P(b)}$
+$P(a|b) = \dfrac{P(b|a)P(a)}{P(b)}$,
+ez következik a feltételes függetlenség képletéből: 
+P$(a \wedge b) = P(a|b)P(b) = P(b|a)P(a)$
 
 ### Bayes hálók
 
@@ -46,11 +44,15 @@ Bayes háló esetén alkalmazunk **láncszabályt**, ami azt jelenti, hogy a **t
 Formailag:
 $$P(X1, . . . , Xn) = \prod_{i=1}^{n} P(X_i|X_{i+1},...,X_n)$$
 
-Ezután az egyes feltételes valószínűségelből elhagyhatunk változókat $\rightarrow$ $P(X_i|X_{i+1},...,X_n)$ tényezőre, az$\{X_{i+1},...,X_n\}$ változókból vegyünk egy Szülők$(X_i)$ részhalmazt amire igaz hogy,  $P(X_i|X_{i+1}, . . . , Xn) = P=(X_i|$Szülők$(X_i)$
+Ezután az egyes feltételes valószínűségelből elhagyhatunk változókat, azaz minden $P(X_i | X_{i+1},..,X_n)$ tényezőre az $\{X_{i+1},..,X_n\}$ változókból vegyünk egy $Szulok(x_i)$.
 Ebből tudunk tömöríteni, mivel a Szülők halmaz minimális.
-Formailag:
-$$P(X1, . . . , Xn) = \prod_{i=1}^{n} P(X_i|\text{Szülő}(X_i))$$
+$$P(X1, . . . , Xn) = \prod_{i=1}^{n} P(X_i|\text{Szülő}(X_i))$$ (ez a bayes háló)
 **Ez a teljes eloszlás tömörített reprezentációja.**
+Ezt lehet egy gráf formájában vizualizálni.
+Például az $X_i$ változókat fel lehet venni mint a gráf csomópontjai, a $Szulok(X_i)$ halmaz elemeiből pedig éleket lehet húzni az $X_i$ változó felé.
+**Ez a gráf irányított körmentes gráf lesz.**
+
+
 
 
 

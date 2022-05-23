@@ -1,4 +1,5 @@
 
+
 # 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
 Különbség a feladatreprezentáció és a játékok között, az **ágensek száma**.
 
