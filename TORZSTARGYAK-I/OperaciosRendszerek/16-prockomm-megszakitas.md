@@ -4,24 +4,31 @@
 
 ## Processzusok kommunikációja, versenyhelyzetek, kölcsönös kizárás.
 
+Processzus: **A végrehajtás alatt lévő program a memóriában.**
+
 ### Processzusok kommunikációja
 
 - A processzusoknak szükségük vannak a kommunikációra
     - **Adatok átadása az egyik folyamatból a másiknak** (Pipelining)
     - **Közös erőforrások használata** (memória, nyomtató, stb.)
 
-**Kritikus szekció:** Kettő vagy több processzus egy-egy szakasza nem lehet átfedő, azaz két szakasz egymásra nézve **kritikus szekciók**,
-Szabályok:
+
+Kettő vagy több processzus egy-egy szakasza nem lehet átfedő, azaz két szakasz egymásra nézve **kritikus szekciók**.
+**Kritikus szekció:** A program az a része, ahol előfordulhat versenyhelyzet.
+**Szabályok:**
 	1. Legfeljebb egy proc lehet kritikus szekciójában
 	2. Kritikus szekción kívüli proc nem befolyásolhatja másik proc kritikus szekcióba lépését.
 	3. Véges időn belül bármely kritikus szekcióba lépni kívánó proc beléphet.
+	4. Processzusok sebessége közömbös
+
 
 **Versenyhelyzet:**
-Processzusok közös adatokat olvasnak és a végeredmény attól függ, hogy ki és pontosan mikor fut.
+Amikor több párhuzamosan futó folyamat közös erőforrást használ. A futás eredménye függ attól, hogy az egyes folyamatok mikor és hogyan futnak.
 
 - Kooperatív processzusok közös tárolóterületen dolgoznak (olvasnak és írnak).
 - Processzusok közös adatot olvasnak és a végeredmény attól függ, hogy ki és pontosan mikor fut
-- **Megoldás:** Egyszerrecsak egy folyamat lehet kritikus szekcióban. Amíg a folyamat kritikus szekcióban van, azt nem szabad megszakítani. Ebből a megoldásból származhatnak új problémák.
+
+**Megoldás:** Egyszerrecsak egy folyamat lehet kritikus szekcióban. Amíg a folyamat kritikus szekcióban van, azt nem szabad megszakítani. Ebből a megoldásból származhatnak új problémák.
 
 ## Kölcsönös kizárás
 
@@ -47,12 +54,13 @@ Láthattuk, hogy a kritikus szekcióba való belépés nem feltétel nélküli. 
         - A CPU zárolja a memóriasínt, azaz tiltva van a memória elérés a CPU-knak a művelet befejezéséig.
         - A művelet befejezésekor 0 érték kerül a LOCK memóriaterületre
 - **Software-es módszer**
-    - Szigorú váltogatás módszere
-         	A folyamat			B folyamat
+    - **Szigorú váltogatás módszere**
+	    - A kölcsönös kizárás feltételeit teljesíti, kivéve azt hogy **egyetlen kritikus szekcíón kívüli folyamat sem blokkolhat másik folyamatot**
     - **Peterson-féle megoldás**
-        - Van két metódus a kritikus szekcióba való belépésre (enter_region) és kilépésre (leave_region). A kritikus szekcióba lépés előtt a processzus meghívja az enter_region eljárást, kilépéskor pedig a leave_region eljárást. Az enter_region eljárás biztosítani fogja, hogy a másik processzus várakozik, ha szükséges.
-        - 
-    - Változók zárolása
+        - Van **két metódus a kritikus szekcióba való belépésre** (enter_region) és **kilépésre** (leave_region). 
+        - A kritikus szekcióba lépés előtt a processzus meghívja az enter_region eljárást, kilépéskor pedig a leave_region eljárást. Az enter_region eljárás biztosítani fogja, hogy a másik processzus várakozik, ha szükséges.
+        - **csak 2 processzus esetén müködik**
+    - **Változók zárolása**
         - Van egy osztott zárolási változó, aminek a kezdeti értéke 0. Kritikus szekcióba lépés előtt a processzus teszteli ezt a változót. Ha 0 az értéke, akkor 1-re állítja és belép a kritikus szekcióba. Ha az értéke 1, akkor várakozik, amíg nem lesz 0.
 
 ## Altatás és ébresztés: termelő-fogyasztó probléma, szemaforok, mutex-ek, monitorok, Üzenet, adás, vétel. 
@@ -63,23 +71,27 @@ Ahogy láttuk az előző, tevékeny várakozást használó versenyhelyzet-elker
 
 A **tevékeny várakozás feloldására az egyik eszköz a sleep-wakeup** rendszerhívás páros. A lényege, hogy a **sleep rendszerhívás blokkolja a hívót**, azaz fel lesz függesztve, amíg egy másik processzus fel nem ébreszti. A **wakeup rendszerhívás a paraméterül kap egy processzus azonosítót, amely segítségével felébreszti az adott processzust**, tehát nem lesz blokkolva továbbá.
 
-**Termelő-fogyasztó probléma**
-Véges méretű memóriaterületen (tárolón) dolgozik két processzus (osztoznak). A gyártó adatokat helyez el a tárolón, a fogyasztó kiveszi az adatokat a tárolóból és feldolgozza azokat, viszont a memória véges. 
-Ha a tároló tele van és a gyártó elemet akar berakni, akkor elalszik, majd felébreszti a fogyasztó, ha egy elemet kivesz a tárolóból. **Fordítva is:** ha a tároló üres, és a fogyasztó ki akar venni egy elemet, akkor elalszik, és majd felébreszti a gyártó, ha legyártott egy eleme
+### Termelő-fogyasztó probléma
+Két processzus osztozik egy közös, rögzített méretű tárolón. A *termelő* adatokat tesz bele, a *fogyasztó* kiveszi azokat.
+Ha a tároló tele van és a gyártó elemet akar berakni, akkor elalszik, majd felébreszti a fogyasztó, ha egy elemet kivesz a tárolóból. 
+**Fordítva is:** ha a tároló üres, és a fogyasztó ki akar venni egy elemet, akkor elalszik, és majd felébreszti a gyártó, ha legyártott egy eleme
 
 ### **Szemafor**
-
-- „A vonat megáll egy piros szemafor előtt, és addig várakozik, amíg szabad utat nem kap, mert valamilyen oknál fogva (elaludt a bakter, foglalt a pálya stb.) a továbbhaladás meg van tiltva.”
-- A szemafor a számítógép-programozásban használt változó vagy absztrakt adattípus, amit az osztott erőforrásokhoz való hozzáférések szabályozásához használnak a többszálú környezetekben. 
-- Ha értéke pozitív, akkor nyitott állapotban van, ha nulla, akkor tilosat mutat
-- **Amekkora értékkel inicializáljuk a szemafort annyi „vonatot” enged át, mielőtt tilosat mutatna.**
-- pl.: Tekintsünk egy egész számot. Legyen, mondjuk, a kezdőértéke egy. Amikor a kritikus művelethez érek, akkor azt mondom, hogy jelzem az erőforrás-használati igényemet. A jelzés jelentse azt, hogy eggyel csökkentem a szám értékét. Ezt szokás „down” vagy sok más helyen „P” operációnak is nevezni. Ha a csökkentés eredmény nem negatív lesz, akkor szabad az út, és végzi a dolgát a program. Ha ezután érkezik egy másik folyamat, ami ugyanezt az erőforrást szeretné használni, szintén hasonló módon kezdi a dolgot, de neki már a P operáció pirosra állítja a szemafort hiszen az „egész” értéke mínusz egy lesz. Ekkor ez a második folyamat mindaddig vár, amíg a szemafor értékét egy úgynevezett „up” vagy „V” operációval – ami az eggyel való növelést jelenti – fel nem szabadítja az erőforrást ami után a P operációnál várakozó program tovább haladhat. Ezzel tulajdonképpen újra tilos jelzés lesz érvényben a kritikus erőforrásra a kezdőérték egy volt.
+- A szemafort 1965-ben Dijsktra hozta létre, amely **egy nagyon jelentős technika az egyidejű folyamatok kezelésére egy egyszerű egész érték használatával**
+- Ez egy **megosztott egész változó**. Értéke pozitív vagy 0, és csak **várakozások** és **signal** műveleteken kereszütl érhetőek el.
+- Két metódusa van a *down* és az *up*. (általánosítható a *sleep* és *wakeup*-ra)
+	- **down** metódus megnézi, hogy az adott folyamat a szemaforon nagyobb-e mint 0. 
+	- Ha igen, akkor **növel rajta eggyel**
+	- Ha nem (tehát =0), akkor egyből altatásba rakja, nem növel rajta.
+- Garantált, hogyha a szemafor elindult, akkor semelyik másik processzus nem érheti ezl a szemafort, amíg a feladat le nem futott, vagy blokkoltba került.
+- Az **up** metódus a szemafor elérését növeli.
 
 ### **Mutex**
 
-- Olyan speciális szemafor, amelynek csak két értéke lehet
-- Ha csak kölcsönös kizárás biztosítására kell a szemafort létrehozni, és nincs szükség annak számlálási képességére, akkor azt egy kezdőértékkel hozzuk létre. Ezt a kétállapotú (értéke 0 és 1) szemafort sok környezetben speciális névvel, az angol kölcsönös kizárás kifejezésből mutexnek nevezzük.
-- Ha egy folyamatnak zárolásra van szüksége, a „mutex_lock” eljárást hívja, míg ha a zárolást meg akarja szüntetni, a „mutex_unlock” utasítást hívja.
+- Olyan speciális szemafor, amelynek **csak két értéke** lehet
+- Ha csak kölcsönös kizárás biztosítására kell a szemafort létrehozni, és nincs szükség annak számlálási képességére, akkor azt egy kezdőértékkel hozzuk létre. 
+- **Ezt a kétállapotú (értéke 0 és 1) szemafort** sok környezetben speciális névvel, az angol kölcsönös kizárás kifejezésből mutexnek nevezzük.
+- Ha egy **folyamatnak zárolásra van szüksége, a „mutex_lock” eljárást hívja**, míg ha a **zárolást meg akarja szüntetni, a „mutex_unlock” utasítást hívja**.
 - Aki másodszor (vagy harmadszor) hívja a „mutex_lock” eljárást, az blokkolódik, és csak a „mutex_unlock” hatására tudja folytatni a végrehajtást.
 
 ### Monitor
@@ -87,8 +99,8 @@ Ha a tároló tele van és a gyártó elemet akar berakni, akkor elalszik, majd 
 - Eljárások, változók ás adatszerkezetek együttese egy speciális modulba összegyűjtve, hogy használható legyen a kölcsönös kizárás megvalósítására
 - Legfontosabb tulajdonsága, hogy egy adott időpillanatban csak egy proc lehet aktív benne
 - A processzusok bármikor hívhatják a monitorban lévő eljárásokat, de nem érhetik el a belső adatszerkezeteit (mint OOP-nál)
-- wait(c): alvó állapotba kerül a végrehajtó proc
-- signal(c): a c miatt alvó procot felébreszti
+- wait( c ): alvó állapotba kerül a végrehajtó proc
+- signal( c ): a c miatt alvó procot felébreszti
 
 ### Üzenet, adás, vétel.
 
@@ -115,6 +127,8 @@ Ha a tároló tele van és a gyártó elemet akar berakni, akkor elalszik, majd 
 ### Írók és olvasók problémája
 
 Több proc egymással versengve írja és olvassa ugyanazt az adatot. Megengedett az egyidejű olvasás, de ha egy proc írni akar, akkor más procok sem nem írhatnak se nem olvashatnak. (pl, adatbázisok, fájlok, hálózat)
+Ha a folyamatos olvasók utánpótlása, az írok éheznek.
+Megoldás: Érkezési sorrend betartása $\rightarrow$ csökken a hatékonyság
 
 Sorompók:
 - Sorompó primitív

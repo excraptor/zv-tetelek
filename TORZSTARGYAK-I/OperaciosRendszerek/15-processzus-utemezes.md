@@ -1,4 +1,5 @@
 
+
 # 15. Processzusok, szálak/fonalak, processzus létrehozása/befejezése, processzusok állapotai, processzus leírása. Ütemezési stratégiák és algoritmusok kötegelt, interaktív és valós idejű rendszereknél, ütemezési algoritmusok céljai. Kontextus-csere
 ## Processzusok, szálak/fonalak, processzus létrehozása/befejezése, processzusok állapotai, processzus leírása
 
@@ -97,14 +98,16 @@ Kettő vagy több processzus egy-egy szakasza nem lehet átfedő, mert ilyen ez 
 ### Ütemezés kötegelt rendszerekben
 
 A manapság haszálatos op.rendszerek nem tartoznak a kötegelt rendszerek (: **Előre meghatározott sorrend szerint végrehajtandó feladatok együttese.**) világába, mégis érdemes röviden megemlíteni ezek ütemezési típusait.
-- **Sorrendi ütemezés:** 
+- **Sorrendi ütemezés:** (First-Come First-Served)
     - Futásra kész folyamatok egy várakozó sorban helyezkednek el.
     - A sorban levő első folyamatot hajtja végre a központi egység. Ha befejeződik a folyamat végrehajtása, az ütemező a sorban következő feladatot veszi elő.
     - Új feladatok a sor végére kerülnek
     - Ha az aktuálisan futó folyamat blokkolódik, akkor a sorban következő folyamat jön, míg a blokkolt folyamat, ha újra futásra kész lesz, akkor a sor végére kerül, és majd idővel újra rá kerül a vezérlés.
-- **Legrövidebb feladat először:**
+
+- **Legrövidebb feladat először:** (Shortest Job First)
     - az a folyamat kerül először ütemezésre, melyiknek a legkisebb a futási ideje.
     - az alkalmazhatóság szempontjából nem ideális, ha nem tudjuk előre a folyamatok végrehajtási idejét.
+
 - **Legrövidebb maradék futásidejű:**
     - Ismerni kell a folyamatok futási idejét előre.
     - Amikor új folyamat érkezik, vagy a blokkolás miatt egy következő folyamathoz kerül a vezérlés, akkor nem a teljes folyamat végrehajtási idejét, hanem csak a hátralévő időt vizsgálja az ütemező, és amelyik folyamatnak legkisebb a maradék futási ideje, az kerül ütemezésre
@@ -116,9 +119,10 @@ A manapság haszálatos op.rendszerek nem tartoznak a kötegelt rendszerek (: **
 ### Ütemezés interaktív rendszereknél
 
 - **Round Robin**
-    - Az ütemező beállít egy időintervallumot egy időzítő segítségével és amikor az időzítő lejár megszakítást ad.
+    - Az ütemező beállít egy **időintervallumot** egy időzítő segítségével és amikor az **időzítő lejár megszakítást ad**.
     - Megadott időközönként óramegszakítás következik be és ekkor az ütemező a következő folyamatnak adja a processzort.
     - A folyamatokat egy sorban tárolja a rendszer, és amikor lejárt az időszelet, akkor az a folyamat, amelyiktől az ütemező éppen elveszi a vezérlést, a sor végére kerül
+    - Minden processzusnak egyforma fontosságot ad.
 - **Prioritásos ütemezés**
     - Felmerül az igény, hogy nem feltétlenül egyformán fontos minden egyes folyamat. 
     - A folyamatokhoz egy fontossági mérőszámot, prioritást (prioritási osztályt) rendel hozzá
@@ -128,10 +132,10 @@ A manapság haszálatos op.rendszerek nem tartoznak a kötegelt rendszerek (: **
 
 **Alapvető szerepe van az időnek**
 Ha a feladatainknak nemcsak azt szabjuk meg, hogy hajtódjanak végre valamilyen korrekt ütemezés szerint, hanem az is egy kritérium, hogy egy adott kérést valamilyen időn belül ki kell szolgálni, akkor valós idejű op.rendszerről beszélünk.
-A megfelelő határidők betartása úgy valósítható meg, hogy egy programot több folyamatra bontunk, és ezeknek a rövid folyamatoknak az ütemező biztosítja a számukra előírt határidő betartását
-- Szigorú valós idejű rendszer
+A megfelelő határidők betartása úgy valósítható meg, hogy **egy programot több folyamatra bontunk (ezek a folyamatok általában kiszámítható viselkedéssel rendelkeznek)**, és ezeknek a rövid folyamatoknak az **ütemező biztosítja a számukra előírt határidő betartását**
+- **Szigorú valós idejű rendszer**
     - a határidő betartása kötelező
-- Toleráns valós idejű (soft real-time) rendszer
+- **Toleráns valós idejű (soft real-time) rendszer**
     - a határidők kis mulasztása még elfogadható, tolerálható.
 
 ### Kontextus csere
