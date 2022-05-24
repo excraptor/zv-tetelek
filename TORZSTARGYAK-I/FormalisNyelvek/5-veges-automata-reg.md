@@ -184,5 +184,7 @@ ha ezt pumpáljuk, több a betű lesz benne, mint b - rossz
 
 ### Következményei
 
-Vannak olyan nyelvek, amelyek nem környezetfüggetlenek, de nem regulárisak, pl $a^nb^n$ n >= 0.
+Van olyan környezetfüggetlen nyelv, amelyik nem reguláris.
+1. Minden reguláris nyelvtan környezetfüggetlen. (A REG nyelvek speciális CF nyelvek--jobblineárisak)  
+2. CF - REG != Üreshalmaz, mivel pl az {$a^nb^n$ | n >= 0} nyelv CF beli (S -> aSb | $\epsilon$), viszont nem teljesül rá a pumpáló lemma --> nem REG nyelv! 
 
