@@ -1,23 +1,44 @@
+
 # 14. Kiemelt fontosságú kommunikációs protokollok (PPP, Ethernet, IP, TCP, HTTP, RSA)
 
 ## PPP (Point-to-point)
 
-Magas szintű **adatkapcsolati protokoll** kétpontos vonalakhoz.
-Mindenféle fizikai rétegek feletti használatra alkalmas.
+Magas szintű **adatkapcsolati protokoll** kétpontos vonalakhoz. (pl két router között)
+Széleskörűen alkalmazzák széleskörű kapcsolatoknál, ahol nagy adatok és gyorsaság van.
 
 **Szolgáltatásai:**
 - **egyértelműen ábrázolja a keret végét és a következő keret elejét**, a keretformátum megoldja a hibajelzést is
 - adatkapcsolat-vezérlő protokollt tartalmaz a vonalak felélesztésére, tesztelésére, vonalak bontására
 - különböző hálózati vezérlő protokollokat tartalmaz mindegyik támogatott hálózati réteghez
 
+**Keret formátum**
+```markdown
+| Bájtok: | 1     | 1   | 1       | 1 VAGY 2  | Változó       | 2 VAGY 4         | 1     |
+|---------|-------|-----|---------|-----------|---------------|------------------|-------|
+| Mezők:  | Jelző | Cím | Vezérlő | Protokoll | Payload | Ellenörző összeg | Jelző |
+```
+**Jelző:** Az elejét és a végét jelző keret. (általában 01111110)
+**Vezérlő:** Egy konstans érték 11000000
+**Protokoll:** Definiálja a payload field típusát
+**Payload:** Az adat a hálózati rétegből. Max 1500 byte.
+**Ellenörző összeg:** Error detektálásra.
+
 ## Ethernet
 **adatkapcsolati protokoll**
 
-Az Ethernet egy számítógépes hálózati technológiák családja, amelyet **helyi hálozatban (LAN)**, **városi hálózatokban (MAN)** és **nagy kiterjedésű hálózatokban (WAN)** használnak.
-Először 1983-ban **szabványosították IEEE 802.3** néven. 
-Az Ethernet-et azóta finomították, hogy támogassa a nagyobb bitsebességet, a nagyobb csomópontok számát és a nagyobb összeköttetési távolságokat.
+Az Ethernet egy számítógépes hálózati technológiák családja, amelyet 
+- **helyi hálozatban (LAN)**, 
+- **városi hálózatokban (MAN)** és 
+- **nagy kiterjedésű hálózatokban (WAN)** használnak.
+
+Az **Ethernet** esetén a közeg, egy speciális koaxális kábel volt kezdetben. Ez akár 2,5km hosszú is lehetett jelismétlőkkel. Ezekre legfeljebb 256 gépet lehetett csatlakoztatni.
+
+Az **IEEE 802.3** szabványt a napjainkban is használatos megoldások alapjának tekinthetőek.
+
+Napjainkban a kezdetben elérhető *10 Mbit/s* sebesség már többszöröse is elérhető. Akár az új **IEEE 802.3cn** szabvánnyal már *400 Gbit/s* sebességet is definiálhatunk
 
 Az Ethernet egy állomása a közvetítő közeggel (kábel) való állandó kapcsolatot kihasználva bele tud hallgatni a csatornába, így ki tudja várni, amíg a csatorna felszabadul, és a saját üzenetét leadhatja anélkül, hogy ezzel más üzenet sérüljön, tehát a torlódás elkerülhető. A csatornát az állomások folyamatosan figyelik, ha ütközést tapasztalnak, akkor zavarni kezdik a csatornát, hogy figyelmeztessék a küldőket, ezután véletlen ideig várnak, majd adni kezdenek. Ha ezek után további ütközések történnek, az eljárás ugyanez, de a véletlenszerű várakozás idejét kétszeresére növelik, így időben szétszórják a versenyhelyzeteket, esélyt adva arra, hogy valaki adni tudjon.
+
 
 
 ## IP
@@ -77,7 +98,6 @@ Az IPv6-címek 32 bit helyett 128 biten ábrázolják a címeket (ez olyan, mint
 
 Az cím 8 részét kettőspontokkal szokás elválasztani, és ha egy rész csak 0-kból áll akkor megtehetjük, hogy üresen hagyjuk azt a részt, de a kettőspontok maradjanak meg. Például ha egy IPv6 címünk a következő módon néz ki: fe80:0000:0000:0000:0202:b3ff:fe1e:8329, akkor felírhatjuk így is: fe80::202:b3ff:fe1e:8329. 
 
-### ==EZ LEHET NEM KELL INNEN==
 ### Csomag fejléc
 
 Az első mező, a **Verzió (Version)**, amely megegyezik az IPv4 Verzió mezőjével, csak itt a 6-os konstans szerepel. 
@@ -92,7 +112,6 @@ Az **Adatmező hossza (Payload Length)** mező megmondja, hogy mennyi bájt k
 Az **Átugráskorlát (Hop Limit)** gátolja meg a csomagokat abban, hogy örökké élhessenek. Ez gyakorlatilag ugyan az, mint az Élettartam volt az IPv4-ben. 
 Ezek után következnek a Forrás címe (Source Address) és a Cél címe (Destination Address) mezők, amelyek egy-egy 16 bájtos (128 bites) címet takarnak
 
-### ==IDÁIG==
 
 
 ## TCP
@@ -131,17 +150,19 @@ Az adatátvitel megkezdése előtt kapcsolatot kell létesíteni a két végpont
 - Az A állomás megkapja a választ, melyből megtudja a B állomás kezdő sorszámát (y) és elküldi a következő szegmenst, egyben nyugtázva is a kérést (ack=y+1).
 Ezután megkezdődik az adatok átvitele, és a kapcsolat mindaddig nyitva marad, amíg bármelyik fél nem kéri annak lezárását.
 
-Ablakozás 
+**Ablakozás**
 
-Az adatátvitel gyorsítása érdekében a TCP protokoll nem várja meg a nyugtát minden egyes szegmens elküldése előtt, mivel az nagyon lassú kapcsolatot eredményezne, helyette több szegmens elküldését is engedélyezi a nyugta beérkezése előtt. Mivel a hálózaton található eszközök és állomások tulajdonságai eltérőek, fontos egy adatfolyam-vezérlési mechanizmus meghatározása az ilyen protokollok esetén. Ennek hiányában a küldő fél könnyen túlterhelheti a fogadó felet, megfelelően nagy számú szegmens küldésével, és így az adatok egy része elveszik. A TCP esetén ezt az adatfolyam-vezérlési mechanizmust „ablakozásnak”, a nyugta előtt elküldhető szegmensek számát pedig ablakméretnek nevezzük. A kifejezés arra utal, hogy a kapcsolatban kommunikáló felek dinamikusan határozzák meg az elküldhető szegmensek számát (vagyis az ablakméretet). 
+Az adatátvitel gyorsítása érdekében a TCP protokoll nem várja meg a nyugtát minden egyes szegmens elküldése előtt, mivel az nagyon lassú kapcsolatot eredményezne, helyette több szegmens elküldését is engedélyezi a nyugta beérkezése előtt.
 
-Menete:
+ Mivel a hálózaton található eszközök és állomások tulajdonságai eltérőek, fontos egy adatfolyam-vezérlési mechanizmus meghatározása az ilyen protokollok esetén. Ennek hiányában a küldő fél könnyen túlterhelheti a fogadó felet, megfelelően nagy számú szegmens küldésével, és így az adatok egy része elveszik. A TCP esetén ezt az adatfolyam-vezérlési mechanizmust „ablakozásnak”, a nyugta előtt elküldhető szegmensek számát pedig ablakméretnek nevezzük. A kifejezés arra utal, hogy a kapcsolatban kommunikáló felek dinamikusan határozzák meg az elküldhető szegmensek számát (vagyis az ablakméretet). 
+
+**Menete:**
 
 - Az ablakozás megköveteli, hogy a forrás adott mennyiségű adat elküldése után nyugtát kapjon a céltól. A TCP erre várományos nyugtákat használ, tehát minden nyugtában a következőként várt csomag sorszáma szerepel (vagyis nem kell minden csomag után egy külön nyugtát küldeni). 
 - Ha a célállomás nem kapja meg a csomagot, akkor nem küld róla nyugtát. Amennyiben a forrás nem kap nyugtát az elküldött csomagról, akkor tudja, hogy a sebességet csökkentenie kell és újra kell küldeni a nem nyugtázott szegmenseket. 
 - A fogadó közli az ablakméretet a küldő féllel, ami megadja, hogy hány szegmens vételére van felkészülve, és az ezen felül küldött szegmenseket figyelmen kívül hagyja. Az első érkező szegmens az ablakméret nyugtázása. 
 
-Nyugtázás 
+**Nyugtázás**
 
 A megbízható kézbesítés garantálja, hogy a kommunikáció során elküldött adatok veszteség, vagy kettőződés nélkül elérik a céljukat. Ennek érdekében a hibamentes átvitelhez, a TCP protokoll, az úgynevezett pozitív nyugtázás újraküldéssel (positive acknowledgement with retransmission) néven ismert eljárást használja.
 
