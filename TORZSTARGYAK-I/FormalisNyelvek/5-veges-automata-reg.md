@@ -22,7 +22,7 @@ Egy nemdeterminisztikus automata determinizálása:
 - Elindulunk a kezdőállapotból és megnézzük, hogy az első betű hatására hova megy -> ezeket összevonjuk egy állapottá és oda vezetjük ezzel a betűvel.
 - Ezután az új összevont állapot részeit nézzük meg, hogy onnan a betűk hova mennek.
 
-Egy $\epsilon$ automata determinizálása.
+Egy $\epsilon$ automata $\epsilon$-mentesítése.
 - Lezártakat számolunk.
 	- Azokat az állapotokat, ahova átlehet jutni $\epsilon$ átmenettel azokat egy lezártba vesszük.
 
