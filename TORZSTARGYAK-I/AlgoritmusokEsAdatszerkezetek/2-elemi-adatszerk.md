@@ -165,10 +165,11 @@ Listák helyett tömbben "egymás után" tároljuk a megegyező hasított érté
 
 *Lineáris próba:*
 - Addig próbálgatjuk berakni a tömbe, amíg nem látunk üres  helyet, mindig 1-et lépünk előre.
+- $H(k,i,n) = H(k,n)+i$ $(mod n)$, ahol $k$ a kulcs, $n$ a tábla mérete, $i$ a kipróbált hely.
 
-*Négyzetes próba:*
-- Valamekkora lépéssel lépünk
-
+*Négyzetes/Quadratikus próba:*
+- Két kipróbált hely között a távolságot egy másodfokú polinom adja.
+- $H(k,i,n) = H(k,n) +c_1i+c_2i^2$ $(modn)$, ahol $k$ a kulcs, $n$ a tábla mérete, $i$ a kipróbálás helye, $c_1$ és $c_2$ pedig egy valami függvényre jellemző konstans.
 
 ## Gráfok és fák számítógépes reprezentációja
 

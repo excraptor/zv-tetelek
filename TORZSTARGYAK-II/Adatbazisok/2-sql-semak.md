@@ -1,3 +1,4 @@
+
 # 2. Az SQL adatbázisnyelv: Az adatdefiníciós nyelv (DDL) és az adatmanipulációs nyelv (DML). Relációsémák definiálása, megszorítások típusai és létrehozásuk. Adatmanipulációs lehetőségek és lekérdezések
 
 ## SQL
@@ -44,6 +45,18 @@ CREATE TABLE tablanev(
 
 utasítással hozhatunk lére. A sémák különböznek a tábláktól, és nevével ellentétben a CREATE TABLE utasítás csak a relációsémát hozza létre. A tábla már az adatrekordok halmazát jelenti.
 
+Relációsémákat módosítani a
+```
+Új oszlop hozzáadás:
+ALTER TABLE táblanév ADD (uj_oszlop TÍPUS [oszlopfeltételek])
+Oszlop módosítása:
+ALTER TABLE táblanév MODIFY (meglevo_oszlop TÍPUS [oszlopfeltetl])
+Oszlop törlése:
+ALTER TABLE táblanév DROP (oszlop);
+```
+Adatbázis törlése:
+DROP TABLE táblanév;
+
 ### Megszorítások
 
 **Oszlopfeltételek:**
@@ -73,6 +86,9 @@ Az integritás megőrzése szempontjából a külső kulcsokhoz meghatározhatju
 - **NO ACTION,** a törlendő rekord kulcsára vonatkozó külső kulcs értéke nem változik
 - **CASCADE,** a törlendő rekord kulcsára hivatkozó külső kulcsú rekordok is törlődnek
 
+pl: 
+```felhasznalonev VARCHAR(20) REFERENCES felhasznalo(felhasznalonev) ON DELETE SET NULL```
+
 **ON UPDATE**
 
 - **RESTRICT,** ha van a módosítandó rekord kulcsára van vonatkozó külső kulcs, megtiltjuk a módosítást
@@ -80,6 +96,8 @@ Az integritás megőrzése szempontjából a külső kulcsokhoz meghatározhatju
 - **NO ACTION,** a módosítandó rekord kulcsára vonatkozó külső kulcs értéke nem változik
 - **CASCADE,** a módosítandó rekord kulcsára hivatkozó külső kulcsú rekordok is az új értékre változnak
 
+
+```felhasznalonev VARCHAR(20) REFERENCES felhasznalo(felhasznalonev) ON UPDATE CASCADE```
 
 **Táblákra és attribútumokra vonatkozó megszorítások**
 

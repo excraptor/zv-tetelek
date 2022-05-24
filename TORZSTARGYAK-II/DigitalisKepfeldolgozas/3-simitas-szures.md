@@ -1,5 +1,4 @@
 
-
 # 3. Simítás/szűrés képtérben (átlagoló szűrők, Gauss simítás és mediánszűrés); élek detektálása (gradiens-operátorokkal és Marr-Hildreth módszerrel)
 
 **Zaj:** A képpont-intenzitások nemkívánatos változása
@@ -29,12 +28,10 @@ Ezt az átlagolást konvolúcióval is végezhetjük, ahol a konvolúciós maszk
 - minden sűrűségfüggvény integrálja 1
     - minél nagyobb a $\sigma$ (szigma), annál szélesebb, de annál alacsonyabb a harang
     - ezzel szépen lehet jeleket simítani
-
-
 - binomiális együtthatók jól közelítik a normális eloszlás görbéjét
 - van 2D gauss is, harang alakú
 
-hogyan lehet gauss függvényt közelíteni diszkrét értékekkel?
+**hogyan lehet gauss függvényt közelíteni diszkrét értékekkel?**
 
 - vegyük a binomiális együtthatókat tartalmazó sorvektort, és osszunk el minden elemet 2^n-nel
 - ezt szorozzuk össze a transzponáltjával, és így kapjuk a gauss görbe közelítését
@@ -110,7 +107,13 @@ mind a négy módszer konvolúciós maszkpárokat alkalmaz
 * adott két 3x3-as mátrix, ha az egyikkel konvolválunk, akkor az x irányú parciális deriváltat közelítjük, ha a másikkal, akkor az y irányút
     igazából nem is kell konvolúció
 * **x:** a képpont értékéből kivonjuk az északkeleti szomszédját
-* **y:** a képpont értékéből kivonjuk az északnyugati szomszédját*
+* **y:** a képpont értékéből kivonjuk az északnyugati szomszédját
+
+```
+| 0 | 0 | -1 |   | -1 | 0 | 0 |
+| 0 | 1 | 0  |   | 0  | 1 | 0 |
+| 0 | 0 | 0  |   | 0  | 0 | 0 |
+```
 
 **pro: könnyen számítható
     kontra: zajérzékeny**
@@ -119,13 +122,25 @@ mind a négy módszer konvolúciós maszkpárokat alkalmaz
 * itt is két 3x3-as maszk van, csak kicsit más, mint az előbb
 * **x:** baloldali oszlop csupa 1, jobboldali csupa -1, középen 0
 * **y:** felső sor -1, alsó sor 1, középen 0
+* 
+```markdown
+| 1 | 0 | -1 |   | -1 | -1 | -1 |
+| 1 | 0 | -1 |   | 0  | 0  | 0  |
+| 1 | 0 | -1 |   | 1  | 1  | 1  |
+```
 
 **3. sobel operátor**
 * két 3x3 maszk
 * ha négyzet mozaikon mintavételezett a képünk
     akkor ami két pixel élen osztozkodik (vízszintesen 	
 vagy függőlegesen szomszédos), akkor azok közelebb vannak egymáshoz, mintha csak csúcson érintkeznének
-     
+
+```markdown
+| 1 | 0 | -1 |   | -1 | -2 | -1 |
+| 2 | 0 | -2 |   | 0  | 0  | 0  |
+| 1 | 0 | -1 |   | 1  | 2  | 1  |
+```
+
 **4. frei-chen operátor**
 * ugyanaz, mint a sobel, csak 2 helyett gyök(2)
 
@@ -156,8 +171,9 @@ vagy függőlegesen szomszédos), akkor azok közelebb vannak egymáshoz, mintha
 
 1. konvolváljuk a képet egy vagy több alkalmas **LoG függvénnyel**
 2.  keressünk közös **nulla átmeneteket**
- * nulla átmenet ott van, ahol adott pont kis környezetében előfordulnak pozitív és negatív értékek is 
-* **eredménye** mindig egy bináris éltérkép
+nulla átmenet ott van, ahol adott pont kis környezetében előfordulnak pozitív és negatív értékek is.
+
+**eredménye** mindig egy bináris éltérkép
     lehetnek fantomélek is, de ez a gyakorlatban elhanyagolható
     
 **LoG a frekvenciatérben**

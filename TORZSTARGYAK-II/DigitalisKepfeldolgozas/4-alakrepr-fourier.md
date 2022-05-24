@@ -1,3 +1,4 @@
+
 # 4. Alakreprezentáció, határ- és régió-alapú alakleíró jellemzők, Fourier leírás
 
 ## Alakreprezentáció
@@ -23,15 +24,21 @@ Az alakleíró jellemzőket három osztályba soroljuk.
 
 #### Lánckód
 - Az alakzat határpontjait követi/láncolja az óramutató járásával ellentétes irányban.
-- **Határpont:** Az alakzat olyan pontja, melnyek van az alakzathoz nem tartozó 8- ill, 4-szomszédja.
+- **Határpont:** Az alakzat olyan pontja, melynek van az alakzathoz nem tartozó 8- ill, 4-szomszédja.
 - **Különböző kezdőpontból más lánckód jöhet ki!**
+
+**Pozitivumok:**
 - Invariáns a forgatásra, ha a szög $k*\pi/2$, eltolásra
-- Zaj érzékeny, nem skála-invariáns
+- Gyors algoritmus, eltolás-invariáns
+- kompakt
+**Hátrányok:**
+- Zaj érzékeny, 
+- nem skála-invariáns
+- pontosság legfeljebb pixelnyi lehet
+
 
 **Különbségkód:** a lánckód első deriváltja, a szomszédok elemek közötti elmozdulások száma
-
 **Normalizálás:** Addig permutáljuk a különbségkódot, amíg a legkisebb értékű kódot kapjuk.
-
 **Alakleíró szám:** A normalizált különbségkód (NEM FÜGG A KEZDŐPONT VÁLASZTÁSTÓL)
 
 #### Kerület, terület számítása
@@ -59,6 +66,13 @@ Az alakleíró jellemzőket három osztályba soroljuk.
 
 - A parametrikus kontúr két egyváltozós függvénnyel reprezentálja a szegmenst. A
 kontúron végighaladva követjük az x és az y koordináták változásait.
+
+#### Leírás egyváltozós függvényekkel (Szignatúra)
+Pl. A súlypontnak a határtól vett távolságát a szög függvényében fejezi ki.
+Nagyban függ az alakzat méretétől és a határon vett kezdőponttól. $\rightarrow$ normalizárásra szorul.
+
+- Csillag-szerű objektum:
+	- Van olyan pontja, amelyből induló tetszőleges irányú sugár a határt egyetlen pontban metszi.
 
 ### Régió alapú alakleíró jellemzők
 
@@ -104,12 +118,13 @@ konvexeknél)
 
 #### Topológiai leírások, Euler-szám, szomszédsági fa,
 
-- topológiai leírások
+- **topológiai leírások**
 	- bináris kép: kétféle érték lehet benne, az 1-es az alakzatot (komponenst) reprezentálja feketével, míg a 0-s a hátteret(lyukakat) fehérrel
 	- komponens: maximálisan összefüggő fekete halmaz
 	- üreg: a negált kép egy véges komponense
-- Euler-féle szám: egyetlen egész szám ---> komponensek száma - üregek száma, rengeteg képre lehet az ugyanaz. Valamit elárul a képről, de önmagában keveset.
-- összefüggőségi-fa: A bináris képekhez rendelt irányított gráf
+- **Euler-féle szám:** egyetlen egész szám$\rightarrow$ *komponensek száma - üregek száma*.
+	-	Rengeteg képre lehet az ugyanaz. Valamit elárul a képről, de önmagában keveset.
+- **összefüggőségi-fa:** A bináris képekhez rendelt irányított gráf
 	- minden egyes csúcs megfelel a kép egy (fehér vagy fekete) komponensének,
 	- a gráf tartalmazza az (X,Y) élet, ha az X komponens „körülveszi” a vele szomszédos Y komponenst
 
