@@ -72,7 +72,7 @@ $\neg$, $\wedge$, $\lor$ stb.
 **A {$\neg$, $\wedge$, $\lor$} rendszer teljes**, mert minden formulát CNF alakra tudunk hozni. Ezek alapján teljes még:
 - {$\neg$, $\lor$}:
 	- A negáció okés, az éselés okés, a vagyolást ki tudjuk fejezni: 
-	- $p \lor q$ $\equiv$ $\neg(\neg p \wedge  \neg q)$
+	- $p \wedge q$ $\equiv$ $\neg(\neg p \lor  \neg q)$
 	
 - {$\neg$, $\wedge$}
 	- A negáció okés, a vagyolás okés, az éselést ki tudjuk fejezni:
@@ -88,7 +88,7 @@ fejezni a műveleteit:
 - $\neg$p $\equiv$ p $\rightarrow$ $\downarrow$
 
 ## Következtető rendszerek
-Ha $\Sigma \vDash F$ pontosan akkor, ha $\Sigma U \{\neg F\} \vDash \downarrow$, a rezolúcíós algoritmus következtetések igazolására is használhatóak a következő módon. 
+Ha $\Sigma \vDash F$ pontosan akkor, ha $\Sigma \cup \{\neg F\} \vDash \downarrow$, a rezolúcíós algoritmus következtetések igazolására is használhatóak a következő módon. 
 
 Helyesség és teljesség általában:
 *Helyesség:* Ha azt mondom, hogy igen, akkor az tényleg legyen a válasz igen.
