@@ -14,17 +14,38 @@
 - Az objektumokat **függvények** fogják újabb objektumokba transzformálni. (összeadás, concat stb.)
 - **prédikátumok** fogják igazságértékké transzformálni. (páros-e, stb.)
 - *Ha a formulában minden változó előfordulás kötött, akkor **mondatnak** nevezzük.*
+
+**Szintaxis:**
 - **Termek**: 
 	- Minden változó term
 	- Ha $f/n$ függvényjel, $t_1,..,t_n$ pedig termek, akkor $f(t_1,..,t_n)$ is term.
+- **Formulák:**
+	- Ha $p/n$ **predikátumjel**, $t_1,,..,t_n$ pedig termek, akkor $p(t_1,..,t_n)$ egy atomi formula
+	- Ha $F$ formula, akkor $\neg F$ is az.
+	- $\uparrow, \downarrow$ is formulák
+	- Ha $F$ formula és x változó, akkor $\exist xF$ és $\forall xF$ is formulák.
 
-- Ahhoz, hogy **kitudjunk értékelni egy elsőrendű logikai formulát**, szükség van **strukturára**
-	- A struktúra egy $A = (A, I, \phi)$
+**Szemantika:**
+- Ahhoz, hogy **kitudjunk értékelni egy elsőrendű logikai formulát**, szükség van **strukturára:** $A = (A, I, \phi)$
 	- *A* egy nemüres halmaz, az **alaphalmaz**
 	- $\phi$ a változóknak egy *default* értékadása, minden $x$ változóhoz egy $\phi(x)\in A$ objektumot rendel.
 	- $I$, egy **interpretációs függvény**, ez rendel függvény- és predikátumjelhez szemantikát az adott struktúrában.
+- A $t$ term értéke az $A$ struktúrában, $A(t)$
+	- Ha $t=x$, változó, akkor $A(t) = \phi(x)$ (tehát a változók értékét a $\phi$ szabja meg).
+	- **Alapterm**: azok a termek amelyek nem tartalmaznak változókat.
+
+**Mondat:** Ha nem szerepel benne változó szabadon.
+
 ## Normálformák predikátumkalkulusban
-Formulákkal dolgozni tudjunk, úgy nevezett **zárt Skolem** alakra kell hozni
+Formulákkal dolgozni tudjunk, úgy nevezett **zárt Skolem** alakra kell hozni.
+
+Egy $F$ formula **Skolem alakú**, ha 
+$$F = \forall x_1...\forall x_n F^*$$
+Ahol $F^*$ formula magjában már nincs kvantor.
+Ezekkel azért jó dolgozni mert,
+$$F = \forall x_1...\forall x_n F^* \vDash F^*[x_1/t_1,..,x_2/t_2]$$,
+tetszőlege $t_i, termekre. Azaz az összes magban lévő változót valami termel helyettesítem. És ez azért jó, mert az algoritmusok egyre bonyolultabb helyettesítéseket csinálnak, bízva, hogy kiütik egymást.
+
 Példán keresztül:
 Feladat: 
 ```(¬(¬∃yq(g(x,x),y) ∨ ¬∀zp(f(z))) ∧ (∀z∃y(q(c,g(z,c)) → p(c)) ∧ ¬∀y(q(f(y),c) ∧ q(c,z))))```
@@ -50,6 +71,9 @@ Feladat:
 	- Ne maradjon szabad változó-előfordulás
 	- A szabad változó helyére, berakunk egy *új* konstans szimbólumot.
 ```∀z2∀z3(¬(¬q(g(c3,c3),h1) ∨ ¬p(f(z2))) ∧ ((¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬(q(f(h3(z2,z3)),c) ∧ q(c,c5))))```
+
+- Nem minden formulához lehet megadni vele ekvivalens Skolem alakot.
+- 
 
 ## Egyesítési algoritmus
 
