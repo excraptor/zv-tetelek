@@ -1,5 +1,4 @@
 
-
 # 9. Java és C++ programok fordítása és futtatása. Parancssori paraméterek, fordítási opciók, nagyobb projektek fordítása. Absztrakt-, interfész- és generikus osztályok, virtuális eljárások. A virtuális eljárások megvalósítása, szerepe, használata
 
 
@@ -51,6 +50,7 @@ Szintaxis: gcc [kapcsolók] forrásfájlok
 - **-o**: lehetőségünk van megadni a futtatható állomány nevét, amennyiben nem adunk meg, az alapértelmezett az a.out lesz.
 - **-Wall**: A figyelmeztetéseket írja ki.
 - **-g**: engedélyezi a hibakeresési információk elhelyezését a programban, ami emiatt sokkal nagyobb lesz, de nyomon lehet követni a futását például a gdb programmal.
+- **-Werror:** Forditás-idejű figyelmeztetéseket errorokká alakítja.
 
 ### C++ parancssori paraméterek
 
@@ -94,6 +94,7 @@ C++-ban a virtuális függvénytábla tartja nyilván a virtuális eljárások c
 - Virtuális eljárásokat a virtual kulcsszóval tudunk létrehozni. Az újrafelhasználás során nagy valószínűséggel módosításra kerülő eljárásokat a szülő osztályokban célszerű egyből virtuálisra megírni, mert ezzel jelentős munkát lehet megtakarítani a későbbiekben.
   
 **Java:**
+
 Absztrakt osztályok
 - Az abstract kulcsszóval hozható létre. 
 - Egy absztrakt osztályból nem hozható létre objektum.

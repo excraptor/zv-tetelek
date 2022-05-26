@@ -60,7 +60,14 @@ A hasonlóság kifejezése az ős felé az általánosítás. A különbség a g
 **C++:** Az ==osztály neve után vesszővel elválasztva== lehet megadni az ősosztályokat és velük együtt a láthatóságaikat. **Lehetőség van többszörös öröklődésre is.**
  
 - Az öröklődés során lehetőség van az ős osztály tagjainak láthatósági opcióján változtatni. Ezt az ős osztályok felsorolásakor kell definiálni. Az változtatás csak szigorítást (korlátozást) jelenthet. Az alábbi táblázat a gyermek osztálybeli láthatóságot mutatja be az ős osztálybeli láthatóság és a módosítás függvényében:
- 
+
+| Base class member access specifier | 					Type inheritence |of |inheritence | 
+|--------------------------------------------|---------------------|-----------|---------|
+|                                            | **public**              | **protected** | **private** |
+| **Public**                                 | protected           | protected | private |
+| **Protected**                              | protected           | protected | private |
+| **Private**                                | Hidden              | Hidden    | Hidden  |
+
 ### Virtuális öröklődés 
 
 Többszörös öröklődésnél előfordulhat olyan eset, amikor egy-egy ős osztály az öröklődési hierarchia különböző pontján ismét megjelenik. Ekkor a gyermek osztályban ennek az ős osztálynak több példánya jelenhet meg. Erre néhány esetben nincs szükség, például ha az ős osztály csak egy eljárás-erőforrás, akkor minden esetben elegendő egyetlen előfordulás a gyermek osztályokban.
@@ -114,3 +121,5 @@ Absztrakt osztályok:**
 Absztrakt osztályok:**
 
 A törzs nélküli virtuális eljárásokat **pure virtual** eljárásoknak nevezzük (pl.: virtual int getArea() = 0;). A pure virtual eljárás egy üres (NULL) bejegyzést foglal el a VFT (Virtual Function Table) táblázatban. Ha egy osztály ilyen eljárást tartalmaz, akkor azt absztrakt osztálynak nevezzük amiatt, mert ebből az osztályból objektum példányokat létrehozni nem lehet. A gyermek osztályokban minden pure virtual eljárást megfelelő törzzsel kell ellátni, ezt a fordító ellenőrzi. Amíg egyetlen pure virtual eljárás is marad, az osztály absztrakt lesz.
+
+Interfészeket lehet szimulálni úgy, hogy minden metódust pure virtuallá teszünk.
