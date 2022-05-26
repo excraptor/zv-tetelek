@@ -4,8 +4,8 @@
 ## Alapvető információk
 **Diagonális mátrix:** Főátlón kívűl csak 0-ák vannak
 **Egységmátrix:** Jele: $I$, a főátlóba 1-esek többi helyen 0-ák.
-**Invertálható mátrix (nem szinguláris):** Ha létezik egy A mátrix ami csak akkor invertálható, ha van egy B mátrix amelyre igaz, hogy $AB = I_n$ == $A^{-1}$.
-**Szinguláris mátrix:** Amelyek determinánsa nulla, és nem létezik inverze.
+**Invertálható mátrix (nem szinguláris):** Ha létezik egy A mátrix ami csak akkor invertálható, ha van egy B mátrix amelyre igaz, hogy $AB = I_n = A^{-1}$.
+**Szinguláris mátrix:** Olyan négyzetes mátrixok, amelyek determinánsa nulla, és nem létezik inverze.
 
 ## Eliminációs módszerek
 A lineáris egyenletrendszerek megoldására szolgáló eljárások. ($Ax = b$)
@@ -133,7 +133,6 @@ Ezt a polinomot nevezzük a mátrix **karakterisztikus polinomjának**.
 Valós mátrixnak is lehetnek komplex sajártértékei!
 A mátrix sajártértékeinek a halmazát a mátrix *spektrumának* hívjuk.
 
- # **SZERINTEM EZ NEM KELL, BÁR SZABIVÁNNÁL LEHET**
 ### Hatványmódszer
 
 A hatványmódszer a legnagyobb abszolútértékű sajátérték meghatározására szolgál.
