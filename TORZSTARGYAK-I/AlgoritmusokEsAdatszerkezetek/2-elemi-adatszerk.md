@@ -172,7 +172,7 @@ Listák helyett tömbben "egymás után" tároljuk a megegyező hasított érté
 - $H(k,i,n) = H(k,n) +c_1i+c_2i^2$ $(modn)$, ahol $k$ a kulcs, $n$ a tábla mérete, $i$ a kipróbálás helye, $c_1$ és $c_2$ pedig egy valami függvényre jellemző konstans.
 
 ## Gráfok és fák számítógépes reprezentációja
-
+#### Gráfok reprezentációja
 1. **Szomszédsági mátrix**
 	- minden csúcshoz hozzárendelünk egy számot
 	- ha a és b között van él, akkor matrix\[a\]\[b\] = 1 és matrix\[b\]\[a\] = 1
@@ -182,12 +182,20 @@ Listák helyett tömbben "egymás után" tároljuk a megegyező hasított érté
 	- minden listaelem egy csúcs, ami szintén egy lista
 	- minden csúcshoz tartozó listában tároljuk a vele szomszédos csúcsokat
 
-Bal gyerek, jobb testvér
+#### Fák reprezentációja:
+- Csúcsokat és éleiket reprezentáljuk
+- Maga a fa egy mutató a gyökérre.
 
-Bal gyerek, jobb gyerek
-
-Binary Search Tree - tömbbel is meg lehet
-
-- Index of parent= INT[index of child node/2]
-- Index of Left Child = 2 * Index of parent
-- Index of Right Child = 2 * Index of parent+1
+1. gyerek éllista
+	- Kulcs
+	- Szülő
+	- Gyereklista
+2. Első fiú, apa, testvér
+	- Kulcs
+	- Szülő
+	- Első gyerek
+	- Testvér
+3. Bináris fa
+	- Kulcs
+	- Szülő
+	- Jobb és bal gyerek.   

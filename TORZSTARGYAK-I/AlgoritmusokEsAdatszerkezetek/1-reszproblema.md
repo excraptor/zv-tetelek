@@ -37,8 +37,7 @@ Pénzváltási feladat megoldása DP-vel: minden összegre *F*-ig kiszámoljuk, 
 
 ### Mohó algoritmusok
 
-A mohó algoritmusok **lokálisan** legjobb döntést hozzák, de ==NEM mindig optimális== meg-  
-oldás az egész feladatra. Viszont, ha adható ilyen algoritmus akkor rendkívűl hatékony.  
+A mohó algoritmusok **lokálisan** legjobb döntést hozzák, de ==NEM mindig optimális== megoldás az egész feladatra. Viszont, ha adható ilyen algoritmus akkor rendkívűl hatékony.  
 Két tulajdonság, ha megadható ilyen algoritmus:  
 1.  **Optimális részstruktúra**: A részfeladatok is optimális megoldást adnak.  
 2.  **Mohó választás**:  Lokálisan optimális választások a globális optimális megoldás-  
@@ -96,11 +95,13 @@ Algoritmus:
 	- Átlagos eset: $\mathcal{O}(n^2)$
 	- Legrosszabb eset: $\mathcal{O}(n^2)$
 	- Tárigénye: $\mathcal{O}(1)$
+	- Nagy adat esetén, ahol már majdnem rendezettek az elemek. Leggyorsabb, ha extrém kicsi és közel rendezett az adat. **KB csak tanító jellegű, nem éri meg soha.**
 - Beszúró rendezés
 	- folyton haladunk előre a tömbben, az aktuális elemet beszúrjuk a megfelelő helyre. **Stabil rendezés.**
 	- Átlagos eset: $\mathcal{O}(n^2)$
 	- Legrosszabb eset: $\mathcal{O}(n^2)$
 	- Tárigénye: $\mathcal{O}(1)$
+	- Bármikor tbh. Láncolt listák esetén a leggyorsabb
 - **Összefésülő rendezés**
 	- oszd meg és uralkodj: Felbontjuk elemi részekre a tömböt, majd végighaladva összefésüljük őket megfelelő sorrendbe. Kiválaszt egy pivot elemet és ez alapján particionálja a tömböt, ami mögé a kisebbeket, elé pedig a nagyobbakat mozgatja. **Stabil rendezés.**
 	- Átlagos eset: $\mathcal{O}(n*logn)$
@@ -122,7 +123,7 @@ Algoritmus:
 	- Legalacsonyabb helyiértéktől a legmagasabbig megnézzük a számot a listában, majd helyére rendezzük.
 	- **Legrosszabb eset:** $\mathcal{O}(d(n+k))$, *n* darab *d* jegyből álló szám, ahol a számjegyek értéke legfeljebb *k* értéket vehetnek fel.
 	- **Tárigénye:** $\mathcal{O}(n+k)$
-- Edényrendezés
+	- Kicsi értékek esetén
 
 ### Gráfalgoritmusok
 Egy $G = (V, E)$ struktúrát gráfnak nevezünk, ahol:
