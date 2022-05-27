@@ -44,7 +44,7 @@ Egy klózban változók vannak, negatívan vagy pozitívan, és ezek között va
 #### CNF-re hozás:
 1. A konnektívák eliminálása. (Fent nyilmentes formula)
 2. Bevisszük a $\neg$ jeleket a *deMorgan* azonoságokkal.
-	- $\neg (F \lor G) \equiv \neg F \wedge G$
+	- $\neg (F \lor G) \equiv \neg F \wedge \neg G$
 	- $\neg (F \wedge G) \equiv \neg F \lor \neg G$ 
 3. Végül a $\lor$ jeleket visszük be disztributivitással (Fent CNF-re hozás)
 
