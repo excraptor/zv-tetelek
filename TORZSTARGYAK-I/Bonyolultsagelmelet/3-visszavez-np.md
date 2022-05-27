@@ -1,5 +1,12 @@
 # 3. Hatékony visszavezetés. Nemdeterminizmus. A P és NP osztályok. NP-teljes problémák
 
+## Alapvető információk:
+**Időigény:** Adott futásidejű algoritmus adott számítási kapacitású architektúrán mekkora inputra fut le.
+
+**Az input mérete:** Az $a_1,..,a_n$ input **mérete** az $a_i$ számok **bináris reprezentáció** hosszának összege.
+
+**A gép időkorlátja:** $M$ Ram gép időkorlátja az $f(n) : \N \rightarrow \N$ függvény, ha tetszőleges $n$ méretű inputon legfeljebb $f(n)$ lépésben megáll.
+
 ## Hatékony visszavezetés
 **Visszavezetésnek** nevezzük azt, mikor ha van egy problémánk, amit nem tudjuk, hogy kéne megoldanunk, és egy problémánk, amit tudjuk hogy oldjunk meg, és a nem ismert probléma inputjaiból
 elkészítjük az ismert probléma egy inputját, és így oldjuk azt meg.
