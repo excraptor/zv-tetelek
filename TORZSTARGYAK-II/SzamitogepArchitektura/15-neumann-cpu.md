@@ -1,3 +1,4 @@
+
 # 15. Neumann-elvű gép egységei. CPU, adatút, utasítás-végrehajtás, utasítás- és processzorszintű párhuzamosság. Korszerű számítógépek tervezési elvei. Példák RISC (UltraSPARC) és CISC (Pentium 4) architektúrákra, jellemzőik
 
 Számítógép architektúra: A hardver egy általános absztrakciója: a hardver struktúráját és viselkedését jelenti más rendszerek egyedi, sajátos tulajdonságaitól eltekintve
@@ -13,29 +14,33 @@ Számítógép architektúra: A hardver egy általános absztrakciója: a hardve
 
 ### Neumann-elvű gép egységei
 
-- központi memória: a program kódját és adatait tárolja számokként
-- központi feldolgozóegység (CPU): a központi memóriában tárolt program utasításait beolvassa és végrehajtja
-- külső sín: a részegységeket köti össze, adatokat, címeket, vezérlőjeleket továbbít
-- belső sín: CPU részegységei közötti kommunikációt hozza létre (vezérlőegység-ALU-regiszterek)
-- beviteli/kiviteli eszközök: kapcsolatot teremt a felhasználóval, adatot tárol a háttértáron, nyomtat, stb.
-- működést biztosító járulékos eszközök: például gépház, tápellátás, hűtés…
+- **központi memória:** a program kódját és adatait tárolja számokként
+	- RAM, ROM
+- **központi feldolgozóegység (CPU):** a központi memóriában tárolt program utasításait beolvassa és végrehajtja
+	- *ALU (Arithmetic logic unit)* 
+	- *CU (vezérlőegység)*
+	- Regiszterek
+- **Busz és sínrendszerek:**
+	- **külső sín:** A számítógép egyes elemei között biztosít kapcsolatot. Pl. perifériák, csatolókártyák
+	- **belső sín:** CPU részegységei közötti kommunikációt hozza létre (vezérlőegység-ALU-regiszterek)
+- **beviteli/kiviteli eszközök:** kapcsolatot teremt a felhasználóval, adatot tárol a háttértáron, nyomtat, stb.
+
 
 ## CPU, adatút, utasítás-végrehajtás, utasítás- és processzorszintű párhuzamosság
 
 ### CPU
 
 A CPU feladata a központi memóriában tárolt program utasításainak beolvasása és végrehajtása
-3 fő egysége:
-
-- vezérlőegység (CU):
+**3 fő egysége:**
+- **vezérlőegység (CU):**
     - Utasítások beolvasása a memóriából
     - az ALU és regiszterek vezérlése
-- aritmetika-logikai egység (ALU):
+- **aritmetika-logikai egység (ALU):**
     - Egy tipikus Neumann-féle CPU belső szerkezetének részében az ALU végzi az összeadást, a kivonást és más egyszerű műveleteket az inputjain, így adva át az eredményt az output regiszternek, azaz a kimeneten ez fog megjelenni.
     - az utasítások végrehajtásához szükséges aritmetikai és logikai műveleteket végzi el
         - Aritmetikai operátorok: +, -, *, / (alapműveletek) 
         - Logikai operátorok: NOT, AND, OR, NAND, NOR, XOR, NXOR (EQ)
-- regiszterek: 
+- **regiszterek:** 
     - kisméretű, gyors memóriarekeszek, amelyek részeredményeket és vezérlőinformációkat tárolnak
     - A regiszterek a számítógépek központi feldolgozó egységeinek, illetve mikroprocesszorainak gyorsan írható-olvasható, ideiglenes tartalmú, és általában egyszerre csak 1 gépi szó feldolgozására alkalmas tárolóegységei
 - adatút
