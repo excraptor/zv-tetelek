@@ -16,10 +16,10 @@
 - *Ha a formulában minden változó előfordulás kötött, akkor **mondatnak** nevezzük.*
 
 **Szintaxis:**
-- **Termek**: 
+- **Termek (Objektumértékek):**
 	- Minden változó term
 	- Ha $f/n$ függvényjel, $t_1,..,t_n$ pedig termek, akkor $f(t_1,..,t_n)$ is term.
-- **Formulák:**
+- **Formulák (Igazságértékek):**
 	- Ha $p/n$ **predikátumjel**, $t_1,,..,t_n$ pedig termek, akkor $p(t_1,..,t_n)$ egy atomi formula
 	- Ha $F$ formula, akkor $\neg F$ is az.
 	- $\uparrow, \downarrow$ is formulák
@@ -44,7 +44,12 @@ $$F = \forall x_1...\forall x_n F^*$$
 Ahol $F^*$ formula magjában már nincs kvantor.
 Ezekkel azért jó dolgozni mert,
 $$F = \forall x_1...\forall x_n F^* \vDash F^*[x_1/t_1,..,x_2/t_2]$$,
-tetszőlege $t_i, termekre. Azaz az összes magban lévő változót valami termel helyettesítem. És ez azért jó, mert az algoritmusok egyre bonyolultabb helyettesítéseket csinálnak, bízva, hogy kiütik egymást.
+tetszőlege $t_i, termekre. Azaz az összes magban lévő változót valami termel helyettesítem. És ez azért jó, mert az algoritmusok egyre bonyolultabb helyettesítéseket csinálnak, bízva, hogy kiütik egymást.  
+
+Nem adható meg minden formulához egy vele ekvivalens Skolem alakú formula VISZONT:  
+Minden F formulához megadható egy olyan F' Skolem alakú formula, ami PONTOSAN akkor kielégíthető, ha F is kielégíthető.  
+(Vagyis ha F kielégíthető akkor F' is az, és ha F kielégíthetetlen akkor F' is az:  
+Ilyenkor F és F' "s-ekvivalensek")
 
 Példán keresztül:
 Feladat: 
@@ -72,8 +77,6 @@ Feladat:
 	- A szabad változó helyére, berakunk egy *új* konstans szimbólumot.
 ```∀z2∀z3(¬(¬q(g(c3,c3),h1) ∨ ¬p(f(z2))) ∧ ((¬q(c,g(z3,c)) ∨ p(c)) ∧ ¬(q(f(h3(z2,z3)),c) ∧ q(c,c5))))```
 
-- Nem minden formulához lehet megadni vele ekvivalens Skolem alakot.
-- 
 
 ## Egyesítési algoritmus
 
