@@ -158,7 +158,7 @@ lehetnek ütközések! **cél: az ütközések minimalizálása**
 **Láncolt listás megoldás:**
 1. Az adott cellában egy láncolt listát tartunk számon
 	2. A rövid láncok a legjobbak
-	3. **Load factor:** vödrök száma / elemek száma
+	3. **Load factor:** vödrök száma / elemek száma, ha ez túl nagy akkor több vödör és újrahashelés.
 
 **Nyílt címzés**
 Listák helyett tömbben "egymás után" tároljuk a megegyező hasított értékű elemeket. $\rightarrow$ Nincs szükség mutatókra.

@@ -81,7 +81,7 @@ Ha a tároló tele van és a gyártó elemet akar berakni, akkor elalszik, majd 
 - Ez egy **megosztott egész változó**. Értéke pozitív vagy 0, és csak **várakozások** és **signal** műveleteken kereszütl érhetőek el.
 - Két metódusa van a *down* és az *up*. (általánosítható a *sleep* és *wakeup*-ra)
 	- **down** metódus megnézi, hogy az adott folyamat a szemaforon nagyobb-e mint 0. 
-	- Ha igen, akkor **növel rajta eggyel**
+	- Ha igen, akkor **csökkent rajta eggyel**
 	- Ha nem (tehát =0), akkor egyből altatásba rakja, nem növel rajta.
 - Garantált, hogyha a szemafor elindult, akkor semelyik másik processzus nem érheti ezl a szemafort, amíg a feladat le nem futott, vagy blokkoltba került.
 - Az **up** metódus a szemafor elérését növeli.

@@ -21,6 +21,13 @@ Ide tartoznak az adatbázisok, sémák, típusok definíciós utasításai, pl:
 - DROP TABLE
 - **CREATE TRIGGER**: Nem tábla létrehozásra van
 
+**Triggerekről pár infó**
+Olyan kis programok, aktív elemek az adatbáziokban, amelyek valamilyen
+- adataktualizáló művelet vagy
+	- Amelyek minden adatmanipulációs művelet esetén végrehajtódnak (Insert, update)
+- rendszerszintű művelet esetén hajtódnak végre.
+	- Pl felhasználó bejelentkezése stb.
+
 ## Az adat manipulációs nyelv (DML)
 
 Ide tartoznak a beszúró, módosító, törlő, lekérdező utasítások.
@@ -46,16 +53,15 @@ CREATE TABLE tablanev(
 utasítással hozhatunk lére. A sémák különböznek a tábláktól, és nevével ellentétben a CREATE TABLE utasítás csak a relációsémát hozza létre. A tábla már az adatrekordok halmazát jelenti.
 
 Relációsémákat módosítani a
-```
+
 Új oszlop hozzáadás:
-ALTER TABLE táblanév ADD (uj_oszlop TÍPUS [oszlopfeltételek])
+```ALTER TABLE táblanév ADD (uj_oszlop TÍPUS [oszlopfeltételek])```
 Oszlop módosítása:
-ALTER TABLE táblanév MODIFY (meglevo_oszlop TÍPUS [oszlopfeltetl])
+```ALTER TABLE táblanév MODIFY (meglevo_oszlop TÍPUS [oszlopfeltetl])```
 Oszlop törlése:
-ALTER TABLE táblanév DROP (oszlop);
-```
+```ALTER TABLE táblanév DROP (oszlop)```
 Adatbázis törlése:
-DROP TABLE táblanév;
+```DROP TABLE táblanév;```
 
 ### Megszorítások
 

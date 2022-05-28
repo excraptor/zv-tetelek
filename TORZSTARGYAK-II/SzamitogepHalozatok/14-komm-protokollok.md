@@ -15,7 +15,7 @@ Széleskörűen alkalmazzák széleskörű kapcsolatoknál, ahol nagy adatok és
 ```markdown
 | Bájtok: | 1     | 1   | 1       | 1 VAGY 2  | Változó       | 2 VAGY 4         | 1     |
 |---------|-------|-----|---------|-----------|---------------|------------------|-------|
-| Mezők:  | Jelző | Cím | Vezérlő | Protokoll | Payload | Ellenörző összeg | Jelző |
+| Mezők:  | Jelző | Cím | Vezérlő | Protokoll | Payload 	  | Ellenörző összeg | Jelző |
 ```
 **Jelző:** Az elejét és a végét jelző keret. (általában 01111110)
 **Vezérlő:** Egy konstans érték 11000000
