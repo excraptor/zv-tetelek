@@ -1,5 +1,4 @@
 
-
 # 10. A programozási nyelvek csoportosítása (paradigmák), az egyes csoportokba tartozó nyelvek legfontosabb tulajdonságai
 
 ## Paradigmák
@@ -19,7 +18,13 @@ Az objektum orientál paradigma az objektumok fogalmán alapuló programozási p
 
 **Öröklödés** osztályok között, egyszeres vagy többszörös öröklödéssel. 
 Lehetséges **polimorfizmus és absztrakt/interfész osztályok létrehozására**.
-Polimorfizmus:
+
+**A polimorfizmus** lehetővé teszi számunkra, hogy egyetlen műveletet különböző módon hajtsunk végre. Más szavakkal, a polimorfizmus lehetővé teszi egy interfész definiálását és több megvalósítást. Az objektumok felcserélhetőségét biztosítja. Az objektumok őstípusai alapján kezeljük, így a kód nem függ a specifikus típusoktól. 
+
+**Polimorfizmusra két lehetőség van:**
+- **statikus polimorfizmus (korai hozzárendelés)** - a hívott metódus nevének és címének összerendelése szerkesztéskor történik meg. A futtatható programban már fix metóduscímek találhatók. (statikus, private, final metódusok)
+- **dinamikus polimorfizmus (késői hozzárendelés)** - metódus nevének és címének hozzárendelése a hívás előtti sorban történik, futási időben
+
 
 
 A legtöbb OOP nyelv osztályalapú, azaz az objektumok osztályok példányai és típusuk az osztály.
@@ -86,19 +91,18 @@ Más programozási nyelveken megismert programblokkok szerepével egyezik meg. V
 - tömb := Array new: 10
 - tömb at: 1
 - tömb at: 1 put: obj
-A collect
+
+**A collect**
 - kollekció elemein lépked végig, mely minden egyes elemére végrehajtja az üzenet argumentumblokkjában található utasításokat
 - |tomb| tomb := #(10 3 43 29) collect: [:tombelem | tombelem*2]
-Osztályok
-  
-- példányváltozók: minden objektum rendelkezik vele
-- osztályváltozó: kb. statikus globális változó
+
+**Osztályok**
+- **példányváltozók:** minden objektum rendelkezik vele
+- **osztályváltozó:** kb. statikus globális változó
 
 #### Metódusok definiálása osztályokhoz
  
 pl.:
- 
-
 Beolvasás	 x := stdin nextLine.S
 Integer üzenetek
  
@@ -120,13 +124,16 @@ Deklaráljuk a program elvárt működését, nem akarojuk explicit meghatározn
 Egy tisztán funkcionális programozási nyelven írt programban nem a kifejezések egymásutánján van a hangsúly. 
 **Erősen vagy statikusan típusos nyelv**, így ahol a nyelv T-típust várja, csak T-típusra kiértékelődő kifejezést fogad el.
 A **program egy függvényhívással hajtódik végre.** 
-Egy funkcionális program típus- , osztály-, és függvénydeklarációk, illetve definíciók sorozatából és egy kezdeti kifejezés kiértékeléséből áll. A kiértékelést úgy képzeljük el, mint a kezdeti kifejezésben szereplő függvények behelyettesítését. Tehát egy program végrehajtása nem más, mint a kezdeti kifejezésből kiinduló redukciós lépések sorozata. Egy kifejezés normál formájú, ha már tovább nem redukálható (nem átírható) állapotban van. **Egy redukálható kifejezést redexnek hívunk.**
+Egy funkcionális program típus- , osztály-, és függvénydeklarációk, illetve definíciók sorozatából és egy kezdeti kifejezés kiértékeléséből áll.
+**A kiértékelést** úgy képzeljük el, mint a kezdeti kifejezésben szereplő függvények behelyettesítését. 
+Tehát egy program végrehajtása nem más, mint a kezdeti kifejezésből kiinduló redukciós lépések sorozata. Egy **kifejezés normál formájú**, ha már tovább nem redukálható (nem átírható) állapotban van. **Egy redukálható kifejezést redexnek hívunk.**
 
 **Kiértékelési módok**
 
 A Haskell nyelv a **lusta kiértékelési stratégiát használja.**
 **A lusta kiértékelés során** mindig a legkülső redex kerül helyettesítésre, az argumentumokat csak szükség esetén értékeli ki. Ez a **módszer mindig megtalálja a kezdeti kifejezés normál formáját**. 
 A mohó kiértékelés az argumentumok kiértékelésével kezdődik, csak ezután hajtja végre a függvény alkalmazásának megfelelő redukciós lépést. 
+
 Futtatás
 Elindítjuk a Haskell interpretert (hugs) és betöltjük az általunk megírt definíciós forrásállományt. Betöltés után rendelkezésre áll az összes általunk megírt függvény, melyek közül bármelyiket meghívhatjuk a függvény nevének beírásával (a megfelelő paraméterezéssel). Amennyiben módosítjuk a definíciós állományt, újra kell tölteni azt.
  
@@ -136,14 +143,9 @@ Függvények definiálása
 A visszatérési értéket a kiértékelése határozza meg, ami lehet egy konstans érték vagy akár egy rekurzív kifejezés is
 
 Esetvizsgálatok
- 
 Függvény paramétere függvény
- 
 Lokális definíciók függvénydefiníciókban
- 
 Típusok létrehozása
-
-Példák
  
 ### Logikai programozás
 
@@ -242,7 +244,8 @@ Befejezésnél **holtpontba** kerülhet, erre odakell figyelni.
 	- Output - c **!** e
 
 
-Az Occam egy **párhuzamos programozási nyelv**. Ezen paradigma szerint az **egyes folyamatok párhuzamosan futnak**. Ez több processzoros gépek esetén valós párhuzamosságot jelent (egy processzor egy folyamatot dolgoz fel), de egy processzor esetén ez nyilván nem valósulhat meg, az **egyes folyamatok „időszeleteket” kapnak, az Occam a párhuzamosságot időosztással szimulálja**. Az egyes folyamatok közötti kommunikáció csatornákon keresztül valósul meg.**A P1 és P2 folyamatok a C csatornán keresztül kommunikálnak.**
+Az Occam egy **párhuzamos programozási nyelv**. Ezen paradigma szerint az **egyes folyamatok párhuzamosan futnak**. Ez több processzoros gépek esetén valós párhuzamosságot jelent (egy processzor egy folyamatot dolgoz fel), de egy processzor esetén ez nyilván nem valósulhat meg, az **egyes folyamatok „időszeleteket” kapnak, az Occam a párhuzamosságot időosztással szimulálja**. Az egyes folyamatok közötti kommunikáció csatornákon keresztül valósul meg.
+**A P1 és P2 folyamatok a C csatornán keresztül kommunikálnak.**
 
 A **folyamatok közötti kommunikációt mindig csatornákkal valósítjuk meg**. A fenti példában a P1 folyamat a C csatornán keresztül valamilyen adatot küld a P2 folyamatnak. Ez a következőképpen valósul meg: ha egy folyamat elérkezik arra a pontra, ahol értéket küld [fogad], várakozik a másik folyamatra, amíg az is el nem ér a fogad [küld] pontra. Amikor mindketten készen állnak az adatcserére (azaz mindkét folyamatban a küldés [fogadás] pontra került a vezérlés) létrejön az adatcsere, majd mindkettő folytatja a futását.
 
