@@ -100,8 +100,8 @@ A valós adattípusok az értékkészlet határain belül sem képesek minden va
 Egy valós értéket tároló memóriaterület **három részre osztható:** az **előjelbitet**, a **törtet** és az **exponenciális kitevőt** kódoló részre.
 
 - Az **előjelbit** 0 értéke a pozitív, 1 értéke a negatív számokat jelöli
-- A számot kettes számrendszerben 1.m × 2^k alakra hozzuk, majd az m számjegyeit eltároljuk a törtnek, a k-nak egy típusfüggő b konstanssal növelt értékét pedig a kitevőnek fenntartott részen.
-- Így a tört rész hossza az ábrázolás pontosságát (az értékes számjegyek számát), a kitevő pedig az értéktartomány méretét határozza meg.
+- A számot kettes számrendszerben $1.m × 2^k$ alakra hozzuk, majd az $m$ **számjegyeit eltároljuk a törtnek**, a $k$-nak **egy típusfüggő $b$ konstanssal növelt értékét pedig a kitevőnek fenntartott részen.**
+- Így a **tört rész hossza az ábrázolás pontosságát** (az értékes számjegyek számát), a **kitevő pedig az értéktartomány méretét** határozza meg.
 - Nagyon kicsi számokat speciálisan 0.m × 2^(1−b) alakban tárolhatunk, ekkor a kitevő összes bitje 0.
 - Ha a kitevő összes bitje 1, az csupa 0 bitből álló tört esetén a ∞, minden más esetben NaN értéket jelenti.
 - A 32/64 bites float/double az 1 előjelbit mögött 8/11 biten a kitevő b = 127-tel/1023-mal növelt értékét, majd 23/52 biten a törtet tárolja.
@@ -195,7 +195,7 @@ Műveletek:
 **malloc(S)**, lefoglal egy S méretű memóriaterületet
 **sizeof(E)**, megmondja, hogy egy E típusú érték mekkora helyet igényel a memóriában
 **malloc(sizeof(E))**, létrehoz egy E típusú érték tárolására is alkalmas változó
-**free(p)**, felszabadítja a p-hez tartozó memóriaterületet, ezután a p-hez nem lesz érvényes változóhivatkozás 
+**free( p )**, felszabadítja a p-hez tartozó memóriaterületet, ezután a p-hez nem lesz érvényes változóhivatkozás 
 
 Linux alatt logikailag minden programnak saját memória-tartománya van, amin belül az egyes memóriacímeket egy sorszám azonosítja.
 
@@ -302,3 +302,13 @@ sizeof(T) = max{sizeof(T1), ..., sizeof(Tk)}
 Valamennyi változati mező ugyanazon a memóriacímen kezdődik, ami
 megegyezik a teljes union típusú érték címével (azaz minden mező
 eltolása, offset-je 0).
+
+
+### Union vs Struct
+
+|                | Struct                                        | Union                                     |
+|----------------|-----------------------------------------------|-------------------------------------------|
+| **Méret**          | A tagok elemei méretének az összege           | A legnagyobb elemnek a mérete             |
+| **Memória**        | Minden tagnak van külön memória részlete      | A memórián osztoznak                      |
+| **Tagok elérése**  | Bármelyik tagot el lehet érni bármikor        | Egyszerre csak egy tagot lehet egy időben |
+| **Inicializálása** | Bármennyi tagot lehet inicializálni egyszerre | Csak az első tagot tudjuk inicializálni.  

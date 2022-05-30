@@ -1,47 +1,86 @@
+
 # 14. Primál-duál feladatpár, dualitási komplementaritási tételek, egész értékű feladatok és jellemzőik, a branch and bound módszer, a hátizsák feladat
 
 ## Primál-duál feladatpár
 
-A primál feladat
 
+
+| Primál   | Duál      |
+|----------|-----------|
+| max $c^Tx$ | min $b^Ty$ |
+| $Ax \le b$  | $A^Ty \ge c$ |
+| $x \ge 0$    | $y \ge 0$      |
+
+**A primál feladat**
 - maximalizálunk
-- c^T a célfüggvény együtthatóinak a vektora
-- A az együtthatók mátrixa
-- b a konstansok vektora
+- $c^T$ a célfüggvény együtthatóinak a vektora
+- $A$ az együtthatók mátrixa
+- $b$ a konstansok vektora
 
-A duál feladat
-
+**A duál feladat**
 - minimalizálunk
-- b^T a célfüggvény együtthatóinak a vektora
-- A^T az együtthatók mátrixa
-- c a konstansok vektora
+- $b^T$ a célfüggvény együtthatóinak a vektora
+- $A^T$ az együtthatók mátrixa
+- $c$ a konstansok vektora
 - <=-ket >=-re cseréljük
 
-A duál feladat duálisa az eredeti primál feladat
+**A duál feladat duálisa az eredeti primál feladat**
 
-TFH az LP feladatunk egy korlátozott erőforrások mellett maximális nyereséget célzó gyártási folyamat modellje.
-A duál feladat megoldásában az optimális megoldás a primál feladat i. erőforrásához tartozó marginális ár/árnyékár, azaz az erőforrás értéke az LP megoldójának szemszögéből
-Ha túl sok van egy erőforrásból, az nem érhet túl sokat
-Továbbá y_i*-nál többet nem érdemes fizetni az i. erőforrásért, kevesebbet igen
+Ahhoz, hogy duál feladatot megkapjuk a primálból a **következő lépéseket kell megtenni:**
+- Transzponáljuk az A mátrixot
+- *cseréljük fel* $b$ és $c$ vektorok szerepét
+- cseréljük az egyenlőtlenségeket $\ge$-re
+- Max helyett Min feladat
+
+Gazdaásgi értelmezése: Tegyük fel, hogy az LP feladatunk **korlátozott erőforrások mellet maximális nyereséget célzó gyártási folyamat modellje**. 
+A duál feladat megoldásában az $y_i^*$ a primál feladat $i$ erőforrásához tartozó piaci ár, amit **marginális ár / árnyék ár**-nak nevezünk.
+- Ez az **errőforrás értéke** az LP megoldójának a szemszögéből
+- Az $i$ erőforrás mennyiségénk az egységnyi növelésével éppen $y_i^*$ gal nő a nyereség.
+- Viszont ha túl sok van egy erőforrásból, az nem érhet sokat.
+- Továbbá $y_i^*$-nál többet **már nem érdemes fizetni az $i$ erőforrásért**, míg kevesebbet igen.
+
 
 ## Dualitási komplementaritási tételek
 
 ### Gyenge dualitás
+Ha $x = (x_1,...,x_n)$ **lehetséges megoldása** a primál feladatnak és $y = (y_1,...,y_n)$ **lehetséges megoldása** a duál feladatnak, akkor 
+$$c^Tx \le b^Ty$$
+**Vagyis a duális feladat bármely lehetséges megoldása felső korlátot ad a primál bármely lehetséges megoldására.**
 
-Ha x egy lehetséges megoldása a primál feladatnak, és y egy lehetséges megoldása a duál feladatnak, akkor a duális feladat bármely lehetséges megoldása felső korlátja a primál bármely lehetséges megoldásának (azaz az optimális megoldásnak is) (azaz a duális feladat bármely lehetséges megoldása nagyobb vagy egyenlő a primál bármely lehetséges megoldásánál)
-
-A korlátosság és a megoldhatóság nem függetlenek egymástól
-
-Ha a primál nem korlátos, akkor a duálnak nincs lehetséges megoldása és fordítva.
-Lehet, hogy egyiknek sincs lehetséges megoldása.
-Ha mindkettőnek van, akkor mindkettő korlátos
-A primál és a duál feladat egyidejű optimalitása ellenőrizhető.
 
 ### Erős dualitás
-
-Ha x* egy optimális megoldása a primálnak, és y* egy optimális megoldása a duál feladatnak, akkor c^Tx* = b^Ty*.
+Ha $x^* = (x_1^*,...,x_n^*)$ **optimális megoldása** a primál feladatnak, akkor a duál feladatnak is van **optimális megoldása** $y^* = (y_1^*,...,y_n^*)$, és a célfüggvényük megegyezik, azaz
+$$c^Tx^* = b^Ty^*$$
 
 Ha valamelyik i. feltétel egyenlet nem éles, azaz nem pontosan egyenlő a két oldal, akkor a kapcsolódó duál változó biztosan 0. Ha egy primál változó pozitív, akkor a kapcsolódó duális feltétel biztosan éles.
+
+#### Korlátosság és megoldhatóság
+**A korlátosság és a megoldhatóság nem függetlenek egymástól**
+
+- Ha a **primál nem korlátos**, akkor a **duálnak nincs lehetséges megoldása és fordítva**.
+- Lehet, hogy egyiknek sincs lehetséges megoldása.
+- Ha mindkettőnek van, akkor mindkettő korlátos
+- A primál és a duál feladat egyidejű optimalitása ellenőrizhető.
+
+#### Komplementáris lazaság
+
+Ha a primál-duál feladatpár
+| max $c^Tx$| min $b^Ty$|
+|----------|-----------|
+| $Ax \le b$  | $A^Ty \ge c$ |
+| $x \ge 0$    | $y \ge 0$      |
+
+Akkor azt mondjuk, hogy $x = (x_1,..,x_n)$ és $y=(y_1,..,y_m)$ komplementárisak, ha $y^T(b-Ax) = 0$ és $x^T(A^T-c) = 0$
+
+Vagyis: 
+- Ha $y_i > 0$, akkor az $x$-et az $i$-edik egyenletbe helyettesítve egyenlőséget kapunk
+- Ha $x_i >0$, akkor $y$-t a duális feladat $i$-edik egyenletébe helyettesítve az egyenlőség teljesül.
+
+**Tétel**
+Tegyük fel, hogy $x$ a primál feladat optimális megoldása.
+- Ha $y$ a duál optimális megoldása, akkor $x$ és $y$ komplementáris.
+- Ha $y$ lehetséges megoldása a duálisnak és komplementáris $x$-szel, akkor $y$ optimális megoldása a duálnak
+- Létezik olyan lehetséges $y$ megoldása a duálnak, hogy $x$ és $y$ komplementáris
 
 ## Egész értékű feladatok és jellemzőik
 
@@ -110,4 +149,4 @@ Az LP lazítás könnyen számítható, a relatív hasznosság szerint tesszük 
 Branch and bound módszerrel ez is megoldható
 
 Legrosszabb esetben 2^n részfeladatot kell megoldani, NP nehéz a feladat.
-Egészértékűnél még rosszabb, 2^Mn, ahol M a lehetséges egészek száma egy változóra
+Egészértékűnél még rosszabb, $2^{Mn}$, ahol M a lehetséges egészek száma egy változóra

@@ -1,3 +1,4 @@
+
 # 16. Számítógép perifériák: Mágneses és optikai adattárolás alapelvei, működésük (merevlemez, Audio CD, CD-ROM, CD-R, CD-RW, DVD, Bluray). SCSI, RAID. Nyomtatók, egér, billentyűzet. Telekommunikációs berendezések (modem, ADSL, KábelTV-s internet)
 
 
@@ -13,10 +14,12 @@ Csoportosításuk:
 
 ### Mágneses adattárolás alapelvei, működése
 
-Egy mágneslemez egy vagy több mágnesezhető bevonattal ellátott alumíniumkorongból áll. Egy indukciós fej lebeg a lemez felszíne felett egy vékony légpárnán
-Ha pozitív vagy negatív áram folyik az indukciós tekercsben, a fej alatt a lemez magnetizálódik, és ahogy a korong forog a fej alatt, így bitsorozatokat lehet felírni
+**Egy mágneslemez egy vagy több mágnesezhető bevonattal ellátott alumíniumkorongból áll.** 
+Egy **indukciós fej** lebeg a lemez felszíne felett egy vékony légpárnán.
+Ha **pozitív vagy negatív áram folyik** az indukciós tekercsben, a fej alatt a lemez magnetizálódik, és ahogy a korong forog a fej alatt, így bitsorozatokat lehet felírni
 Amikor a fej egy mágnesezett terület felett halad át, akkor pozitív vagy negatív áram indukálódik benne, így a korábban eltárolt biteket vissza lehet olvasni. 
-Egy teljes körülfordulás alatt felírt bitsorozat a sáv. Minden sáv rögzített méretű tipikusan 512 bájt méretű szektorokra van osztva, melyeket egy fejléc előz meg, lehetővé téve a fej szinkronizálását írás és olvasás előtt. Az adatok után hibajavító kód helyezkedik el (Hamming vagy Reed-Solomon).
+
+Egy teljes körülfordulás alatt felírt bitsorozat **a sáv**. Minden sáv rögzített méretű tipikusan 512 bájt méretű szektorokra van osztva, melyeket egy fejléc előz meg, lehetővé téve a fej szinkronizálását írás és olvasás előtt. Az adatok után hibajavító kód helyezkedik el (Hamming vagy Reed-Solomon).
 
 Minden lemeznek vannak mozgatható karjai, melyek a forgástengelytől sugárirányban ki-be tudnak mozogni. Minden sugárirányú pozíción egy-egy sáv írható fel. Tehát a sávok forgástengely középpontú koncentrikus körök.
 
@@ -27,32 +30,36 @@ Egy szektor beolvasásához vagy kiírásához először a fejet a megfelelő su
 
 ### Optikai adattárolás alapelvei, működése
 
-Az optikai adattárolók megjelenése kör alakú lemez, amelyek felületén helyezkedik el az adattárolásra alkalmas réteg. A lemezek írása és olvasása a nevükből adódóan optikai eljárással tör-ténik. Az optikai írás és az olvasás lézersugárral történik a lemez forgatása közben. A lemezen történő adatrögzítéskor a lézersugár apró mélyedéseket hoz létre spirál alakú vonalban, így tárolva a digitális adatot; az adat kiolvasásához ugyanilyen hullámhosszú lézersugár halad végig a mélyedések sorozatán és olvassa vissza a digitális adatot aszerint, hogy a sugár visszatükröződik, vagy szétszóródik a lemez felületéről. Az optikai tárolókat több tulajdonságuk is jelentősen megkülönbözteti a mágneses táraktól: az optikai tárolás elméletben sokkal nagyobb adatsűrűséget enged meg, mivel a fény sokkal kisebb területre fókuszálható, mint a mágneses adattárolókban az elemi mágnesezhető részecskék mérete. Továbbá, a megfelelő minőségű és megfelelően kezelt optikai lemezek élettartama évszázadokban mérhető, ezenkívül nem érzékenyek az elektromágneses behatásokra sem.
+Az optikai adattárolók megjelenése kör alakú lemez, amelyek felületén helyezkedik el az adattárolásra alkalmas réteg. A lemezek írása és olvasása a nevükből adódóan optikai eljárással történik. 
+Az optikai írás és az olvasás **lézersugárral történik a lemez forgatása közben**. A lemezen történő adatrögzítéskor a lézersugár **apró mélyedéseket hoz létre spirál alakú vonalban**, így tárolva a digitális adatot.
+
+ az adat kiolvasásához ugyanilyen hullámhosszú lézersugár halad végig a mélyedések sorozatán és olvassa vissza a digitális adatot aszerint, hogy a sugár visszatükröződik, vagy szétszóródik a lemez felületéről. 
+
+Az optikai tárolókat több tulajdonságuk is jelentősen megkülönbözteti a mágneses táraktól: az optikai tárolás elméletben sokkal nagyobb adatsűrűséget enged meg, mivel a fény sokkal kisebb területre fókuszálható, mint a mágneses adattárolókban az elemi mágnesezhető részecskék mérete. Továbbá, a megfelelő minőségű és megfelelően kezelt optikai lemezek élettartama évszázadokban mérhető, ezenkívül nem érzékenyek az elektromágneses behatásokra sem.
 
 A felületen elhelyezkedő mélyedéseket üregnek (pit), az üregek közötti érintetlen területeket pedig szintnek (land) hívják.
 
 Az tűnik a legegyszerűbbnek, hogy üreget használjunk a 0, szintet az 1 tárolásához, ennél azonban megbízhatóbb, ha az üreg/szint vagy a szint/üreg átmenetet használjuk az 1-hez, az átmenet hiányát pedig a 0-hoz, ezért ez utóbbi módszert alkalmazzák.
 
-Merevlemez (HDD)
-
+**Merevlemez (HDD)**
 - Mágneses adattároló
 - Tárolókapacitás: 500 GB – 12 TB
 - Írása és olvasási sebesség: függ a forgási sebességtől, ez jellemzően 5400, 7200, 1000 vagy 15000 fordulat/perc, és az adatsűrűségtől (egy adathordozó fizikai felületével arányos tárolókapacitása)
 
-Audio CD
+**Audio CD**
 - A jel sűrűsége állandó a spirál mentén
 - 74 percnyi anyag fér rá (Beethoven IX. szimfóniája kiadható legyen)
 - Állandó kerületi sebesség, ehhez szükséges a változó forgási sebesség (120 cm/mp)
 - Nincs hibajavítás, mivel nem gond, ha néhány bit elvész az audio anyagból
 
-CD-ROM
+**CD-ROM**
 - Univerzális adathordozó, illetve médialemez. 
 - Csak olvasható (véglegesített) adathordozó.
 - Népszerűen használták szoftverek és adatok terjesztésére
 - Az ilyen típusú lemezeket kereskedelmi forgalomban hozzák létre, és létrehozásuk után nem menthet rájuk adatokat.
 - 650 MB tárolható
 
-CD-R
+**CD-R**
 - Író berendezéssel rögzíthető az adat (1x)
 - Újdonság:
         ◦ Író lézernyaláb
@@ -60,7 +67,7 @@ CD-R
         ◦ Üregek és szintek helyett festékréteg alkalmazása: Kezdetben átlátszó a festékréteg (cianin (zöld) vagy ftalocianin (sárgás))
 - 700 MB tárolható
 
-CD-RW
+**CD-RW**
 - Újraírható optikai lemez
 - A CD-RW lemez adatait számos alkalommal törölhetjük és rögzíthetjük.
 - Újdonság:
@@ -72,7 +79,7 @@ CD-RW
             ▪ Közepes energia: megolvad → kristályos állapot
             ▪ Alacsony energia: anyag állapotnak érzékelése, de meg nem változik
 
-DVD
+**DVD**
 - Nagy kapacitású optikai tároló, amely leginkább mozgókép és jó minőségű hang, valamint adat tárolására használatos
 - Méreteit tekintve általában akkora, mint a CD, vagyis 120 mm átmérőjű.
 - Létezik egyrétegű/kétrétegű illetve egyoldalas/kétoldalas lemez (4,5 GB – 17 GB)
@@ -81,7 +88,7 @@ DVD
         ◦ Szorosabb spirálok
         ◦ Vörös lézert használtak
 
-Blu-Ray
+**Blu-Ray**
 - A DVD technológia továbbfejlesztése, a Blu-Ray disc
 - Kék lézer használata írásra és olvasásra a vörös helyett
         ◦ Rövidebb hullámhossz, jobban fókuszálható, kisebb mélyedések
@@ -108,27 +115,30 @@ Azon túl, hogy a RAID szoftverszempontból egyetlen lemeznek látszik, az adato
 
 A RAID alapötlete a lemezegységek csíkokra (stripes) bontása. Ezek a csíkok azonban nem azonosak a lemez fizikai sávjaival.
 
-RAID-0 (összefűzés vagy csíkozás)
+**RAID-0 (összefűzés vagy csíkozás)**
 
-Lemezek egyszerű összefűzését jelenti, viszont semmilyen redundanciát nem ad, így nem biztosít hibatűrést, azaz egyetlen meghajtó meghibásodása az egész tömb hibáját okozza. Mind az írási, mind az olvasási műveletek párhuzamosítva történnek, ideális esetben a sebesség az egyes lemezek sebességének összege lesz, így a módszer a RAID szintek közül a legjobb teljesítményt nyújtja (a többi módszernél a redundancia kezelése lassítja a rendszert)
+Lemezek egyszerű összefűzését jelenti, viszont semmilyen redundanciát nem ad, így nem biztosít hibatűrést, azaz egyetlen meghajtó meghibásodása az egész tömb hibáját okozza. Mind az írási, mind az olvasási műveletek párhuzamosítva történnek, ideális esetben a sebesség az egyes lemezek sebességének összege lesz, így a módszer a RAID szintek közül a legjobb teljesítményt nyújtja (a többi módszernél a redundancia kezelése lassítja a rendszert).
 
-RAID-1 (tükrözés)
+Ahol nem szempont a biztonság vagy kevés merevlemez csatolható fel ott a legjobb.
+
+**RAID-1 (tükrözés)**
 
 A RAID 1 eljárás alapja az adatok tükrözése (disk mirroring), azaz az információk egyidejű tárolása a tömb minden elemén. Az adatok olvasása párhuzamosan történik a diszkekről, felgyorsítván az olvasás sebességét; az írás normál sebességgel, párhuzamosan történik a meghajtókon. Az eljárás igen jó hibavédelmet biztosít, bármely meghajtó meghibásodása esetén folytatódhat a működés.
 
-RAID-2
+**RAID-2**
 
 Egyes meghajtókat hibajavító tárolására tartanak fenn. A hibajavító kód lényege, hogy az adatbitekből valamilyen matematikai művelet segítségével redundáns biteket képeznek. A használt eljárástól függően a kapott kód akár több bithiba észlelésére, illetve javítására alkalmas. A védelem ára a megnövekedett adatmennyiség. A módszer esetleges lemezhiba esetén képes annak detektálására, illetve kijavítására 
 
-RAID-3
+**RAID-3**
 
-A RAID 3 felépítése hasonlít a RAID 2-re, viszont nem a teljes hibajavító kód, hanem csak egy lemeznyi paritásinformáció tárolódik. Egy adott paritáscsík a különböző lemezeken azonos pozícióban elhelyezkedő csíkokból XOR művelet segítségével kapható meg. A rendszerben egy meghajtó kiesése nem okoz problémát, mivel a rajta lévő információ a többi meghajtó (a paritást tároló meghajtót is beleértve) XOR-aként megkapható.
+A RAID 3 felépítése hasonlít a RAID 2-re, viszont nem a teljes hibajavító kód, hanem csak egy lemeznyi paritásinformáció tárolódik. 
+Egy adott paritáscsík a különböző lemezeken azonos pozícióban elhelyezkedő csíkokból XOR művelet segítségével kapható meg. A rendszerben egy meghajtó kiesése nem okoz problémát, mivel a rajta lévő információ a többi meghajtó (a paritást tároló meghajtót is beleértve) XOR-aként megkapható.
 
-RAID-4
+**RAID-4**
 
 A RAID 4 felépítése a RAID 3-mal megegyezik. Az egyetlen különbség, hogy itt nagyméretű csíkokat definiálnak, így egy rekord egy meghajtón helyezkedik el, lehetővé téve egyszerre több (különböző meghajtókon elhelyezkedő) rekord párhuzamos írását, illetve olvasását (multi-user mode). Problémát okoz viszont, hogy a paritás-meghajtó adott csíkját minden egyes íráskor frissíteni kell (plusz egy olvasás és írás), aminek következtében párhuzamos íráskor a paritásmeghajtó a rendszer szűk keresztmetszetévé válik. 
 
-RAID-5
+**RAID-5**
 
 A RAID 5 a paritás információt nem egy kitüntetett meghajtón, hanem „körbeforgó paritás” (rotating parity) használatával, egyenletesen az összes meghajtón elosztva tárolja, kiküszöbölvén a paritás-meghajtó jelentette szűk keresztmetszetet. Mind az írási, mind az olvasási műveletek párhuzamosan végezhetőek. Egy meghajtó meghibásodása esetén az adatok sértetlenül visszaolvashatóak, a hibás meghajtó adatait a vezérlő a többi meghajtóról ki tudja számolni.
 
@@ -136,30 +146,31 @@ A RAID 5 a paritás információt nem egy kitüntetett meghajtón, hanem „kör
 
 ### Nyomtatók
 
-Mátrixnyomtatók
+**Mátrixnyomtatók**
 
 A nyomtatófejben apró tűk vannak (általában 9 vagy 24 db). A papír előtt egy kifeszített festékszalag mozog, amelyre a tűk ráütnek, és létrehoznak a papíron egy pontot. A kép ezekből a pontokból fog állni. A tűket elektromágneses tér mozgatja, és rugóerő húzza vissza eredeti helyükre. Ezzel az eljárással nem csak karakterek, hanem képek, rajzok is nyomtathatóak. A nyomtatott képek felbontása gyenge, a nyomtató lassú viszont olcsók és nagyon megbízhatók.
 
-Tintasugaras nyomtató:
+**Tintasugaras nyomtató:**
 
 A tintasugaras nyomtatók tintapatronok segítségével tintacseppeket juttatnak a papírlapra. A patronban van egy porlasztó, ez megfelelő méretű tintacseppekre alakítja a tintát, és a papírlapra juttatja azt. A színes tintasugaras nyomtató színes tintapatronokat használ, általában négy alapszín használatával keveri ki a megfelelő árnyalatokat: ciánkék, bíborvörös, sárga és fekete színek használatával. Minden tintasugaras nyomtató porlasztással juttatja a tintacseppeket a papírlapra, de a porlasztás módszere változó. Ez történhet piezoelektromos úton, elektrosztatikusan, vagy gőzbuborékok segítségével.
 
-A gőzbuborékos nyomtató a következő módon működik: A nyomtató cserélhető tintapatronja a papír felett oldalirányban mozog. A nyomtatófejben lévő, tintával töltött kamrácskákhoz szabad szemmel alig látható fúvókák (porlasztók) kapcsolódnak. Azokat a kamrákat, mely a nyomtatandó képrészlet soron következő képpontjához szükségesek, elektromos impulzus melegíti fel, minek következtében a tinta a melegítési helyeken felforr, és a keletkező gőzbuborék egy-egy tintacseppet lő a porlasztókon keresztül a papírlapra. A tintasugaras nyomtatók egy-egy karaktert sokkal több képpontból állítanak össze mint például a mátrixnyomtatók, ezért sokkal szebb képet is adnak annál: megfelelő tintasugaras nyomtatóval igen jó minőségű, színes képek, akár fotók is nyomtathatók.
+A **gőzbuborékos nyomtató a következő módon működik:**
+A nyomtató cserélhető tintapatronja a papír felett oldalirányban mozog. A nyomtatófejben lévő, tintával töltött kamrácskákhoz szabad szemmel alig látható fúvókák (porlasztók) kapcsolódnak. Azokat a kamrákat, mely a nyomtatandó képrészlet soron következő képpontjához szükségesek, elektromos impulzus melegíti fel, minek következtében a tinta a melegítési helyeken felforr, és a keletkező gőzbuborék egy-egy tintacseppet lő a porlasztókon keresztül a papírlapra. A tintasugaras nyomtatók egy-egy karaktert sokkal több képpontból állítanak össze mint például a mátrixnyomtatók, ezért sokkal szebb képet is adnak annál: megfelelő tintasugaras nyomtatóval igen jó minőségű, színes képek, akár fotók is nyomtathatók.
 
-Lézernyomtató
-
+**Lézernyomtató**
 A nyomtató szíve egy fényérzékeny anyaggal bevont forgó henger. Egy-egy lap nyomtatása előtt eletromosan feltöltődik. Ezt követően egy lézer fénye pásztázza végig a hengert hosszában, amelyet egy nyolcszögletű tükörrel irányítanak a hengerre. A fényt modulálják, hogy világos és sötét pontokat kapjanak. Azok a pontok, ahol fény éri a hengert, elveszítik elektromos töltésüket. Miután egy pontokból álló sor elkészült, a henger elfordul és elkezdődhet a következő sor előállítása. Később az első sor eléri a tonerkazettát, amely elektrosztatikusan érzékeny fekete port tartalmaz. A por hozzátapad a még feltöltött pontokhoz, így láthatóvá válik a sor. Tovább fordulva a bevont henger hozzányomódik a papírhoz, átadva a papírnak a festéket. A papír ezután felmelegített görgők között halad el, ezáltal a festék véglegesen hozzátapad a papírhoz.
 A lézernyomtatók kiváló minőségű képet készítenek, nagy a rugalmasságuk, sebességük és elfogadható a költség.
 
 ### Egér
 
 Az egér egy grafikus felületen való mutató mozgatására szolgáló periféria. Az egéren egy, kettő vagy akár több nyomógomb van, illetve egy görgő is lehet rajta. Belsejében található érzékelő felismeri és továbbítja a számítógép felé az egér mozgását egy sima felületen
-Optikai
+
+**Optikai**
 Az optikai egér a mozgásokat egy optikai szenzor segítségével ismerte fel, mely egy fénykibocsátó diódát használt a megvilágításhoz. Az első optikai egereket csak egy speciális fémes egérpadon lehetett használni, melyre kék és szürke vonalak hálója volt felfestve. Miután a számítógépes eszközök egyre olcsóbbak lettek, lehetőség nyílt egy sokkal pontosabb képelemző chip beépítésére is az egérbe, melynek segítségével az egér mozgását már szinte bármilyen felületen érzékelni lehetett, így többé nem volt szükség speciális egérpadra. Ez a fejlesztés megnyitotta a lehetőséget az optikai egerek elterjedése előtt. 
 A modern optikai egerek egy reflexszenzor segítségével sorozatos képeket készítenek az egér alatti területről. A képek közötti eltérést egy képelemző chip dolgozza fel, és az eredményt a két tengelyhez viszonyított elmozdulássá alakítja.
 
 
-Mechanikus
+**Mechanikus**
 Egy golyó két egymáshoz képest 90 fokban elhelyezett tengelyt forgat, melyek továbbítják a mozgását a fényáteresztő résekkel rendelkező korongoknak. Az optocsatolók infravörös LEDjei átvilágítanak a hozzájuk tartozó korongok résein. Bármely korong elfordulásakor a rajta lévő rések átengedik LED fényét, míg a rések közötti fogak nem. Végeredményben az egér elmozdulása fényimpulzusok sorozatává változik, mégpedig annál több fényimpulzus keletkezik, minél nagyobb az egér által megtett út, A fényérzékeny szenzorok érzékelik a fényimpulzusokat és elektromos jelekké alakítják.
 
 ### Billentyűzet
