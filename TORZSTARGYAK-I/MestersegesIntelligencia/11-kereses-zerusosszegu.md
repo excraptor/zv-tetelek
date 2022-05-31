@@ -1,5 +1,4 @@
 
-
 # 11. Keresési feladat: feladatreprezentáció, vak keresés, informált keresés, heurisztikák. Kétszemélyes zéró összegű játékok: minimax, alfa-béta eljárás. Korlátozás kielégítési feladat
 Különbség a feladatreprezentáció és a játékok között, az **ágensek száma**.
 
@@ -117,10 +116,10 @@ Fakeresés, peremben a rendezést $h()$ alapján csináljuk, mindig a legkisebb 
 
 A peremben a rendezést $f()=h()+g()$ alapján végezzük, a legkisebb csúcsot vesszük ki. $f()$ **a teljes út költségét becsüli a kezdőállapotból a végállapotba**. Ha $h = 0$, és gráfkeresést alkalmazunk, akkor a **Dijkstra-t** kapjuk.
 
-Egy $h$ heurisztika elfogadható, ha nem ad nagyobb értéket, mint a tényleges optimális érték.
+- Egy $h$ heurisztika **elfogadható**, ha nem ad nagyobb értéket, mint a tényleges optimális érték.
 Fakeresést feltételezve, ha $h$ elfogadható és a keresési fa véges, akkor $A^*$ optimális.
 
-Egy $h$ heurisztika **konzisztens**, ha $h(n) \le$ mint a **valódi költség** $n$ egyik bármely, plusz a szomszéd heurisztikája.
+- Egy $h$ heurisztika **konzisztens**, ha $h(n) \le$ mint a **valódi költség** $n$ egyik bármely, plusz a szomszéd heurisztikája.
 Gráfkeresést feltételezve, ha $h$ **konzisztens és az állapottér véges**, akkor $A^*$ **optimális**.
 
 Az $A^*$ optimálisan hatékony, de a **tárigénye általában exponenciális**. és nagyon nagyban függ $h$-tól. Az **időigény** szintén nagyon **nagyban függ** $h$-tól.
@@ -128,11 +127,14 @@ Az $A^*$ optimálisan hatékony, de a **tárigénye általában exponenciális**
 PL rá: http://www.inf.u-szeged.hu/~ihegedus/teach/a-star.pdf
 ### Heurisztikák
 
-A relaxált probléma optimális megoldása pl jó heurisztika lehet.
+A **jó** heurisztikus függvények előállítása fontos, lehetőleg elfogadható és konzisztens legyen.
 
 **Relaxált probléma:** elhagyunk feltételeket az eredeti problémából.
 Kombinálhatunk több heurisztikát is.
 Készíthetünk mintaadatbázisokat, ahol részproblémák egzakt költségét tároljuk.
+
+Belátható, hogy a relaxált probléma optimális költsége $\le$ az eredeti probléma optimális költségénél, mivel az eredeti probléma állapottere része a relaxáltnak. $\Rightarrow$ **elfogadható heurisztika**.
+Sőt mivel a heurisztika a probléma egy relaxációjának tényleges költésge, ezért **konzisztens** is.
 
 
 ## Kétszemélyes zeró összegű játékok: miminax, alfa-béta eljárás

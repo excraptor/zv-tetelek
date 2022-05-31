@@ -165,7 +165,8 @@ A ciklizáció oka a degeneráció, azaz a bázisváltozók 0-vá válása a bá
 ### Nem korlátos 
 
 Ha az LP feladat maximalizálandó/minimalizálandó, és a célfüggvénye tetszőlegesen nagy/kicsi értéket felvehet, akkor nem korlátos a feladat.
-
+Más szóval, ha tudunk oszlopot választani, de mikor sort választanánk minden együttható pozitív $\rightarrow$ nem korlátos.
+*@kep(Nem_korlatos.JPG)*
 ### Nincs lehetséges megoldás
 
 Ha a standard alakú LP feladatot kétfázisú szimplex módszerrel oldjuk meg, az első fázis eldönti, hogy van-e lehetséges megoldás.
