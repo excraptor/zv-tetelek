@@ -138,10 +138,11 @@ A mátrix sajártértékeinek a halmazát a mátrix *spektrumának* hívjuk.
 A hatványmódszer a legnagyobb abszolútértékű sajátérték meghatározására szolgál.
 Iterációs módszer.
 
-$y^k = Ax^k$
+$y^{(k)} = Ax^{(k)}$
 $x^{(k+1)} = y^k/||y^k||$
 
 a kiindulási x vektor ne legyen a nullvektor, és nem lehet merőleges a legnagyobb abszolútértékú sajátértékhez tartozó sajátvektorra.
+A mátrixot szorozzuk jobbról az $x$ vektorunkkal, majd a kapott $y$ vektort **normalizáljuk** $\Rightarrow$ egységnyi hosszúra változtatjuk, azaz leosztjuk a hosszával.
 
 A k betűk a kitevőben a k. iterációt jelentik, nem k. hatványt.
 

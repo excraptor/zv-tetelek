@@ -111,7 +111,7 @@ Legyen adott 4 alappont: $(-1,2),(0,0),(1,4),(4,0)$, és ennek keressük a harma
 | p_3(x) | 2  | 0 | 4 | 0 |
 
 Határozzuk meg az $L_i(x)$ polinomokat:
-$L_1(x) =\dfrac{(x-0)(x-1(x-4))}{(-1-0)(-1-1)(-1-4)}$
+$L_1(x) =\dfrac{(x-0)(x-1)(x-4))}{(-1-0)(-1-1)(-1-4)}$
 
 $L_2(x) =\dfrac{(x+1)(x-1)(x-4))}{(0+1)(0-1)(0-4)}$
 
@@ -119,7 +119,7 @@ $L_3(x) =\dfrac{(x+1)(x-0)(x-4))}{(1+1)(1-0)(1-4)}$
 
 $L_4(x) =\dfrac{(x+1)(x-0)(x-1))}{(4+1)(4-0)(4-1)}$
 
-$p_3(x)=2*L_1(x)+0L_2(x)+4L_3(x)+0L_4(x)$ ..... behelyettesítés és kiszámolás.
+$p_3(x)=2*L_1(x)+0*L_2(x)+4*L_3(x)+0*L_4(x)$ ..... behelyettesítés és kiszámolás.
 ## Numerikus integrálás
 **Határozatlan integrál:**
 $\int f(x) = F(x)dx$,
