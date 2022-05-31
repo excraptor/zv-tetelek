@@ -12,9 +12,9 @@ Processzus: **A végrehajtás alatt lévő program a memóriában.**
     - **Adatok átadása az egyik folyamatból a másiknak** (Pipelining)
     - **Közös erőforrások használata** (memória, nyomtató, stb.)
 
-
 Kettő vagy több processzus egy-egy szakasza nem lehet átfedő, azaz két szakasz egymásra nézve **kritikus szekciók**.
 **Kritikus szekció:** A program az a része, ahol előfordulhat versenyhelyzet.
+
 **Szabályok:**
 	1. Legfeljebb egy proc lehet kritikus szekciójában
 	2. Kritikus szekción kívüli proc nem befolyásolhatja másik proc kritikus szekcióba lépését.
@@ -54,14 +54,19 @@ Láthattuk, hogy a kritikus szekcióba való belépés nem feltétel nélküli. 
         - A CPU zárolja a memóriasínt, azaz tiltva van a memória elérés a CPU-knak a művelet befejezéséig.
         - A művelet befejezésekor 0 érték kerül a LOCK memóriaterületre
 - **Software-es módszer**
+    - **Változók zárolása**
+        - Van egy **osztott zárolási változó**, aminek a kezdeti értéke 0. 
+        - Kritikus szekcióba lépés előtt a processzus **teszteli ezt a változót**. 
+	        - Ha 0 az értéke, akkor 1-re állítja és belép a kritikus szekcióba. 
+	        - Ha az értéke 1, akkor várakozik, amíg nem lesz 0.
     - **Szigorú váltogatás módszere**
+	    - Folyamatosan pazarulja a CPU-t állandó tesztelése miatt.
 	    - A kölcsönös kizárás feltételeit teljesíti, kivéve azt hogy **egyetlen kritikus szekcíón kívüli folyamat sem blokkolhat másik folyamatot**
     - **Peterson-féle megoldás**
         - Van **két metódus a kritikus szekcióba való belépésre** (enter_region) és **kilépésre** (leave_region). 
         - A kritikus szekcióba lépés előtt a processzus meghívja az enter_region eljárást, kilépéskor pedig a leave_region eljárást. Az enter_region eljárás biztosítani fogja, hogy a másik processzus várakozik, ha szükséges.
         - **csak 2 processzus esetén müködik**
-    - **Változók zárolása**
-        - Van egy osztott zárolási változó, aminek a kezdeti értéke 0. Kritikus szekcióba lépés előtt a processzus teszteli ezt a változót. Ha 0 az értéke, akkor 1-re állítja és belép a kritikus szekcióba. Ha az értéke 1, akkor várakozik, amíg nem lesz 0.
+
 
 ## Altatás és ébresztés: termelő-fogyasztó probléma, szemaforok, mutex-ek, monitorok, Üzenet, adás, vétel. 
 
@@ -130,11 +135,11 @@ Több proc egymással versengve írja és olvassa ugyanazt az adatot. Megengedet
 Ha a folyamatos olvasók utánpótlása, az írok éheznek.
 Megoldás: Érkezési sorrend betartása $\rightarrow$ csökken a hatékonyság
 
-Sorompók:
+**Sorompók:**
 - Sorompó primitív
     - Könyvtári eljárás
 - Fázisokra osztjuk az alkalmazást
-- Szabály
+- **Szabály**
     - Egyetlen processzus sem mehet tovább a következő fázisra, amíg az összes processzus nem áll készen
 - Sorompó elhelyezése mindegyik fázis végére
     - Amikor egy processzus a sorompóhoz ér, akkor addig blokkolódik ameddig az összes processzus el nem éri a sorompót

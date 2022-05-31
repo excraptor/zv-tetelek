@@ -1,5 +1,4 @@
 
-
 # 15. Processzusok, szálak/fonalak, processzus létrehozása/befejezése, processzusok állapotai, processzus leírása. Ütemezési stratégiák és algoritmusok kötegelt, interaktív és valós idejű rendszereknél, ütemezési algoritmusok céljai. Kontextus-csere
 ## Processzusok, szálak/fonalak, processzus létrehozása/befejezése, processzusok állapotai, processzus leírása
 
@@ -13,6 +12,8 @@
 - jogosultságokkal rendelkeznek
 - Előtérben és háttérben futó folyamatok
 - Processzusnak lehet **címtartománya**
+	 - Saját memória
+	 - Osztott memória
 
 **Processus állapotok:** KÉP HOZZÁ "ProcesszusAllapotok.JPG"
 - **Futáskész:** készen áll a futásra, csak ideiglenesen le lett állítva, hogy egy másik processzus futhasson
@@ -88,9 +89,11 @@ Kettő vagy több processzus egy-egy szakasza nem lehet átfedő, mert ilyen ez 
 - Egy CPU áll rendelkezésre. Processzusok versengenek a CPU-ért
 - Az OS dönti el, hogy melyik kapja meg a CPU-t
 - Az **ütemező (scheduler)** hozza meg a döntést  Ütemezési algoritmus
-- Feladata:  Egy adott időpontban futáskész procok közül egy kiválasztása, amely a következőkben a CPU-t bitrokolni fogja
-- Mikor kell ütemezni?: amikor egy processus befejeződik vagy blokkolódik
-- Céljai:
+
+Ütemezés
+- **Feladata:**  Egy adott időpontban futáskész procok közül egy kiválasztása, amely a következőkben a CPU-t bitrokolni fogja
+- **Mikor kell ütemezni?:** amikor egy processus befejeződik vagy blokkolódik
+- **Céljai:**
     - a CPU legyen jól kihasznált
     - az átfutási idő (proc létrejöttétől megszűnéséig eltelt idő) legyen rövid
     - egységnyi idő alatt minél több proc teljesüljön
@@ -98,6 +101,7 @@ Kettő vagy több processzus egy-egy szakasza nem lehet átfedő, mert ilyen ez 
 ### Ütemezés kötegelt rendszerekben
 
 A manapság haszálatos op.rendszerek nem tartoznak a kötegelt rendszerek (: **Előre meghatározott sorrend szerint végrehajtandó feladatok együttese.**) világába, mégis érdemes röviden megemlíteni ezek ütemezési típusait.
+
 - **Sorrendi ütemezés:** (First-Come First-Served)
     - Futásra kész folyamatok egy várakozó sorban helyezkednek el.
     - A sorban levő első folyamatot hajtja végre a központi egység. Ha befejeződik a folyamat végrehajtása, az ütemező a sorban következő feladatot veszi elő.

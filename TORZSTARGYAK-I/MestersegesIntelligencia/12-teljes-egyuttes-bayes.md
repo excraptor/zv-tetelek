@@ -1,3 +1,4 @@
+
 # 12. Teljes együttes eloszlás tömör reprezentációja, Bayes hálók. Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere 
 
 ## Valószínűség
@@ -162,3 +163,10 @@ Adott $x$-re az $y$-t az $x$-hez "közeli" példák alapján határozzuk meg. **
 1. Keressük meg $x$ ***k* legközelebbi szomszédját**
 	- Leghasonlóbbakat nézzük a predikálandó egyedhez (hasonlósági függvény maximuma/távolság függvény minimuma).
 	- Majd a *k* legközelebbi szomszéd osztálycímkéiből kiválasztja a leggyakoribbat és azt predikálja.
+2. $h(x)$ éréke ezen szomszédok $y$-jainak átlaga (esetleg távolságga súlyozva) ha $y$ folytonos, 
+ ha diszkrét, akkor pl. többségi szavazás
+
+A legközelebbi szomszédot többféleképpen is meglehet nézni.
+1. Diszkrét esetben Hammington távolság: különböző jellemzők száma
+2. Folytonos esetben eukildeszi távolság, vagy manhattan távolság.
+
