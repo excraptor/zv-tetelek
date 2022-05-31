@@ -1,4 +1,5 @@
 
+
 # 13. LP alapfeladat, példa, szimplex algoritmus, az LP geometriája, generálóelem választási szabályok, kétfázisú szimplex módszer, speciális esetek (ciklizáció-degeneráció, nem korlátos feladat, nincs lehetséges megoldás)
 
 ## LP alapfeladat
@@ -48,13 +49,32 @@ $x_1, x_2 \ge 0$
 
 
 ## Az LP geometriája
+A lineáris programozás szoros kapcsolatban áll a **konvex geometriával**: Fogalmak, mint a bázismegoldás, lineáris feltétel, lehetséges megoldások halmaza, stb... mind megfeleltethető egy-egy geometria objektummal. 
 
-Ábrázolhatjuk pl. a lehetséges megoldások halmazát koordináta rendszerben, két változó esetén.
+$R^n$: $n$-dimenziós **lineáris tér** a valós számok felett -- elemei az $n$ elemű valós **vektorok**.  
+$E^n$: $n$-dimenziós **euklideszi tér**: lineáris tér amin értelmezett egy **belső szorzat** és egy **távolság függvény:**  
+- **Belső szorzat**: $\langle x,y \rangle = x^Ty$, ezáltal vektornorma: $||x|| =  \sqrt \langle x,x \rangle$
+- **Távolság:** $d(x,y) = ||x-y||_2$, vagyis a koordinátakülönbség-négyzetek összegeinek a gyöke.
+
+Így a lehetséges megoldások megadhatóak pontokként (n-dimenziós vektor) az $E^n$ térben.  
+
+**$x_1$ és $x_2$ közti szakasz**:  {$x : x \in E^n, x = \lambda x_1 + (1-\lambda)x_2$}, ahol $\lambda \in [0,1]$.  
+Világos hogy ha $\lambda=1/2$, akkor egy **felezőpontot** definiálunk.  
+
+**Csúcspont:** olyan pont, amely nem áll elő egyetlen ponthalmazbeli szakaz felezőpontjaként sem.
+
+A lineáris feltételek **síkokat**, és **zárt féltereket** definiálnak az euklideszi térben hiszen: 
+- **n-dimenziós sík:** {$x: x \in E^n, a_1x_1 + a_2x_2 + ... + a_nx_n = b$}, ahol $a_1 ... a_n, b$ rögzített számok.
+- **n-dimenziós zárt féltér:** {$x: x \in E^n, a_1x_1 + a_2x_2 + ... + a_nx_n \le b$}, ahol $a_1 ... a_n, b$ rögzített számok.  
+
+Ezáltal, a **lehetséges megoldások halmaza** tulajdonképpen a feltételek által definiált **zárt félterek, és síkok metszete,** ami egy **konvex poliéder**: zárt, véges sok csúcsponttal rendelkező, konvex ponthalmaz. 
+
+**Példa:**
+Két változó esetén ábrázolhatjuk pl. a lehetséges megoldások halmazát koordináta rendszerben.
 
 Minden feltétel egy egyenest határoz meg, ezeket berajzoljuk.
 Ezzel valamilyen sokszöget kapunk meg, ennek a sokszögnek a csúcsainak a koordinátái lesznek a lehetséges megoldások.
 @kép (LP_Geometria_1.JPG és LP_Geometria_2.JPG)
-
 ## Szimplex algoritmus
 
 Ahhoz, hogy lecseréljük az **egyenlőtlenségeket egyenlőségekre** az LP alapfeladatban, adjunk hozzá minden egyenlőtlenség bal oldalához egy **mesterséges változót.**
@@ -91,20 +111,23 @@ A kapott egyenletrendszert hívjuk **szótár alak** nak.
 4. Legyen $l$ valamely index, amelyre $|\dfrac{b_l}{a_{lk}}|$ minimális és $a_{lk} \lt 0$
 5. Hajtsunk végre egy **pivot lépést** úgy, hogy $x_k$ legyen a belépőváltozó és az $l.$ feltétel bázisváltozója legyen a kilépő. Folyataás 1. ponttal
 
-**Pivot lépés:** új szótár megadása egy bázis és nembázis változó szerepének felcserélésével
-**Belépőváltozó:** az a nembázis változó, ami a következő szótárra áttéréskor bázisváltozóvá válik
-**Kilépő változó:** az a bázisváltozó, ami a köv. szótárra áttéréskor nembázissá válik
-**Szótárak ekvivalenciája:** két szótár ekvivalens, ha az általuk leírt egyenletrendszer összes lehetséges megoldása és a hozzájuk tartozó célfüggvényértekek rendre megegyeznek
+**Pivot lépés:** új szótár megadása egy bázis és nembázis változó szerepének felcserélésével  
+**Belépőváltozó:** az a nembázis változó, ami a következő szótárra áttéréskor bázisváltozóvá válik  
+**Kilépő változó:** az a bázisváltozó, ami a köv. szótárra áttéréskor nembázissá válik  
+**Szótárak ekvivalenciája:** két szótár ekvivalens, ha az általuk leírt egyenletrendszer összes lehetséges megoldása és a hozzájuk tartozó célfüggvényértekek rendre megegyeznek  
 
+Pivot lépés előtti és utáni szótárak ekvivalensek.  
 
-Pivot lépés előtti és utáni szótárak ekvivalensek.
+A szimplex algoritmus csak egy **keretalgoritmus**: nem teszi egyértelművé, hogy a 2. és a 4. pontban melyik változókat válasszuk, amennyiben többet is lehetne.  
+
+**Pivot szabály / Generálóelem választási szabály:** Olyan szabály, ami egyértelművé teszi, hogy a szimplex algoritmusban mely változók legyenek a belépő- és a kilépőváltozók, ha több változó is teljesíti az alapfeltételeket.
 
 
 ## Generálóelem választási szabályok
 
 
 **Klasszikus szimplex algoritmus pivot szabály:** (Nem biztosan áll meg)
-- A lehetséges belépőváltozók közül válasszuk a legnagyobb $c_k$ értékűt. Több ilyen esetben a legkisebbet.
+- A lehetséges belépőváltozók közül válasszuk a legnagyobb $c_k$ értékűt. Több ilyen esetén a legkisebb indexűt.
 - A lehetséges **kilépőváltozók** közül válasszuk a legkisebb $l$ indexű egyenlet változóját.
 
 **Bland szabály** (Biztosan megáll)
@@ -115,7 +138,7 @@ Pivot lépés előtti és utáni szótárak ekvivalensek.
 - $max(c_i * min(|\dfrac{b_i}{a_{ij}}|))$, 
 *@kép (Legnagyobb_novekmeny.JPG)
 
-**Lexikografikus szabály**
+**Lexikografikus szabály** (Biztosan megáll)
 - **kiegészítjük epszilonokkal mesterségesen a szótárat**
 	- a lehetséges belépőváltozók közül a legnagyobb $c_k$ értékűt válasszuk, több ilyennél a legkisebb indexűt
 	- a lehetséges kilépőváltozók közül azt, amelynek l indexű egyenletére az együtthatókból álló vektor lexikografikusan a legkisebb
