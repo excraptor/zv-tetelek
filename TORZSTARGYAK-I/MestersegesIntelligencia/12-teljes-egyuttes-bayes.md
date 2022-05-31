@@ -1,4 +1,22 @@
-# 12. Teljes együttes eloszlás tömör reprezentációja, Bayes hálók. Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
+# 12. Teljes együttes eloszlás tömör reprezentációja, Bayes hálók. Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere 
+
+## Valószínűség
+Problémák modellezésénél, megoldásánál szeretünk logikai változókat, és logikai következtetéseket használni. Ezzel problémák akadhatnak:
+
+- Ha nem teljes a tudásunk
+- Ha heurisztikai szabályokat vezetünk be, akkor a tapasztalat inkonzisztens lehet az elmélettel 
+
+Vagyis a hiányos, részleges tudás kezelésére a logika nem optimális. A **tudás tökéletlenségének** a kezelésére a valószínűséget használjuk. Ilyenkor az **ismeretlen tényeket és szabályokat véletlen hatásként kezeljük.** 
+Bayesi felfogásban a valószínűség a hit fokát, és nem az igazság fokát jelenti. (Szemben a fuzzy logikával, ahol pl: "ez a ház nagy" kijelentés folytonos igazságértéket vehet fel)  
+
+**Véletlen változók:** 
+- Van neve, és értékkészlete (domainje): logikai, diszkrét, folytonos. 
+- **Elemi kijelentés:** $A$ vél.változó $D_A$ domainnel. Egy elemi kijelentés A értékének egy korlátozását fejezi ki (pl: $A = d$, ahol $d \in D_A$
+- **Elemi esemény:** Minden véletlen változóhoz értéket rendel. Ha az $A_1 ...A_n$ véletlen változókat definiáltuk a $D_1 ... D_n$ domainekkel, akkor az elemi események (lehetséges világok) halmaza a $D_1 \times ... \times D_n$ halmaz. Vagyis egy "lehetséges világban" --- **elemi eseményben** az $A_i$ változó a hozzá tartozó $D_i$ ből **pontosan egy értéket vesz fel.**  
+
+**Valószínűség, kijelentések:**  
+ A valószínűség egy függvény, ami egy kijelentéshez egy valós számot rendel.  $P(a)$ az $a$ kijelentés valószínűsége. Minden kijelentés elemi események egy  halmazával  ekvivalens. **Egy kijelentés valószínűsége egyenlő a vele konzisztens elemi események valószínűségének az összegével.** (Ehhez kell a teljes együttes eloszlás, ami megadja az összes elemi esemény valószínűségét) 
+
 ## Teljes együttes eloszlás tömör reprezentációja, Bayes hálók
 
 ### Teljes együttes eloszlás
@@ -17,17 +35,17 @@ a és b kijelentések **függetlenek**, ha $P(a \wedge b) = P(a)*P(b)$
 
 Extrém esetben, ha pl. az A1,..., An diszkrét változók kölcsönösen függetlenek (tetszőleges két részhalmaz független), akkor csak O(n) értéket kell tárolni, mivel ez esetben
 
-P(A1,..., An) = P(A1)...P(An)
+$P(A_1,..., A_n) = P(A_1)...P(A_n)$
 
 **Feltételes függetlenség**
 Az abszolút függetlenség ritka. Ezért használhatunk feltételesen függetlenséget.
 $a$ és $b$ kijelentések **feltételesen függetlenek** $c$ feltevésével, akkor és csak akkor, ha $P(a \wedge b | c) = P(a|c)*P(b|c)$. Tipikus eset, ha $a$ és $b$ közös oka $c$.
-Pl: fogfákás és a beakadás közös oka a luk.
+Pl: fogfájás és a beakadás közös oka a luk.
 
 **Naiv-Bayes modell alakja**
 Ha $A$ feltevése mellett $B_1,...,B_n$ kölcsönösen függetlenek, akkor 
-$P(B1, . . . , Bn|A) = \prod_{i=1}^{n} P(B_i|A)$. ha ez igaz, akkor ez a *Naiv-Bayes modell alakja*, ami a következőképp definiálható:
-$P(B1, . . . , Bn,A) = P(A)\prod_{i=1}^{n} P(B_i|A)$,
+$P(B_1, . . . , B_n|A) = \prod_{i=1}^{n} P(B_i|A)$. ha ez igaz, akkor ez a *Naiv-Bayes modell alakja*, ami a következőképp definiálható:
+$P(B_1, . . . , B_n,A) = P(A)\prod_{i=1}^{n} P(B_i|A)$,
 **Ezzel $O(n)$ tömörítés érhető el**
 
 **Bayes szabály $a$ és $b$ kijelentésekre**
@@ -50,8 +68,10 @@ $$P(X1, . . . , Xn) = \prod_{i=1}^{n} P(X_i|\text{Szülő}(X_i))$$ (ez a bayes h
 **Ez a teljes eloszlás tömörített reprezentációja.**
 Ezt lehet egy gráf formájában vizualizálni.
 Például az $X_i$ változókat fel lehet venni mint a gráf csomópontjai, a $Szulok(X_i)$ halmaz elemeiből pedig éleket lehet húzni az $X_i$ változó felé.
-**Ez a gráf irányított körmentes gráf lesz.**
+**Ez a gráf irányított körmentes gráf lesz.**  
 
+"Tegyük fel" hogy nem érted a fenti matekot. Józan paraszti megmagyarázása a Bayes hálóknak:  
+A Bayes hálóval változók egy halmazát, és a köztük lévő feltételes függőségeket reprezentáljuk egy irányított, körmentes gráffal. Ideális olyan feladatra, ahol egy bekövetkezett eseményből próbáljuk meg megbecsülni az ő "okát". Pl: Kap egy csomó tünetet, Bayes hálóval képesek vagyunk megbecsülni az őt okozható betegségeknek a valószínűségeit. 
 
 
 
