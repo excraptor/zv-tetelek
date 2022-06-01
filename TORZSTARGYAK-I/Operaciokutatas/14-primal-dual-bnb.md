@@ -82,6 +82,7 @@ Tegyük fel, hogy $x$ a primál feladat optimális megoldása.
 - Ha $y$ lehetséges megoldása a duálisnak és komplementáris $x$-szel, akkor $y$ optimális megoldása a duálnak
 - Létezik olyan lehetséges $y$ megoldása a duálnak, hogy $x$ és $y$ komplementáris
 
+**Ergo, ha van ilyen $x$ és $y$ vektor, amik a fenti "Vagyis"-ra teljesülnek, akkor az fixen optimális megoldása a primál-duál feladatpárnak**
 ## Egész értékű feladatok és jellemzőik
 
 Tiszta egészértékű feladat (Integer Programming)
@@ -114,7 +115,7 @@ Megoldjuk az LP lazítást, ha a megoldás egészértékű, akkor done
 2. lépés
 
 Ha van lezáratlan részfeladatunk, akkor azt egy xi nem egész változó szerint két részfeladatra bontjuk.
-Ha xi értéke xi*, akkor xi <= floor(xi*) és xi>= ceil(xi*) feltételeket vesszük hozzá egy egy részfeladatunkhoz
+Ha $x_i$ értéke $x_i^*$, akkor $x_i \le floor(x_i^*)$ és $x_i \ge ceil(x_i^*)$ feltételeket vesszük hozzá egy egy részfeladatunkhoz
 
 - a részproblémákat egy fába rendezzük
 - a gyökér az első részfeladat, az LP lazítás
