@@ -1,5 +1,4 @@
 
-
 # 13. LP alapfeladat, példa, szimplex algoritmus, az LP geometriája, generálóelem választási szabályok, kétfázisú szimplex módszer, speciális esetek (ciklizáció-degeneráció, nem korlátos feladat, nincs lehetséges megoldás)
 
 ## LP alapfeladat
@@ -128,11 +127,11 @@ A szimplex algoritmus csak egy **keretalgoritmus**: nem teszi egyértelművé, h
 
 **Klasszikus szimplex algoritmus pivot szabály:** (Nem biztosan áll meg)
 - A lehetséges belépőváltozók közül válasszuk a legnagyobb $c_k$ értékűt. Több ilyen esetén a legkisebb indexűt.
-- A lehetséges **kilépőváltozók** közül válasszuk a legkisebb $l$ indexű egyenlet változóját.
+- A lehetséges **kilépőváltozók** közül válasszuk a legkisebb $l$ indexű egyenlet változóját, amelyre $\dfrac{b_l}{a_{lk}}$ **minimális és $a_{lk}<0$.**
 
 **Bland szabály** (Biztosan megáll)
 - **Oszlop:** a lehetséges belépőváltozók közül válasszuk a legkisebb indexűt
-- **Sor:** A lehetséges változók közül válasszuk a legkisebb indexűt
+- **Sor:** A lehetséges változók közül válasszuk a legkisebb korlátot adó egyenlet (konstansokat kell nézni), ha egyenlő akkor a legkisebb indexű.
 
 **Legnagyobb növekmény** (Nem biztosan áll meg)
 - $max(c_i * min(|\dfrac{b_i}{a_{ij}}|))$, 
