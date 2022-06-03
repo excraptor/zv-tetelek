@@ -1,17 +1,21 @@
 
-
 # 15. Neumann-elvű gép egységei. CPU, adatút, utasítás-végrehajtás, utasítás- és processzorszintű párhuzamosság. Korszerű számítógépek tervezési elvei. Példák RISC (UltraSPARC) és CISC (Pentium 4) architektúrákra, jellemzőik
 
 Számítógép architektúra: A hardver egy általános absztrakciója: a hardver struktúráját és viselkedését jelenti más rendszerek egyedi, sajátos tulajdonságaitól eltekintve
 
 ## Neumann elvű gép
 
-- Neumann-architektúra mára a tárolt programú számítógép fogalmává vált
-- Számítógép működését tárolt program vezérli (Turing).
-- A vezérlést vezérlés-folyam (control-flow) segítségével lehet leírni
-- Az aritmetikai és logikai műveletek (programutasítások) végrehajtását önálló részegység (ALU) végzi
-- 2-es (bináris) számrendszer alkalmazása
-- Öt funkcionális egység (aritmetikai egység, központi vezérlőegység, memóriák, bemeneti és kimeneti egységek)
+1. **Teljesen elektronikus működés**
+2. **Kettes számrendszer** használata
+3. **Belső memória használata**
+4. **Tárol program elve**: A számításokhoz szükséges adatokat és programutasításokat a gép azonos módon, egyaránt a **belső memóriában** tárolja.
+5. **Soros utasítás-végrehajtás**: Az utasítások végrehajtása időben egymás után történjen.
+6. **Univerzális felhasználhatóság**, Turing-gép (programozhatóság, különböző feladatoakt programokkal legyenek megoldva)
+7. **Szerkezet**: öt funkcionális egység
+	- Aritmetikai egység
+	- Központi vezérlőegység
+	- Memóriák
+	- Bemeneti és kimeneti egységek. 
 
 ### Neumann-elvű gép egységei
 
@@ -22,6 +26,7 @@ Számítógép architektúra: A hardver egy általános absztrakciója: a hardve
 	- *CU (vezérlőegység)*
 	- Regiszterek
 3. **beviteli/kiviteli eszközök:** kapcsolatot teremt a felhasználóval, adatot tárol a háttértáron, nyomtat, stb.
+4. **Háttértárak:** Merevlemez, SSD stb.
 - **Busz és sínrendszerek:**
 		- **külső sín:** A számítógép egyes elemei között biztosít kapcsolatot. Pl. perifériák, csatolókártyák
 		- **belső sín:** CPU részegységei közötti kommunikációt hozza létre (vezérlőegység-ALU-regiszterek)
