@@ -1,7 +1,6 @@
 
 # 16. Számítógép perifériák: Mágneses és optikai adattárolás alapelvei, működésük (merevlemez, Audio CD, CD-ROM, CD-R, CD-RW, DVD, Bluray). SCSI, RAID. Nyomtatók, egér, billentyűzet. Telekommunikációs berendezések (modem, ADSL, KábelTV-s internet)
 
-
 ## Számítógép perifériák
 
 A számítógéphez különböző perifériák kapcsolhatók, melyek segítségével a felhasználók kommunikálni tudnak a gazdagéppel. Ezek egy része beviteli, vagy kiviteli eszköz, - amely az adatok bevitelére, vagy kiírására szolgál. A háttértárolók feladata az adatok és programok hosszabb ideig tartó tárolása. Tartalmuk a számítógép kikapcsolása után is megmarad.
@@ -98,10 +97,17 @@ Az tűnik a legegyszerűbbnek, hogy üreget használjunk a 0, szintet az 1 táro
 ## SCSI, RAID
 
 ### SCSI
+**Olyan szabányegyüttes, melyet számítógépek és perifériák közötti adatátvitelre terveztek. A SCSI szabványok definiálják a parancsokat, protokollokat, az elektromos és optikai csatolófelületek definícióit.**
+#### SCSI meghajtók
+Az *ATA* és *SATA* meghajtóknál haladóbb eszközök. Az SCSI nagyobb sebességet biztosít és megbízhatóbb, viszont azoknál sokkal drágábbak ezért nem használják otthoni felhasználásra.
 
-Az SCSI-lemezek nem különböznek az IDE-lemezektől abban a tekintetben, hogy ezek is cilinderekre, sávokra és szektorokra vannak osztva, de más az interfészük, és sokkal nagyobb az adatátviteli sebességük. Az 5 MHz-estől a 160 MHz-ig nagyon sok változatot kifejlesztettek.
+#### SCSI merevlemezek
+Az SCSI-lemezek nem különböznek az IDE-lemezektől abban a tekintetben, hogy ezek is **cilinderekre**, **sávokra** és **szektorokra** vannak osztva, de más az interfészük, és sokkal nagyobb az adatátviteli sebességük. Az **5 MHz-estől a 160 MHz-ig nagyon sok változatot kifejlesztettek.**
 
-A SCSI több egy merevlemez-interfésznél. Ez egy sín, amelyre egy SCSI-vezérlő és legfeljebb hét eszköz csatlakoztatható. Ezek között lehet egy vagy több SCSI-merevlemez, CD-ROM, CD-író, szkenner, szalagegység és más SCSI-periféria. 
+#### SCSI lánc
+Az SCSI kábelre több SCSI eszköz is felfűzhető, ezt nevezik **SCSI láncnak**.
+Több verzió létezik, de akár legfeljebb 7 vagy 15 eszköz fűzhető fel. Ezeket a felfűzött meghajtókat egy **SCSI host apdater kezeli**.
+A lánc hossza nem haladhatja meg a 1,5-12 métert, mivel lehet külső vagy belső is ez a lánc és fontos, hogy  a jelek ne zavarják egymást.
 
 A SCSI-vezérlők és –perifériák kezdeményező és fogadó üzemmódban működhetnek. Általában a kezdeményezőként működő vezérlő adja ki a parancsokat a fogadóként viselkedő lemezegységeknek és egyéb perifériáknak.
 
@@ -181,7 +187,7 @@ A billentyűzet gombjai kábelezés szempontjából egy ún. billentyűzet-mátr
 
 ### Modem
 
-A modem egy olyan berendezés, ami egy vivőhullám modulációjával a digitális jelet analóg információvá, illetve a másik oldalon ennek demodulációjával újra digitális információvá alakítja. Az eljárás célja, hogy a digitális adatot analóg módon átvihetővé tegye.
+A modem egy olyan berendezés, ami egy vivőhullám modulációjával a **digitális jelet analóg információvá, illetve a másik oldalon ennek demodulációjával újra digitális információvá alakítja**. Az eljárás célja, hogy a digitális adatot analóg módon átvihetővé tegye.
 A moduláció különféle eljárások csoportja, melyek biztosítják, hogy egy tipikusan szinuszos jel - a vivő - képes legyen információ hordozására. A szinuszos jel három fő paraméterét, az amplitúdóját, a fázisát vagy a frekvenciáját módosíthatja a modulációs eljárás, azért, hogy a vivő információt hordozhasson. Néhány ok, ami miatt szükséges a közvetítő közegen való átküldést megelőző moduláció:
 A modem egy másik modemmel működik párban, ezek az átviteli közeg két végén vannak. Szigorú értelemben véve a két modem két adatátviteli berendezést köt össze, azonban a másik végberendezés tovább csatlakozhat az internet felé.
 
