@@ -52,7 +52,16 @@ A csúcs.kiterjeszt() létrehozza a csúcsból elérhető összes állapotból a
 A perem egy prioritási sor, ettől függ a bejárási stratégia. 
 
 A hatékonyságot növelhetjük, ha úgy szúrunk be csúcsokat a perembe, hogy abban az esetben, ha a peremben található már ugyanazzal az állapottal egy másik csúcs, akkor ha az új csúcs költsége kisebb, lecseréljük a régi csúcsot az újra, különben nem tesszük bele az újat.
+#### Algoritmusok vizsgálata
+Algoritmus **teljes** akkor és csak akkor, amikor létezik **véges számú állapot érintésével elérhető célállapot**, az algoritmus meg is talál egyet.
 
+Egy algoritmus **optimális** akkor és csak akkor, ha **teljes** és minden megtalált célállapot optimális költségű.
+
+Idő- és memóriaigény számolásához pár betű.
+    - **b:** szomszédok maximális száma
+    - **d:** a legkisebb mélységű célállapot mélysége
+    - **m:** A keresőfa maximáli smélyésge
+  Ahol m és d lehet megszámlálhatóan végtelen
 #### Szélességi keresés
 
 Fakeresés, ahol a perem egy FIFO perem.
@@ -60,8 +69,7 @@ Fakeresés, ahol a perem egy FIFO perem.
 - **Teljes**, minden, véges számú állapot érintésével elérhető állapotot véges időben elér
 - **Általában nem optimális**, de pl akkor igen, ha a költség a mélység nem csökkenő függvénye
 - időigény = tárigény $O(b^{d+1})$
-    - **b:** szomszédok maximális száma
-    - **d:** a legkisebb mélységű célállapot mélysége
+
 
 #### Mélységi keresés
 
@@ -76,7 +84,8 @@ Fakeresés, LIFO perem
 Mélységi keresések sorozata 1, 2, 3 stb korlátozva, amíg célállapotot nem találunk.
 
 - Teljesség és optimalitás a szélességivel egyezik meg
-- időigény =$O(b^d)$ (akár jobb is lehet, mint a szélességi), tárigény = $O(bd)$ (jobb, mint a mélységi)
+- időigény =$O(b^d)$ (akár jobb is lehet, mint a szélességi)
+- tárigény = $O(bd)$ (jobb, mint a mélységi)
 
 **Ez a legjobb informálatlan kereső.**
 
@@ -84,7 +93,7 @@ Mélységi keresések sorozata 1, 2, 3 stb korlátozva, amíg célállapotot nem
 
 A peremben a rendezés költség alapú, mindig először a legkisebb útköltségű csúcsot terjesztjük ki.
 
-- **Teljes és optimális**, ha minden él költsége nagyobb mint nulla
+- **Teljes és optimális**, ha minden él költsége nagyobb $\ge \epsilon > 0$
 - (Idő és tárigény nagyban függ a **költségfüggvénytől**)
 
 #### Gráfkeresés
@@ -107,11 +116,13 @@ $g(n)$: tényleges költség a kezdőállapotból $n$-be
 ### Mohó
 
 Fakeresés, peremben a rendezést $h()$ alapján csináljuk, mindig a legkisebb értékű csúcsot vesszük ki.
+Ha csak annyit teszünk fel, hogy $h(n) =0$ ha $n$ célállapot, akkor **fakeresés esetén:**
 
 - Teljes, de csak ha a keresési fa véges mélységű
 - Nem optimális
 - időigény, tárigény $O(b^m)$
 
+**gráfkeresésnél** az optimalitás hiánya miatt az első megtalált út nem mindig a legjobb.
 ### A*
 
 A peremben a rendezést $f()=h()+g()$ alapján végezzük, a legkisebb csúcsot vesszük ki. $f()$ **a teljes út költségét becsüli a kezdőállapotból a végállapotba**. Ha $h = 0$, és gráfkeresést alkalmazunk, akkor a **Dijkstra-t** kapjuk.

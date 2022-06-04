@@ -83,33 +83,41 @@ A Bayes hálóval változók egy halmazát, és a köztük lévő feltételes f�
 
 Tapasztalati tények felhasználása arra, hogy egy racionális ágens teljesítményét növeljük.
 
-Felügyelt tanulás: 
+#### Felügyelt tanulás
+Egy $f: X \rightarrow Y$ függvényt keresünk, amely illeszkedik adott példákra. A **példák** $((x_1,f(x_1)),..,(x_n,f(x_n)))$ alakban adottak. ($x_i \in X$)
+Pl. $X$: Emailek halmaza $Y$ {spam, -spam}
 
-- van az adatok mögött valami $f: X \rightarrow Y$ függvény, ezt nem ismerjük
-- adottak tanulópéldák, amik rendezett párok $(x, f(x))$
-- egy $h: X \rightarrow Y$, függvényt keresünk, ami illeszkedik a példákra, és közelíti $f$-et
-- egy példában az első elem pl egy email, a második pedig egy valamilyen címke, pl spam, $\neg$spam
-- $h$ **konzisztens az adatokra, ha** $h(x)==f(x)$ minden $x$ tanulópéldára
-- a $h$ függvényt mindig valami $H$ hipotézistérben keressük, vagyis **valamilyen "alakban"**
-- a tanulás **realizálható**, ha van olyan $h \in H$, amire $h$ konzisztens
-- a gyakorlatban elég, ha h közel van a példákhoz, mert a példák zajt is tartalmazhatnak, amit kifejezetten káros lenne, ha megtanulna az ágens (túltanulás)
-- egy olyan h-t keresünk, ami a tanulópéldákon kívül is jól általánosít
-- nem szabad a tanulópéldákat bemagolni
-- **occam borotvája:** mindig a legtömörebb leírást kell venni
-- a priori ismeretek fontosak, a nulláról való tanulás kb lehetetlen
-- számítási szempontból egyszerű reprezentáció is fontos
 
+##### Modellillesztés (rész szerintem)
+Mivel az $f$ függvényt általában nem ismerjük, ezért a feladat az, hogy **keresünk egy $h: X\rightarrow Y$ függvényt amely $f$-et közelíti**
+
+A $h$ függvény **konzisztens** az adatokkal, ha $h(x_i) = f(x_i)$ minden példára. 
+Ezt a $h$ függvényt mindig egy $H$ hipotézistérben keressük, azaz **egy függvényt mindig adott alakban keressük**.
+Gyakorlatban elég, ha $h$ elég közel van a példákhoz, mivel sokszor hibás, vagy zajos a tanuló példa, ezért káros lehet $\rightarrow$ túltanulás következhet be pontos illeszkedés esetén.
+
+Példa.
+Az a $h$, amelyre $h(x) = f(x)$ minden példára, egyébént $h(x)=0$, az tökéletesen megtanulja a példákat, de lehető legrosszabban általánosít. Ez a **magolás**
+
+A magolási probléma miatt **tömör reprezentációra** kell törekedni, lehetőleg tömörebb mint a példák listája. Ez az **Occam borotvája elv:** Ha más alapján nem tudunk választani, akkor a lehető legtömörebb leírást kell venni.
+Tehát, hogy a fenti tulajdonságot elérjük fontos a $H$ hipotézistér gondos meghatározása.
+
+ A **priori ismeretek fontossága:** A **tabula rasa** (tiszta lappal történő indulás) tanulás a fentiek szerint lehetetlen. A $H$ halmaz és az algoritmus maga a priori ismeretek alapján kerülnek megtervezésre.
 ### Döntési fák
 **Induktív (felügyelt) tanulás konkrét példája.**
+Feltesszük, hogy $x\in X$-ben diszkrét változók egy vektora van, $f(x)\in Y$-ban pedig szintén valami diszkrét változó egy értéke, pl $Y = \{igen, nem\}$
 
-Feltesszük, hogy $x\in X$-ben diszkrét változók egy vektora van, $f(x)\in Y$-ban pedig szintén valami diszkrét változó egy értéke, pl igen-nem
+Mivel $Y$ véges halmaz, osztályozási feladatról beszélünk, ahol $X$ elemeit kell osztályokba sorolni, és az osztályok $Y$ értékeinek felelnek meg. (Ha $Y$ folytonos, akkor regresszióról beszélünk.)
 
-Tulajdonképpen osztályozás, $X$ **elemeit** kell $Y$ valamelyik **osztályába** sorolni.
+*Tulajdonképpen osztályozás, $X$ **elemeit** kell $Y$ valamelyik **osztályába** sorolni.*
 
 Előnye, hogy döntései megmagyarázhatók, mert emberileg értelmezhető lépésekben jutottunk el odáig.
 
 **Kifejezőereje megegyezik az ítéletkalkuluséval.**
-Mivel vannak valamilyen **ítéletek** (változó értékadások), egy **modell** (egy $x\in X$ változóvektor), és egy **formula** (döntési fából adódoan)
+Mivel vannak valamilyen **ítéletek** (változó értékadások), egy **modell** (egy $x\in X$ változóvektor), és egy **formula** (döntési fából adódoan).
+**Fa $\Rightarrow$ formula:** Vesszük az összes olyan levelet amelyen igen címke van, és az oda vezető utakban "és"-el összekötjük az éleket, és az utakat "vagy"-gyal összekötjük.
+
+**Fa $\Rightarrow$ formula:** A logikai formula igazságtábláját fel lehet írni fa alakban, ha vesszük a változók $A_1,..,A_n$ felsorolását, az $A_1$ a gyökér, értékei az élek, 
+és az $i$ edik szinten a fában minden pontban $A_i$ van.
 
 **Döntési fa építése:**
 
@@ -130,13 +138,14 @@ Például emaileket akarunk spam vagy nem spamként osztályozni. Az emailben l�
 
 Legyen $A$ és $B_1,...,B_n$ a nyelvünk változói. (pl $A$ lehet igaz, ha az email spam, hamis ha nem, illetve a $B_i$ változó pedig az i. szó előfordulását jelezheti.
 Tehát a feladat $b_1,...,b_n$ konkrét email esetében meghatázorzni, hogy $A$ mely értékekre lesz a $P(A|b_1,..,b_n)$ **feltételes valószínűség maximális**
-
-Ezután, ha pl kíváncsiak vagyunk, hogy egy szókombinációt tartalmazó email spam vagy nem spam, a szókombinációban előforduló szavak valószínűségét össze kell szorozni, majd megszorozni azzal, hogy milyen valószínűséggel kaptunk normális emailt, és milyennel spam-et. Amelyik valószínűségre nagyobb értéket kapunk, abba az osztályba soroljuk a szókombinációt tartalmazó üzenetet.
-
+Ehhez a következő átalakításokat illetve függetlenségi feltevéseket tesszük:
+$P(A|b_1,..,b_n) = \alpha P(A)P(b_1,...,b_n|A) \approx \alpha P(A)\prod_{i=1}^{n}P(b_i|A)$.
+Itt az első egyenlőségjel a Bayes tétel alkalmazása, ahol $\alpha = 1/P(b_1,...,b_n)$. Mivel csak $A$ értékei közötti sorrendet keresünk, és $\alpha$ nem függ $A$-tól, az $\alpha$értéke nem érdekes.
+A második pedig a naiv Bayes feltevést fogalmazza meg. Nem biztos, hogy teljesül az egyenlőség viszont könnyen tudunk adatbázisból valószínűségeket számolni.
 
 ### Modellillesztés
 
-Lineáris regresszió?
+Sztem már leirtam fentebb szóval igazából a tanuló példákra illesztett $h$ függvény. Lásd felügylet tanulás
 
 ### Mesterséges neuronhálók
 
@@ -144,6 +153,7 @@ A mesterséges neuron a következőképpen épül fel
 - **Bemenet**: $x = [x_1,...,x_n]$ vektor
 - **Súlyok**: $w = [w_1,...,w_n]$ súlyvektor
 - $w_0$ bias weight, eltolássúly
+- $x_0$ pedig fix bemenet, mindig $-1$
 - először minden bemeneti értéket megszorozza a hozzá tartozó súllyal, ezeket összeadja, majd kivonja belőle az eltolássúlyt
 - majd a kapott értéken alkalmazzuk az **aktivációs függvényt**
 
@@ -155,7 +165,10 @@ Példa aktivációs függvények:
 - **szigmoid függvény:** $g(x) = 1/(1 +e^{-x})$
 - **Rectifier aktiváció:** $g(x) = max(0, x)$ (ReLU)
 
+
+
 Neuronokból hálózatokat szokás építeni. Egy hálózatnak lehet több rétege is. Van egy input, egy output és lehet több rejtett rétege is. Egy rétegen belül a neuronok között nincs kapcsolat, csak a rétegek között (előrecsatolt hálózatok). 
+
 
 ### k-legközelebbi szomszéd módszere
 Adottak $(x_1,y_1),..,(x_n,y_n)$ példák.
