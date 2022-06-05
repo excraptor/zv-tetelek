@@ -120,7 +120,7 @@ Algoritmus:
 	- **Legrosszabb eset:** $\mathcal{O}(n+k)$
 	- **Tárigénye:** $\mathcal{O}(n+k)$
 - **Számjegyes rendezés (radix):**
-	- Legalacsonyabb helyiértéktől a legmagasabbig megnézzük a számot a listában, majd helyére rendezzük.
+	- Legalacsonyabb helyiértéktől a legmagasabbig megnézzük a számot a listában, majd helyére rendezzük, leszámláló rendezéshez hasonlóan, ilyen bucketeket hozunk létre 0-9-ig és ide belerakjuk az elemeket, majd kivesszük őket, és addig csináljuk ezt loopba, amíg nyílván már nincs számjegy.
 	- **Legrosszabb eset:** $\mathcal{O}(d(n+k))$, *n* darab *d* jegyből álló szám, ahol a számjegyek értéke legfeljebb *k* értéket vehetnek fel.
 	- **Tárigénye:** $\mathcal{O}(n+k)$
 	- Kicsi értékek esetén
