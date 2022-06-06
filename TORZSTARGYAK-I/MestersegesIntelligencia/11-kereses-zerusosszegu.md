@@ -204,7 +204,8 @@ A gyakorlatban a minimax és az alfa-béta vágásos algoritmusokat is csak megh
 A feladat az állapottérrel adott keresési problémák és az optimalizálási problémák jellemzőit ötvözi. Az állapotok és célállapotok speciális alakúak.
 
 **Lehetséges állapotok halmaza:** a feladat állapotai az $n$ db változó lehetséges értékkombinációi.
-$D = D_1x...xD_n$, ahol $D_i$ az i. változó lehetséges **értékei**
+$D = D_1*...*D_n$ (* itt most a descartes szorzat), ahol $D_i$ (D domain értékkészletének i. értéke) az i. változó lehetséges **értékei**
+
 **Célállapotok:** a megengedett állapotok, adottak különböző korlátozások, és azok az állapotok a célállapotok, amik minden korlátozást kielégítenek.
 
 Az út a megoldásig lényegtelen, és gyakran célfüggvény is értelmezve van az állapotok felett, ilyenkor egy optimális célállapot megtalálása a cél.
@@ -212,3 +213,19 @@ Az út a megoldásig lényegtelen, és gyakran célfüggvény is értelmezve van
 PL: Gráfszínezési probléma.
 Adott egy $G(V,E)$ gráf, ahol $n = |V|$. A változók a gráf pontjai. Az $i$ pont lehetséges színeinek halmaza a $D_i$ és $D_1 = ... = D_n$.
 Minden $e \in E$ élhez rendelünk egy $C_e$ korlátozást, amely azokat a színezéseket engedi meg, ahol az $e$ él két végpontja különböző színű.
+
+### Inkrementális kereső algoritmusok
+
+Optimalizálás helyett keresési feladatot definiálunk. **Nem az eredeti állapottér felett kell dolgozni**, hanem kikell terjeszteni ezt a teret úgy, hogy felveszünk egy új "ismeretlen" értéket (**jele: ?**) és az összes Domainben lévő értékhez hozzáadjuk ezt a változót.
+
+- $D_i = D_i \bigcup \{?\}$ vektorok lesznek az **új keresési tár állapotai**
+- **Kezdeti állapot:** csupa kérdőjel $(?,..,?)$
+- **Állapotátmenet költsége** legyen konstans
+- **Állapotátmenetek** valamely pontosa egy "?"-jelet lecserélnek egy adott változó másik értékére. $\rightarrow$ sokkal kisebb fa méret.
+
+Erre már lehet végrehajtani bármely korábban nézett informálatlan keresési algoritmus. A **mélységi keresés** elég jó, mivel kicsi a keresőfa mélysége és nem fogyaszt memóriát (backtrack)
+
+Ennél jobb viszont az informális keresési algoritmusok bevetése:
+- Válasszuk azt a változót, amihez a **legkisebb megengedett érték** maradt.
+	- Ha nem egyértelmű akkor azt, amelyre a **legtöbb korlátozás** vonatkozik
+- A választott változó megengedett értékeiből kezdjük azzal, amelyik a **legkevésbé korlátozza a következő lépések lehetséges számát**
