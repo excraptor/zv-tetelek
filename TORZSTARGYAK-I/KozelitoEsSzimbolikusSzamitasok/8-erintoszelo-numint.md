@@ -108,7 +108,7 @@ Legyen adott 4 alappont: $(-1,2),(0,0),(1,4),(4,0)$, és ennek keressük a harma
 
 | x      | -1 | 0 | 1 | 4 |
 |--------|----|---|---|---|
-| p_3(x) | 2  | 0 | 4 | 0 |
+| $p_3(x)$ | 2  | 0 | 4 | 0 |
 
 Határozzuk meg az $L_i(x)$ polinomokat:
 $L_1(x) =\dfrac{(x-0)(x-1)(x-4))}{(-1-0)(-1-1)(-1-4)}$

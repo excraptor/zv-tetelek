@@ -74,10 +74,12 @@ A fordítás folyamata az alábbiak alapján történik:
 **Futtatás:** java filename
 
 **Java fordítási opciók:**
-- -g: debug információk generálása
-- -s <könyvtár>: a generált fájlok könyvtárának megadása
-- -sourcepath <path>: a forrásfájlok elérési útvonalát meg lehet adni
-- -Werror: figyelmeztetés esetén megáll a fordítás
+- **-g:** debug információk generálása
+- **-s <könyvtár>:** a generált fájlok könyvtárának megadása
+- **-sourcepath <path\>:** a forrásfájlok elérési útvonalát meg lehet adni
+- **-Werror:** figyelmeztetés esetén megáll a fordítás
+- **-O:** Optimalizálás
+- **-nowarn:** Ne legyen semmi figyelmeztetés
 Java parancssori paraméterek
 public static void main(String[] args)
 A main függvény paramétere az args string tömb, amely tartalmazza a parancssori paramétereket. Ezen a tömbön valamilyen ciklus segítségével végig iterálhatunk és a parancsori paramétereket tetszés szerint kezelhetjük.
