@@ -1,4 +1,5 @@
 
+
 # 4. A PSPACE osztály. PSPACE-teljes problémák. Logaritmikus tárigényű visszavezetés. NL-teljes problémák
 
 ## Alapvető információk:
@@ -20,8 +21,16 @@
 ## PSPACE osztály = $Space(n^k)$
 Polinom tárban (det. vagy nemdet.) eldönthető problémák osztálya.
 **Savitch-tétel**: Az $f(n)$ tárban nemdeterminisztikusan eldönthető problémák mind eldönthetők determinisztikusan, $f^2(n)$ tárban is
-Tehát: $NSPACE(f(n))$ részhalmaza $SPACE(f^2(n))$-nek és mivel polinom négyzete polinom $\rightarrow$ PSPACE = NPSPACE
-+Elérhetőség eldönthető O(log^2n) tárban.
+Tehát: $NSPACE(f(n))$ részhalmaza $SPACE(f^2(n))$-nek és mivel polinom négyzete polinom $\rightarrow$  
+ PSPACE = NPSPACE
+ Elérhetőség eldönthető O(log^2n) tárban (A Savitch algoritmussal!).
+**Elérhetőségi módszert** használta bizonyításnak: 
+ Szeretnénk szimulálni egy nemdet algoritmust determinisztikus módon. Ezt a RAM-gép konfigurációs gráfjával tesszük (ahol a csúcsok az állapotok, az élek a lehetséges elérhető állapotok -- working regiszterek+aktuális kódsor). 
+ Egy $O(f(n))$ tárigényű nemdet, offline programnak egy n méretű inputon elinditva $k^{f(n)}$ konfigurációja lehet.
+Ezen lefuttatva az $O(log^2n)$ tárigényű elérhetőségi algoritmust kijön, hogy determinisztikus módon szimuláltunk egy nemdet algoritmust. 
+ A Savitch algoritmust futtatva ezen a tárigénye: 
+ $log^2 (k^{f(n)}) = (O(f(n) * log k) ^2 = O((f(n))^2)$
+A LÉNYEG: NEMDET ALGORITMUST SZIMULÁLUNK DET. MÓDON, A TÁRIGÉNY CSAK NÉGYZETRE EMELŐDIK. POLINOM A NÉGYZETEN STILL POLINOM SZÓVAL PSPACE = NPSPACE
 
 ## PSPACE-teljes problémák
 **Nehézség, teljesség:**
@@ -53,16 +62,6 @@ az éses csúcsoknál lévő játékos minimalizál
 	-  egy olyan csúcsba kell húzni a bábut, ami egy lépésben elérhető, és ahol még nem voltak
 	-  aki először nem tud lépni, vesztett
 
-QSAT <= Földrajzi játék
-Egy $\exists x_1\forall x_2 \exists x_3....\forall x_m \phi$ alakú formulából készÍtünk egy gráfot egy kezdőcsúccsal úgy, hogy 
-- Ha a formula igaz, vagyis ha a $\exist$ játékosnak van nyerő stratégiája a QSAT játékban, akkor a készített FÖLDRAJZI JÁTÉK példányban az első játékosnak legyen;
-- Ha pedig a $\forall$ játékosnak van nyerő stratégiája, akkor a második nyerje.
-1. Minden változóhoz elkészitünk egy gadgetet és ezeket láncba kötjük.
-2. Ha elágazáshoz érünk, akkor az választ, hogy fel vagy lehúzza a bábut: 0 vagy 1-re állítás
-3. Ezután kényszeríti a következtő ellenfelet egy lépésre.
-4. Felveszünk klózonként még egy új csúcsot és az utolsó gadget jobb oldalába éleket húzunk belőle ezekbe.
-5. Továbbá a klúz csúcsokból visszafelé húzunk éleket az értékválasztó gadgetekbe: Ha $x$ szerepl benne, akor az $x$ gadged **alsó** csúcsába, ha $\neg x$ akkor a felsőbe.
-
 Földrajzi játék PSPACE-teljes
 
 Adott két reguláris kifejezés, igaz-e, hogy ugyanazokra a szavakra illeszkednek?
@@ -92,11 +91,14 @@ Elérhetőség
 Nemdeterminisztikus módon választunk 1 és $n$ között csúcsot és mivel az inputot olvasni kell, outputra nem irunk semmit, csak két változót tartunk számon, amibe csak $1...n$ vannak számok így logtáras lesz.
 
 **Immerman-Szelepcsényi tétel:**
-Van olyan **nemdeterminisztikus** algoritmus, mely **logaritmikus tárban** kiszámítja az input gráf megadott csúcsából elérhető csúcsok számát
+Van olyan **nemdeterminisztikus** algoritmus, mely **logaritmikus tárban** kiszámítja az input gráf megadott csúcsából elérhető csúcsok számát.
+Ezt felhasználva egy ND program konfigurációs gráfján:
+A konfigurációs gráfban először nd kiszámítjuk az elérhető konfigurációk számát, aztán ciklusban mindet nemdeterminisztikusan megpróbáljuk elérni, számoljuk, hogy mennyit sikerült. Ha annyit értünk el, amennyi csak elérhető és egyik sem elfogadó, akkor Accept, különben Reject.
+Vagyis megadtuk a nemdet algoritmus komplementerét. 
 következmény: 
 - $NSPACE(f(n)) = coNSPACE(f(n)).$
 - $NL = coNL$
-
+TEHÁT NEMDET PROBLÉMÁK KOMPLEMENTERE MEGOLDHATÓ UGYANOLYAN TÁRBAN. 
 **Egyéb infók:**
 L $\subseteq$ NL (részhalmaza, vagy egyenlő vele)
 
