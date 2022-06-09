@@ -1,4 +1,5 @@
 
+
 # 15. Neumann-elvű gép egységei. CPU, adatút, utasítás-végrehajtás, utasítás- és processzorszintű párhuzamosság. Korszerű számítógépek tervezési elvei. Példák RISC (UltraSPARC) és CISC (Pentium 4) architektúrákra, jellemzőik
 
 Számítógép architektúra: A hardver egy általános absztrakciója: a hardver struktúráját és viselkedését jelenti más rendszerek egyedi, sajátos tulajdonságaitól eltekintve
@@ -152,7 +153,10 @@ Nagyon kevés utasítással rendelkeznek, tipikusan 50 körül. Az adatút egysz
 
 **UltraSparc architektúra:**
 1. Memória: 8 bit-byteokból áll össze. (halfword, word, doubleword)
-2. Regiszterek: 100 féle különböző általános célű regisztert tartalmaz. Egy adott task egyszerre csak 32 regisztert érhet el.
+2. Regiszterek: 100 féle különböző általános célú regisztert tartalmaz. Egy adott task egyszerre csak 32 regisztert érhet el (regiszterablak). Nagy endián tárolás.
+	- 32 db. áltlalános célú (64 bit)
+	- 32 db. lebegőpontos
+	- További regiszterek globális adatokra, paraméterátadásra, visszatérési értékekre, verem és veremkeret mutató
 3. Adat formája: 
 	- Integerek 8-, 16-, 32- vagy 64-bit bináris számok
 	- Karakterek 8 biten ASCII kódolásban
@@ -170,3 +174,13 @@ Azok a processzorok tartoznak ide, amelyek utasításkészlete lehetőleg minden
 Interpretálást használ, ezért sokkal összetettebb utasításai vannak, mint egy RISC gépnek. Több száz ilyen utasítása lehet. Az interpretálás miatt lassabb a végrehajtás.
 
 Példa: x86 architektúrák pl. Intel 80x86 család.
+
+**Pentium 4**
+- 16 db. regiszter, 4 csoportba oszthatók (Kis endián tárolás):
+	- Általános célú regiszterek, 32 bit: EAX, EBX, ECX, EDX
+	- Pointer/index (??iguess), 32 bit: ESI, EDI, EBP, ESP
+	- Kompatibilitás miatt, 16 bit: CS, SS, DS, ES, FS, GS
+	- Nemtom, nincs neve, 32bit: EIP (utasításmutató), EFLAGS (CPU állapotmutatók)
+- Utasításformátum: Szabálytalan és bonyolult
+	- 6 féle változó hosszúságú mező, melyből 5 opcionális
+	- Intenzív dekódolást igényelnek a hossz és típus megállapítására
