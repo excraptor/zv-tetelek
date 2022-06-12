@@ -12,11 +12,26 @@ Bayesi felfogásban a valószínűség a hit fokát, és nem az igazság fokát 
 
 **Véletlen változók:** 
 - Van neve, és értékkészlete (domainje): logikai, diszkrét, folytonos. 
-- **Elemi kijelentés:** $A$ vél.változó $D_A$ domainnel. Egy elemi kijelentés A értékének egy korlátozását fejezi ki (pl: $A = d$, ahol $d \in D_A$
+- **Elemi kijelentés:** $A$ vél.változó $D_A$ domainnel. Egy elemi kijelentés A értékének egy korlátozását fejezi ki (pl: $A = d$, ahol $d \in D_A$, amelyek a következő értékeket vehetik fel:
+	- Logikai: Ekkor a Domain {Igaz, Hamis}
+	- Diszkrét: Megszámlálható domain, pl {nap, eső, felhő, hó}
+	- Folytonos: X véletlen változó, $D \subseteq \mathbb{R}$
 - **Elemi esemény:** Minden véletlen változóhoz értéket rendel. Ha az $A_1 ...A_n$ véletlen változókat definiáltuk a $D_1 ... D_n$ domainekkel, akkor az elemi események (lehetséges világok) halmaza a $D_1 \times ... \times D_n$ halmaz. Vagyis egy "lehetséges világban" --- **elemi eseményben** az $A_i$ változó a hozzá tartozó $D_i$ ből **pontosan egy értéket vesz fel.**  
+
+**Fenti definíciók pár következménye:**
+1. Minden lehetséges világot pontosan egy **elemi esemény** írja le.
+2. Egy **elemi esemény** természetes módon minden lehetséges **elemi kijelentéshez igazságértéket rendel**
+3. Minden **kijelentés** logikailag ekvivalens a neki nem ellentmondó elemi eseményeket leíró kijelentések halmazával.
 
 **Valószínűség, kijelentések:**  
  A valószínűség egy függvény, ami egy kijelentéshez egy valós számot rendel.  $P(a)$ az $a$ kijelentés valószínűsége. Minden kijelentés elemi események egy  halmazával  ekvivalens. **Egy kijelentés valószínűsége egyenlő a vele konzisztens elemi események valószínűségének az összegével.** (Ehhez kell a teljes együttes eloszlás, ami megadja az összes elemi esemény valószínűségét) 
+
+**Feltételes valószínűség**
+$$P(A|B) = \dfrac{P(A \cap B)}{P(B)}$$
+
+**Kazualitás:**
+Okszerűség, okozati kapcsolat
+Pl: Fogfájás nem hat az időjárásra, tehát ott független, de az Időjárás hathat a Fogfájásra, ezért nem beszélhetünk mégsem függetlenségről $\Rightarrow$ a Fogfájás ténye adhat infót az Időjárásról.
 
 ## Teljes együttes eloszlás tömör reprezentációja, Bayes hálók
 
@@ -43,16 +58,21 @@ Az abszolút függetlenség ritka. Ezért használhatunk feltételesen függetle
 $a$ és $b$ kijelentések **feltételesen függetlenek** $c$ feltevésével, akkor és csak akkor, ha $P(a \wedge b | c) = P(a|c)*P(b|c)$. Tipikus eset, ha $a$ és $b$ közös oka $c$.
 Pl: fogfájás és a beakadás közös oka a luk.
 
+
 **Naiv-Bayes modell alakja**
 Ha $A$ feltevése mellett $B_1,...,B_n$ kölcsönösen függetlenek, akkor 
 $P(B_1, . . . , B_n|A) = \prod_{i=1}^{n} P(B_i|A)$. ha ez igaz, akkor ez a *Naiv-Bayes modell alakja*, ami a következőképp definiálható:
 $P(B_1, . . . , B_n,A) = P(A)\prod_{i=1}^{n} P(B_i|A)$,
 **Ezzel $O(n)$ tömörítés érhető el**
 
-**Bayes szabály $a$ és $b$ kijelentésekre**
-$P(a|b) = \dfrac{P(b|a)P(a)}{P(b)}$,
-ez következik a feltételes függetlenség képletéből: 
-P$(a \wedge b) = P(a|b)P(b) = P(b|a)P(a)$
+### Bayes szabály/tétel $a$ és $b$ kijelentésekre
+
+$$P(a|b) = \dfrac{P(b|a)P(a)}{P(b)}$$
+ez következik a feltételes valószínűség képletéből: 
+$P(a|b) = \dfrac{P(a \cap b)}{P(b)}$ 
+alapján
+$P(a|b)P(b) = P(a\cap b) = P(b|a)P(a)$
+amiből a P(b)-vel leosztva adódik a tétel.
 
 ### Bayes hálók
 
@@ -61,11 +81,11 @@ A teljes együttes eloszlás feltételes függetlenségeit ragadja meg és ezekb
 
 Bayes háló esetén alkalmazunk **láncszabályt**, ami azt jelenti, hogy a **teljes együttes eloszlást** (amit majd tömöríteni szeretnénk) **feltételes eloszlások szorzataként** jeleníti meg.
 Formailag:
-$$P(X1, . . . , Xn) = \prod_{i=1}^{n} P(X_i|X_{i+1},...,X_n)$$
+$$P(X_1, . . . , X_n) = \prod_{i=1}^{n} P(X_i|X_{i+1},...,X_n)$$
 
 Ezután az egyes feltételes valószínűségelből elhagyhatunk változókat, azaz minden $P(X_i | X_{i+1},..,X_n)$ tényezőre az $\{X_{i+1},..,X_n\}$ változókból vegyünk egy $Szulok(x_i)$.
 Ebből tudunk tömöríteni, mivel a Szülők halmaz minimális.
-$$P(X1, . . . , Xn) = \prod_{i=1}^{n} P(X_i|\text{Szülő}(X_i))$$ (ez a bayes háló)
+$$P(X_1, . . . , X_n) = \prod_{i=1}^{n} P(X_i|\text{Szülő}(X_i))$$ (ez a bayes háló)
 **Ez a teljes eloszlás tömörített reprezentációja.**
 Ezt lehet egy gráf formájában vizualizálni.
 Például az $X_i$ változókat fel lehet venni mint a gráf csomópontjai, a $Szulok(X_i)$ halmaz elemeiből pedig éleket lehet húzni az $X_i$ változó felé.
@@ -73,9 +93,16 @@ Például az $X_i$ változókat fel lehet venni mint a gráf csomópontjai, a $S
 
 "Tegyük fel" hogy nem érted a fenti matekot. Józan paraszti megmagyarázása a Bayes hálóknak:  
 A Bayes hálóval változók egy halmazát, és a köztük lévő feltételes függőségeket reprezentáljuk egy irányított, körmentes gráffal. Ideális olyan feladatra, ahol egy bekövetkezett eseményből próbáljuk meg megbecsülni az ő "okát". Pl: Kap egy csomó tünetet, Bayes hálóval képesek vagyunk megbecsülni az őt okozható betegségeknek a valószínűségeit. 
+Bayes háló $O(n*2^k)$ tud tömöríteni. ahol $k$ a szülők száma. $n$ pedig a node-ok száma, ellenben az $O(2^n)$ el szemben.
 
+#### Bayes háló konstruálás
+Sok esetben definiálva vannak a **változók** és a **hatások** a változók között, és szakértőkkel kitöltjük az empirikus tudás segítségével a változókhoz tartozó **feltételes eloszlásokat.** Ilyenkor nem az **eloszlásból**, hanem az intuitív reprezentáció adott, ami definiál egy **teljes együttes eloszlést**, amit felhasználhatunk következtetésre.
 
+Fontos, hogy a **láncszabály** esetén rögzített változósorrendtől függ a Bayes háló alakja.
 
+#### Függetlenség és Bayes háló
+Ahhoz, hogy egy random node-ra megmondjuk, hogy milyey függetlenségi informáicója van, a **Markov-takarót** tudjuk használni.
+Pl: $X$ markov takarója az a halmaz, amely $X$ szülőinek, $X$ gyerekeinek és $X$ gyerekei szülőinek az uniója. 
 
 ## Gépi tanulás: felügyelt tanulás problémája, döntési fák, naiv Bayes módszer, modellillesztés, mesterséges neuronhálók, k-legközelebbi szomszéd módszere
 
@@ -110,25 +137,27 @@ Mivel $Y$ véges halmaz, osztályozási feladatról beszélünk, ahol $X$ elemei
 
 *Tulajdonképpen osztályozás, $X$ **elemeit** kell $Y$ valamelyik **osztályába** sorolni.*
 
-Előnye, hogy döntései megmagyarázhatók, mert emberileg értelmezhető lépésekben jutottunk el odáig.
+**Előnye**, hogy döntései megmagyarázhatók, mert emberileg értelmezhető lépésekben jutottunk el odáig.
 
 **Kifejezőereje megegyezik az ítéletkalkuluséval.**
 Mivel vannak valamilyen **ítéletek** (változó értékadások), egy **modell** (egy $x\in X$ változóvektor), és egy **formula** (döntési fából adódoan).
 **Fa $\Rightarrow$ formula:** Vesszük az összes olyan levelet amelyen igen címke van, és az oda vezető utakban "és"-el összekötjük az éleket, és az utakat "vagy"-gyal összekötjük.
 
-**Fa $\Rightarrow$ formula:** A logikai formula igazságtábláját fel lehet írni fa alakban, ha vesszük a változók $A_1,..,A_n$ felsorolását, az $A_1$ a gyökér, értékei az élek, 
-és az $i$ edik szinten a fában minden pontban $A_i$ van.
+**Formula $\Rightarrow$ fa:** A logikai formula igazságtábláját fel lehet írni fa alakban, ha vesszük a változók $A_1,..,A_n$ felsorolását, az $A_1$ a gyökér, értékei az élek (i/h általában), és az $i$ edik szinten a fában minden pontban $A_i$ van. 
 
 **Döntési fa építése:**
+adottak **pozitív és negatív példák felcímkézve**, tipikusan több száz (pl: Vendégek = tele, Várakozás = 10-30, Éhes=igen)
+1. vegyük a **gyökérbe** azt a változót, ami a **legjobban szeparálja** a pozitív és negatív **példákat**. A legjobban szeparáló attribútumot az információtartalma, azaz entrópiája segítségével választhatjuk ki
+2. Aztán ezt folytassuk **rekurzív** módon a gyerekein, tehát **nem rögzített változókból** választunk egy gyökeret a következő **részfához**
 
-- adottak **pozitív és negatív példák felcímkézve**, tipikusan több száz
-- vegyük a **gyökérbe** azt a változót, ami a **legjobban szeparálja** a pozitív és negatív **példákat**
-- ezt folytassuk rekurzív módon
+Speciális esetek amik megállítják a **rekurziót:**
 - ha **csak pozitív vagy negatív példa van**, akkor **levélhez értünk, felcímkézzük** ezzel a levelet
 - ha **üreshalmaz**, akkor a **szülő szerint többségi szavazattal címkézünk**
-- ha **nincs több változó, de vannak negatív és pozitív példák is**, akkor szintén **többségi szavazattal címkézhetjük a levelet**
+- ha **nincs több változó, de vannak negatív és pozitív példák is** (valszeg zajjal terhelt az adat), akkor szintén **többségi szavazattal címkézhetjük a levelet**
 
-A legjobban szeparáló attribútumot az információtartalma, azaz entrópiája segítségével választhatjuk ki. 
+**entrópia:** $- \Sigma_i \ p_i \ log\ p_i$, 
+ahol $\Sigma_i\ p_i = 1$, amelynek minimuma 0, ami a maximális rendezettséget jelöli.
+
 
 ### Naiv Bayes módszer
 
@@ -142,6 +171,11 @@ Ehhez a következő átalakításokat illetve függetlenségi feltevéseket tess
 $P(A|b_1,..,b_n) = \alpha P(A)P(b_1,...,b_n|A) \approx \alpha P(A)\prod_{i=1}^{n}P(b_i|A)$.
 Itt az első egyenlőségjel a Bayes tétel alkalmazása, ahol $\alpha = 1/P(b_1,...,b_n)$. Mivel csak $A$ értékei közötti sorrendet keresünk, és $\alpha$ nem függ $A$-tól, az $\alpha$értéke nem érdekes.
 A második pedig a naiv Bayes feltevést fogalmazza meg. Nem biztos, hogy teljesül az egyenlőség viszont könnyen tudunk adatbázisból valószínűségeket számolni.
+
+Fontos kiemelni, hogy a szavakat nem nézzük milyen sorrendbe irjuk fel. pl a "Dear Friend" és a "Friend Dear" is ugyanakkora értéket fog kapni. **Nem tesz fel közöttük semmilyen függöséget.**
+
+Ha akarunk **tesztelni egy adott kérdést**, hogy pl azok a szavak az adott levélben spam/nem spam, akkor felírjuk hozzá a fenti képlettel **mindkettő esetben** a valószínűséget, és **amelyikhez közelebb van oda fog kerülni**.
+Amennyiben az egyik szó nincs a másik szótárában, akkor az automatikusan 0 valószínűséget fog felvenni, ezért néha adnak hozzá minden szó előforduláshoz egy $\alpha$ számot, tipikusan 1-et
 
 ### Modellillesztés
 

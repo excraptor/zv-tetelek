@@ -82,7 +82,7 @@ Feladat:
 
 Ha F egy formula, akkor F\[x/t\] azt jelenti, hogy F-ben x összes előfordulását helyettesítjük t-vel.
 
-Ha $x_1, x_2, ..., x_n$ **változók**, és $t_1, ..., t_n$ **termek**, akkor az \[x1/t1\], ..., \[xn/tn\] helyettesítés azt jelenti, hogy először $x_1$ helyére írunk $t_1$-et, aztán az eredményben $x_2$ helyére $t_2é-t, stb.
+Ha $x_1, x_2, ..., x_n$ **változók**, és $t_1, ..., t_n$ **termek**, akkor az \[x1/t1\], ..., \[xn/tn\] helyettesítés azt jelenti, hogy először $x_1$ helyére írunk $t_1$-et, aztán az eredményben $x_2$ helyére $t_2$-t, stb.
 
 Formulák halmazaira, pl klózokra is értelmezhetjük ezt.
 

@@ -18,7 +18,7 @@ Egy **indukciós fej** lebeg a lemez felszíne felett egy vékony légpárnán.
 Ha **pozitív vagy negatív áram folyik** az indukciós tekercsben, a fej alatt a lemez magnetizálódik, és ahogy a korong forog a fej alatt, így bitsorozatokat lehet felírni
 Amikor a fej egy mágnesezett terület felett halad át, akkor pozitív vagy negatív áram indukálódik benne, így a korábban eltárolt biteket vissza lehet olvasni. 
 
-Egy teljes körülfordulás alatt felírt bitsorozat **a sáv**. Minden sáv rögzített méretű tipikusan 512 bájt méretű szektorokra van osztva, melyeket egy fejléc előz meg, lehetővé téve a fej szinkronizálását írás és olvasás előtt. Az adatok után hibajavító kód helyezkedik el (Hamming vagy Reed-Solomon).
+Egy teljes körülfordulás alatt felírt bitsorozat **a sáv**. Minden sáv rögzített méretű tipikusan **512 bájt méretű *szektorokra* van osztva**, melyeket egy fejléc előz meg, lehetővé téve a fej szinkronizálását írás és olvasás előtt. Az adatok után hibajavító kód helyezkedik el (Hamming vagy Reed-Solomon).
 
 Minden lemeznek vannak mozgatható karjai, melyek a forgástengelytől sugárirányban ki-be tudnak mozogni. Minden sugárirányú pozíción egy-egy sáv írható fel. Tehát a sávok forgástengely középpontú koncentrikus körök.
 
@@ -188,7 +188,7 @@ A billentyűzet gombjai kábelezés szempontjából egy ún. billentyűzet-mátr
 ### Modem
 
 A modem egy olyan berendezés, ami egy vivőhullám modulációjával a **digitális jelet analóg információvá, illetve a másik oldalon ennek demodulációjával újra digitális információvá alakítja**. Az eljárás célja, hogy a digitális adatot analóg módon átvihetővé tegye.
-A moduláció különféle eljárások csoportja, melyek biztosítják, hogy egy tipikusan szinuszos jel - a vivő - képes legyen információ hordozására. A szinuszos jel három fő paraméterét, az amplitúdóját, a fázisát vagy a frekvenciáját módosíthatja a modulációs eljárás, azért, hogy a vivő információt hordozhasson. Néhány ok, ami miatt szükséges a közvetítő közegen való átküldést megelőző moduláció:
+A moduláció különféle eljárások csoportja, melyek biztosítják, hogy egy tipikusan szinuszos jel - a vivő - képes legyen információ hordozására. A szinuszos jel három fő paraméterét, az **amplitúdóját**, a **fázisát** vagy a **frekvenciáját** **módosíthatja a modulációs eljárás**, azért, hogy a vivő információt hordozhasson. Néhány ok, ami miatt szükséges a közvetítő közegen való átküldést megelőző moduláció:
 A modem egy másik modemmel működik párban, ezek az átviteli közeg két végén vannak. Szigorú értelemben véve a két modem két adatátviteli berendezést köt össze, azonban a másik végberendezés tovább csatlakozhat az internet felé.
 
 

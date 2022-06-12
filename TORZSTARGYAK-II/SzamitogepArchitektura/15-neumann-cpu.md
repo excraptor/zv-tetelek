@@ -26,10 +26,11 @@ Számítógép architektúra: A hardver egy általános absztrakciója: a hardve
 	- *CU (vezérlőegység)*
 	- Regiszterek
 3. **beviteli/kiviteli eszközök:** kapcsolatot teremt a felhasználóval, adatot tárol a háttértáron, nyomtat, stb.
-4. **Háttértárak:** Merevlemez, SSD stb.
-- **Busz és sínrendszerek:**
-		- **külső sín:** A számítógép egyes elemei között biztosít kapcsolatot. Pl. perifériák, csatolókártyák
-		- **belső sín:** CPU részegységei közötti kommunikációt hozza létre (vezérlőegység-ALU-regiszterek)
+	- **Háttértárak:** Merevlemez, SSD stb.
+	- Billentyűzet, egér stb.
+4. **Busz és sínrendszerek:**
+	- **külső sín:** A számítógép egyes elemei között biztosít kapcsolatot. Pl. perifériák, csatolókártyák
+	- **belső sín:** CPU részegységei közötti kommunikációt hozza létre (vezérlőegység-ALU-regiszterek)
 	
 ## CPU, adatút, utasítás-végrehajtás, utasítás- és processzorszintű párhuzamosság
 

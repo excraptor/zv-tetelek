@@ -4,7 +4,7 @@
 
 ## C++ fordítás, futtatás
 
-### Előfordítás
+###  1. Előfordítás
 
 Első lépésben az előfordító(preprocessor) a tényleges fordítóprogram futása előtt szövegesen átalakítja a forráskódot.
 Az előfordító különböző szöveges változtatásokat hajt végre a forráskódon, előkészíti azt a tényleges fordításra.
@@ -13,16 +13,20 @@ Feladatai:
 - A **forrásfájlban (*.cpp)** fizikailag több sorban elhelyezkedő forráskód logikailag egy sorbatörténő csoportosítása (ha szükséges).
 - A kommentek helyettesítése whitespace karakterekkel.
 - Az előfordítónak a programozó által megadott feladatok végrehajtása (szimbólumokbehelyettesítése, feltételes fordítás, makrók, stb.) 
-A leggyakoribb műveletei a szöveghelyettesítés (#define), a szöveges állomány beépítése (#include) valamint a program részeinek feltételtől függő megtartása
+A leggyakoribb műveletei a szöveghelyettesítés (**#define**), 
+a szöveges állomány beépítése (**#include**) valamint a program részeinek feltételtől függő megtartása
 - Az előfeldolgozó az #include direktíva hatására az utasításban szereplő szöveges fájl tartalmát beszúrja a programunkba, a direktíva helyére.
 
-### Fordítás
+### 2. Fordítás
 
-Fordításkor a forrásfájlokból az első lépésben **tárgymodulok (*.o) keletkeznek**, önmagukban nem futóképesek. 
+Fordításkor a forrásfájlokból az első lépésben **tárgymodulok (*.o) keletkeznek**, önmagukban nem futóképesek. (**Assembly kódot csinál**)
+
 Ezt követően szükség van egy szerkesztőre, ami ezeket a modulokat összeszerkeszti.
 Linux/Unix rendszerek esetén a fordító a **gcc**. Az alábbi módon tudjuk lefordítani a több forrásfájlból álló projektet: 
 **gcc -o prog main.cpp class1.cpp class2.cpp**
 Felsoroljuk azokat a fájlokat (a felsorolás sorrendje lényegtelen), amiket le szeretnénk fordítani. Fontos a main.cpp megadása hiszen ez a program belépési pontja.
+
+**3. Linkelés**
 A **-o prog**, megadásakor megadhatjuk a program nevét, ekkor prog néven hozza létre az .exe fájlt. Ha nem mondunk semmit, akkor az alapértelmezett exe fájl neve a.out lesz. Célszerű használni a -o kapcsolót. Az exe kiterjesztés csak Windows esetén van, Linux esetén csak futtatási jogú fájlt kapunk.
 A fordító először mindegyiket lefordítja, melyek a .o kiterjesztésű tárgymodul fájlok lesznek, majd ezek összeszerkesztésre kerülnek
 
