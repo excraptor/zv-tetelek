@@ -10,38 +10,34 @@
 3. **Összevonás:** a részfeladatok megoldásait összevonjuk, és az adja a végső megoldást.
 
 #### Példa
-Felező-csúcskereső algoritmus
+*Felező-csúcskereső algoritmus*
 
 **Input:** egy számsorozat
 **Output:** van-e benne csúcs?
-
-Algoritmus: az *n* méretű sorozat helyett vizsgáljunk egy *(n-1)/2* méretűt, és ebben keressünk csúcsot,
+**Algoritmus:** az *n* méretű sorozat helyett vizsgáljunk egy *(n-1)/2* méretűt, és ebben keressünk csúcsot,
     majd ezt folytatjuk rekurzívan
 
 ### Dinamikus programozás
 
 **Alapgondolat**: Mi lenne, ha a már  megoldott részproblémákat nem számolnánk ki újra  
-minden egyes alkalommal ⇒ eltároljuk a részproblémák megoldásait. ==Idő tárra cseré-  
-lése==
+minden egyes alkalommal ⇒ eltároljuk a részproblémák megoldásait. ==Idő tárra cserélése==
 - Dinamikus programozás akkor, ha a részproblémák nem függetlenek, hanem vannak közös részeik
 - így minden részproblémát csak egyszer fogunk megoldani
 
 **Iteratív megoldás**: bottom-up építkezünk, és minden lehetséges értéket megnézünk
 **Rekurzív megoldás memorizálással**: top-down építkezünk, és kulcs-érték párokat nézünk (csak akkor, ha nem kell minden részmegoldás)
 
-Pénzváltás probléma
+**Pénzváltás probléma**
 **Input:** *P_1, P_2, ... , P_n* típusú pénzérmék, *F* forint
 **Output:** legkevesebb hány érmével fizethető ki pontosan *F* forint?
   
 Pénzváltási feladat megoldása DP-vel: minden összegre *F*-ig kiszámoljuk, hogy azt minimum hány pénzérmével tudjuk kifizetni
-
 - ötlet: minden érmére megnézzük, hogy a korábbi optimális megoldás a jó, amiben nem volt benne az az érme, vagy az, ha benne van az érme
 - futásidő: *O(Fn)*
 
 ### Mohó algoritmusok
 
-A mohó algoritmusok **lokálisan** legjobb döntést hozzák, de ==NEM mindig optimális== meg-  
-oldás az egész feladatra. Viszont, ha adható ilyen algoritmus akkor rendkívűl hatékony.  
+A mohó algoritmusok **lokálisan** legjobb döntést hozzák, de ==NEM mindig optimális== megoldás az egész feladatra. Viszont, ha adható ilyen algoritmus akkor rendkívűl hatékony.  
 Két tulajdonság, ha megadható ilyen algoritmus:  
 1.  **Optimális részstruktúra**: A részfeladatok is optimális megoldást adnak.  
 2.  **Mohó választás**:  Lokálisan optimális választások a globális optimális megoldás-  
@@ -55,52 +51,87 @@ hoz vezetnek
 
 Egy feladat optimális részstruktúrájú, ha a probléma egy opt. megoldása tartalmazza a részfeladatok optimális megoldásait is.
 
-#### Példák
 
-Hátizsák probléma
+### Példák
 
+**Hátizsák probléma**
 - adott egy hátizsák kapacitása, és n tárgy, mindegyik értékkel és súllyal megadva
 - mekkora a legnagyobb összérték, amit a hátizsákba tehetünk?
+*Dinamikus prog:*
+Ismétléses hátizsák probléma:
+Hasonlóan mint a pénzváltásinál 1D tömb, aminek az oszlopai 0...W-ig.
+Amennyibe ismétlés nélküli:
+- felveszünk egy *kapacitás*tárgyak* száma mátrixot és minden sor egy tárgyat képvisel.
+- Kiszámoljuk a legoptimálisabb értékeket
+- idő = tár = $\mathcal{O}(N*W)$, ahol n = tárgyak, w = kapacitás
 
-Töredékes hátizsák probléma
 
+**Töredékes hátizsák probléma**
 - a tárgyak feldarabolhatók
 - de minden tárgyból egy darab van
 
-Mohó algoritmus a töredékes hátizsákra:
-
+*Mohó algoritmus a töredékes hátizsákra:*
 - számoljuk ki minden tárgyra az érték/súly arányt
 - tegyük a hátizsákba a legnagyobb ilyen arányú tárgyat, az egészet ha belefér, vagy törjük, ha nem
+- idő = $\mathcal{O}(n*logn)$, ahol n = tárgyak
+- tár = $\mathcal{O}(1)$
+
+**Huffman-kódolás:**
+input: C ábécé és gyakoriságok
+kimenet: Minimális kötlségű prefix-fa
+Algoritmus:
+- Gyakoriságokat minimumos prioritási sorba rendezi
+- Majd fát épít a két felső minimális elemből, ameddig csak egy fa nem lesz.
+- idő = $\mathcal{O}(n*logn)$
+
 
 ### Rendező algoritmusok
-input: n számból álló tömb\
-output: bemenő tömb elemeinek olyan sorrendje, ahol minden következő elem nagyobbegyenlő az előzőnél\
-fontossága: sok probléma triviális, ha rendezett a bemenet (pl bináris keresés, medián megállapítás)
+*input:* n számból álló tömb\
+*output:* bemenő tömb elemeinek olyan sorrendje, ahol minden következő elem nagyobbegyenlő az előzőnél\
+**fontossága:** sok probléma triviális, ha rendezett a bemenet (pl bináris keresés, medián megállapítás)
 **Stabilitás:** hogy az azonosnak ítélt elemek közötti sorrendet megőrzi-e.
 - Buborék rendezés
 	- Elve, hogy egy „buborékkal” haladva a tömbben több menetben elölről hátra a buborékban szereplő két elemet felcseréljük, ha azok rossz sorrendben vannak. **Stabil rendezés.**
 	- Átlagos eset: $\mathcal{O}(n^2)$
 	- Legrosszabb eset: $\mathcal{O}(n^2)$
 	- Tárigénye: $\mathcal{O}(1)$
+	- Nagy adat esetén, ahol már majdnem rendezettek az elemek. Leggyorsabb, ha extrém kicsi és közel rendezett az adat. **KB csak tanító jellegű, nem éri meg soha.**
 - Beszúró rendezés
 	- folyton haladunk előre a tömbben, az aktuális elemet beszúrjuk a megfelelő helyre. **Stabil rendezés.**
 	- Átlagos eset: $\mathcal{O}(n^2)$
 	- Legrosszabb eset: $\mathcal{O}(n^2)$
 	- Tárigénye: $\mathcal{O}(1)$
-- Összefésülő rendezés
-	- oszd meg és uralkodj: Felbontjuk elemi részekre a tömböt, majd végighaladva összefésüljük őket megfelelő sorrendbe.
-- Gyorsrendezés:
+	- Bármikor tbh. Láncolt listák esetén a leggyorsabb
+- **Összefésülő rendezés**
+	- oszd meg és uralkodj: Felbontjuk elemi részekre a tömböt, majd végighaladva összefésüljük őket megfelelő sorrendbe. Kiválaszt egy pivot elemet és ez alapján particionálja a tömböt, ami mögé a kisebbeket, elé pedig a nagyobbakat mozgatja. **Stabil rendezés.**
+	- Átlagos eset: $\mathcal{O}(n*logn)$
+	- Legrosszabb eset: $\mathcal{O}(n*logn)$
+	- Tárigénye: $\mathcal{O}(n)$ vagy ha láncolt lista akkor $\mathcal{O}(1)$ 
+- **Gyorsrendezés:**
 	- Rekurzív algoritmus, kettéosztja a rendezendő listát egy kiemelt elemnél kisebb és nagyobb elemekre, majd a részekre külön-külön alkalmazza a gyorsrendezést. **Nem stabil rendezés**
 	- **Átlagos eset:** $\mathcal{O}(n log n)$
 	- **Legrosszabb eset:** $\mathcal{O}(n^2)$
 	- **Tárigénye:** $\mathcal{O}(logn)$
-- Leszámláló rendezés
-- Helyben rendezés
-- Kupacrendezés
-- Számjegyes rendezés
-- Edényrendezés
+- **Leszámláló rendezés:**
+	- HA az n bemeneti elem mindegyike 0 és k közötti egész szám, ahol k egy egész.
+	1. Vezetünk egy $C$ tömböt, amibe belerakjuk az i-edik elem előfordulásainak számát. 
+	2. Meghatározzuk minden $i$-re, hogy hány olyan bemeneti elem van, amelyiknek értéke $\le i$ (összegzés $C$-n)
+	3. Minden $j$-re $A[j]$-t beletesszük $B$ megfelelő pozijába, amit $C$ ből állapítunk meg
+	- **Legrosszabb eset:** $\mathcal{O}(n+k)$
+	- **Tárigénye:** $\mathcal{O}(n+k)$
+- **Számjegyes rendezés (radix):**
+	- Legalacsonyabb helyiértéktől a legmagasabbig megnézzük a számot a listában, majd helyére rendezzük, leszámláló rendezéshez hasonlóan, ilyen bucketeket hozunk létre 0-9-ig és ide belerakjuk az elemeket, majd kivesszük őket, és addig csináljuk ezt loopba, amíg nyílván már nincs számjegy.
+	- **Legrosszabb eset:** $\mathcal{O}(d(n+k))$, *n* darab *d* jegyből álló szám, ahol a számjegyek értéke legfeljebb *k* értéket vehetnek fel.
+	- **Tárigénye:** $\mathcal{O}(n+k)$
+	- Kicsi értékek esetén
 
 ### Gráfalgoritmusok
+Egy $G = (V, E)$ struktúrát gráfnak nevezünk, ahol:
+- $V$ a csúcsok halmaza
+- $E \subseteq V*V$ az élek halmaza, vagyis csúcspárok
+- Egy írányítatlan gráf **összefüggő**, ha bármely két csúcs között van út.
+- Egy irányított gráf **erősen összefüggő**, ha bármely két csúcs között van irányított út.
+- Egy gráf **transzponáltja** az élek irányának megfordítását jelenti.
 
 #### Szélességi keresés
 Feladat: Járjuk be az összes csúcsot ami egy **s** kezdő csúcsból elérhető. Mindeközben kiszámoljuk az elérhető csúcsok távolságát **s**-től
@@ -112,7 +143,7 @@ Feladat: Járjuk be az összes csúcsot ami egy **s** kezdő csúcsból elérhet
 **Idő- és térkomplexitás:**
 Ha $|V|$ a csúcsok és $|E|$ a gráf éleinek száma akkor,
 **Időigénye:** $\mathcal{O}(|V|+|E|)$
-**Tárigénye:** $\mathcal{O}(|V|)$
+**Tárigénye:**  $\mathcal{O}(b^d)$, ahol a kezdőponttól *d* távolságra lévő csúcsok. A *b* pedig az elágazási tényező.
 
 
 #### Mélységi keresés
@@ -122,12 +153,23 @@ Gyökércsúcsból indulva az útkeresés/bejárás során balra lefelé tartva 
 
 **Idő- és térkomplexitás:**
 Ha $|V|$ a csúcsok és $|E|$ a gráf éleinek száma akkor,
-**Időigénye:**  $\mathcal{O}(|V|+|E|)$
-**Tárigénye:** $\mathcal{O}(|V|)$
-#### Minimális feszítőfák
+**Időigénye:**  $\mathcal{O}(|V|+|E|)$ 
+**Tárigénye:** $\mathcal{O}(|V|)$ VAGY $\mathcal{O}(bd)$, ahol a kezdőponttól *d* távolságra lévő csúcsok. A *b* pedig az elágazási tényező.
 
-##### Kruskal algoritmus
+#### Erősen összefüggő komponensek
+A gráfban azok a **maximális csúcshalmazok**, amin belül bármelyik csúcsból el lehet jutni a másikba.
+**Meghatározása:**
+- Számitsuk ki MÉLYKERES algoritmussal az $f(u)$ elhagyási értékeket
+- a G transzponált gráfra alkalmazzuk a MELYKERES eljárást úgy, hogy az MBEJAR eljárást f szerint csökkenő sorrendbe hívjuk
+- A 2. pontban az egy mélységi feszítőfába kerülő pontokat alkotnak egy erősen összefüggő komponenst.
 
+Tehát, van egy gráf, ha irányított akkor transzponáljuk az éleit és mélységi keresést indítunk minden olyan pontból, ami még nem tartozik sehova.
+
+### Minimális feszítőfák
+**Feszítőfa:** Minden csúcsot érintő, összefüggő, körmentes élhalmaz.
+
+
+#### Kruskal algoritmus
 - Minden lépésben a legkisebb, két fát összekötő élt húzzuk be (egyesítjük egyetlen fává a két fát)
 - Ha a gráf összefüggő, akkor **minimális feszitőfa megalkotására** szolgál, AMÚGY meg **minimális feszitőerdőt** hoz létre.
 - **Mohó algoritmus!**
@@ -136,7 +178,12 @@ Ha $|V|$ a csúcsok és $|E|$ a gráf éleinek száma akkor,
 	- Ezeket megvizsgáljuk, hogy melyeket vegyük be
 	- Gráfok csúcsa halmazt alkot, és csak akkor kerülnek be, ha két végpontja különböző halmazban van $\rightarrow$ halmazegyesítés.
 
-##### Prim algoritmus
+**Idő- és térkomplexitás:**
+Ha $|V|$ a csúcsok és $|E|$ a gráf éleinek száma akkor,
+**Időigénye:**  $\mathcal{O}(|E|*log|E|)$
+**Tárigénye:** $\mathcal{O}(|V|)$ 
+
+#### Prim algoritmus
 
 Összefüggő súlyozott gráf minimális feszítőfáját határozza meg.
 - minden lépésben új csúcsot kötünk be a fába
@@ -144,23 +191,29 @@ Ha $|V|$ a csúcsok és $|E|$ a gráf éleinek száma akkor,
 - **Mohó algoritmus!**
 Sűrű gráfok esetén (sok él van) Prim előnyösebb, egyébként Kruskal.
 
-#### Legrövidebb utak (csúcsból kiindulva)
+**Idő- és térkomplexitás:**
+Ha $|V|$ a csúcsok és $|E|$ a gráf éleinek száma akkor,
+**Időigénye:**  $\mathcal{O}(|E|*log|V|)$
+**Tárigénye:** $\mathcal{O}(|V|+|E|)$ 
 
-##### Dijkstra algoritmus
-
+### Legrövidebb utak (csúcsból kiindulva)
+Bemenet: Irányított, súlyozott gráf és egy $s$ kezdőcsúcs.
+Kimenet: Minden V csúcshoz a legrövidebb út $s$ ből.
+#### Dijkstra algoritmus
 - azokat a csúcsokat tárolja amihez már megtalálta a legrövidebb utat
 - minden lépésben egyel bővíti az elért csúcsok halmazát
 - legkisebb legrövidebb úttal bíró csúcsot választja
 - **Mohó algoritmus!**
 - nem ad helyes megoldást negatív élsúlyok esetén (beragadhat).
-- **Időigény:** $\mathcal{O}(|E|+|V|*log|V|)$
-
-##### Bellman-Ford algoritmus
+- **Időigény:** $\mathcal{O}(|V|*log|V|)$
+- Minden pontból: $\mathcal{O}(|E|*|V|*log|V|)$
+#### Bellman-Ford algoritmus
 
 - negatív súlyok esetén is működik
 - **Időigény:** $\mathcal{O}(|V|*|E|)$
-##### Floyd-Warshall algoritmus (legrövidebb utak minden pontpárra)
+- Minden pontból: $\mathcal{O}(|V|^2*|E|)$
 
+#### Floyd-Warshall algoritmus (legrövidebb utak minden pontpárra)
 - dinamikus programozás
 - minden egyes lépésben egyre több csúcsot használhatunk
 -  **Időigény:** $\mathcal{O}(|V|^3)$

@@ -1,34 +1,55 @@
+
 # 5. Véges automata és változatai, a felismert nyelv definíciója. A reguláris nyelvtanok, a véges automaták és a reguláris kifejezések ekvivalenciája. Reguláris nyelvekre vonatkozó pumpáló lemma, alkalmazása és következményei
 
+## Alapfogalmak, jelölések
+**Ábécé:** Szimbólumok egy tetszőleges véges, nemüres halmaza jele: $\Sigma$
+-	$\Sigma^*$: Az összs szavak + $\epsilon$
+- $\Sigma^+$: Az összes szavak, kivéve az $\epsilon$
+- $\Sigma$ **ábécé feletti szó:** egy $a_1,...,a_k$ alakú sorozat.
+- **Nyelv:** $\Sigma^*$ tetszőleges $L$ részhalmazát egy $\Sigma$ feletti **nyelvnek** nevezzük. Ha $L$ véges számú szóból áll, akkor **véges nyelvnek nevezzük*
+- **Nyelvtan:** Könnyen leírható eszköz, amely alkalmas nyelvek megadására. Effektíve nyelveket tuduk vele reprezentálni.
+	- PL Környezetfüggetlen: $G = (N, \Sigma, P, S)$, ahol
+		- N egy ábécé
+		- $\Sigma$ egy ábécé, terminális
+		- $S\in N$ kezdő szimbólum
+		- $P$ pedig egy $A\rightarrow \alpha$ alakú átírási szabály.
 ## Véges automata és változatai, a felismert nyelv definíciója
 
 Lásd pdf
+
+Egy nemdeterminisztikus automata determinizálása:
+**Állapotai száma max 2^n lesz.**
+- Elindulunk a kezdőállapotból és megnézzük, hogy az első betű hatására hova megy -> ezeket összevonjuk egy állapottá és oda vezetjük ezzel a betűvel.
+- Ezután az új összevont állapot részeit nézzük meg, hogy onnan a betűk hova mennek.
+
+Egy $\epsilon$ automata $\epsilon$-mentesítése.
+- Lezártakat számolunk.
+	- Azokat az állapotokat, ahova átlehet jutni $\epsilon$ átmenettel azokat egy lezártba vesszük.
+
 
 ## A reguláris nyelvtanok, a véges automaták és a reguláris kifejezések ekvivalenciája
 
 ### Reguláris nyelvtanok
 
-- N: nemterminális abc
-- SZIGMA: terminális abc
-- P: szabályok halmaza
-- S: eleme N, kezdő nemterminális
-Egy G=(N, SZIGMA, P, S) nyelvtan reguláris (vagy jobblineáris), ha P-ben minden szabály
+- $N:$ nemterminális abc
+- $\Sigma$: terminális abc
+- $P$: szabályok halmaza
+- $S$: eleme N, kezdő nemterminális
+Egy $G=(N, \Sigma, P, S)$ nyelvtan reguláris (vagy jobblineáris), ha P-ben minden szabály
 
-- A -> xB vagy
-- A -> x
+- $A -> xB$ vagy
+- $A -> x$, alakú.
 
-alakú.
-
-Azért jobblineáris, mert minden szabály jobb oldalán max. egy nemterminális állhat, és ez mindig a szó végén helyezkedik el. Levezetést csak A -> x alakú szabállyal fejezhetünk be, ahol x eleme  SZIGMA*. A reguláris nyelvtanok speciális környezetfüggetlen nyelvtanok.
+Azért jobblineáris, mert minden szabály jobb oldalán max. egy nemterminális állhat, és ez mindig a szó végén helyezkedik el. Levezetést csak A -> x alakú szabállyal fejezhetünk be, ahol $x \in \Sigma^*$. A reguláris nyelvtanok speciális környezetfüggetlen nyelvtanok.
 
 Példa: S → aaS|abS|baS|bbS|ε, vagyis a páros hosszú szavakat generáló nyelvtan.
 
 
 ### Reguláris kifejezések
 
-Veszünk egy abc-t, és hozzáveszünk néhány szimbólumot, ezekből építünk reguláris kifejezéseket.
+**Veszünk egy abc-t, és hozzáveszünk néhány szimbólumot, ezekből építünk reguláris kifejezéseket.**
 
-A szigma feletti reguláris kifejezések halmaza a (Σ∪{∅, ε,(,),+,∗})* halmaz legszűkebb olyan U részhalmaza, hogy 
+A szigma feletti reguláris kifejezések halmaza a $(Σ∪{∅, ε,(,),+,∗})*$ halmaz legszűkebb olyan U részhalmaza, hogy 
 
 - ∅, ε eleme U-nak
 - minden a eleme Σ eleme U-nak
@@ -36,9 +57,9 @@ A szigma feletti reguláris kifejezések halmaza a (Σ∪{∅, ε,(,),+,∗})* h
 
 Prioritási sorrend: *, konkatenáció, +
 
-Jelentések:
+**Jelentések:**
 
-- |R|, az R által reprezentált nyelv
+- **|R|, az R által reprezentált nyelv**
 - R = ∅, |R| = ∅, azaz az üres nyelv
 - R = ε, |R| = {ε}, azaz az epszilon szimbólum önmagában, mint nyelv
 - R = a, |R| = {a}, azaz az a szimbólum önmagában, mint nyelv
@@ -48,15 +69,14 @@ Jelentések:
 
 ### Ekvivalencia
 
-Tetszőleges L részhalmaza szigmacsillag nyelv esetén a következő három állítás ekvivalens:
+Tetszőleges $L \subseteq \Sigma^*$  nyelv esetén a következő három állítás ekvivalens:
 
 - 1. L generálható reguláris nyelvtannal
 - 2. L felismerhető automatával
 - 3. L reprezentálható reguláris kifejezéssel
 
-3 -> 1
-
-Ha L reprezentálható reguláris kifejezéssel, akkor generálható reguláris nyelvtannal.
+**3 -> 1:**
+*Ha L reprezentálható reguláris kifejezéssel, akkor generálható reguláris nyelvtannal.*
 
 Bizonyítás: L-et reprezentáló R reguláris kifejezés struktúrája szerinti indukcióval.
 
@@ -82,9 +102,8 @@ Bizonyítás: L-et reprezentáló R reguláris kifejezés struktúrája szerinti
         - a nem "befejező" szabályokat felvesszük úgy, ahogy voltak
         - a "befejező" szabályok jobb oldalára odaírjuk az S-t
 
-1 -> 2
-
-Ha L nyelv reguláris, akkor felismerhető automatával.
+**1 -> 2:**
+*Ha L nyelv reguláris, akkor felismerhető automatával.*
 
 Bizonyítás: legyen L egy reguláris nyelv, és L=L(G), ahol G egy reguláris nyelvtan.
 
@@ -111,9 +130,8 @@ Bizonyítás
 - minden A -> aB kinézetű szabályból pedig legyen egy átmenet A-ból B-be a hatására
 
 
-2 -> 3
-
-Minden automatával felismert nyelv reprezentálható reguláris kifejezéssel. (Kleene tétele)
+**2 -> 3:**
+*Minden automatával felismert nyelv reprezentálható reguláris kifejezéssel. (Kleene tétele)*
 
 Bizonyítás: legyen L=(M), ahol M egy determinisztikus automata. Megadunk egy olyan reguláris kifejezést, ami L-et reprezentálja.
 
@@ -146,10 +164,10 @@ Ekkor, mivel az L^(k)_i,j nyelvekhez az indukciós feltevés miatt tudtunk megfe
 
 ### Pumpáló lemma
 
-Minden L reguláris nyelv esetén megadható egy L-től függő k>0 szám, melyre minden w eleme L esetén, ha |w| nagyobbegyenlő k, akkor van olyan w = w1w2w3 felbontás, hogy
+Minden L reguláris nyelv esetén megadható egy L-től függő k>0 szám, melyre minden $w \in L$ esetén, ha $|w| \ge k$, akkor van olyan $w = w_1w_2w_3$ felbontás, hogy
 
-- 0 < |w2| és |w1w2| kisebbegyenlő k
-- minden n nagyobbegyenlő 0-ra w1w2^nw3 eleme L
+- $0 \le |w_2|$ és $|w_1w_2| \le k$
+- minden $n \ge 0$ $w_1w_2^nw_3 \in L$
 
 Fordítva, ha egy nyelvhez nem adható meg ilyen k szám, akkor a nyelv nem reguláris.
 
@@ -158,7 +176,7 @@ Kb a lényeg, hogy ha egy nyelv reguláris, akkor a k-nál hosszabb szavak felbo
 ### Alkalmazása
 
 Pl bebizonyíthatjuk vele egy nyelvről, hogy nem reguláris.
-a^nb^n n >= 0 nyelv nem reguláris
+$a^nb^n$, $n \ge 0$ nyelv nem reguláris
 
 tegyük fel, hogy van ilyen k, amivel felbontható
 a feltételek miatt w2-ben csak a betűk vannak
@@ -166,5 +184,7 @@ ha ezt pumpáljuk, több a betű lesz benne, mint b - rossz
 
 ### Következményei
 
-Vannak olyan nyelvek, amelyek nem környezetfüggetlenek, de nem regulárisak, pl a^nb^n n >= 0.
+Van olyan környezetfüggetlen nyelv, amelyik nem reguláris.
+1. Minden reguláris nyelvtan környezetfüggetlen. (A REG nyelvek speciális CF nyelvek--jobblineárisak)  
+2. CF - REG != Üreshalmaz, mivel pl az {$a^nb^n$ | n >= 0} nyelv CF beli (S -> aSb | $\epsilon$), viszont nem teljesül rá a pumpáló lemma --> nem REG nyelv! 
 

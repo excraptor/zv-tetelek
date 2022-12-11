@@ -1,7 +1,11 @@
+
 # 6. Egyszerű adattípusok: egész, valós, logikai és karakter típusok és kifejezések. Az egyszerű típusok reprezentációja, számábrázolási tartományuk, pontosságuk, memória igényük és műveleteik. Az összetett adattípusok és a típusképzések, valamint megvalósításuk C nyelven. A pointer, a tömb, a rekord és az unió típus. Az egyes típusok szerepe, használata
 
 
 ## Egyszerű adattípusok: egész, valós, logikai és karakter típusok és kifejezések. Az egyszerű típusok reprezentációja, számábrázolási tartományuk, pontosságuk, memória igényük és műveleteik
+
+
+==Az **adattípus** (gyakran röviden **típus**) az értékek egy halmazához rendelt név vagy címke és ezen halmaz értékein végrehajtható néhány művelet==
 
 Az elemi adattípusok értékeit nem lehet önmagukban értelmes részekre bontani.
 
@@ -11,16 +15,16 @@ Ha a nyelv szintaktikája szerint a program egy adott pontján típusnak kellene
 
 A C nyelvben az egész típus az int.
 
-Az int típus értékkészlete az alábbi kulcsszavakkal módosítható:
+Az **int** típus értékkészlete az alábbi kulcsszavakkal módosítható:
 
-- signed: A típus előjeles értékeket fog tartalmazni (int, char).
-- unsigned: A típus csak előjeltelen, nemnegatív értékeket fog tartalmazni (int, char).
-- short: Rövidebb helyen tárolódik, így kisebb lesz az értékkészlet (int).
-- long: Hosszabb helyen tárolódik, így bővebb lesz az értékkészlet (int). Duplán is alkalmazható (long long).
+- **signed** (1 byte): A típus előjeles értékeket fog tartalmazni (int, char).
+- **unsigned** (1 byte): A típus csak előjeltelen, nemnegatív értékeket fog tartalmazni (int, char).
+- **short** (2 byte): Rövidebb helyen tárolódik, így kisebb lesz az értékkészlet (int).
+- **long** (4 byte): Hosszabb helyen tárolódik, így bővebb lesz az értékkészlet (int). Duplán is alkalmazható **(long long, ami 8 byte)**.
 
 Az egész típusok az értékkészlet határain belüli minden egész értéket pontosan ábrázolnak.
 
-Az egyes gépeken az egyes típusok mérete más-más lehet, de minden C megvalósításban teljesülnie kell a sizeof(short) ≤ sizeof(int) ≤ sizeof(long) ≤ sizeof(long long) relációnak.
+Az egyes gépeken az egyes típusok mérete más-más lehet, de minden C megvalósításban teljesülnie kell a ==sizeof(short) ≤ sizeof(int) ≤ sizeof(long) ≤ sizeof(long long)== relációnak.
 
 A C nyelv különféle egész adattípusai az értékhalmazukban különböznek egymástól, az értelmezett műveletükben megegyeznek
 
@@ -28,29 +32,25 @@ Az egész adattípusokon általában az 5 matematikai alapműveletet és az ért
 
 Értékadó művelet jobb oldalán álló kifejezés kiértékelése független attól, hogy a bal oldalon milyen típusú változó van.
 
-A / művelet két egész értékre alkalmazva maradékos osztást jelent!
+**A / művelet két egész értékre alkalmazva maradékos osztást jelent!**
 
-Tárolás:
-
+**Tárolás:**
 n bites tárterületnek 2^n állapota van, vagyis egy n biten tárolt adattípusnak legfeljebb ennyi különböző értéke lehet.
 
-Egész típusoknál a kettes komplemenst szokás használni, ha negatív értékek is szerepelhetnek az értékhalmazban.
+**Egész típusoknál a kettes komplemenst** szokás használni, ha negatív értékek is szerepelhetnek az értékhalmazban.
 
-Kettes komplemens:
-
+**Kettes komplemens:**
 - van egy pozitív számunk, és annak keressük a negatív párját
 - a számot kettes számrendszerben felírjuk
 - invertáljuk az összes bitet
 - majd hozzáadunk a végén egyet
 - a kapott szám lesz a szám ellentettje
 
-Értékhalmaz mérete:
-
+**Értékhalmaz mérete:**
 Ha negatív számok nem szerepelnek az értékhalmazban, akkor az értékhalmaz a [0 ... 2^n − 1] zárt intervallum. 
 Ha az értékhalmazban negatív számok is szerepelnek, akkor az értékhalmaz a [−2^(n−1) ... 2^(n−1) − 1] zárt intervallum. 
 
-Műveletei:
-
+**Műveletei:**
 - bitenkénti
     - negáció
     - és
@@ -68,8 +68,7 @@ A char adattípus egészként is használható, de alapvetően karakterek (betű
 - Hogy melyik értékhez melyik karakter tartozik, az az alkalmazott kódtáblázattól függ.
 - Bizonyos karakterek (általában a rendezés szerint első néhány) vezérlő karakternek számítanak, és nem megjeleníthetők.
 
-Egy C programban karakter értékeket megadhatunk
-
+**Egy C programban karakter értékeket megadhatunk:**
 - karakterkóddal számértékként, vagy
 - aposztrófok közé írt karakterrel
 
@@ -77,7 +76,6 @@ A speciális karaktereket, illetve magát az aposztrófot (és végső soron tet
 Az escape-szekvenciákat a \ (backslash) karakterrel kell kezdeni.
 
 Konvertáljunk egy tetszőleges számjegy karaktert (ch) a neki megfelelő egész számmá és egy egyjegyű egészet (i) karakterré:
-
 ```
 i = ch - '0';
 ch = i + '0';
@@ -85,10 +83,10 @@ ch = i + '0';
 
 ### Valós típusok
 
-A C nyelvben a valós adattípusok a float és double.
+A C nyelvben a valós adattípusok a **float** és **double**.
 
-A double adattípus az alábbi kulcsszóval módosítható:
-    - long: Implementációfüggő módon 64, 80, 96 vagy 128 bites pontosságot megvalósító adattípus
+**A double** adattípus az alábbi kulcsszóval módosítható:
+    - **long**: Implementációfüggő módon 64, 80, 96 vagy 128 bites pontosságot megvalósító adattípus
 
 A valós adattípusok az értékkészlet határain belül sem képesek minden valós értéket pontosan ábrázolni. Viszont az értékkészlet határain belüli minden a valós értéket képesek egy típusfüggő e relatív pontossággal ábrázolni, az a-hoz legközelebbi a típus által pontosan ábrázolható x valós értékkel.
 
@@ -98,13 +96,12 @@ A valós adattípusok az értékkészlet határain belül sem képesek minden va
 - Értékadó művelet jobb oldalán álló kifejezés kiértékelése független attól, hogy a bal oldalon milyen típusú változó van.
 - A típus pontatlansága miatt az == műveletet nagyon körültekintően kell használni!
 
-Ábrázolása:
+**Ábrázolása:**
+Egy valós értéket tároló memóriaterület **három részre osztható:** az **előjelbitet**, a **törtet** és az **exponenciális kitevőt** kódoló részre.
 
-Egy valós értéket tároló memóriaterület három részre osztható: az előjelbitet, a törtet és az exponenciális kitevőt kódoló részre.
-
-- Az előjelbit 0 értéke a pozitív, 1 értéke a negatív számokat jelöli
-- A számot kettes számrendszerben 1.m × 2^k alakra hozzuk, majd az m számjegyeit eltároljuk a törtnek, a k-nak egy típusfüggő b konstanssal növelt értékét pedig a kitevőnek fenntartott részen.
-- Így a tört rész hossza az ábrázolás pontosságát (az értékes számjegyek számát), a kitevő pedig az értéktartomány méretét határozza meg.
+- Az **előjelbit** 0 értéke a pozitív, 1 értéke a negatív számokat jelöli
+- A számot kettes számrendszerben $1.m × 2^k$ alakra hozzuk, majd az $m$ **számjegyeit eltároljuk a törtnek**, a $k$-nak **egy típusfüggő $b$ konstanssal növelt értékét pedig a kitevőnek fenntartott részen.**
+- Így a **tört rész hossza az ábrázolás pontosságát** (az értékes számjegyek számát), a **kitevő pedig az értéktartomány méretét** határozza meg.
 - Nagyon kicsi számokat speciálisan 0.m × 2^(1−b) alakban tárolhatunk, ekkor a kitevő összes bitje 0.
 - Ha a kitevő összes bitje 1, az csupa 0 bitből álló tört esetén a ∞, minden más esetben NaN értéket jelenti.
 - A 32/64 bites float/double az 1 előjelbit mögött 8/11 biten a kitevő b = 127-tel/1023-mal növelt értékét, majd 23/52 biten a törtet tárolja.
@@ -135,11 +132,11 @@ Az összetett adattípusok értékei tovább bonthatóak, további értelmezés�
 
 A C nyelv összetett adattípusai:
 
-- Pointer típus
+- **Pointer típus**
     - Függvény típus
-- Tömb típus
+- **Tömb típus**
     - Sztringek
-- Rekord típus
+- **Rekord típus**
     - Szorzat-rekord
     - Egyesítési-rekord
 
@@ -193,22 +190,22 @@ Műveletek:
     - `p != q`
 
 
-A memóriaműveletekhez szükség van az stdlib.h vagy a memory.h használatára.
+**A memóriaműveletekhez szükség van az stdlib.h vagy a memory.h** használatára.
 
-malloc(S), lefoglal egy S méretű memóriaterületet
-sizeof(E), megmondja, hogy egy E típusú érték mekkora helyet igényel a memóriában
-malloc(sizeof(E)), létrehoz egy E típusú érték tárolására is alkalmas változó
-free(p), felszabadítja a p-hez tartozó memóriaterületet, ezután a p-hez nem lesz érvényes változóhivatkozás 
+**malloc(S)**, lefoglal egy S méretű memóriaterületet
+**sizeof(E)**, megmondja, hogy egy E típusú érték mekkora helyet igényel a memóriában
+**malloc(sizeof(E))**, létrehoz egy E típusú érték tárolására is alkalmas változó
+**free( p )**, felszabadítja a p-hez tartozó memóriaterületet, ezután a p-hez nem lesz érvényes változóhivatkozás 
 
 Linux alatt logikailag minden programnak saját memória-tartománya van, amin belül az egyes memóriacímeket egy sorszám azonosítja.
 
-Pointer típusú változó 32 bites rendszereken 4 bájt, 64 bites rendszereken 8 bájt hosszban a hozzá tartozó dinamikus változóhoz foglalt memóriamező kezdőcímét (sorszámát) tartalmazza.
+**Pointer típusú változó** 32 bites rendszereken 4 bájt, 64 bites rendszereken 8 bájt hosszban a hozzá tartozó dinamikus változóhoz foglalt memóriamező kezdőcímét (sorszámát) tartalmazza.
 
 A pointer értéke tehát (második megközelítésben) értelmezhető egy tetszőleges memóriacímként is, amely értelmezés egybeesik a pointer megvalósításával.
 
 Ilyen módon viszont értelmezhetjük a címképző műveletet, ami egy változó memóriabeli pozícióját, címét adja vissza.
 
-- Cím
+- **Cím**
     - `p = &x`
 
 A void* egy speciális, úgynevezett típustalan pointer. Az ilyen típusú pointerek „csak” memóriacímek tárolására alkalmasak, a dereferencia művelet alkalmazása rájuk értelmetlen. Viszont minden típusú pointerrel kompatibilisek értékadás és összehasonlítás tekintetében.
@@ -225,13 +222,12 @@ Ha az ilyen sorozatokon a következő műveleteket értelmezzük, akkor egy (abs
 
 Jelöljük ezt a Tömb típust T -vel, a 0, . . . , n − 1 intervallumot pedig I-vel.
 
-Műveletek
-
-- Kiolvas
+**Műveletek**
+- *Kiolvas*
     - a sorozat i. elemének kiolvasása egy változóba
-- Módosít
+- *Módosít*
     - a sorozat i. elemének módosítása egy E típusú értékre
-- Értékadás
+- *Értékadás*
     - a változó felveszi a tömb értékét
 
 Tömb típusú változót az alábbi módon deklarálhatunk:
@@ -289,7 +285,8 @@ A T halmazon is a szorzat rekordhoz hasonló módon értelmezhetünk kiolvasó �
 
 Az új adattípust a T 0 változati típusból és T 1 , . . . , T k egyesítési-tag típusokból képzett egyesített-rekord típusnak nevezzük.
 
-```typedef union T {
+```
+typedef union T {
     T1 M1;
     ...
     Tk Mk;
@@ -305,3 +302,13 @@ sizeof(T) = max{sizeof(T1), ..., sizeof(Tk)}
 Valamennyi változati mező ugyanazon a memóriacímen kezdődik, ami
 megegyezik a teljes union típusú érték címével (azaz minden mező
 eltolása, offset-je 0).
+
+
+### Union vs Struct
+
+|                | Struct                                        | Union                                     |
+|----------------|-----------------------------------------------|-------------------------------------------|
+| **Méret**          | A tagok elemei méretének az összege           | A legnagyobb elemnek a mérete             |
+| **Memória**        | Minden tagnak van külön memória részlete      | A memórián osztoznak                      |
+| **Tagok elérése**  | Bármelyik tagot el lehet érni bármikor        | Egyszerre csak egy tagot lehet egy időben |
+| **Inicializálása** | Bármennyi tagot lehet inicializálni egyszerre | Csak az első tagot tudjuk inicializálni.  
